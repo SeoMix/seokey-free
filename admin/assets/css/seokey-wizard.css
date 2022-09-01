@@ -1,0 +1,532 @@
+/*Hide WordPress Footer */
+#wpfooter{
+    display:none;
+}
+/* only on wizard */
+
+#seokey-field-seooptimizations-wizardstatus,
+#seokey-field-seooptimizations-wizardstatus_desc,
+#tab-seo-optimizations .thspan,
+#automatic_optimizations_list_text,
+.seokey-fieldset .form-table .seo-key.hidedefault{
+    display: none;
+}
+.form-table .seo-key.hidedefault ,
+#automatic_optimizations_list_button2{
+    display: none;
+}
+#tab-seo-optimizations p {
+    text-align: center;
+}
+#automatic_optimizations_list_button_choices {
+    position: relative;
+}
+#automatic_optimizations_list_button_choices.remove {
+    padding-right: 50px;
+}
+#automatic_optimizations_list_button_choices.remove::after {
+    content: ;
+    font-family: dashicons;
+    content: "\f158";
+    font-size: 30px;
+    position: absolute;
+    top: 7px;
+    line-height: 1em;
+}
+/**
+	SEOKEY CSS : Wizard API
+**/
+/*Hide Update notice from WordPress */
+.seo-key_page_seo-key-wizard .update-nag,
+.seo-key_page_seo-key-wizard #update-nag,
+.seo-key_page_seo-key-wizard .notice{
+    display: none;
+}
+
+/* GLobal background and color */
+.seo-key_page_seo-key-wizard .seokey-form {
+    background: transparent;
+    color: #fff;
+}
+
+.seo-key_page_seo-key-wizard #seokey-form-settings,
+.seo-key_page_seo-key-wizard #seokey-wizard-form{
+    margin: 0 auto;
+    max-width: 800px;
+}
+.seo-key_page_seo-key-wizard p {
+    font-size: 1.2em;
+}
+/* hide border top */
+.nav-tab-wrapper, .wrap h2.nav-tab-wrapper, h1.nav-tab-wrapper {
+    border-bottom: 0;
+    display: none;
+}
+.wrap.seokey-wrapper {
+    padding-bottom: 80px;
+}
+.seokey-wrapper .seokey-ul{
+    list-style: none;
+}
+
+
+
+/* Steps */
+body{
+    background: #fff;
+}
+#seokey-wizard-top {
+    padding: 2em 2em 2.5em 2em;
+    background: #063D62;
+    color: #fff;
+    max-width: 1600px;
+    margin: 0 auto 2em;
+    box-sizing: border-box;
+    box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgba(17, 24, 39, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px;
+    border-radius: 0.5rem;
+    text-align:center;
+}
+#seokey-wizard-steps {
+    display: flex;
+    padding-top: 6em;
+    margin: 0 0 2em 0;
+    text-align: center;
+    justify-content: center;
+}
+#seokey-wizard-steps li {
+    flex: auto;
+    list-style: none;
+    counter-increment: li;
+    position: relative;
+    width: 100%;
+    max-width: 250px;
+}
+#seokey-wizard-steps li span,
+#seokey-wizard-steps li button{
+    font-size: 1.1em;
+}
+#seokey-wizard-steps li::before {
+    content: counter(li);
+    position: absolute;
+    left: 50%;
+    width: 1em;
+    margin-left: -1.5em;
+    top: -3.75em;
+    font-family: Roboto;
+    /*font-weight: 700;*/
+    /*font-size: 1.2em;*/
+    border-radius: 3em;
+    padding: 0.8em 1em;
+    z-index: 1;
+    box-shadow: inset 0 0 7px 0 rgba(0, 0, 0, 0.2);
+    background-color: #3c3c3c;
+    color: #fff;
+}
+#seokey-wizard-steps li + li::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 7px;
+    position: absolute;
+    left: -50%;
+    top: -2.5em;
+    z-index: 0;
+    box-shadow: inset 0 0 7px 0 rgba(0, 0, 0, 0.2);
+    background-color: #3c3c3c;
+}
+#seokey-wizard-steps li.step-current + li::after{
+    background: rgb(44,175,217);
+    background: linear-gradient(90deg, rgba(44,175,217,1) 0%, rgba(60,60,60,1) 100%);
+}
+#seokey-wizard-steps li.step-done + li::after{
+    background-color: #2cafd9;
+}
+
+
+
+
+/* Other status */
+#seokey-wizard-steps li.step-done::before,
+#seokey-wizard-steps li.step-current::before,
+#seokey-wizard-steps li.step-done + li::after{
+    background-color: #2cafd9;
+    color: #3c3c3c;
+}
+
+
+/* Wizard key */
+/*.step-current button::before {*/
+/*    content: "";*/
+/*    background-image: url('../img/wizard-steps-key.png');*/
+/*    width: 115px;*/
+/*    height: 52px;*/
+/*    display: inline-block;*/
+/*    position: absolute;*/
+/*    top: 0.66em;*/
+/*    z-index: 2;*/
+/*    left: -85px;*/
+/*}*/
+/*#seokey-wizard-steps .step-start.step-current button::before {*/
+/*    display: none;*/
+/*}*/
+/* fix for last item */
+/*.step-audit.step-current button::before {*/
+/*    left: -110px;*/
+/*}*/
+/* Hide key for last step or for small screens */
+/*#seokey-wizard-steps .step:last-child #step-current-key::after{*/
+/*    display: none;*/
+/*}*/
+
+
+
+
+
+
+
+/* No steps on small resolutions */
+@media screen and (max-width: 1380px) {
+    #step-current-key {
+        display: none;
+    }
+}
+
+
+
+/* Start, Submit and skip buttons */
+.seo-key_page_seo-key-wizard .seokey-form-save-section {
+    margin: 2em 0 0 0;
+    display: block;
+}
+.seo-key_page_seo-key-wizard #submit {
+    float: right;
+    padding: 0.7em 1.5em;
+    margin: 0;
+    line-height: 1.4;
+    font-size: 1em;
+    border:0;
+}
+#previous {
+    float: left;
+    padding: 1em 2em;
+}
+
+
+/* Hide classic Setting notices */
+#setting-error-settings_updated{
+    display:none;
+}
+
+
+/* Hide tabs */
+.seo-key_page_seo-key-wizard .nav-tab-wrapper {
+    display: none;
+}
+/* Fix image borders*/
+.seo-key_page_seo-key-wizard .seokey-img-preview {
+    border: 0;
+    box-shadow: none;
+}
+
+
+
+
+
+
+/* show wizard notice */
+#seokey_notice_wizard {
+    display: flex;
+}
+
+
+
+
+
+
+
+
+
+/* Wizard colors */
+.seokey-form .seokey-spinner:before {
+    border-bottom-color: #063D62;
+    border-right-color: #063D62;
+    border-top-color: #F0F0F1;
+    border-left-color: #F0F0F1;
+}
+.seokey-form .seokey-spinner:after {
+    border-bottom-color: #2caed8;
+    border-right-color: #2caed8;
+    border-top-color: #F0F0F1;
+    border-left-color: #F0F0F1;
+}
+
+
+
+
+/* Wizard save button */
+.seokey-form-save-section .submit {
+    float: right;
+    margin: 0;
+}
+
+
+/* toggles */
+.seokey-switch-btn {
+    font-size: 14px;
+}
+
+/* repeaters */
+.seokey-repeater-button-add {
+    padding-right: 9em;
+    z-index: 1;
+    position: relative;
+    padding-top: 2px;
+}
+
+
+
+
+.step button {
+    border: 0;
+    background: transparent;
+    /*font-size: 1.2em;*/
+    /*font-weight: 700;*/
+    padding: 5em 1em 1em 1em;
+    margin-top: -5em;
+    z-index: 1;
+    position: relative;
+}
+.step:hover button {
+    cursor:pointer;
+    color: #0A4B78;
+}
+
+#seokey-wizard-steps .step-done:hover::before,
+#seokey-wizard-steps .step-current:hover::before{
+    background-color: #077aac;
+    color:#fff
+}
+
+
+
+
+
+.seo-key_page_seo-key-wizard .seokey-form-save-section {display: none}
+
+
+
+
+/* text color on wizard */
+.seokey-fieldset #automatic_optimizations_list_items label{
+    min-width: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* do not show loader on specific steps */
+#seokey-wizard-form #none #seokey-loader {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Specific CSS for search console tab */
+#wrong-google-account-p {
+    font-size: 16px;
+}
+#seokey-field-search-console-searchconsole-google-verification-code th {
+    display:none
+}
+#seokey-field-search-console-searchconsole-google-verification-code_desc {
+    font-size: 15px;
+    margin-left: 2.1em;
+}
+
+/* add specific CSS versus settings page */
+#seokey-form-settings {
+    border: 0;
+    padding-bottom: 5.5em;
+}
+.seokey-fieldset label, .seokey-fieldset .form-wrap label, .seokey-fieldset .form-table th, .seokey-fieldset .form-table td .setting-description {
+    color: #0A4B78;
+    font-size: 20px;
+}
+.seokey_page_seo-key-wizard .form-table {
+    margin-bottom: 2em;
+}
+.seokey_page_seo-key-wizard #tab-search-console .form-table {
+    margin-bottom: 0;
+}
+.seokey-wrapper p {
+    font-size: 16px;
+}
+#automatic_optimizations_list .setting-description {
+    display: none;
+}
+#automatic_optimizations_list .automatic_optimizations_display_span {
+    color: #fff;
+}
+h2 {
+    font-family: Roboto;
+    color: #0A4B78;
+    font-weight: 700;
+    text-align:center;
+}
+fieldset h2 {
+    text-align: inherit;
+}
+h2.main-title {
+    font-size: 26px;
+}
+.seokey-fieldset #seokey-field-metas-category_base + label {
+    font-size: 16px;
+}
+
+
+
+/* wizard blocs */
+#wizard-start,
+#wizard-end{
+    padding: 1em 2em 3em;
+}
+#wizard-end {
+    text-align: center;
+}
+#wizard-start-bloc {
+    display: flex;
+    align-items: end;
+    max-width: 600px;
+    margin: 0 auto;
+}
+#wizard-start-bloc-span-last {
+    margin-left: auto;
+    margin-bottom: 2em;
+}
+#wizard-start,
+#wizard-end,
+#seokey-form-settings{
+    background: #F0F0F1;
+    box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgba(17, 24, 39, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px;
+    border-radius: 0.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* buttons */
+#start {
+    font-size: 1.2em;
+}
+#wizard-end #end,
+#wizard-start .button{
+    background:#0A4B78;
+    border-color:#0A4B78
+}
+#wizard-start .button-secondary{
+    border-color: #2271b1;
+    background: #f6f7f7;
+    margin-left:1em;
+    color:#0A4B78
+}
+#wizard-start .button-secondary:hover{
+    background:#0A4B78;
+    border-color:#0A4B78;
+    color:#fff
+}
+#import-other-seo-plugin {
+    text-align:left
+}
+#wizard-start .hidestart {
+    display: none;
+}
+#seokey-form-settings .button:hover,
+#wizard-start .button:hover,
+#wizard-end #end:hover{
+    background:#124759;
+    border-color:#124759
+}
+#skip {
+    float: right;
+    margin: 1em;
+}
+#seokey-form-settings .button.seokey-settings-upload-button,
+#seokey-form-settings .button.seokey-settings-upload-remove-button{
+    padding: 0.5em 1.5em;
+    height: auto;
+    font-size: 0.8em;
+    border: 0;
+}
+#seokey-form-settings .button.seokey-settings-upload-button:hover,
+#seokey-form-settings .button.seokey-settings-upload-remove-button:hover{
+    background: #0A4B78;
+    color: #fff;
+}
+
+
+
+
+
+
+/* step schema */
+#tab-who-are-you .form-table tr:first-of-type > th::before,
+#tab-who-are-you .form-table tr:nth-of-type(2) > th::before{
+    content: "\f112";
+    font-family: Dashicons;
+    position: relative;
+    top: 2px;
+    margin-right: 6px;
+}
+#tab-who-are-you .form-table tr:nth-of-type(2) > th::before{
+    content: "\f102";
+}
+.dashicons.dashicons-email-alt {
+    top: 6px;
+    position: relative;
+    margin-right: 6px;
+}
+
+/* step automatic optimizations */
+#tab-automatic-optimizations p {
+    text-align: center;
+}
+
+/* responsive */
+@media (max-width: 1460px) {
+    .step-current button::before{
+        display: none;
+    }
+}
+
+
+/*hide change site for Search Console */
+.seokey_page_seo-key-wizard #seokey-gsc-connected .button {
+    display: none;
+}
+
+
+
+
+/* license */
+#seokey-field-schemaorg-license-tr #validation_actions_check {
+    margin-top: 0;
+}
+#seokey-field-schemaorg-context-tr {
+    margin-top: 2em;
+}

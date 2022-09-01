@@ -1,0 +1,17 @@
+{
+  "translation-revision-date":"2019-05-04 22:33-0400",
+  "generator":"WP-CLI\/2.2.0",
+  "source":"seokey-settings-pro.js",
+  "domain":"seo-key",
+  "locale_data":{
+    "messages":{
+      "":{
+        "domain":"seo-key",
+        "lang":"fr_FR",
+      },
+      "Checking...":["Vérification en cours"],
+      "Add More":["Ajouter"],
+      "- You may have a firewall blocking our licence validation.":["Vous avez peut-être un firewall qui bloque la validation de licence"],
+    }
+  }
+}

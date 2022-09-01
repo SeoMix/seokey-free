@@ -1,0 +1,61 @@
+.seokey_page_seo-key-redirections .nav-tab:nth-child(2n)::after,
+.seokey_page_seo-key-redirections .nav-tab:nth-child(3n)::after,
+#search-console.nav-tab::after,
+#wizard-start-bloc li:nth-child(3n)::after,
+#seokey-stats p:first-child::after {
+    content: 'PRO';
+    margin: 0 0 0 0.5em;
+    background: #FFCF49;
+    padding: 0.2em 0.25em;
+    color: #0C5D97;
+    border-radius: 0.25em;
+}
+.seokey-wrapper .seokey-redirections-tools p {
+    font-size: 1.2em;
+    display: block;
+}
+
+#audit-pro-message {
+    max-width: 13em;
+}
+#audit-tables-tfoot {
+    position: relative;
+    height: 6em;
+}
+#audit-tables-tfoot td {
+    position: absolute;
+    width: 100%;
+    background: #0677a9;
+    padding: 2em 1em 1em;
+    color: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+#audit-tables-tfoot .button.button-hero {
+    margin-left: 3em;
+    margin-top: -1em;
+}
+.task.task-gopro header{
+    padding: 2em 1em 2em;
+}
+.task-gopro .button.button-hero {
+    margin-left: 3em;
+    margin-top: -0.5em;
+}
+
+
+
+
+
+#audit-metabox-go-pro {
+    background: #fff;
+    padding: 1em;
+    display: flex;
+    font-size: 16px;
+    border-radius: 0.5em;
+    justify-content: center;
+    align-items: center;
+}
+#audit-metabox-go-pro .button.button-hero {
+    margin-left: 3em;
+}

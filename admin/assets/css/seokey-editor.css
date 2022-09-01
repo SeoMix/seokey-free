@@ -1,0 +1,34 @@
+/**
+	SEOKEY CSS : improve editor
+	Version 0.0.1
+**/
+
+/* Remove H1 for heading levels
+/* see var HEADING_LEVELS = [1, 2, 3, 4, 5, 6] in file includes/js/dist/block-library.js*/
+.block-library-heading-level-dropdown button.components-button:first-of-type {
+    display: none;
+}
+/* but allow H1 in full site editing */
+.site-editor-php .block-library-heading-level-dropdown button.components-button:first-of-type {
+    display: block !important;
+}
+
+
+/*.block-editor-page button[aria-label="Heading 1"] {*/
+/*    display: none;*/
+/*}*/
+/*.site-editor-php.block-editor-page button[aria-label="Heading 1"] {*/
+/*    display: inherit;*/
+/*}*/
+
+/* Retire une option du select permettant de choisir la cible du lien des images pour les ajouts de galleries */
+.setting select .link-to option[value="post" ],
+.setting select[ data-setting="link" ] option[value="post"],
+.components-select-control__input > option[value="attachment"] {
+    display: none !important;
+}
+
+/* Retire le choix "page du media" dans le selecteur du lien du bloc image de gutenberg */
+.block-editor-url-popover__additional-controls div[role=menu] > .components-button:last-child {
+    display: none !important;
+}

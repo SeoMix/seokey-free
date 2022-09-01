@@ -1,0 +1,1012 @@
+/**
+	SEOKEY settings CSS
+	Version 0.0.1
+**/
+
+.seokey_page_seo-key-settings #seokey-form-settings {
+    margin-bottom: 5em;
+}
+.seokey_page_seo-key-settings .seokey-form-save-section {
+    position: absolute;
+    bottom: -6em;
+}
+/* form colors */
+.nav-tab-wrapper.hide-if-no-js {
+    border:0;
+}
+#screen-meta {
+    color:#50575e
+}
+.wp-heading-inline {
+    color: #FFF;
+}
+.seokey-wrapper .notice {
+    color: #595959;
+}
+/* Form alignment */
+.seokey-fieldset .form-table th{
+    width: auto;
+}
+.seokey-form .form-table tr > th:empty {
+    display: none;
+}
+.seokey-fieldset .form-table td{
+    color: #3c3c3c;
+    padding:0
+}
+.seokey-fieldset .form-table .seo-key {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    clear: both;
+    margin-bottom: 2em;
+}
+.seokey-fieldset th:empty {
+    padding: 0;
+}
+.seokey-fieldsetsetting {
+    max-width: 1100px;
+}
+.seokey-fieldsetsetting th .dashicons{
+    margin: 3px 0 0 0;
+}
+.seokey-fieldsetsetting h2 .dashicons {
+    margin: -3px 5px 0 0;
+}
+.seokey-pages #wpcontent .seokey-fieldset h2 {
+    font-size: 20px;
+}
+/* specific cases */
+#seokey-field-seooptimizations-pagination-authors-tr label,
+#seokey-field-seooptimizations-pagination-comments-tr label,
+#seokey-field-seooptimizations-replylinks-tr label,
+#seokey-field-seooptimizations-hide-noindexed-tr label,
+#seokey-field-seooptimizations-rss-secondary-tr label {
+    font-size: 16px;
+    color: #464646;
+    font-weight: 400;
+    padding-top: 3px;
+}
+#seokey-field-seooptimizations-pagination-authors-tr,
+#seokey-field-seooptimizations-pagination-comments-tr,
+#seokey-field-seooptimizations-replylinks-tr,
+#seokey-field-seooptimizations-hide-noindexed-tr,
+#seokey-field-seooptimizations-rss-secondary-tr {
+    margin-bottom: 0.5em;
+}
+#tab-search-console .setting-description {
+    margin: 0;
+    padding: 0;
+}
+#tab-who-are-you .form-table .seo-key {
+    margin-bottom: 0;
+}
+#seokey-field-cct-pages-tr {
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+#copy-breadcrumb-message {
+    background-image: url('../img/task-good.png');
+    background-repeat: no-repeat;
+    display: inline-block;
+    min-height: 24px;
+    padding: 2px 0 0 28px;
+    margin-top: 0.25em;
+    margin-left: 0.5em;
+}
+#copy-breadcrumb-button {
+    margin-bottom: 2em;
+}
+/* inputs, labels and p */
+.seokey-fieldset input{
+    border-radius: 4px;
+    border: solid 1px #b9b9b9;
+    background-color: #ffffff;
+    font-family: Roboto, sans-serif;
+    color: #464646;
+}
+.seokey-fieldset input[type=text],
+.seokey-fieldset input[type=button],
+.seokey-fieldset input[type=password],
+.seokey-fieldset input[type=url],
+.seokey-fieldset input[type=tel],
+.seokey-fieldset input[type=number]{
+    height: 3em;
+}
+.seokey-fieldset input.timepickerme{
+    height: 2em;
+}
+.seokey-fieldset label,
+.seokey-fieldset .form-wrap label,
+.seokey-fieldset .form-table th,
+.seokey-fieldset .form-table td .setting-description,
+.seokey-fieldset .setting-description {
+    font-family: Roboto, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0A4B78;
+    margin: 1em 0 0;
+    display: block;
+    padding-bottom: 0.5em;
+    cursor: inherit;
+}
+.seokey-fieldset input + label {
+    display: inline;
+    font-size: 16px;
+}
+.seokey-fieldset input + label.onoffswitch-label{
+    display: block;
+}
+.seokey-fieldset input:hover{
+    cursor: pointer;
+}
+.seokey-fieldset .form-table td p.seokey-description {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+.seokey-fieldset td > .seokey-description:first-child {
+    padding: 0 0 1em;
+}
+.seokey-fieldset .form-table td p {
+    color:#464646;
+    padding: 0.75em 0 0;
+}
+.regular-text-large {
+    width: 42em;
+}
+
+
+
+/* form div (for exemple on schema.org data */
+.seokey-fieldset .form-table div {
+    margin-bottom: 1.25em;
+    margin-right: 3em;
+    flex: 0 0 26%;
+}
+.seokey-fieldset .form-table .settings-flex-shrink div{
+    flex: inherit;
+}
+.seokey-fieldset .form-table div input {
+    margin: 0.25em 0 0 0;
+}
+.settings-flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+/* taxonomy select */
+.seokey-fieldset .form-table .seo-key.tr-no-margin {
+    margin: 0;
+}
+#seokey-form-settings .seokey-fieldset .form-table .seo-key.tr-no-margin select {
+    margin: 0 0 1em 0;
+}
+#seokey-form-settings .seokey-fieldset .form-table .seo-key.tr-no-margin p {
+    padding: 0 0 0.25em 0;
+}
+
+
+/* Placeholders */
+.seokey-fieldset input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #888;
+}
+.seokey-fieldset input::-moz-placeholder { /* Firefox 19+ */
+    color: #888;
+}
+.seokey-fieldset input:-ms-input-placeholder { /* IE 10+ */
+    color: #888;
+}
+.seokey-fieldset input:-moz-placeholder { /* Firefox 18- */
+    color: #888;
+}
+
+/* Checkbox */
+.seokey-fieldset .form-table div input[type="checkbox"] {
+    height: 1.475em;
+    border: 0;
+    line-height: 1em;
+    font-family: inherit;
+    margin: 0 0.25em 0 0;
+    width: 1.4em;
+    box-shadow: inset 0 0 2px 0 #000;
+}
+input[type="checkbox"]:checked::before {
+    height: 1.6125rem;
+    width: 1.6125rem;
+}
+.seokey-fieldset input[type="checkbox"],
+.seokey-fieldset input[type="radio"] {
+    height: 1.2rem;
+    width: 1.2rem;
+}
+.seokey-fieldset input.multi_checkbox_slide[type="checkbox"],
+.seokey-fieldset input.multi_checkbox_slide[type="radio"] {
+    height:inherit;
+    width:inherit;
+}
+.seokey-fieldset input[type="checkbox"] + label {
+    padding: 0;
+}
+
+/* Specific CSS for meta title and meta desc */
+#seokey-field-metas-metatitle-tr {
+    margin-bottom: 0;
+}
+#seokey-field-metas-metadesc-tr th {
+    display: none;
+}
+#seokey-field-metas-metadesc-tr {
+    min-width: 32em;
+}
+#seokey-field-metas-metatitle-tr, #seokey-field-metas-metadesc-tr {
+    max-width: 550px;
+}
+#seokey-field-metas-metatitle-tr input, #seokey-field-metas-metadesc-tr textarea {
+    width: 100%;
+}
+
+/* Specific CSS for medias */
+.wp-core-ui .seokey-settings-upload-remove-button{
+    display:none;
+}
+.wp-core-ui .seokey-remove-button-show {
+    display: inline-block;
+}
+
+
+#import-title{
+    margin-top:2em
+}
+/* select with only one value */
+#seokey-form-settings .seokey-fieldset .form-table .seo-key.tr-no-margin .select-one-text {
+    font-size: 0.9em;
+    background-image: url('../img/task-good.png');
+    background-repeat: no-repeat;
+    display: inline-block;
+    padding: 0 0 0 20px;
+    margin-top: 0.25em;
+    background-size: 17px;
+    background-position: left;
+}
+
+/* specific css for category URL */
+input#seokey-field-metas-category_base + label {
+    font-size: 16px;
+}
+
+/* Specific CSS for opening hours */
+#local-business-opening-hours-specification .settings-flex {
+    margin-top: 1em;
+}
+#seokey-field-schemaorg-schema-local_business-openinghoursspecification-tr .settings-flex {
+    margin-top: 1em;
+}
+#seokey-field-schemaorg-schema-local_business-openinghoursspecification-tr,
+#seokey-field-schemaorg-schema-local_business-pricing-tr{
+    margin-left: 3em;
+}
+#seokey-field-schemaorg-schema-local_business-openinghoursspecification-tr .setting-description,
+#seokey-field-schemaorg-schema-local_business-pricing-tr .setting-description {
+    margin: 0;
+}
+#seokey-field-schemaorg-schema-local_business-openinghoursspecification .settings-flex {
+    margin-top: 1em;
+}
+
+/* specific CSS for htpass */
+#seokey-field-tools-htpasslogin-tr {
+    margin-bottom: 0;
+    margin-top: 2em;
+}
+#seokey-field-tools-htpasslogin-tr .tdspan {
+    display: block;
+    padding-top: 0;
+    margin-top: 0.75em;
+}
+#seokey-field-tools-htpasspass {
+    margin-bottom: 1em;
+}
+#seokey-field-tools-htpasslogin-tr td p {
+    margin-bottom: 1em;
+}
+#seokey-field-tools-htpasslogin-tr .tdspan input,
+#seokey-field-tools-htpasspass-tr{
+    display: none;
+}
+#seokey-field-tools-htpasslogin-tr .thspan {
+    display: block;
+}
+#seokey-field-tools-htpasspass-tr th {
+    display: none;
+}
+#seokey-field-tools-htpasslogin-tr td label {
+    color: #464646;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 2px 0 0 0;
+}
+/* Hide classic Setting notices */
+#setting-error-settings_updated{
+    display:none;
+}
+/* PRO license */
+#seokey-field-tools-license-tr {
+    position: relative;
+}
+#seokey-field-tools-license-tr #seokey-license-loader {
+    position: absolute;
+    top: 5em;
+    left: 31em;
+}
+#seokey-field-tools-license {
+    margin-top: 0.5em;
+}
+#validation_actions_messages.invalid::before {
+    background-image: url('../img/task-error.png');
+}
+#validation_actions_messages.empty::before {
+    display: none;
+}
+#validation_actions_messages::before {
+    content: " ";
+    background-image: url('../img/task-good.png');
+    background-repeat: no-repeat;
+    display: inline-block;
+    min-height: 24px;
+    padding: 2px 0 0 28px;
+    position: relative;
+    top: 8px;
+}
+#validation_actions_messages {
+    display: block;
+}
+#validation_actions_check {
+    margin-top: 8px;
+    line-height: 3em;
+    min-height: inherit;
+}
+/* Import data */
+#seokey-import-loader {
+    margin-left: 22em;
+    float: left;
+    margin-top: -5em;
+}
+
+/* Specific CSS for GSC Token Input */
+#seokey-gsc-code-auth {
+    min-width: 39em;
+    font-size: 0.9em;
+    height: 3em;
+    margin-bottom: 2em;
+}
+/* Specific CSS for GSC meta validation */
+#seokey-field-search-console-searchconsole-google-verification-code {
+    min-width: 40em;
+    height: 3em;
+    margin: 0 0 0 30px;
+}
+#wrong-google-account-p {
+    font-size: 16px;
+    margin-left: 6px;
+    top: 5.5em;
+}
+#wrong-google-account-p.verified {
+    margin-bottom: 3.25em;
+}
+#seokey-gsc-select-solutions-sec-text {
+    display: block;
+    margin: 12px 0 0 0;
+    font-size: 15px;
+    position: relative;
+}
+#seokey-field-search-console-searchconsole-google-verification-code-tr {
+    top: -3em;
+    position: relative;
+    font-size: 15px;
+    height: 50px;
+}
+#seokey-gsc-select-solutions li,
+#wrong-google-account-p{
+    position: relative;
+    margin-bottom: 1em;
+}
+.logout-nomargin #wrong-google-account-p {
+    top: 4.5em;
+    margin-left: 0;
+}
+.logout-nomargin li:nth-of-type(2) {
+    top: 0 !important;
+}
+.logout-nomargin li:only-of-type {
+    top: 0 !important;
+}
+.seokey-fieldset .form-table td .select-site {
+    padding: 0.5em 0;
+    margin: 0;
+}
+#seokey-gsc-select-solutions li::before,
+#wrong-google-account-p::before,
+#seokey-field-search-console-searchconsole-google-verification-code_desc::before,
+.seokey-fieldset .form-table td .gsc-nowebsite::before {
+    content: "";
+    border-color: transparent #2cafd9;
+    border-style: solid;
+    border-width: 0.4em 0 0.4em 0.5em;
+    display: inline-block;
+    left: -15px;
+    position: absolute;
+    top: 5px;
+}
+#seokey-field-search-console-searchconsole-google-verification-code_desc{
+    position: relative;
+    margin-left: 1em;
+    padding: 0 0 0.25em;
+}
+#seokey-field-search-console-searchconsole-google-verification-code-tr th {
+    color: #3c3c3c;
+    font-size: 15px;
+    font-weight: 400;
+    position: relative;
+    margin-left: 32px;
+}
+
+#seokey-gsc-connect-gsc .setting-description {
+    margin-top: 1em;
+}
+.button.button-primary.js-seokey-gsc-code-auth.button-hero {
+    margin-left: -8px;
+    position: relative;
+    top: 1px;
+}
+#seokey-gsc-connect-gsc p:nth-child(3) {
+    padding-top: 0;
+}
+#tab-search-console.seokey-fieldset h2.setting-description {
+    margin-top: 1em;
+}
+.seokey-fieldset .form-table p.setting-description, .seokey-fieldset .form-table label {
+    font-size: 20px;
+}
+#seokey-gsc-select-solutions .seokey-tooltip-icon {
+    top: 0;
+}
+#seokey-field-search-console-searchconsole-google-verification-code-tr .seokey-tooltip-icon {
+    top: -1px;
+}
+
+
+
+.sitemap-status::before {
+    content: " ";
+    background-image: url('../img/task-good.png');
+    background-repeat: no-repeat;
+    display: inline-block;
+    min-height: 24px;
+    padding: 2px 0 0 28px;
+    position: relative;
+    top: 8px;
+}
+.sitemap-true::before {
+    background-image: url('../img/task-good.png');
+}
+.sitemap-false::before {
+    background-image: url('../img/task-error.png');
+}
+
+
+
+
+
+/* Specific CSS for tab contents */
+#tab-contents-and-metas tr {
+    margin-bottom: 0.5em;
+}
+/* Specific CSS for timepickers inputs */
+.demi-text.timepickerme {
+    height: 2em;
+    min-width: 7em;
+}
+/* Specific CSS for automatic Wizard p */
+#tab-automatic-optimizations p {
+    font-size: 16px;
+}
+#tab-automatic-optimizations .setting-description {
+    font-size: 22px;
+    margin-top: 0;
+    padding-top: 5px;
+}
+/* Specific CSS for category base label */
+#seokey-field-metas-category_base-tr label {
+    color: #464646;
+    font-weight: 400;
+}
+/* Specific CSS for tools htpasswd */
+#seokey-field-tools-htpasslogin {
+    margin-bottom: 0.5em;
+}
+/* Specific CSS for Search console tab */
+#seokey-loader-gscchangesite-loader {
+    float: right;
+    position: relative;
+    top: -4em;
+}
+.seokey-fieldset .form-table td .gsc-nowebsite {
+    margin-left: 2em;
+    position: relative;
+}
+.seokey-fieldset .form-table td .gsc-nowebsite:nth-of-type(2) {
+    margin-bottom: 4em;
+    margin-top: 0;
+}
+.seokey_page_seo-key-wizard .seokey-fieldset .form-table td .gsc-nowebsite:nth-of-type(2) {
+    margin-bottom: 3em;
+}
+.seokey-fieldset .form-table td .gsc-nowebsite::before {
+    top: 1.2em;
+}
+.seokey-fieldset .form-table td .setting-description-small {
+    font-size: 16px;
+    margin: 1em 0 0 0;
+    padding: 0;
+}
+#tab-search-console table table label {
+    padding: 0 0 0.75em 0;
+}
+.seo-key_page_seo-key-wizard #tab-search-console {
+    margin: 0 0 3em 0;
+}
+#seokey-gsc-select-site{
+    position: relative;
+}
+#seokey-gsc-select-site #gsc-loader-loader{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#tab-search-console .button-group.button-hero .button,
+#tab-search-console .button.button-hero {
+    font-size: 14px;
+    min-height: 44px;
+    line-height: 44px;
+    padding: 0 36px;
+    max-height: 44px;
+}
+#tab-search-console .button.button-primary.js-seokey-gsc-meta-html.button-hero {
+    min-height: 40px;
+    line-height: 40px;
+}
+#js-seokey-gsc-meta-html-loader {
+    display: inline-block;
+    position: absolute;
+    top: 1em;
+    margin-left: 1em;
+}
+
+/* commons */
+.seokey-flex-base {
+    display: flex;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.seokey-wrapper ul {
+    margin-left: 2em;
+}
+
+
+/********************************** Settings **********************************/
+/* Legend for each section field */
+.seokey-wrapper legend {
+    color: #23282d;
+    font-size: 1.3em;
+    margin: 1em 0;
+    display: block;
+    font-weight: 600;
+}
+.seokey-form .form-table tr > th {
+    padding-top: 0;
+    margin-top: 0.5em;
+}
+.seokey-form .form-table tr:first-of-type > th {
+    margin-top: 0;
+}
+
+
+
+/* OnOff Switch */
+.seokey-switch-toggle {
+    display: flex;
+    height: 100%;
+    /*flex-direction: column;*/
+    flex-wrap: wrap;
+}
+
+.seokey-switch-toggle-item {
+    display: flex;
+    align-items: center;
+    margin: 0 0 1em 0;
+    flex: 50%;
+}
+
+
+
+.seokey-switch-btn, .seokey-layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.seokey-button-check {
+    position: relative;
+    width: 116px;
+    height: 35px;
+    overflow: hidden;
+    border-radius: 4px;
+    border: solid 1px #b9b9b9;
+}
+.seokey-fieldset .seokey-checkbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+.seokey-fieldset input[type="checkbox"] + .conditional-checkbox,
+.seokey-fieldset .seokey-repeater-container input[type="checkbox"] + label{
+    font-size: 16px;
+    color: #3b3b3b;
+    font-weight: 400;
+}
+
+.seokey-switch-btn {
+    z-index: 2;
+}
+
+.seokey-layer {
+    width: 100%;
+    background-color: #fff;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+#seokey-button-check .seokey-switch-btn::before, #seokey-button-check .seokey-switch-btn::after {
+    font-size: 14px;
+    position: absolute;
+    width: 52px;
+    height: 20px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 7px 4px 9px;
+    transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#seokey-button-check .seokey-switch-btn:before {
+    content: attr(data-label-off);
+    right: 0;
+    background-color: #AFAFAF;
+}
+
+#seokey-button-check .seokey-switch-btn:after {
+    content: attr(data-label-on);
+    background-color: #1180D0;
+}
+
+#seokey-button-check .seokey-switch-btn:after {
+    right: -60px;
+    left: auto;
+}
+
+#seokey-button-check .seokey-checkbox:checked + .seokey-switch-btn:before {
+    left: -60px;
+}
+
+#seokey-button-check .seokey-checkbox:checked + .seokey-switch-btn:after {
+    left: 0;
+}
+
+#seokey-button-check .seokey-checkbox:checked ~ .seokey-layer {
+    background-color: #fff;
+}
+
+.seokey-fieldset .seokey-onoffswitch-label {
+    color: #464646;
+    margin: 0 0 0 0.5em;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 0;
+}
+.seokey-fieldset .form-table .seokey-onoffswitch-label {
+    font-size: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.seokey-img-preview {
+    max-width: 266px;
+    height: 177px;
+    border: 1px solid #ccc;
+    padding: 3px;
+    box-shadow: 0 0 6px #ccc;
+}
+.form-table td p.seokey-description {
+    margin-top: 10px;
+}
+.double-text {
+    width: 328px
+}
+.demi-text {
+    width: 77px
+}
+.seokey-repeater-container {
+    display: block;
+}
+.seokey-repeater-container-cloned {
+    margin-top: 5px;
+}
+.seokey-repeater-button-add, .seokey-repeater-button-del {
+    cursor: pointer;
+}
+.seokey-repeater-button-add{
+    padding-right: 8.75em;
+    padding-top:1px;
+    z-index: 1;
+    position: relative;
+}
+.seokey-repeater-button-add + p{
+    position: relative;
+    left: -11em;
+}
+.seokey-repeater-button-del {
+    margin-top: 0.5em;
+}
+/* radio */
+.seokey_radio_slide {
+  display: block;
+  margin: 10px 0;
+  position: relative;
+}
+.seokey_radio_slide label {
+    padding: 12px 30px 12px 75px;
+    width: 15%;
+    display: block;
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    transition: color 200ms ease-in;
+    overflow: hidden;
+}
+.seokey_radio_slide label:before {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  content: "";
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  opacity: 0;
+  z-index: -1;
+}
+.seokey_radio_slide label:after {
+  width: 32px;
+  height: 32px;
+  content: "";
+  border: 2px solid #8e9296;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
+  background-repeat: no-repeat;
+  background-position: 4px 5px;
+  border-radius: 50%;
+  z-index: 2;
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  cursor: pointer;
+  transition: all 200ms ease-in;
+}
+.seokey_radio_slide input:checked ~ label {
+  color: inherit;
+}
+.seokey_radio_slide input:checked ~ label:after {
+  background-color: #15BD31;
+  border-color: #15BD31;
+}
+.seokey_radio_slide input {
+  width: 32px;
+  height: 32px;
+  order: 1;
+  z-index: 2;
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  cursor: pointer;
+  visibility: hidden;
+}
+
+/** Upload Image **/
+.seokey-settings-upload-data {
+    position: absolute;
+    display: block;
+    opacity: 0;
+    z-index: -1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.seokey-repeater-container,
+.seokey-repeater-container-cloned{
+    padding:0;
+}
+.seokey-repeater-container-cloned {
+    padding: 0;
+    display: block;
+}
+.seokey-repeater-button-add + p {
+    display: inline;
+    padding: 0 0 0 0.5em;
+}
+.seokey-repeater-button-del.dashicons.dashicons-dismiss {
+    margin-left: 0.5em;
+}
+/* Temporary fix for multiple del buttons
+// TODO Fix this
+*/
+.seokey-repeater-button-del + .seokey-repeater-button-del {
+    display: none;
+}
+/* Min width for URL sameas fields */
+#seokey-field-schemaorg-schema-person-sameas {
+    min-width: 30em;
+    margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+
+
+
+.seokey-title {
+    font-family: Roboto, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #0A4B78;
+    margin: 0.5em 0 0.25em;
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+/* date inputs */
+.seokey-form input[type="date"] {
+    height: 3em;
+
+}
+/* Selects */
+#seokey-form-settings select {
+    height: 3.1em;
+    margin-bottom: 2em;
+}
+
+/* Pricings & time */
+.seokey-pricing span {
+    min-width: 8em;
+    display: inline-block;
+}
+#seokey-field-schemaorg-schema-local_business-pricing,
+#seokey-field-schemaorg-schema-local_business-openinghoursspecification{
+    margin: 0 0 0 50px;
+    position: relative;
+}
+#seokey-field-schemaorg-schema-local_business-pricing::before,
+#seokey-field-schemaorg-schema-local_business-openinghoursspecification::before {
+    content: "";
+    border-color: transparent #2cafd9;
+    border-style: solid;
+    border-width: 0.4em 0 0.4em 0.5em;
+    display: inline-block;
+    left: -1em;
+    position: absolute;
+    top: 1.4em;
+}
+
+
+/* Errors */
+/* see https://www.digitalocean.com/community/tutorials/css-styling-form-input-validity */
+#seokey-form-settings .seokey-input-wasfocused:invalid,
+#seokey-form-settings .seokey-settings-upload-data.seokey-input-wasfocused:required[value=""] + input{
+    background: url("../img/task-error.png") no-repeat 93% 50% #fed0d0;
+    background-size: 25px;
+}
+.seokey-settings-upload-data.seokey-input-wasfocused:required[value=""] + input {
+    padding-right: 3em !important;
+}
+
+/* tooltips */
+.seokey-tooltip-icon{
+    top: 5px
+}
+div.setting-description .seokey-tooltip-icon {
+    top: 4px;
+}
+h2.setting-description  .seokey-tooltip-icon {
+    top: -1px;
+}

@@ -1,0 +1,133 @@
+/**
+	SEOKEY CSS : notification API
+**/
+
+.seokey-notice .notice-dismiss {
+    display: none
+}
+.seokey-notice.is-dismissible .notice-dismiss {
+    display: block
+}
+.block-editor-page .seokey-notice {
+    display: none;
+}
+/* For all notices */
+.seokey-notice {
+    border:solid 1px #b9b9b9;
+    position: relative;
+    border-radius:3px;
+    display: flex;
+    align-items: stretch;
+    margin: 1em auto 2em;
+    padding: 0;
+    font-family: Roboto, sans-serif;
+    color: #161616;
+    background: #fff;
+    max-width: 1600px;
+}
+.seokey-notice .notice-title {
+    margin: .5em 0 0;
+    display: block;
+}
+.notice-title{
+    font-size: 1.6em;
+}
+.seokey-notice .notice-icon {
+    min-width: 70px;
+    min-height: 70px;
+    margin-right: 1em;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/* Information notices */
+.seokey-notice.notice-info .notice-icon {
+    background-color: #0677a9;
+    background-image:url('../img/picto-info-white.png');
+}
+.seokey-notice.notice-info,
+.seokey-notice.notice-info .notice-title,
+.wp-core-ui .seokey-wrapper .seokey-notice{
+    color: #0677a9;
+}
+/* Error notices */
+.seokey-notice.notice-error .notice-icon {
+    background-color: #c52828;
+    background-image:url('../img/picto-error-white.png');
+}
+.seokey-notice.notice-error,
+.seokey-notice.notice-error .notice-title{
+    color: #c52828;
+}
+/* Success notices */
+.seokey-notice.notice-success .notice-icon {
+    background-color: #11832d;
+    background-image:url('../img/picto-success-white.png');
+}
+.seokey-notice.notice-success,
+.seokey-notice.notice-success .notice-title{
+    color: #11832d;
+}
+/* Warning notices */
+.seokey-notice.notice-warning .notice-icon {
+    background-color: #bd4b00;
+    background-image:url('../img/picto-warning-white.png');
+}
+.seokey-notice.notice-warning,
+.seokey-notice.notice-warning .notice-title {
+    color: #bd4b00;
+}
+
+/* Add faded image background for notic icons */
+.seokey-notice .notice-icon::before {
+    content: ' ';
+    background-image: url('../img/serrure_dark.png');
+    width: 4.5em;
+    height: 4.5em;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-top: -2.25em;
+    margin-left: -2.25em;
+    opacity: 0.2;
+    background-size: contain;
+}
+
+/* Dismiss button */
+.button-primary + .button-secondary.seokey-notice-dismiss-in-content {
+    margin-left: 0.75em;
+}
+
+
+/* notice button */
+.wp-core-ui .seokey-secondary-button-notice{
+    margin-left: 1em
+}
+
+
+/* For help messages */
+.seokey-notice .notice-content p {
+    position: relative;
+    font-size: 14px;
+}
+.seokey-notice .notice-content {
+    padding: 0.5em 0.5em 1em;
+}
+
+
+.seokey-notice h3 {
+    color: #0677a9;
+}
+.flexbox {
+    display: flex;
+    align-items: start;
+}
+.notice-flexboxcolumn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    margin-right: 4em;
+}

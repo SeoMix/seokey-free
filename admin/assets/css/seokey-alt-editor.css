@@ -1,0 +1,239 @@
+#posts-filter .wp-filter {
+    position: relative;
+    top: 50px;
+}
+.tablenav.top {
+    position: relative;
+    top: -64px;
+    margin-top:1em;
+}
+
+
+
+
+.seokey-admin-alt-editor #e-admin-top-bar-root:not(.e-admin-top-bar--active) ~ #wpbody .wrap .page-title-action,
+.page-title-action{
+    display: none
+}
+
+
+/* Image width */
+.attachment-60x60.size-60x60 {
+    width: 180px;
+    height: 180px;
+}
+
+
+
+.wrap {
+    padding: 50px 20px 100px;
+    background: #fff;
+    box-sizing: border-box;
+    max-width: 100%;
+    box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgba(17, 24, 39, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px;
+    border-radius: 0.5rem;
+    font-family: Roboto, sans-serif;
+    margin: 20px 20px 0 0;
+}
+.wrap h1.wp-heading-inline{
+    width: 100%;
+    font-size: 34px;
+    padding: 1em 1em 1.5em 1em;
+    background: #063D62;
+    color: #fff;
+    max-width: 1600px;
+    margin: 0 auto 1em;
+    box-sizing: border-box;
+    box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgba(17, 24, 39, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px;
+    border-radius: 0.5rem;
+    display: block;
+    position: relative;
+}
+.wrap h1.wp-heading-inline::after {
+    content: " - ";
+    position: absolute;
+    left: 1em;
+    margin-left: 140px;
+    margin-top: 0.5em;
+}
+h3 {
+    color: #0677a9;
+}
+.wrap form, .wrap .seokey-notice {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* fix notices color */
+.seokey-admin-alt-editor .notice {
+    color: #333;
+}
+
+
+
+/* Label, input and submit */
+.seokey-media-alt label {
+    font-family: Roboto;
+    font-size: 1.1em;
+    display: block;
+    padding-left: 2px;
+}
+.seokey-media-alt .seokey_alt_input {
+    min-height: 3em;
+    min-width: 20em;
+    border-radius: 5px 0 0 5px;
+    margin-right: 0;
+}
+.seokey-alt-editor-submit {
+    min-height: 3em;
+    min-width: 5em;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #8c8f94;
+    border-left:0;
+    border-radius: 0 5px 5px 0;
+    background: #1180D0;
+    color: #fff;
+}
+.seokey-alt-editor-submit:hover {
+    cursor: pointer;
+    background:#063D62;
+}
+/* Action message */
+.seokey-media-alt-message {
+    color: #595959;
+    font-weight: 700;
+    font-family: Roboto;
+    font-size: 1.05em;
+}
+
+/* Loader and message */
+.seokey-media-alt img {
+    position: relative;
+    left: -3.75em;
+    top: 4px;
+}
+.seokey-media-alt-message {
+    background-image: url('../img/task-good.png');
+    background-repeat: no-repeat;
+    display: block;
+    min-height: 24px;
+    padding: 2px 0 0 28px;
+    margin-top: 0.75em;
+}
+
+/* H1 */
+.wp-heading-inline::before {
+    background-image: url('../img/logo-seo-key-blanc.png');
+    background-repeat: no-repeat;
+    display: inline-block;
+    min-height: 52px;
+    height: 52px;
+    width: 157px;
+    content: " ";
+    font-size: 12px;
+    padding: 0px;
+    position: relative;
+    top: 2px;
+    left: 5px;
+    background-size: contain;
+}
+
+
+
+
+/*hide useless stuff */
+.page-title-action,
+#attachment-filter {
+    display: none;
+}
+
+
+/* Hide grid and list buttons */
+.wp-filter .actions {
+    margin: 10px 0;
+}
+.wp-filter .view-switch {
+    display: none;
+}
+
+/* alignments */
+.seokey_column_media_name.column-seokey_column_media_name {
+    font-size: 15px;
+    padding-top: 5em;
+}
+.seokey-media-alt label {
+    padding-top: 4em;
+}
+.seokey_column_media.column-seokey_column_media {
+    text-align: center;
+}
+#seokey_column_media {
+    text-align: center;
+}
+
+
+
+/* Help messages */
+.seokey-media-alt label {
+    position: relative;
+    padding-bottom: 0.25em;
+}
+.seokey-media-alt .seokey-tooltip-icon {
+    top: auto;
+    margin-top: -1px;
+    bottom: auto;
+}
+.alt-editor-header-explanation {
+    position: absolute;
+    right: 110px;
+    top: 125px;
+    color: #fff;
+}
+.alt-editor-header-explanation .seokey-tooltip-icon {
+    top: auto;
+    bottom: -3px;
+}
+.alt-editor-header-explanation .seokey-tooltip-icon {
+    background-image: url('../img/picto-interrogation-old.png');
+}
+
+/* responsive */
+@media (max-width: 1400px) {
+    .seokey-alt-editor-submit {
+        border: 1px solid #8c8f94;
+        border-radius: 5px;
+        margin: 0.5em 0 0 0;
+    }
+    .seokey-media-alt .seokey_alt_input {
+        border-radius: 5px;
+    }
+}
+@media (max-width: 1130px) {
+    .seokey-media-alt .seokey_alt_input {
+        width: 100%;
+        min-width: inherit;
+    }
+}
+
+/* Spinner */
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+}
+.input-loader{
+    position: relative;
+}
+.alt-spinner {
+    content: '';
+    box-sizing: border-box;
+    position: relative;
+    top: 7px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    border-top-color: rgb(204, 204, 204);
+    border-top-color: #000;
+    animation: spinner .6s linear infinite;
+    display: none;
+}

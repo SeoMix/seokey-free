@@ -1,0 +1,299 @@
+/*Hide WordPress Footer */
+#wpfooter{
+    display:none;
+}
+/* H1 */
+.seokey-redirections-tools {
+    margin: 0;
+    padding: 1em;
+}
+.seokey-redirections-tools:last-child {
+    min-height: 235px;
+}
+
+/* WP List Tables Search form */
+#search-table-element{
+    float: right;
+    margin: 0;
+}
+
+/* Move up redirection tables */
+#seokey_redirections {
+    margin-top: -3em;
+}
+
+/* Font size */
+.seokey-redirections-tools p {
+    font-size: 1.2em;
+    display: inline-block;
+}
+
+/* form */
+#seokey-redirections-form td[scope="row"] {
+    width: 220px;
+    vertical-align: top;
+}
+#seokey-redirections-form .tdaligncenter,
+.form-table .tdaligncenter {
+    text-align: center;
+    box-sizing: content-box;
+}
+.form-table .tdaligncenter label {
+    font-weight: 400;/* Compat Bookingcom Product Helper */
+}
+#seokey-redirections-form::after {
+    content: "";
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    width: 90%;
+    display: block;
+    margin: 1em auto 2em;
+}
+.seokey-arrowbelow{
+    position: relative;
+    font-weight: 400;
+}
+.seokey-arrowbelow::after {
+    content: "\f346";
+    font-family: 'dashicons';
+    position: absolute;
+    top: 2em;
+    left: 50%;
+    margin-left: -0.5em;
+}
+
+
+.seokey-submit-div{
+    display: inline-block;
+    position: relative;
+    margin-bottom: 4em;
+}
+.seokey-submitredirect{
+    position: absolute;
+    top: 4em;
+    right: 0;
+}
+
+#seokey_redirection_list {
+    min-height: 225px;
+}
+
+
+/* sizes */
+.widefat tr {
+    height: 4em;
+}
+.widefat td .button {
+    font-size: 14px;
+}
+#the-list td {
+    vertical-align: middle;
+    font-size: 14px;
+}
+#the-list td .button {
+    font-size: 14px;
+}
+.column-actions .button {
+    margin:0 0.5em 0 0;
+}
+
+.wp-core-ui .seokey-wrapper .edit-deployed > .button-primary{
+    background: #fff;
+    color:#063D62;
+}
+.wp-core-ui .seokey-wrapper .edit-deployed .delete-redirection{
+    display: none;
+}
+
+#hits {
+    width: 5em;
+}
+#hits_last_at {
+    width: 22em;
+}
+.wp-list-table{overflow: hidden}
+
+.seokey-redirections-form{
+    width: 31em;
+    position: relative;
+    z-index: 2;
+}
+
+
+.striped > tbody > :nth-child(2n+1)  .seokey-redirections-form {
+    background-color: #f6f7f7;
+}
+
+
+/* NO JS compatibility - Redirection list*/
+/*#seokey_redirections_no_js{*/
+/*    display: none;*/
+/*}*/
+.no-js #seokey_redirections_no_js{
+    display: inline-table;
+}
+/*.js #seokey_redirections_no_js{*/
+/*    display: none;*/
+/*}*/
+
+.seokey-wrapper .button.button-hero {
+    margin-left: 0 !important;
+}
+
+
+
+
+
+.seokey-wrapper h2 {
+    margin: 0;
+    padding: 9px 0 4px 0;
+    line-height: 1.3;
+    font-family: Roboto, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #0A4B78;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#redirection-loader {
+    position: absolute;
+    left: 50%;
+}
+
+@keyframes ldio-196n3v9fpr3h {
+    0% { transform: rotate(0) }
+    100% { transform: rotate(360deg) }
+}
+.ldio-196n3v9fpr3h div { box-sizing: border-box!important }
+.ldio-196n3v9fpr3h > div {
+    position: absolute;
+    width: 72px;
+    height: 72px;
+    top: 14px;
+    left: 14px;
+    border-radius: 50%;
+    border: 8px solid #000;
+    border-color: #2aacd6 transparent #2aacd6 transparent;
+    animation: ldio-196n3v9fpr3h 1s linear infinite;
+}
+
+.ldio-196n3v9fpr3h > div:nth-child(2), .ldio-196n3v9fpr3h > div:nth-child(4) {
+    width: 54px;
+    height: 54px;
+    top: 23px;
+    left: 23px;
+    animation: ldio-196n3v9fpr3h 1s linear infinite reverse;
+}
+.ldio-196n3v9fpr3h > div:nth-child(2) {
+    border-color: transparent #0a7eaf transparent #0a7eaf
+}
+.ldio-196n3v9fpr3h > div:nth-child(3) { border-color: transparent }
+.ldio-196n3v9fpr3h > div:nth-child(3) div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(45deg);
+}
+.ldio-196n3v9fpr3h > div:nth-child(3) div:before, .ldio-196n3v9fpr3h > div:nth-child(3) div:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: -8px;
+    left: 24px;
+    background: #2aacd6;
+    border-radius: 50%;
+    box-shadow: 0 64px 0 0 #2aacd6;
+}
+.ldio-196n3v9fpr3h > div:nth-child(3) div:after {
+    left: -8px;
+    top: 24px;
+    box-shadow: 64px 0 0 0 #2aacd6;
+}
+
+.ldio-196n3v9fpr3h > div:nth-child(4) { border-color: transparent; }
+.ldio-196n3v9fpr3h > div:nth-child(4) div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(45deg);
+}
+.ldio-196n3v9fpr3h > div:nth-child(4) div:before, .ldio-196n3v9fpr3h > div:nth-child(4) div:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: -8px;
+    left: 15px;
+    background: #0a7eaf;
+    border-radius: 50%;
+    box-shadow: 0 46px 0 0 #0a7eaf;
+}
+.ldio-196n3v9fpr3h > div:nth-child(4) div:after {
+    left: -8px;
+    top: 15px;
+    box-shadow: 46px 0 0 0 #0a7eaf;
+}
+.loadingio-spinner-double-ring-scf81zev4qd {
+    width: 70px;
+    height: 70px;
+    display: block;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.ldio-196n3v9fpr3h {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(0.7);
+    backface-visibility: hidden;
+    transform-origin: 0 0; /* see note above */
+}
+.ldio-196n3v9fpr3h div { box-sizing: content-box; }
+/* generated by https://loading.io/ */
+
+
+/* responsive */
+@media (max-width: 1360px) {
+    #seokey_redirections {
+        margin-top: 0;
+    }
+    .wp-core-ui .column-actions .button {
+        margin: 0 0 1em;
+        align-self: start;
+    }
+    .column-actions-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+    .seokey-tooltip-icon {
+        right: 28px;
+    }
+    .seokey-redirections-tools p {
+        padding-right: 50px;
+    }
+}

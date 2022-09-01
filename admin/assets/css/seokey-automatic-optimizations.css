@@ -1,0 +1,270 @@
+/* Hide hidden field */
+/*#seokey-field-seooptimizations-wizardstatus-tr{*/
+/*    display: none;*/
+/*}*/
+/*#tab-seo-optimizations .form-table {*/
+/*    display: none;*/
+/*}*/
+/*#automatic_optimizations_list_items .automatic_optimizations_item, #automatic-optimizations-loader {*/
+/*    display: block !important;*/
+/*}*/
+
+.hidemanual .hideifnecessary{
+    display: none;
+}
+.nohidemanual .hideifnecessaryresume{
+     display: none !important;
+}
+.hidemanual .hideifnecessaryresume{
+    display: block;
+}
+
+
+#automatic_optimizations_list_text {
+    margin-bottom: 2em;
+}
+#tab-seo-optimizations .form-table .seo-key:last-child {
+    display: flex;
+}
+
+.seokey-fieldset .form-table .seo-key.showoptimisations {
+    display: block;
+    max-width: 800px;
+    margin: 0 auto 1em;
+}
+#seokey-field-seooptimizations-pagination-authors_desc {
+    margin-bottom: 2em;
+}
+/* hide items and loader */
+#automatic_optimizations_list_items .automatic_optimizations_item,
+#automatic-optimizations-loader{
+    display:none;
+}
+
+/* loader position */
+#automatic-optimizations-loader {
+    margin: 2em auto 0px;
+}
+.automatic_optimizations_item label:hover{
+    cursor:initial;
+}
+
+#automatic_optimizations_list .automatic_optimizations_item.automatic_optimizations_done{
+    opacity:1;
+    display:flex;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#automatic_optimizations_list_items,
+#automatic_optimizations_list,
+.automatic_optimizations_display_span,
+.automatic_optimizations_item label,
+.automatic_optimizations_item label::before,
+.automatic_optimizations_item label::after,
+.automatic_optimizations_item{
+    -webkit-transition: all 0.6s;
+    transition: all 0.6s;
+}
+
+/*#automatic_optimizations_list .automatic_optimizations_item{opacity:0}*/
+
+
+
+
+#automatic_optimizations_list_items {
+    max-width: 800px;
+    margin: 1.75em auto 3em;
+}
+.automatic_optimization_input:checked + label {
+    min-width: 21em;
+}
+.automatic_optimization_input:not(:checked) + label::after, .automatic_optimization_input:checked + label::after {
+    display: block !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#automatic_optimizations_list .automatic_optimization_span {
+    opacity: 0;
+    -webkit-transition: all 0.6s;
+    transition: all 0.6s;
+    color: #333;
+}
+#automatic_optimizations_list .seokey-tooltip-icon {
+    opacity: 1;
+}
+#automatic_optimizations_list span,
+#automatic_optimizations_list .automatic_optimization_input,
+#automatic_optimizations_list div.automatic_optimizations_done{
+    -webkit-transition: all 0.6s;
+    transition: all 0.6s;
+}
+#automatic_optimizations_list .automatic_optimization_input{
+    margin-top: 2px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+}
+
+.automatic_optimizations_item{
+    display: flex;
+    height: 2em;
+    margin: 0 0 1.25em;
+    font-family: Roboto;
+    font-size: 15px;
+    align-items: center;
+}
+
+
+.automatic_optimizations_item label{
+    position:relative;
+    font-weight:700;
+}
+
+
+#automatic_optimizations_list .automatic_optimizations_display_span{
+    opacity: 1;
+    -webkit-transition: all 0.6s;
+    transition: all 0.6s;
+    margin: 18px 0 0 -4em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.automatic_optimization_input:not(:checked),
+.automatic_optimization_input:checked{
+    position: absolute;
+    left: -9999px;
+}
+
+
+.automatic_optimization_input:not(:checked) + label:before, .automatic_optimization_input:checked + label:before {
+    content: "\f335";
+    font-family: dashicons;
+    display: inline-block;
+    width: 16px;
+    height: 18px;
+    margin-right: 0px;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+    transition-delay: 0.2s;
+}
+.automatic_optimization_input:checked + label:before {
+    margin-right: 9px;
+}
+.automatic_optimization_input:not(:checked) + label:after, .automatic_optimization_input:checked + label:after {
+    content: "\f147";
+    font-family: dashicons;
+    font-size: 22px;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    color: #11832D;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+    transition-delay: 0s;
+    transform-origin: center center;
+    opacity: 0;
+}
+.automatic_optimization_input:not(:checked) + label:after {
+    transform: scale(0);
+}
+.automatic_optimization_input:checked + label:before {
+    transform: scale(0);
+    opacity: 0;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+    transition-delay: 0s;
+}
+.automatic_optimization_input:checked + label:after {
+    transform: scale(1);
+    opacity: 1;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: cubic-bezier(0.57, 1.9, 0, 1.52);
+    transition-delay: 0.2s;
+}
+
+
+
+
+
+/* Button alignment */
+#wizard-choices {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+#wizard-choices button {
+    display: inline-block;
+    margin: 0 1em;
+}
+
+
+
+
+
+
+
+
+/* color for wizard */
+.seo-key_page_seo-key-wizard .automatic_optimization_input:checked + label::after {
+    color: #2cafd9;
+}
+
+/* color  for setings */
+.seo-key_page_seo-key-settings #automatic_optimizations_list .automatic_optimizations_display_span {
+    color: #333;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

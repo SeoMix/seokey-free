@@ -1,0 +1,30 @@
+{
+  "translation-revision-date":"2019-05-04 22:33-0400",
+  "generator":"WP-CLI\/2.2.0",
+  "source":"seokey-audit.js",
+  "domain":"seo-key",
+  "locale_data":{
+    "messages":{
+      "":{
+        "domain":"seo-key",
+        "lang":"fr_FR",
+      },
+      "See all":["Voir tout"],
+      "See less":["Voir moins"],
+      "Ignore":["Ignorer"],
+      "Take into account":["Prendre en compte"],
+      "Please wait":["Merci de patienter"],
+      "Please wait ":["Merci de patienter "],
+      " tasks left<br>":[" tâches restantes<br>"],
+      "Last task done:":["Dernière tâche effectuée: "],
+      "Reload this page or wait a few moments to try again.":["Rechargez cette page ou attendez un peu avant de recommencer"],
+      "Error, audit is not working !":["Erreur, l'audit ne fonctionne pas !"],
+      "Error, audit seems stuck.":["Erreur, l'audit semble bloqué."],
+      "Please reload this page or wait a few moments, we will reload it for you.":["Merci de recharger la page, ou attendez un peu, nous la rechargerons pour vous."],
+      "Audit is finished, we will reload your data in: 4 seconds":["Audit terminé, nous allons recharger la page dans: 4 secondes"],
+      "Audit is finished, we will reload your data in: ":["Audit terminé, nous allons recharger la page dans: "],
+      " seconds":[" secondes"],
+      "Audit is finished, we will reload now":["Audit terminé, nous allons recharger la page maintenant"],
+    }
+  }
+}

@@ -1,0 +1,12 @@
+/* Hide old term editor */
+#addtag .term-description-wrap,
+#edittag .term-description-wrap {
+    display:none;
+}
+/* Show new term editor */
+#addtag .term-description-wrap-show {
+    display: block;
+}
+#edittag .term-description-wrap-show {
+    display: table-row;
+}

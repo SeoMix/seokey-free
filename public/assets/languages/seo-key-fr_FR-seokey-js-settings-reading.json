@@ -1,0 +1,15 @@
+{
+  "translation-revision-date":"2019-05-04 22:33-0400",
+  "generator":"WP-CLI\/2.2.0",
+  "source":"seokey-settings-reading.js",
+  "domain":"seo-key",
+  "locale_data":{
+    "messages":{
+      "":{
+        "domain":"seo-key",
+        "lang":"fr_FR",
+      },
+      " - Disabled by SEOKEY: these options may harm your SEO":[" - Désactivé par SEOKEY : cette option peut nuire à votre référencement naturel"],
+    }
+  }
+}

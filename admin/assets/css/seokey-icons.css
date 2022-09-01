@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'seo-key-pro';
+    src: url('../fonts/seo-key-pro.eot');
+    src: url('../fonts/seo-key-pro.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/seo-key-pro.woff') format('woff'),
+         url('../fonts/seo-key-pro.ttf') format('truetype'),
+         url('../fonts/seo-key-pro.svg#seo-key-pro') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+[class*='dashicons-seokey']:before{
+	display: inline-block;
+   font-family: 'seo-key-pro';
+   font-style: normal;
+   font-weight: normal;
+   line-height: 1;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+    -moz-transform: scale(-1, -1);
+    -o-transform: scale(-1, -1);
+    -webkit-transform: scale(-1, -1);
+    transform: scale(-1, -1);
+    top: 3px;
+    position: relative;
+}
+
+.dashicons-seokey-lock:before{content:'\0041';}

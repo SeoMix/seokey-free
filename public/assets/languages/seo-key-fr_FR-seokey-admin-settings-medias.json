@@ -1,0 +1,16 @@
+{
+  "translation-revision-date":"2019-05-04 22:33-0400",
+  "generator":"WP-CLI\/2.2.0",
+  "source":"settings-media.js",
+  "domain":"seo-key",
+  "locale_data":{
+    "messages":{
+      "":{
+        "domain":"seo-key",
+        "lang":"fr_FR",
+      },
+      "Upload":["Mettre en ligne"],
+      "Change Image":["Modifier l'image"],
+    }
+  }
+}
