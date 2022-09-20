@@ -16,15 +16,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'You lost the key...' );
 }
 
-/**
- * Switch from Yoast breadcrumbs to SEOKEY breadcrumbs
- */
+// Switch from Yoast breadcrumbs to SEOKEY breadcrumbs
 if ( !function_exists('yoast_breadcrumb') && !is_admin() ) {
 	function yoast_breadcrumb( $before = '', $after = '' ) {
 		if ( empty( $before ) && empty( $after ) ) {
 			echo seokey_breacrumbs_print();
 		} else {
 			echo seokey_breacrumbs_print( $before, $after );
+		}
+	}
+}
+
+// Avoid error with OceanWP and their Yoast functions
+if ( !class_exists( 'WPSEO_Options' ) ) {
+	class WPSEO_Options {
+		public static function get( $key, $default_value = null ) {
+			return $true;
 		}
 	}
 }

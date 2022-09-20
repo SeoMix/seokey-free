@@ -10,6 +10,7 @@ jQuery(element).click(function( e ) {
 		// Prevent default behaviour of the link
 		e.preventDefault();
 		// Get data before creating pointer
+		var id= jQuery(element).attr('id');
 		var url_delete      = jQuery(this).attr('href');
 		var url_delete_data = url_delete+'&delete_data=yes';
 		// Translation functions
@@ -20,7 +21,7 @@ jQuery(element).click(function( e ) {
     	var delete_all 		= __( 'Delete files and ALL data!', 'seo-key' );
 		var text = '<h3>'+title+'</h3><p><a id="delete-seo-key-pro-files" class="primary button" href="'+url_delete+'">'+delete_files+'</a> <a id="delete-seo-key-pro-all" class="button" href="'+url_delete_data+'">'+delete_all+'</a></p>';
 		// Create pointer
-		jQuery(element).pointer({
+		jQuery('#' + id).pointer({
 			content: text,
 			pointerClass: "seokey-wp-pointer",
 			  position:{
@@ -42,20 +43,17 @@ jQuery(element).click(function( e ) {
 			e.preventDefault();
 			done = 1;
 			// close pointer
-			jQuery(element).pointer('close');
+			jQuery('#' + id).pointer('close');
 			// Remove class to change WordPress popup content: now WordPress won't talk about data
-			jQuery(element).closest('tr').removeClass('is-uninstallable');
-			jQuery(element).closest('tr').addClass('was-uninstallable');
+			jQuery('#' + id).closest('tr').removeClass('is-uninstallable');
+			jQuery('#' + id).closest('tr').addClass('was-uninstallable');
 			// Do we need to change the URL because user messed up with the popup before ?
 			if ( changed === 1 ) {
-				// var changeurl = jQuery(element).attr('href');
-				// changeurl = changeurl.replace( "&delete_data=yes", "" );
-				// jQuery(element).attr( 'href', changeurl );
 				seokey_delete_option_free( 'files' );
 				changed = 0;
 			}
 			// click on '#delete-seo-key-pro' => delete plugin but KEEP it's data
-			jQuery(element).trigger('click');
+			jQuery('#' + id).trigger('click');
 			// Allow a new popup to appear
 			done = 2;
 		});
@@ -66,22 +64,19 @@ jQuery(element).click(function( e ) {
 			e.preventDefault();
 			done = 1;
 			// It may be the second time we have this popup, and we may have already cleaned too much HTML for the native WordPress popup
-			if (jQuery(element).closest('tr').hasClass("was-uninstallable")) {
-				jQuery(element).closest('tr').addClass('is-uninstallable');
-				jQuery(element).closest('tr').removeClass('was-uninstallable');
+			if (jQuery('#' + id).closest('tr').hasClass("was-uninstallable")) {
+				jQuery('#' + id).closest('tr').addClass('is-uninstallable');
+				jQuery('#' + id).closest('tr').removeClass('was-uninstallable');
 			}
 			// close pointer
-			jQuery(element).pointer('close');
+			jQuery('#' + id).pointer('close');
 			// Do we need to change the URL in order to tell our own function de delete data ?
 			if ( changed === 0 ) {
-				// var changeurl = jQuery(element).attr('href');
-				// changeurl = changeurl+"&delete_data=yes";
-				// jQuery(element).attr( 'href', changeurl );
 				seokey_delete_option_free( 'all' );
 				changed = 1;
 			}
 			// click on '#delete-seo-key-pro' => delete plugin and it's data
-			jQuery(element).trigger('click');
+			jQuery('#' + id).trigger('click');
 			// Allow a new popup to appear
 			done = 2;
 		});
@@ -90,7 +85,6 @@ jQuery(element).click(function( e ) {
 		return false;
 	}
 });
-
 
 // TODO Comment
 function seokey_delete_option_free( $type ){

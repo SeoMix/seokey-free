@@ -125,8 +125,9 @@ function seokey_wizard_pre_update_option( $value, $option, $old_value ) {
 }
 
 // Check if current user just have updated an option
-add_action( 'init', 'seokey_wizard_after_update_option', SEOKEY_PHP_INT_MAX );
+add_action( 'admin_init', 'seokey_wizard_after_update_option', SEOKEY_PHP_INT_MAX );
 function seokey_wizard_after_update_option() {
+	// TODO Condition sur la page ?
     $meta = get_user_meta( get_current_user_id(),'seokey_cache_wizard_pre_update_option', true );
     if ( "next" === $meta ) {
         delete_user_meta( get_current_user_id(),'seokey_cache_wizard_pre_update_option' );
@@ -156,8 +157,9 @@ function seokey_wizard_get_next_step_from_referer(){
     $from   = wp_get_referer();
     $query  = parse_url($from, PHP_URL_QUERY);
     parse_str($query, $params);
-    // Find next step
-    $nextkey = array_search( $params['wizard-status'], array_keys( $steps ) ) + 1;
+	// Find next step
+	$status = ( !empty( $params['wizard-status'] ) ) ? $params['wizard-status'] : '1_0_0';
+	$nextkey = array_search( $status, array_keys( $steps ) ) + 1;
     $nextkey = array_slice( $steps, $nextkey, 1 );
     return $nextkey;
 }

@@ -613,14 +613,11 @@ class SeoKeySettingsAPI {
 				$default = ! is_null( $args['default'] ) ? $args['default'] : null;
 				// Get user settings values
 				$option_value = is_array( $option_value ) && ! empty( $option_value ) ? array_flip( $option_value ) : $default;
-//				$size         = isset( $args['size'] ) ? $args['size'] : '';
 				// Start out container
 				$html .= '<section class="seokey-switch-toggle">';
 				// Add a hidden value to prevent option to be empty
 				$html .= '<input type="hidden" name="' . $option_name . '[]" value="i_am_a_dummy_value">';
 				wp_localize_script( 'seokey-admin-settings-tabs', 'seokey_tabs', $args['args'] );
-
-
 				$toggle = 'even';
 				// Handle each option value
 				foreach ( $args['values'] as $key => $label ) {

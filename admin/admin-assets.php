@@ -152,15 +152,18 @@ if ( is_admin() ) {
 			wp_enqueue_script( 'seokey-js-metabox', SEOKEY_URL_ASSETS . 'js/seokey-metabox.js', array( 'jquery', 'wp-i18n' ), SEOKEY_VERSION, TRUE );
 			wp_localize_script( 'seokey-js-metabox', 'seokey_metas',
 				[
-					'ajaxurl'                     => admin_url( 'admin-ajax.php' ),
-					'security'                    => wp_create_nonce( 'seokey_audit_content_metabox' ),
-					'metatitle_counter_min'       => METATITLE_COUNTER_MIN,
-					'metatitle_counter_max'       => METATITLE_COUNTER_MAX,
-					'metadesc_counter_min'        => METADESC_COUNTER_MIN,
-					'metadesc_counter_max'        => METADESC_COUNTER_MAX,
-					'meta_counter_min_text'       => esc_html__( 'Not enough text: you have %s missing characters', 'seo-key' ),
-					'meta_counter_remaining_text' => esc_html__( 'Good text: %s remaining characters', 'seo-key' ),
-					'meta_counter_max_text'       => esc_html__( 'Too much text: you have %s extra characters', 'seo-key' )
+					'ajaxurl'                               => admin_url( 'admin-ajax.php' ),
+					'security'                              => wp_create_nonce( 'seokey_audit_content_metabox' ),
+					'metatitle_counter_min'                 => METATITLE_COUNTER_MIN,
+					'metatitle_counter_max'                 => METATITLE_COUNTER_MAX,
+					'metadesc_counter_min'                  => METADESC_COUNTER_MIN,
+					'metadesc_counter_max'                  => METADESC_COUNTER_MAX,
+					'meta_counter_min_text'                 => esc_html__( 'Not enough text: you have %s missing characters', 'seo-key' ),
+					'meta_counter_min_text_single'          => esc_html__( 'Not enough text: you have %s missing character', 'seo-key' ),
+					'meta_counter_remaining_text'           => esc_html__( 'Good text: %s remaining characters', 'seo-key' ),
+					'meta_counter_remaining_text_single'    => esc_html__( 'Good text: %s remaining character', 'seo-key' ),
+					'meta_counter_max_text'                 => esc_html__( 'Too much text: you have %s extra characters', 'seo-key' ),
+					'meta_counter_max_text_single'          => esc_html__( 'Too much text: you have %s extra character', 'seo-key' ),
 				]
 			);
 			// and corresponding CSS

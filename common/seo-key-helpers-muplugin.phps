@@ -31,7 +31,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( defined( 'SEOKEY_NAME' ) ) {
 
     /* Tell SEOKEY our mu-plugin is up and running */
-    define ( 'SEOKEY_MUPLUGIN_ACTIVE', true );
+    if ( ! defined( 'SEOKEY_MUPLUGIN_ACTIVE' ) ) {
+        define ( 'SEOKEY_MUPLUGIN_ACTIVE', true );
+    }
 
     // TODO only if wizard has ended
 
@@ -55,7 +57,9 @@ if ( defined( 'SEOKEY_NAME' ) ) {
 // Only add our deinstallation script if SEOKEY is not active but not yet deinstalled
 else {
     /* Tell SEOKEY our mu-plugin is not active */
-    define ( 'SEOKEY_MUPLUGIN_ACTIVE', false );
+    if ( ! defined( 'SEOKEY_MUPLUGIN_ACTIVE' ) ) {
+        define ( 'SEOKEY_MUPLUGIN_ACTIVE', false );
+    }
 
     add_action( 'admin_footer', 'seokey_muplugin_delete_data_popup_free', PHP_INT_MAX - 20 );
     /**

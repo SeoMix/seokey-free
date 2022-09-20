@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SEOKEY Pro\n"
-"POT-Creation-Date: 2022-07-26 12:15+0200\n"
+"POT-Creation-Date: 2022-09-19 11:24+0200\n"
 "PO-Revision-Date: 2022-04-27 09:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -29,12 +29,27 @@ msgstr ""
 
 #: admin/admin-assets.php:162
 #, php-format
-msgid "Good text: %s remaining characters"
+msgid "Not enough text: you have %s missing character"
 msgstr ""
 
 #: admin/admin-assets.php:163
 #, php-format
+msgid "Good text: %s remaining characters"
+msgstr ""
+
+#: admin/admin-assets.php:164
+#, php-format
+msgid "Good text: %s remaining character"
+msgstr ""
+
+#: admin/admin-assets.php:165
+#, php-format
 msgid "Too much text: you have %s extra characters"
+msgstr ""
+
+#: admin/admin-assets.php:166
+#, php-format
+msgid "Too much text: you have %s extra character"
 msgstr ""
 
 #: admin/admin-menus/admin-links-admin-bar.php:143
@@ -137,7 +152,7 @@ msgstr ""
 
 #: admin/admin-pages/admin-pages-automatic-seo.php:83
 #: admin/admin-pages/admin-pages-settings.php:211
-#: admin/admin-pages/admin-pages-settings.php:274 admin/wizard.php:400
+#: admin/admin-pages/admin-pages-settings.php:274 admin/wizard.php:402
 msgid "SEO optimizations"
 msgstr ""
 
@@ -259,12 +274,18 @@ msgid ""
 "www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>"
 msgstr ""
 
+#: admin/admin-pages/admin-pages-settings.php:40
+msgid ""
+"Already bought SEOKEY PRO? Download it from SEOKEY website and install it. "
+"When activated, SEOKEY free will automatically be deactivated."
+msgstr ""
+
 #: admin/admin-pages/admin-pages-settings.php:105
 msgctxt "Setting Section explanation - <p>"
 msgid "These information will help Google to display data about you."
 msgstr ""
 
-#: admin/admin-pages/admin-pages-settings.php:107 admin/wizard.php:409
+#: admin/admin-pages/admin-pages-settings.php:107 admin/wizard.php:411
 msgctxt "Setting Section tab name"
 msgid "Who are you?"
 msgstr ""
@@ -276,7 +297,7 @@ msgid ""
 msgstr ""
 
 #: admin/admin-pages/admin-pages-settings.php:118
-#: admin/modules/watcher-new-content.php:95
+#: admin/modules/watcher-new-content.php:99
 msgid "Contents"
 msgstr ""
 
@@ -417,7 +438,7 @@ msgstr ""
 msgid "Skip this step"
 msgstr ""
 
-#: admin/admin-pages/admin-pages-wizard.php:123 admin/wizard.php:187
+#: admin/admin-pages/admin-pages-wizard.php:123 admin/wizard.php:189
 msgctxt "Wizard Step"
 msgid "Start"
 msgstr ""
@@ -876,32 +897,32 @@ msgstr ""
 msgid "Edit \"%1$s\" content."
 msgstr ""
 
-#: admin/api/class-settings-api.php:859 admin/assets/js/settings-media.js:35
+#: admin/api/class-settings-api.php:856 admin/assets/js/settings-media.js:35
 #: admin/assets/js/settings-media.js:36
 msgid "Upload"
 msgstr ""
 
-#: admin/api/class-settings-api.php:862
+#: admin/api/class-settings-api.php:859
 msgid "Change image"
 msgstr ""
 
-#: admin/api/class-settings-api.php:869
+#: admin/api/class-settings-api.php:866
 msgid "Remove image"
 msgstr ""
 
-#: admin/api/class-settings-api.php:871
+#: admin/api/class-settings-api.php:868
 msgid "Preview"
 msgstr ""
 
-#: admin/api/class-settings-api.php:875
+#: admin/api/class-settings-api.php:872
 msgid "Logo or photo"
 msgstr ""
 
-#: admin/api/class-settings-api.php:1078
+#: admin/api/class-settings-api.php:1075
 msgid "No settings available for this page"
 msgstr ""
 
-#: admin/api/class-settings-api.php:1112
+#: admin/api/class-settings-api.php:1109
 msgid "Save all changes"
 msgstr ""
 
@@ -1003,19 +1024,19 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-#: admin/assets/js/seokey-metabox.js:139
+#: admin/assets/js/seokey-metabox.js:154
 msgid "Keyword saved"
 msgstr ""
 
-#: admin/assets/js/seokey-metabox.js:140
+#: admin/assets/js/seokey-metabox.js:155
 msgid "Error"
 msgstr ""
 
-#: admin/assets/js/seokey-metabox.js:141 admin/modules/metabox.php:244
+#: admin/assets/js/seokey-metabox.js:156 admin/modules/metabox.php:244
 msgid "Add keyword"
 msgstr ""
 
-#: admin/assets/js/seokey-metabox.js:142 admin/modules/metabox.php:244
+#: admin/assets/js/seokey-metabox.js:157 admin/modules/metabox.php:244
 msgid "Update keyword"
 msgstr ""
 
@@ -1540,7 +1561,6 @@ msgid "Fix my WordPress"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:92
-#: admin/modules/automatic_optimizations.php:110
 msgid "Titles and meta descriptions"
 msgstr ""
 
@@ -1594,7 +1614,11 @@ msgid "No more harmful attachment pages (and links to them)"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:110
-msgid "No more harmful pings"
+msgid "WordPress Pings"
+msgstr ""
+
+#: admin/modules/automatic_optimizations.php:110
+msgid "No more harmful pings (prevents indexing hidden contents)"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:113
@@ -1712,11 +1736,11 @@ msgstr ""
 msgid "No other SEO plugin with import function has been detected."
 msgstr ""
 
-#: admin/modules/import.php:508
+#: admin/modules/import.php:516
 msgid "Import completed. "
 msgstr ""
 
-#: admin/modules/import.php:511
+#: admin/modules/import.php:519
 msgid "Incorrect plugin name. "
 msgstr ""
 
@@ -2133,7 +2157,7 @@ msgid ""
 "and your server)."
 msgstr ""
 
-#: admin/modules/search-console/search-console.php:29 admin/wizard.php:435
+#: admin/modules/search-console/search-console.php:29 admin/wizard.php:437
 msgid "Search Console"
 msgstr ""
 
@@ -2304,27 +2328,27 @@ msgstr ""
 msgid "Settings page"
 msgstr ""
 
-#: admin/modules/watcher-new-content.php:93
+#: admin/modules/watcher-new-content.php:97
 msgid "New content discovered"
 msgstr ""
 
-#: admin/modules/watcher-new-content.php:98
+#: admin/modules/watcher-new-content.php:102
 msgctxt "notification text for a new content discovered"
 msgid "SEOKEY has discovered new content on your website: "
 msgstr ""
 
-#: admin/modules/watcher-new-content.php:100
+#: admin/modules/watcher-new-content.php:104
 msgctxt "notification text for a new content discovered"
 msgid "You need to check your SEO settings."
 msgstr ""
 
-#: admin/modules/watcher-new-content.php:101
+#: admin/modules/watcher-new-content.php:105
 msgid ""
 "Go to your settings page, check public contents and taxonomies, then save "
 "your settings: "
 msgstr ""
 
-#: admin/modules/watcher-new-content.php:101
+#: admin/modules/watcher-new-content.php:105
 msgid "Go to content settings"
 msgstr ""
 
@@ -2374,81 +2398,81 @@ msgstr ""
 msgid "Wizard"
 msgstr ""
 
-#: admin/wizard.php:190
+#: admin/wizard.php:192
 msgctxt "Wizard Step"
 msgid "Who are you?"
 msgstr ""
 
-#: admin/wizard.php:193
+#: admin/wizard.php:195
 msgctxt "Wizard Step"
 msgid "Contents"
 msgstr ""
 
-#: admin/wizard.php:196
+#: admin/wizard.php:198
 msgctxt "Wizard Step"
 msgid "Metas and URL"
 msgstr ""
 
-#: admin/wizard.php:199
+#: admin/wizard.php:201
 msgctxt "Wizard Step"
 msgid "SEO optimizations"
 msgstr ""
 
-#: admin/wizard.php:202
+#: admin/wizard.php:204
 msgctxt "Wizard Step"
 msgid "Audit"
 msgstr ""
 
-#: admin/wizard.php:213
+#: admin/wizard.php:215
 msgid "Who are you?"
 msgstr ""
 
-#: admin/wizard.php:216
+#: admin/wizard.php:218
 msgid "Optimize your contents"
 msgstr ""
 
-#: admin/wizard.php:219
+#: admin/wizard.php:221
 msgid "Define your SEO data"
 msgstr ""
 
-#: admin/wizard.php:223
+#: admin/wizard.php:225
 msgid "Get data from Search Console"
 msgstr ""
 
-#: admin/wizard.php:228
+#: admin/wizard.php:230
 msgid "Automatic optimizations"
 msgstr ""
 
-#: admin/wizard.php:293
+#: admin/wizard.php:295
 #, php-format
 msgid ""
 "It will take only a few minutes to configure SEOKEY, improve \"%s\" SEO and "
 "audit your content!"
 msgstr ""
 
-#: admin/wizard.php:294
+#: admin/wizard.php:296
 msgid "Launch the SEO Wizard"
 msgstr ""
 
-#: admin/wizard.php:295
+#: admin/wizard.php:297
 msgid "Ignore and activate"
 msgstr ""
 
-#: admin/wizard.php:299
+#: admin/wizard.php:301
 msgctxt "notification title for the wizard installation"
 msgid "You are almost done !"
 msgstr ""
 
-#: admin/wizard.php:369
+#: admin/wizard.php:371
 msgid "Automatic optimization status"
 msgstr ""
 
-#: admin/wizard.php:418
+#: admin/wizard.php:420
 msgctxt "Setting Section tab name"
 msgid "Contents"
 msgstr ""
 
-#: admin/wizard.php:427
+#: admin/wizard.php:429
 msgctxt "Setting Section tab name"
 msgid "Metas and URL"
 msgstr ""

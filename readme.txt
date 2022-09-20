@@ -4,9 +4,9 @@ Contributors: seokey, seomix, confridin
 Donate link: https://www.seo-key.com/
 Tags: seo, search engine, google, content analysis, schema, référencement, breadcrumbs, référencement naturel, indexation, crawl, rich snippets, serp, search engine, search engine optimization, alternative text, redirection, seo audit
 Requires at least:  5.5
-Tested up to: 6.0.1
+Tested up to: 6.0.2
 Requires PHP: 7.2
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,9 +46,22 @@ This section describes how to install SEOKEY and get it working.
 
 Public roadmap is here: https://trello.com/b/jauwlc3J/seokey-pro-public-roadmap
 
+= 1.3.2
+* Improvement: improved performance for several functions
+* Improvement: better automatic optimization display while using our Wizard
+* Improvement: better help message for some audit tasks
+* Improvement: adding "contributing FILE" to project
+* I18N: adding missing French translations (we still have a few ones to add in the next few weeks)
+* I18N: fix bad text for max/min text counters
+* Bugfix: improved Yoast data import
+* Bugfix: avoid errors with uninstall functions
+* Bugfix: avoid another PHP error with PRO version when Free version is still active
+* Bugfix: removed some PHP warnings
+* Third-party: OceanWP support enhanced (fixes an OceanWP bug with Yoast breadcrumbs)
+
 = 1.3.1
-* Improvement: Better performance when importing data from Yoast
-* Improvement: Better performance when performing an audit
+* Improvement: better performance when importing data from Yoast
+* Improvement: better performance when performing an audit
 * Bugfix: avoid PHP error with PRO version when Free version is still active
 
 = 1.3.0
@@ -56,7 +69,7 @@ Public roadmap is here: https://trello.com/b/jauwlc3J/seokey-pro-public-roadmap
 (version number has been updated to match our PRO version)
 
 = 0.0.3
-* Bugfix: php compatibility for _wakeup method on some hosts
+* Bugfix: php compatibility for _wakeup class method on some hosts
 
 = 0.0.2
 * Bugfix: Excerpt more was displayed on other pages (it should only be present on Feed pages)

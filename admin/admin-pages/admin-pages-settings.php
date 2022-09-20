@@ -37,7 +37,7 @@ if ( seokey_helpers_is_free() ) {
 				echo '<li>' . __( "See and fix Google 404 and WordPress automatic redirections", "seo-key" ) . '</li>';
 			echo '</ul>';
 			echo '<p>' . __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>", 'seo-key' ) . '</p>';
-			
+			echo '<p>' . __( 'Already bought SEOKEY PRO? Download it from SEOKEY website and install it. When activated, SEOKEY free will automatically be deactivated.','seo-key'). '</p>';
 		}
 	}
 }

@@ -107,7 +107,7 @@ function seokey_automatic_optimizations_list(){
 			__( 'Medias', 'seo-key' ) => __( "No more harmful attachment pages (and links to them)", 'seo-key' ),
         ],
         'Pings'                             => [
-			__( 'Titles and meta descriptions', 'seo-key' ) => __( "No more harmful pings", 'seo-key' ),
+			__( 'WordPress Pings', 'seo-key' ) => __( "No more harmful pings (prevents indexing hidden contents)", 'seo-key' ),
         ],
         'Writing'                           => [
 			__( 'Writing', 'seo-key' ) => __( "We removed bad options from both Gutenberg and TinyMCE editors", 'seo-key' ),

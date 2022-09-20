@@ -206,7 +206,7 @@ function wp_ajax_seokey_import_callback() {
 				$all_cpts = apply_filters( 'seokey_filter_settings_add_contents_post_types', $all_cpts );
 				// Iterate
 				$all_cpts = array_keys( $all_cpts );
-				$cctcpt = [ 'i_am_a_dummy_value' ];
+				$cctcpt = $cctcptknown = [ 'i_am_a_dummy_value' ];
 				if ( !empty( $all_cpts ) ) {
 					foreach ( $all_cpts  as $post_type ) {
 						$name = 'noindex-' . $post_type;
@@ -214,6 +214,8 @@ function wp_ajax_seokey_import_callback() {
 						if ( 1 !== (int) $yoast_wpseo_titles[$name] ) {
 							$cctcpt[] = $post_type;
 						}
+						// Tell SEOKEY knowned post types
+						$cctcptknown[] = $post_type;
 						// Define main taxonomy for each post type
 						$name = 'post_types-' . $post_type . '-maintax';
 						if ( !empty( $yoast_wpseo_titles[$name] ) ) {
@@ -234,18 +236,21 @@ function wp_ajax_seokey_import_callback() {
 				if ( isset ( $all_taxos['post_format'] ) ) {
 					unset( $all_taxos['post_format'] );
 				}
+				$ccttaxo = $ccttaxoknown = [ 'i_am_a_dummy_value' ];
 				if ( !empty( $all_taxos ) ) {
 					foreach ( $all_taxos as $taxonomy ) {
 						$name = 'noindex-tax-' . get_object_vars( $taxonomy )['name'];
 						// Tell which one to keep (noindex)
-						if ( 1 !== $yoast_wpseo_titles[$name] ) {
+						if ( 1 !== (int) $yoast_wpseo_titles[$name] ) {
 							$ccttaxo[] = get_object_vars( $taxonomy )['name'];
 						}
+						// Tell SEOKEY known taxonomies
+						$ccttaxoknown[] = get_object_vars( $taxonomy )['name'];
 					}
 					update_option( 'seokey-field-cct-taxo', $ccttaxo, true );
 					$content = [
-						'posts' => $cctcpt,
-						'taxonomies' => $ccttaxo
+						'posts'         => $cctcptknown,
+						'taxonomies'    => $ccttaxoknown
 					];
 					update_option( 'seokey_admin_content_watcher_known', $content, TRUE );
 				}
@@ -599,10 +604,13 @@ function seokey_helper_import_parsing( $data, $type = '', $ID = 0, $cpt = '' ) {
 			$replacements['%%modified%%']           = get_the_modified_date( '', $ID );
 			$replacements['%%title%%']              = get_the_title( $ID );
 			$replacements['%%parent_title%%']       = ( false !== ( $parent_id = wp_get_post_parent_id( $ID ) ) ) ? get_the_title( $parent_id ) : '';
-//			$replacements['%%excerpt%%']            = wp_html_excerpt( htmlspecialchars_decode( wp_strip_all_tags( apply_filters( 'the_excerpt', get_the_excerpt( $ID ) ) ), ENT_QUOTES ), METADESC_COUNTER_MAX );
-			$post                                   = esc_html( strip_tags( do_shortcode( get_post( $ID )->post_content ) ) );
-			$replacements['%%excerpt%%']            = substr( $post, 0, strrpos( substr( $post, 0, METADESC_COUNTER_MAX ), ' ') );
-			$replacements['%%excerpt_only%%']       = $replacements['%%excerpt%%'];
+			$excerpt    = get_the_excerpt( $ID );
+			if ( empty( $excerpt ) ) {
+				$post    = esc_html( strip_tags( do_shortcode( get_post( $ID )->post_content ) ) );
+				$excerpt = substr( $post, 0, strrpos( substr( $post, 0, METADESC_COUNTER_MAX ), ' ' ) );
+			}
+			$replacements['%%excerpt%%']            = $excerpt;
+			$replacements['%%excerpt_only%%']       = $excerpt;
 			$terms_post_tag                         =  get_the_terms( $ID, 'post_tag' );
 			if ( !empty( $terms_post_tag ) ) {
 				$replacements['%%tag%%']            = join(', ', wp_list_pluck( get_the_terms( $ID, 'post_tag' ), 'name') );
@@ -632,14 +640,15 @@ function seokey_helper_import_parsing( $data, $type = '', $ID = 0, $cpt = '' ) {
 			$replacements['%%tag_description%%']        = $termdescription;
 			$replacements['%%category_description%%']   = $termdescription;
 			$replacements['%%term_title%%']             = $term->name;
+			$replacements['%%term_hierarchy%%']         = '';
 			if ( $term->parent !== 0 ) {
 				$args = [
 					'format'    => 'name',
-					'separator' => $separator . ' ',
+					'separator' => ' ',
 					'link'      => false,
 					'inclusive' => true,
 				];
-				$replacements['%%term_hierarchy%%']         = get_term_parents_list( $ID, $term->taxonomy, $args );
+				$replacements['%%term_hierarchy%%']         = ' ' . $separator . ' ' . get_term_parents_list( $ID, $term->taxonomy, $args );
 			}
 			break;
 		case 'users':

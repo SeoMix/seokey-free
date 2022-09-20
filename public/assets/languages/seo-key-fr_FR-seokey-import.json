@@ -10,6 +10,7 @@
         "domain":"seo-key",
         "lang":"fr_FR",
       },
+      "Please wait, we will reload this page in 8 seconds":["Merci de patienter, nous allons recharger cette page dans 8 secondes"],
       "Please wait, we will reload this page in %s seconds":["Merci de patienter, nous allons recharger cette page dans %s secondes"],
       "Please wait, we will reload this page in %s second":["Merci de patienter, nous allons recharger cette page dans %s seconde"],
       "Continue":["Continuer"],

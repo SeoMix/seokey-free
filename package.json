@@ -1,6 +1,6 @@
 {
     "name": "seo-key-pro",
-    "version": "1.3.0",
+    "version": "1.3.2",
     "description": "SEOKEY is a simple and efficient WordPress plugin for Search Engine Audit and Optimization.",
     "main": "index.js",
     "scripts": {

@@ -17,7 +17,6 @@ jQuery(document).ready(function ($) {
         $("#tab-" + $(this).attr("id")).show();
     });
 
-
     // No metabox ? Abort.
     var metabox         = document.getElementById('meta-tags-inputs');
     var metaboxsettings = document.getElementById('seokey-field-title-metadesc_desc');
@@ -79,27 +78,39 @@ jQuery(document).ready(function ($) {
             var valLength = $(this).val().length;
             var $counter = $('#seokey-metadesc-counter');
             var count = 0;
-            if (valLength < seokey_metas.metadesc_counter_min && valLength > 0) {
+            if ( valLength < seokey_metas.metadesc_counter_min && valLength > 0 ) {
                 count = seokey_metas.metadesc_counter_min - valLength;
-                $counter.css('color', 'red').text(seokey_metas.meta_counter_min_text.replace('%s', count));
+                if ( count === 1 ) {
+                    $counter.css('color', 'red').text(seokey_metas.meta_counter_min_text_single.replace('%s', count));
+                } else {
+                    $counter.css('color', 'red').text(seokey_metas.meta_counter_min_text.replace('%s', count));
+                }
             } else if (valLength >= seokey_metas.metadesc_counter_min && valLength <= seokey_metas.metadesc_counter_max) {
                 count = seokey_metas.metadesc_counter_max - valLength;
-                // $counter.css('color', 'green').text(seokey_metas.meta_counter_remaining_text.replace('%s', count));
-                $counter.css('color', 'green').text('');
+                $counter.text('');
             } else {
                 if ( valLength > 0 ) {
                     count = valLength - seokey_metas.metadesc_counter_max;
-                    $counter.css('color', 'red').text(seokey_metas.meta_counter_max_text.replace('%s', count));
+                    if ( count === 1 ) {
+                        $counter.css('color', 'red').text(seokey_metas.meta_counter_max_text_single.replace('%s', count));
+                    } else {
+                        $counter.css('color', 'red').text(seokey_metas.meta_counter_max_text.replace('%s', count));
+                    }
                 }
             }
         }).trigger('keyup');
+
         $metatitleField.keyup(function () {
             var valLength = $(this).val().length;
             var $counter = $('#seokey-metatitle-counter');
             var count = 0;
             if (valLength < seokey_metas.metatitle_counter_min && valLength > 0) {
                 count = seokey_metas.metatitle_counter_min - valLength;
-                $counter.css('color', 'red').text(seokey_metas.meta_counter_min_text.replace('%s', count));
+                if ( count === 1 ) {
+                    $counter.css('color', 'red').text(seokey_metas.meta_counter_min_text_single.replace('%s', count));
+                } else {
+                    $counter.css('color', 'red').text(seokey_metas.meta_counter_min_text.replace('%s', count));
+                }
             } else if (valLength >= seokey_metas.metatitle_counter_min && valLength <= seokey_metas.metatitle_counter_max) {
                 count = seokey_metas.metatitle_counter_max - valLength;
                 // $counter.css('color', 'green').text(seokey_metas.meta_counter_remaining_text.replace('%s', count));
@@ -107,7 +118,11 @@ jQuery(document).ready(function ($) {
             } else {
                 if (valLength > 0) {
                     count = valLength - seokey_metas.metatitle_counter_max;
-                    $counter.css('color', 'red').text(seokey_metas.meta_counter_max_text.replace('%s', count));
+                    if ( count === 1 ) {
+                        $counter.css('color', 'red').text(seokey_metas.meta_counter_max_text_single.replace('%s', count));
+                    } else {
+                        $counter.css('color', 'red').text(seokey_metas.meta_counter_max_text.replace('%s', count));
+                    }
                 }
             }
         }).trigger('keyup');

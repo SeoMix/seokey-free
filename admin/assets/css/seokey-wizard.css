@@ -25,7 +25,6 @@
     padding-right: 50px;
 }
 #automatic_optimizations_list_button_choices.remove::after {
-    content: ;
     font-family: dashicons;
     content: "\f158";
     font-size: 30px;
@@ -318,7 +317,8 @@ body{
 
 /* text color on wizard */
 .seokey-fieldset #automatic_optimizations_list_items label{
-    min-width: 50%;
+    min-width:40%;
+    font-size:18px;
 }
 
 

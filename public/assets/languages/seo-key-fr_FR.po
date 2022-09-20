@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SEOKEY Pro\n"
-"POT-Creation-Date: 2022-07-26 12:15+0200\n"
-"PO-Revision-Date: 2022-07-26 12:15+0200\n"
+"POT-Creation-Date: 2022-09-19 11:25+0200\n"
+"PO-Revision-Date: 2022-09-19 11:25+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -29,13 +29,28 @@ msgstr "Pas assez de texte : vous avez %s caractères manquants"
 
 #: admin/admin-assets.php:162
 #, php-format
-msgid "Good text: %s remaining characters"
-msgstr "Bon texte : %s caractères restants"
+msgid "Not enough text: you have %s missing character"
+msgstr "Pas assez de texte : vous avez %s caractère manquant"
 
 #: admin/admin-assets.php:163
 #, php-format
+msgid "Good text: %s remaining characters"
+msgstr "Bon texte : %s caractères restants"
+
+#: admin/admin-assets.php:164
+#, php-format
+msgid "Good text: %s remaining character"
+msgstr "Bon texte : %s caractère restant"
+
+#: admin/admin-assets.php:165
+#, php-format
 msgid "Too much text: you have %s extra characters"
 msgstr "Trop de texte : vous avez %s de caractères en trop"
+
+#: admin/admin-assets.php:166
+#, php-format
+msgid "Too much text: you have %s extra character"
+msgstr "Trop de texte : vous avez %s caractères en trop"
 
 #: admin/admin-menus/admin-links-admin-bar.php:143
 msgid "Edit this Post Type Archive"
@@ -144,7 +159,7 @@ msgstr ""
 
 #: admin/admin-pages/admin-pages-automatic-seo.php:83
 #: admin/admin-pages/admin-pages-settings.php:211
-#: admin/admin-pages/admin-pages-settings.php:274 admin/wizard.php:400
+#: admin/admin-pages/admin-pages-settings.php:274 admin/wizard.php:402
 msgid "SEO optimizations"
 msgstr "Optimisations SEO"
 
@@ -273,13 +288,22 @@ msgstr ""
 "<a class='button button-primary button-hero' target='_blank' href='https://"
 "www.seo-key.fr/tarifs/'>Acheter SEOKEY PRO</a>"
 
+#: admin/admin-pages/admin-pages-settings.php:40
+msgid ""
+"Already bought SEOKEY PRO? Download it from SEOKEY website and install it. "
+"When activated, SEOKEY free will automatically be deactivated."
+msgstr ""
+"Vous avez déjà acheté SEOKEY PRO ? Téléchargez l'extension depuis le site de "
+"SEOKEY et installez-la. Une fois activée, la version gratuite se désactivera "
+"automatiquement."
+
 #: admin/admin-pages/admin-pages-settings.php:105
 msgctxt "Setting Section explanation - <p>"
 msgid "These information will help Google to display data about you."
 msgstr ""
 "Ces informations permettront à Google d’afficher des données vous concernant."
 
-#: admin/admin-pages/admin-pages-settings.php:107 admin/wizard.php:409
+#: admin/admin-pages/admin-pages-settings.php:107 admin/wizard.php:411
 msgctxt "Setting Section tab name"
 msgid "Who are you?"
 msgstr "Qui êtes-vous ?"
@@ -293,7 +317,7 @@ msgstr ""
 "dites-nous lesquels."
 
 #: admin/admin-pages/admin-pages-settings.php:118
-#: admin/modules/watcher-new-content.php:95
+#: admin/modules/watcher-new-content.php:99
 msgid "Contents"
 msgstr "Contenus"
 
@@ -454,7 +478,7 @@ msgstr "Enregistrer et continuer"
 msgid "Skip this step"
 msgstr "Passer cette étape"
 
-#: admin/admin-pages/admin-pages-wizard.php:123 admin/wizard.php:187
+#: admin/admin-pages/admin-pages-wizard.php:123 admin/wizard.php:189
 msgctxt "Wizard Step"
 msgid "Start"
 msgstr "Démarrage"
@@ -954,32 +978,32 @@ msgstr "Vous pouvez aussi modifier directement votre page d’accueil ici : "
 msgid "Edit \"%1$s\" content."
 msgstr "Modifier le contenu \"%1$s\"."
 
-#: admin/api/class-settings-api.php:859 admin/assets/js/settings-media.js:35
+#: admin/api/class-settings-api.php:856 admin/assets/js/settings-media.js:35
 #: admin/assets/js/settings-media.js:36
 msgid "Upload"
 msgstr "Ajouter une image"
 
-#: admin/api/class-settings-api.php:862
+#: admin/api/class-settings-api.php:859
 msgid "Change image"
 msgstr "Modifier l’image"
 
-#: admin/api/class-settings-api.php:869
+#: admin/api/class-settings-api.php:866
 msgid "Remove image"
 msgstr "Supprimer l’image"
 
-#: admin/api/class-settings-api.php:871
+#: admin/api/class-settings-api.php:868
 msgid "Preview"
 msgstr "Prévisualiser"
 
-#: admin/api/class-settings-api.php:875
+#: admin/api/class-settings-api.php:872
 msgid "Logo or photo"
 msgstr "Logo ou photo"
 
-#: admin/api/class-settings-api.php:1078
+#: admin/api/class-settings-api.php:1075
 msgid "No settings available for this page"
 msgstr "Aucun réglage disponible pour cette page"
 
-#: admin/api/class-settings-api.php:1112
+#: admin/api/class-settings-api.php:1109
 msgid "Save all changes"
 msgstr "Enregistrer tout"
 
@@ -1085,19 +1109,19 @@ msgstr "Merci de patienter, nous allons recharger la page dans %s secondes"
 msgid "Continue"
 msgstr "Continuer"
 
-#: admin/assets/js/seokey-metabox.js:139
+#: admin/assets/js/seokey-metabox.js:154
 msgid "Keyword saved"
 msgstr "Mot-clé sauvegardé"
 
-#: admin/assets/js/seokey-metabox.js:140
+#: admin/assets/js/seokey-metabox.js:155
 msgid "Error"
 msgstr "Erreur"
 
-#: admin/assets/js/seokey-metabox.js:141 admin/modules/metabox.php:244
+#: admin/assets/js/seokey-metabox.js:156 admin/modules/metabox.php:244
 msgid "Add keyword"
 msgstr "Ajouter mot-clé"
 
-#: admin/assets/js/seokey-metabox.js:142 admin/modules/metabox.php:244
+#: admin/assets/js/seokey-metabox.js:157 admin/modules/metabox.php:244
 msgid "Update keyword"
 msgstr "Mettre à jour le mot-clé"
 
@@ -1671,7 +1695,6 @@ msgid "Fix my WordPress"
 msgstr "Corriger mon WordPress"
 
 #: admin/modules/automatic_optimizations.php:92
-#: admin/modules/automatic_optimizations.php:110
 msgid "Titles and meta descriptions"
 msgstr "Titres et méta-descriptions"
 
@@ -1704,7 +1727,7 @@ msgstr "Nous avons supprimé le contenu inutile sur l’en-tête HTML de vos pag
 
 #: admin/modules/automatic_optimizations.php:101
 msgid "Custom post types archive page"
-msgstr "Page d’archive de vos contenus sur mesure (\"custom post type\")"
+msgstr "Archive de vos contenus sur mesure"
 
 #: admin/modules/automatic_optimizations.php:101
 msgid ""
@@ -1733,8 +1756,12 @@ msgstr ""
 "vers celles-ci)"
 
 #: admin/modules/automatic_optimizations.php:110
-msgid "No more harmful pings"
-msgstr "Plus de pings néfastes"
+msgid "WordPress Pings"
+msgstr "Pings de WordPress"
+
+#: admin/modules/automatic_optimizations.php:110
+msgid "No more harmful pings (prevents indexing hidden contents)"
+msgstr "Plus de pings néfastes (pour éviter d'indexer des contenus cachés)"
 
 #: admin/modules/automatic_optimizations.php:113
 msgid "Writing"
@@ -1804,9 +1831,8 @@ msgid ""
 "If you are using performance plugins such as WP-Rocket, we removed harmful "
 "404 errors on old cached files"
 msgstr ""
-"Si vous utilisez des extensions de performance tels que WP-Rocket, nous "
-"avons supprimé les erreurs 404 nuisibles sur les anciens fichiers mis en "
-"cache"
+"Vous utilisez des extensions de performance comme WP-Rocket ? Nous "
+"supprimons les erreurs 404 sur les anciens fichiers mis en cache"
 
 #: admin/modules/automatic_optimizations.php:152
 msgid "Pagination optimizations"
@@ -1868,11 +1894,11 @@ msgstr "Ne pas importer les données"
 msgid "No other SEO plugin with import function has been detected."
 msgstr "Aucune extension SEO avec système d'import n'a été détecté."
 
-#: admin/modules/import.php:508
+#: admin/modules/import.php:516
 msgid "Import completed. "
 msgstr "Import terminé. "
 
-#: admin/modules/import.php:511
+#: admin/modules/import.php:519
 msgid "Incorrect plugin name. "
 msgstr "Mauvais nom d'extension. "
 
@@ -2333,7 +2359,7 @@ msgstr ""
 "De plus, ces redirections sont vraiment lentes (mauvais temps de chargement "
 "pour Google et votre serveur)."
 
-#: admin/modules/search-console/search-console.php:29 admin/wizard.php:435
+#: admin/modules/search-console/search-console.php:29 admin/wizard.php:437
 msgid "Search Console"
 msgstr "Search Console"
 
@@ -2519,21 +2545,21 @@ msgstr ""
 msgid "Settings page"
 msgstr "Page des réglages"
 
-#: admin/modules/watcher-new-content.php:93
+#: admin/modules/watcher-new-content.php:97
 msgid "New content discovered"
 msgstr "Nouveau contenu découvert"
 
-#: admin/modules/watcher-new-content.php:98
+#: admin/modules/watcher-new-content.php:102
 msgctxt "notification text for a new content discovered"
 msgid "SEOKEY has discovered new content on your website: "
 msgstr "SEOKEY a découvert du nouveau contenu sur votre site web : "
 
-#: admin/modules/watcher-new-content.php:100
+#: admin/modules/watcher-new-content.php:104
 msgctxt "notification text for a new content discovered"
 msgid "You need to check your SEO settings."
 msgstr "Vous devez vérifier vos paramètres SEO."
 
-#: admin/modules/watcher-new-content.php:101
+#: admin/modules/watcher-new-content.php:105
 msgid ""
 "Go to your settings page, check public contents and taxonomies, then save "
 "your settings: "
@@ -2541,7 +2567,7 @@ msgstr ""
 "Allez dans le menu de paramétrage, vérifiez vos types de contenus et "
 "taxonomies, puis sauvegardez vos réglages: "
 
-#: admin/modules/watcher-new-content.php:101
+#: admin/modules/watcher-new-content.php:105
 msgid "Go to content settings"
 msgstr "Aller dans le paramétrage des contenus"
 
@@ -2599,52 +2625,52 @@ msgstr ""
 msgid "Wizard"
 msgstr "Assistant (Wizard)"
 
-#: admin/wizard.php:190
+#: admin/wizard.php:192
 msgctxt "Wizard Step"
 msgid "Who are you?"
 msgstr "Qui êtes-vous ?"
 
-#: admin/wizard.php:193
+#: admin/wizard.php:195
 msgctxt "Wizard Step"
 msgid "Contents"
 msgstr "Contenus"
 
-#: admin/wizard.php:196
+#: admin/wizard.php:198
 msgctxt "Wizard Step"
 msgid "Metas and URL"
 msgstr "Métas et URL"
 
-#: admin/wizard.php:199
+#: admin/wizard.php:201
 msgctxt "Wizard Step"
 msgid "SEO optimizations"
 msgstr "Optimisations SEO"
 
-#: admin/wizard.php:202
+#: admin/wizard.php:204
 msgctxt "Wizard Step"
 msgid "Audit"
 msgstr "Audit"
 
-#: admin/wizard.php:213
+#: admin/wizard.php:215
 msgid "Who are you?"
 msgstr "Qui êtes-vous ?"
 
-#: admin/wizard.php:216
+#: admin/wizard.php:218
 msgid "Optimize your contents"
 msgstr "Optimisez vos contenus"
 
-#: admin/wizard.php:219
+#: admin/wizard.php:221
 msgid "Define your SEO data"
 msgstr "Définissez vos données SEO"
 
-#: admin/wizard.php:223
+#: admin/wizard.php:225
 msgid "Get data from Search Console"
 msgstr "Obtenir des données à partir de la Search Console"
 
-#: admin/wizard.php:228
+#: admin/wizard.php:230
 msgid "Automatic optimizations"
 msgstr "Optimisations automatiques"
 
-#: admin/wizard.php:293
+#: admin/wizard.php:295
 #, php-format
 msgid ""
 "It will take only a few minutes to configure SEOKEY, improve \"%s\" SEO and "
@@ -2653,29 +2679,29 @@ msgstr ""
 "Il ne vous faudra que quelques minutes pour configurer SEOKEY, améliorez le "
 "référencement « %s » et auditez votre contenu !"
 
-#: admin/wizard.php:294
+#: admin/wizard.php:296
 msgid "Launch the SEO Wizard"
 msgstr "Lancez l’assistant SEO"
 
-#: admin/wizard.php:295
+#: admin/wizard.php:297
 msgid "Ignore and activate"
 msgstr "Ignorer et activer"
 
-#: admin/wizard.php:299
+#: admin/wizard.php:301
 msgctxt "notification title for the wizard installation"
 msgid "You are almost done !"
 msgstr "Vous avez presque terminé !"
 
-#: admin/wizard.php:369
+#: admin/wizard.php:371
 msgid "Automatic optimization status"
 msgstr "État d’optimisation automatique"
 
-#: admin/wizard.php:418
+#: admin/wizard.php:420
 msgctxt "Setting Section tab name"
 msgid "Contents"
 msgstr "Contenus"
 
-#: admin/wizard.php:427
+#: admin/wizard.php:429
 msgctxt "Setting Section tab name"
 msgid "Metas and URL"
 msgstr "Métas et URL"
@@ -4283,6 +4309,9 @@ msgstr "SeoMix - Daniel Roch"
 #. Author URI of the plugin/theme
 msgid "https://www.seomix.fr"
 msgstr "https://www.seomix.fr"
+
+#~ msgid "No more harmful pings"
+#~ msgstr "Plus de pings néfastes"
 
 #~ msgid "SEOKEY PRO license"
 #~ msgstr "Licence SEOKEY pro"

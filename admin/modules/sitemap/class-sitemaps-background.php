@@ -111,8 +111,11 @@ class SeoKey_Class_Background_Sitemap_Process extends SeoKey_WP_Background_Proce
                 seokey_helper_files( 'delete', 'robots' );
                 seokey_helper_files( 'create', 'robots' );
                 // It was the last sitemap : sitemap creation has ended
-                $sitemaps = new Seokey_SearchConsole_Sitemaps();
-                $sitemaps->seokey_gsc_sitemaps_push();
+	            // Submit to search console updated sitemap
+	            if ( ! seokey_helpers_is_free() ) {
+		            $sitemaps = new Seokey_SearchConsole_Sitemaps();
+		            $sitemaps->seokey_gsc_sitemaps_push();
+	            }
 		        // Flush rewrite rules
 		        flush_rewrite_rules();
 		        break;

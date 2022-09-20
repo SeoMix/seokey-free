@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'You lost the key...' );
 }
 
-add_action('wp_loaded', 'seokey_admin_content_watcher', 10 );
+add_action( 'admin_init', 'seokey_admin_content_watcher', 10 );
 /**
  * Handle new content watcher
  *
@@ -30,55 +30,59 @@ function seokey_admin_content_watcher(){
 	if ( defined( 'DOING_AJAX' ) || ! is_admin() ) {
 		return;
 	}
-	// TODO later : transient ? Cron ?
-	// Current user can see notification ?
-	if ( current_user_can( seokey_helper_user_get_capability( 'admin' ) ) ) {
-		// Did we have saved once our good contents ?
-		if ( false === get_option('seokey_admin_content_watcher_known') ) {
-			return;
-		}
-		// Post types
-		$_builtin   = get_post_types( ['_builtin' => true, 'public' => true ], 'objects' );
-		$_custom    = get_post_types( ['_builtin' => false, 'public' => true ], 'objects' );
-		$post_types = array_merge( $_builtin, $_custom );
-		unset( $_builtin );
-		unset( $_custom );
-		unset( $post_types['attachment'] );
-		$post_types = array_keys( $post_types );
-		// Taxonomies
-		$_builtin   = get_taxonomies( ['_builtin' => true, 'public' => true ], 'objects' );
-		$_custom    = get_taxonomies( ['_builtin' => false, 'public' => true ], 'objects' );
-		$taxonomies = array_merge( $_builtin, $_custom );
-		unset( $_builtin );
-		unset( $_custom );
-		unset( $taxonomies['post_format'] );
-		$taxonomies = array_keys( $taxonomies );
-		// previous known contents
-		$current_list   = get_option( 'seokey_admin_content_watcher_known', [] );
-		// Check diff and get label if necessary
-		$new = [];
-		$list = ( is_array( $current_list['posts'] ) ) ? $current_list['posts'] : [];
-		foreach ( $post_types as $value ) {
-			if ( !in_array( $value, $list ) ) {
-				$name           = get_post_type_object( $value );
-				$new[]          = $name->label;
+	// Last check was recent or not?
+	if ( false === ( $new = get_transient('seokey_transient_admin_content_watcher' ) ) ) {
+		// Current user can see notification ?
+		if ( current_user_can( seokey_helper_user_get_capability( 'admin' ) ) ) {
+			// Did we have saved once our good contents ?
+			if ( false === get_option( 'seokey_admin_content_watcher_known' ) ) {
+				return;
 			}
-		}
-		$list = ( is_array( $current_list['taxonomies'] ) ) ? $current_list['taxonomies'] : [];
-		foreach ( $taxonomies as $value ) {
-			if ( !in_array( $value, $list ) ) {
-				$name           = get_taxonomy( $value );
-				$new[]          = $name->label;
+			// Post types
+			$_builtin   = get_post_types( [ '_builtin' => true, 'public' => true ], 'objects' );
+			$_custom    = get_post_types( [ '_builtin' => false, 'public' => true ], 'objects' );
+			$post_types = array_merge( $_builtin, $_custom );
+			unset( $_builtin );
+			unset( $_custom );
+			unset( $post_types['attachment'] );
+			$post_types = array_keys( $post_types );
+			// Taxonomies
+			$_builtin   = get_taxonomies( [ '_builtin' => true, 'public' => true ], 'objects' );
+			$_custom    = get_taxonomies( [ '_builtin' => false, 'public' => true ], 'objects' );
+			$taxonomies = array_merge( $_builtin, $_custom );
+			unset( $_builtin );
+			unset( $_custom );
+			unset( $taxonomies['post_format'] );
+			$taxonomies = array_keys( $taxonomies );
+			// previous known contents
+			$current_list = get_option( 'seokey_admin_content_watcher_known', [] );
+			// Check diff and get label if necessary
+			$new  = [];
+			$list = ( is_array( $current_list['posts'] ) ) ? $current_list['posts'] : [];
+			foreach ( $post_types as $value ) {
+				if ( ! in_array( $value, $list ) ) {
+					$name  = get_post_type_object( $value );
+					$new[] = $name->label;
+				}
 			}
-		}
-		// trigger notification if necessary
-		if ( !empty( $new ) ) {
-			// Tell our notification useful data
-			seokey_helper_cache_data( 'seokey_new_content', $new );
-			// Trigger notification
-			add_filter( 'seokey_filter_admin_notices_launch', 'seokey_admin_content_watcher_notification', 10 );
+			$list = ( is_array( $current_list['taxonomies'] ) ) ? $current_list['taxonomies'] : [];
+			foreach ( $taxonomies as $value ) {
+				if ( ! in_array( $value, $list ) ) {
+					$name  = get_taxonomy( $value );
+					$new[] = $name->label;
+				}
+			}
+			set_transient( 'seokey_transient_admin_content_watcher', $new, 120 );
 		}
 	}
+	// trigger notification if necessary
+	if ( !empty( $new ) ) {
+		// Tell our notification useful data
+		seokey_helper_cache_data( 'seokey_new_content', $new );
+		// Trigger notification
+		add_filter( 'seokey_filter_admin_notices_launch', 'seokey_admin_content_watcher_notification', 10 );
+	}
+
 }
 
 /**
@@ -144,7 +148,7 @@ function seokey_admin_content_watcher_update_known( $value ) {
 		'posts' => $post_types,
 		'taxonomies' => $taxonomies
 	];
-	update_option( 'seokey_admin_content_watcher_known', $content, TRUE );
+	update_option( 'seokey_admin_content_watcher_known', $content, true );
 	// Let Wordpress handle this option value
 	return $value;
 }
