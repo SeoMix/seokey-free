@@ -43,9 +43,7 @@ function seokey_admin_bar( $wp_admin_bar ) {
 		return;
 	}
 	// Get main menu data
-	$count_redirect_errors  = ( function_exists('seokey_redirections_display_errors_count') ) ? seokey_redirections_display_errors_count() : 0;
-	$count_redirect_guessed = ( function_exists('seokey_redirections_display_guessed_count') ) ? seokey_redirections_display_guessed_count() : 0;
-    $count_redirect = $count_redirect_errors + $count_redirect_guessed;
+	$count_redirect = 0;
     $count_audit = get_option('seokey_audit_global_issues_count_now');
 	$count = $count_redirect + $count_audit;
 	// Update main menu textwith counts
@@ -91,11 +89,7 @@ function seokey_admin_bar( $wp_admin_bar ) {
 		// Specific menu handling
         // TODO Later add filter here
 		$extra = '';
-		if ( 'redirections' === $slug ) {
-			if ( $count_redirect > 0 ) {
-				$extra = sprintf( '<span class="awaiting-mod redirection-menu-count-admin-bar">%d</span>', $count_redirect );
-			}
-		} elseif ( 'audit' === $slug ) {
+		if ( 'audit' === $slug ) {
             if ( $count_audit > 0 ) {
                 $extra = sprintf( '<span class="awaiting-mod audit-menu-count-admin-bar">%d</span>', $count_audit );
             }

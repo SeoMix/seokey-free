@@ -36,7 +36,7 @@ function seokey_audit_get_task_messages_content() {
             '3' => __( '%d of %d images do not have an alternative text (ALT) in your content. You need to describe each image for Search Engines.', 'seo-key' ),
         ],
 	    'no_links' => [
-		    '2' => __( 'No internal links  found in your content: you should add some towards your important pages.', 'seo-key' ),
+		    '2' => __( 'No internal links found in your content: you should add some towards your important contents in order to give them more popularity.', 'seo-key' ),
 	    ],
         'main_keyword_selection'   => [
             '4' => __( 'No keyword has been chosen for this content: please choose one to receive more SEO advice.', 'seo-key' ),

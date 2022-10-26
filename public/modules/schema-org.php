@@ -135,10 +135,10 @@ class seokey_Schema_Org {
 		}
 		// Others websites
 		if ( ! empty( $sameas_option ) ) {
-			$datas['sameas'] = [];
+			$datas['sameAs'] = [];
 			foreach ( $sameas_option as $url ) {
 				$url_escaped = esc_url( $url );
-				array_push($datas['sameas'], $url_escaped );
+				array_push($datas['sameAs'], $url_escaped );
 			}
 		}
 		$this->seokey_schema_org_display( $datas );
@@ -246,7 +246,7 @@ class seokey_Schema_Org {
 		}
 		if ( $local_business_is_store == 1 ) {
 			$local_business_pricing     = seokey_helper_get_option( 'schemaorg-schema-local_business-pricing' );
-			if ( ! empty( $local_business_pricing['pricerangemin'] ) || ! empty( $local_business_pricing['pricerangeax'] ) ) {
+			if ( ! empty( $local_business_pricing['pricerangemin'] ) || ! empty( $local_business_pricing['pricerangemax'] ) ) {
 				$datas['priceRange'] = (int) $local_business_pricing['pricerangemin'] . '-' . $local_business_pricing['pricerangemax'] . '€';
 			}
 			$opening_hours = seokey_helper_get_option( 'schemaorg-schema-local_business-openinghoursspecification' );
@@ -315,8 +315,9 @@ class seokey_Schema_Org {
 	 */
 	public function seokey_schema_org_actions() {
 		$datas['@type'] = 'WebSite';
-		$datas['@url'] = home_url();
-		$datas['@potentialAction'] = [
+		$datas['name'] = get_bloginfo( 'name' );
+		$datas['url'] = home_url();
+		$datas['potentialAction'] = [
 			'@type'     => 'SearchAction',
 			'target'    => [
 				'@type'     => 'EntryPoint',

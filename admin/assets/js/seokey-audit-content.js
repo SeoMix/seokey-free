@@ -1,5 +1,6 @@
-// cd seo-key-pro puis npm run build
+// cd seo-key puis npm run build
 (function ($) {
+
     var seokeyAuditContent = {
         /**
          * Constants
@@ -32,7 +33,8 @@
             if ( $('input[name="content_visibility"]').prop( "checked" ) !== true ) {
                 this.refresh();
             } else {
-                this.$optimisations.html('This is a private content : we do not audit them');
+                const { __ } = wp.i18n;
+                this.$optimisations.html( __( 'This is a private content: we do not audit them.', 'seo-key') );
             }
             // this.registerPlugin();
         },
@@ -189,7 +191,8 @@
                 if ( $('input[name="content_visibility"]').prop( "checked" ) === true ) {
                     self.PrivateContent = true;
                     self.$optimisations.empty();
-                    self.$optimisations.html('This is a private content : we do not audit them');
+                    const { __ } = wp.i18n;
+                    self.$optimisations.html( __( 'This is a private content: we do not audit them.', 'seo-key') );
                 }
                 // Public content, trottle audit if necessary
                 else {
@@ -280,7 +283,8 @@
                 }, this.refreshDelay);
             } else {
                 self.$optimisations.empty();
-                self.$optimisations.html('This is a private content : we do not audit them');
+                const { __ } = wp.i18n;
+                self.$optimisations.html( __( 'This is a private content: we do not audit them.', 'seo-key') );
             }
         },
 
@@ -315,7 +319,9 @@
                                 self.Refreshing = false;
                                 $('#audit-content-loader').hide();
                                 // enable issues actions
-                                seokey_issues_handler();
+                                if( typeof seokey_issues_handler === "function") {
+                                    seokey_issues_handler();
+                                }
                             }, 2000);
                         } else {
                             self.Refreshing = false;

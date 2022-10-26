@@ -54,9 +54,8 @@
     background-color: #c52828;
     background-image:url('../img/picto-error-white.png');
 }
-.seokey-notice.notice-error,
-.seokey-notice.notice-error .notice-title{
-    color: #c52828;
+.seokey-notice.notice-error {
+    color: #0677a9;
 }
 /* Success notices */
 .seokey-notice.notice-success .notice-icon {
@@ -130,4 +129,20 @@
     justify-content: center;
     flex: 1;
     margin-right: 4em;
+}
+
+
+.notice-content ul {
+    font-size: 15px;
+    list-style: disclosure-closed;
+    line-height: 1.4em;
+    margin-left: 2em;
+}
+.seokey-notice h2 {
+    font-size: 26px;
+    color: #0A4B78;
+    line-height: 1em;
+}
+.notice-content a.button {
+    margin: 0 0.5em 0 0;
 }

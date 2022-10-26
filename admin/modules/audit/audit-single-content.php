@@ -32,7 +32,8 @@ function seokey_enqueue_admin_metabox_metas_audit( ) {
     $goforit = seokey_helper_cache_data('SEOKEY_METABOX' );
     if ( $goforit === TRUE ) {
         // JS for all admin pages
-        wp_enqueue_script(  'seokey-metabox-audit', SEOKEY_URL_ASSETS . 'js/build/seokey-audit-content.js', array( 'jquery' ), SEOKEY_VERSION, TRUE );
+	    wp_enqueue_script('wp-i18n');
+        wp_enqueue_script(  'seokey-metabox-audit', SEOKEY_URL_ASSETS . 'js/build/seokey-audit-content.js', array( 'jquery', 'wp-i18n' ), SEOKEY_VERSION, TRUE );
         $args = array(
             // Ajax URL
             'ajaxUrl'               => admin_url( 'admin-ajax.php' ),

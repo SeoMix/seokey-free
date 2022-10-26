@@ -20,7 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 $modules     = SEOKEY_PATH_ADMIN . 'modules/';
 $condition  = ['seokey_option_first_wizard_seokey_notice_wizard' => 'goodtogo'];
 
-
 // Load admin assets (CSS, fonts, icons and JS)
 seokey_helper_require_file( 'admin-assets',                 SEOKEY_PATH_ADMIN, 'contributor' );
 // Load notification functions
@@ -80,8 +79,8 @@ if ( is_admin() ) {
 	seokey_helper_require_file( 'watcher-new-content',          $modules, 'everyone' );
 	seokey_helper_require_file( 'watcher-401',                  $modules, 'editor' );
 	// Load Import functions
-	seokey_helper_require_file( 'import',                       $modules, 'admin' );
-	
+	seokey_helper_require_file( 'import',                       $modules. 'import/', 'admin' );
+
 // Loaded after wizard
 	// Load redirection module
 	seokey_helper_require_file( 'redirections',                 $modules . 'redirections/', 'editor', $condition );

@@ -37,13 +37,10 @@ jQuery(document).ready(function ($) {
                 plugin: plugin,
             },
             success: function (response) {
-                console.log(response);
                 var text = response.data;
                 if ( response.success === true) {
                     // settings page: need a reload to renew all imported options
                     if ( $('.seokey_page_seo-key-settings').length) {
-                        console.log('settings');
-                        $text =
                         $('#seokey-import-message').html( text + '<strong>' + __( 'Please wait, we will reload this page in 8 seconds', 'seo-key' ) + '</strong>' ).show();
                         var timer = 7;
                         var y = setInterval(function() {
@@ -54,7 +51,6 @@ jQuery(document).ready(function ($) {
                                 // Clear data while reload has not finished yet
                                 clearInterval(y);
                             }
-                            console.log(timer);
                             $('#seokey-import-message').html( text + '<strong>' + sprintf( __( 'Please wait, we will reload this page in %s seconds', 'seo-key' ), timer ) );
                             timer--;
                         }, 1000);

@@ -79,9 +79,9 @@ function seokey_helper_help_messages( $id = false, $right = false ) {
 			    break;
 		    case 'settings-api-title-seokey-field-cct-cpt':
 			    $h2     = __( 'What is a post type and what should i do?', 'seo-key' );
-			    $text   = '<span>' . __( 'By default, WordPress allows you to manage multiple content types (posts and pages). Depending on your theme and extensions, you may have others, such as products, sliders, clients, etc.', 'seo-key' ) . '</span>';
-			    $text   .= '<span>' . __( 'But not all of these content types are always relevant. So you can hide some of them from Google.', 'seo-key' ) . '</span>';
-			    $text   .= '<span>' . __( 'To better see what they are, hover over the question mark of each content type to get more information.', 'seo-key' ) . '</span>';
+			    $text   = '<span>' . __( 'By default, WordPress allows you to manage multiple content types (posts and pages are the default ones). Depending on your theme and plugins, you may have others such as products, sliders, clients, ...', 'seo-key' ) . '</span>';
+			    $text   .= '<span>' . __( 'But not all of these content types are always relevant. You can hide some of them from Google.', 'seo-key' ) . '</span>';
+			    $text   .= '<span>' . __( 'To better see what they are, use each question mark to get more information about a specific content type.', 'seo-key' ) . '</span>';
 			    break;
 		    case 'settings-api-title-seokey-field-cct-taxo':
 			    $h2     = __( 'What is a taxonomy and what should i do?', 'seo-key' );

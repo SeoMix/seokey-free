@@ -40,7 +40,7 @@ class SeokeyCheckOtherExtensions {
 		'google-sitemap-generator/sitemaps.php'                             => 'Google sitemap generator',
 		'platinum-seo-pack/platinum-seo-pack.php'                           => 'Platinum SEO Pack',
 		'premium-seo-pack/index.php'                                        => 'Premium SEO Pack',
-//		'redirection/redirection.php'                                       => 'Redirection',
+		// 'redirection/redirection.php'                                       => 'Redirection',
 		'seo-by-10web/seo-by-10web.php'                                     => 'SEO by 10Web',
 		'seo-by-rank-math/rank-math.php'                                    => 'RankMath',
 		'seo-by-rank-math-pro/rank-math-pro.php'                            => 'RankMath PRO',
@@ -61,7 +61,7 @@ class SeokeyCheckOtherExtensions {
 		'wp-seopress-pro/seopress-pro.php'                                  => 'SEOPress PRO',
 		'xml-sitemap-feed/xml-sitemaps.php'                                 => 'XML sitemap Feed',
 	];
-	
+
 	/**
 	 * SEO plugins list with import function
 	 * @notes use the exact sames values as $plugins_to_check
@@ -70,8 +70,10 @@ class SeokeyCheckOtherExtensions {
 	 */
 	public $plugins_with_import = [
 		'wordpress-seo/wp-seo.php'          => 'Yoast SEO',
+		'seo-by-rank-math/rank-math.php'    => 'RankMath',
+        'wp-seopress/seopress.php'          => 'SEOPress',
 	];
-	
+
 	/**
 	 * Already installed plugins
 	 *
@@ -126,7 +128,7 @@ class SeokeyCheckOtherExtensions {
 			}
 		}
 	}
-	
+
 	/**
 	 * Reset ntoification for previous dismisssed notification
 	 *
@@ -174,10 +176,11 @@ class SeokeyCheckOtherExtensions {
 						$end = esc_html__( ' (import functions not yet available)','seo-key' );
 						$import = true;
 					}
-					$content .= '<li>- ' . esc_html( $extension ) . $end .'</li>';
+					$content .= '<li>' . esc_html( $extension ) . $end .'</li>';
 				}
 				$content .= "</ul>";
-				$content .= '<p><strong>' . esc_html__( 'Warning: On deactivation, no data will be imported into SEOKEY', 'seo-key' ) . '</strong>';
+				// TODO later improve later for translators (this is going to be a mess...)
+				$content .= '<p><strong>' . esc_html__( 'Warning: On deactivation, no data will be automatically imported into SEOKEY', 'seo-key' ) . '</strong>';
 				$content .= esc_html__( ' (but no data will be deleted).', 'seo-key' ) . '</p>';
 				// Security nonce
 				$nonce    = wp_create_nonce( 'seokey_check_other_plugins_deactivate_nonce' );

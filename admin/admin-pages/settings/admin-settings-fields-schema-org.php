@@ -43,7 +43,7 @@ function seokey_settings_add_schema_org( $unique_ID ) {
 		'name'    => seokey_settings_api_get_page_field( $unique_ID, 'schemaorg', 'context' ),
 		// Field Title
 		'title'         => __( 'What is your website about?', 'seo-key' ),
-		'desc'          => __( 'Tell Search Engine more about you to improve your visibility: are you a business or a person?', 'seo-key' ),
+		'desc'          => __( 'Tell Search Engine more about you to improve your visibility: who are you?', 'seo-key' ),
 		'desc-position' => 'above',
         // Type field used for generating field with correct callback function
 		'type'    => 'select',
@@ -51,7 +51,7 @@ function seokey_settings_add_schema_org( $unique_ID ) {
 		'values'  => [
 			'0'              => __( 'I don’t want to display this information on Google', 'seo-key' ),
 			'person'         => _x( 'A person', 'context from schema.org', 'seo-key' ),
-			'local_business' => _x( 'A business', 'context from schema.org', 'seo-key' ),
+			'local_business' => _x( 'A business, organization or association', 'context from schema.org', 'seo-key' ),
 		],
 		// Set a default value
 		'default' => '0',

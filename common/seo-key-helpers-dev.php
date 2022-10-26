@@ -50,7 +50,7 @@ if ( !function_exists ( 'seokey_dev_write_log' ) ) {
 			if ( is_array( $log ) || is_object( $log ) ) {
 				error_log( print_r( $log, true ) );
 			} else {
-				error_log( strval( $log ) );
+				error_log( gettype( $log ) .': ' . strval( $log ) );
 			}
 		}
 	}
@@ -76,7 +76,7 @@ function seokey_dev_pretty_print( $arr, $admin = false, $echo = true ) {
 	}
 	if ( ( $admin && current_user_can( 'manage_options' ) ) || ! $admin ) {
 		$output .= "<pre style='text-align:left;' class='seokey-debug-pp " . $extra_class . "' id='" . $id . "'><code>";
-		$output .= print_r( $arr, true );
+		$output .= '<strong>' . gettype( $arr ) .':</strong> ' . print_r( $arr, true );
 		$output .= "</code></pre>";
 	}
 	if ( ! did_action( 'seokey_dev_debug_load_styles' ) ) {

@@ -372,6 +372,9 @@ input#seokey-field-metas-category_base + label {
     float: left;
     margin-top: -5em;
 }
+#seokey-import-message + #seokey-import-loader {
+    float: none;
+}
 
 /* Specific CSS for GSC Token Input */
 #seokey-gsc-code-auth {

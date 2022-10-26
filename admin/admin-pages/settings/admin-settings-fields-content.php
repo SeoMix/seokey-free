@@ -170,12 +170,13 @@ function seokey_settings_add_contents_explanations( $value, $messageid ) {
 		$value['text']  .= '<br><br>';
 		if ( !empty( $recent_post ) ) {
 			$value['text']  .= sprintf( __( 'Here is an example URL for this post type : <strong><a href="%s" target="_blank">%s</a></strong>', 'seo-key' ), get_permalink( $recent_post[0]['ID'] ), esc_html( $recent_post[0]['post_title'] ) );
+			$value['text']  .= '<br><br>';
+			$value['text']  .= __( '<strong>Is it useful for users or for Google ?</strong><br>If your answer is no, select "Hide". If you don\'t know, keep the "Show" option.', 'seo-key' );
 		} else {
 			$value['text']  .= sprintf( __( 'Actually, you do not have created any "%s".', 'seo-key' ), $labels->labels->name );
-
+			$value['text']  .= '<br><br>';
+			$value['text']  .= __( 'If you are not planning on using this content type, <strong>you should hide it from Google</strong>. To do so, select "Hide". If you don\'t know, keep the "Show" option.', 'seo-key' );
 		}
-		$value['text']  .= '<br><br>';
-		$value['text']  .= __( '<strong>Is it useful for users or for Google ?</strong><br>If the answer is no, select "Hide". If you don\'t know, keep the "Show" option.', 'seo-key' );
 		$value['text']  = wp_kses_post( $value['text'] );
 	}
 	// taxonomies
@@ -202,7 +203,7 @@ function seokey_settings_add_contents_explanations( $value, $messageid ) {
 			$value['text']  .= sprintf( __( 'Actually, you do not have created any "%s".".', 'seo-key' ), $labels->labels->name );
 		}
 		$value['text']  .= '<br><br>';
-		$value['text']  .= __( '<strong>Is it useful for users or for Google ?</strong><br>If the answer is no, select "Hide".  If you don\'t know, keep the "Show" option.', 'seo-key' );
+		$value['text']  .= __( '<strong>Is it useful for users or for Google ?</strong><br>If your answer is no, select "Hide".  If you don\'t know, keep the "Show" option.', 'seo-key' );
 		$value['text']  = wp_kses_post( $value['text'] );
 	}
 	// Autors
@@ -225,7 +226,7 @@ function seokey_settings_add_contents_explanations( $value, $messageid ) {
 			$value['text']  .= sprintf( __( 'Actually, you do no have created any author URL.', 'seo-key' ) );
 		}
 		$value['text']  .= '<br><br>';
-		$value['text']  .= __( '<strong>Is it useful for users or for Google ?</strong><br>If the answer is no, select "Hide".  If you don\'t know, keep the "Show" option.', 'seo-key' );
+		$value['text']  .= __( '<strong>Is it useful for users or for Google ?</strong><br>If your answer is no, select "Hide".  If you don\'t know, keep the "Show" option.', 'seo-key' );
 		$value['text']  = wp_kses_post( $value['text'] );
 	}
 	// Return final value
@@ -340,7 +341,7 @@ function seokey_settings_add_base_sections_fields_taxonomy( $fields ) {
 	// Define correct ID
 	$unique_ID = 'settings';
 	// First values
-	$title = __( 'Help us understand your content types', 'seo-key' );
+	$title = __( 'Help us understand your different content types', 'seo-key' );
 	$explanation = true;
 	// get post type list
 	$posts_types = seokey_helper_cache_data( 'seokey_settings_add_base_sections_fields_posts' );
@@ -443,6 +444,6 @@ add_action('seokey_action_setting_table_before','seokey_settings_add_base_sectio
 // TODO comment
 function seokey_settings_add_base_sections_explain_visibility( $id){
 	if ( 'seokey-section-cct' === $id ) {
-		echo '<p>' . esc_html__( "For some of the options below, if you don't know what contents you need to hide, do not change them. You can also use the question mark to have more information.", "seo-key" ) . '</p>';
+		echo '<p>' . wp_kses_post( __( "For some of the options below, if you don't know what contents you need to hide, <strong>do not change them</strong>.<br>You can also use each question mark to have more information about them.", "seo-key" ) ) . '</p><br>';
 	}
 }

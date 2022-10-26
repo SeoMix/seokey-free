@@ -89,46 +89,46 @@ function seokey_automatic_optimizations() {
 function seokey_automatic_optimizations_list(){
 	$array[] = [
         'Titles and meta descriptions'      => [
-			__( 'Titles and meta descriptions', 'seo-key' ) => __( "No more %%title%% option: SEOKEY already create default optimized titles and meta descriptions", 'seo-key' ),
+			__( 'Titles and meta descriptions:', 'seo-key' ) => __( "No more %%title%% option: SEOKEY already create default optimized titles and meta descriptions", 'seo-key' ),
 	        ],
         'Date Archive'                      => [
-	        __( 'Date Archive', 'seo-key' )  => __( "We disabled date archives: you will have less poor content for Google", 'seo-key' ),
+	        __( 'Date Archive:', 'seo-key' )  => __( "We disabled date archives: you will have less poor content for Google", 'seo-key' ),
         ],
         'Header cleaning'                   => [
-		        __( 'Header cleaning', 'seo-key' )  => __( "We removed useless content on the HTML head of your pages", 'seo-key' ),
+			__( 'Header cleaning:', 'seo-key' )  => __( "We removed useless content on the HTML head of your pages", 'seo-key' ),
         ],
         'Custom post types archive page'    => [
-		        __( 'Custom post types archive page', 'seo-key' ) => __( "If you have custom Post Types with an archive page, we've added an admin page to help you configure them", 'seo-key' ),
+			__( 'Custom post types archive page:', 'seo-key' ) => __( "If you have custom Post Types with an archive page, we've added an admin page to help you configure them", 'seo-key' ),
         ],
         'Login Page'                        => [
-			__( 'Login Page', 'seo-key' ) => __( "We cleaned content on your login page", 'seo-key' ),
+			__( 'Login Page:', 'seo-key' ) => __( "We cleaned content on your login page", 'seo-key' ),
         ],
         'Medias'                            => [
-			__( 'Medias', 'seo-key' ) => __( "No more harmful attachment pages (and links to them)", 'seo-key' ),
+			__( 'Medias:', 'seo-key' ) => __( "No more harmful attachment pages (and links to them)", 'seo-key' ),
         ],
         'Pings'                             => [
-			__( 'WordPress Pings', 'seo-key' ) => __( "No more harmful pings (prevents indexing hidden contents)", 'seo-key' ),
+			__( 'WordPress Pings:', 'seo-key' ) => __( "No more harmful pings (prevents indexing hidden contents)", 'seo-key' ),
         ],
         'Writing'                           => [
-			__( 'Writing', 'seo-key' ) => __( "We removed bad options from both Gutenberg and TinyMCE editors", 'seo-key' ),
+			__( 'Writing:', 'seo-key' ) => __( "We removed bad options from both Gutenberg and TinyMCE editors", 'seo-key' ),
         ],
         'Robots.txt file'                   => [
-			__( 'Robots.txt file', 'seo-key' ) => __( "An improved robots.txt has been created", 'seo-key' ),
+			__( 'Robots.txt file:', 'seo-key' ) => __( "An improved robots.txt has been created", 'seo-key' ),
         ],
         'Improved RSS feeds'                => [
-			__( 'Improved RSS feeds', 'seo-key' ) => __( "We cleaned your RSS feeds: no more duplicate content or useless RSS feeds", 'seo-key' ),
+			__( 'Improved RSS feeds:', 'seo-key' ) => __( "We cleaned your RSS feeds: no more duplicate content or useless RSS feeds", 'seo-key' ),
         ],
         'Schema.org'                        => [
-			__( 'Schema.org', 'seo-key' ) => __( "We've added schema.org markup to improve all of your contents", 'seo-key' ),
+			__( 'Schema.org:', 'seo-key' ) => __( "We've added schema.org markup to improve all of your contents", 'seo-key' ),
 		],
         'WordPress sitemaps'                => [
-			__( 'WordPress sitemaps', 'seo-key' ) => __( "We replaced native WordPress sitemaps with powerful custom sitemaps", 'seo-key' ),
+			__( 'WordPress sitemaps:', 'seo-key' ) => __( "We replaced native WordPress sitemaps with powerful custom sitemaps", 'seo-key' ),
         ],
         'User metas'                        => [
-			__( 'User metas', 'seo-key' ) => __( "We added some new fields to each user: fill them to help Google understand your authors", 'seo-key' ),
+			__( 'User metas:', 'seo-key' ) => __( "We added some new fields to each user: fill them to help Google understand your authors", 'seo-key' ),
         ],
         'Performance'                       => [
-			__( 'Performance', 'seo-key' ) => __( "If you are using performance plugins such as WP-Rocket, we removed harmful 404 errors on old cached files", 'seo-key' ),
+			__( 'Performance:', 'seo-key' ) => __( "If you are using performance plugins such as WP-Rocket, we removed harmful 404 errors on old cached files", 'seo-key' ),
         ],
 		// TODO Retirer ou corriger WIDGETS ?
 		// __( 'Widgets', 'seo-key' )                          => __( "We removed harmful widgets", 'seo-key' ),

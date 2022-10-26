@@ -34,6 +34,10 @@ seokey_helper_require_file( 'elementor',        SEOKEY_PATH_ROOT . 'third-party/
 /* Beaver Builder */
 seokey_helper_require_file( 'beaver-builder',   SEOKEY_PATH_ROOT . 'third-party/', 'everyone' );
 
+/****************** Frameworks ****************/
+/* Genesis */
+seokey_helper_require_file( 'genesis',  SEOKEY_PATH_ROOT . 'third-party/', 'everyone' );
+
 /****************** Themes ****************/
 /* Astra */
 seokey_helper_require_file( 'theme-astra',  SEOKEY_PATH_ROOT . 'third-party/', 'everyone' );

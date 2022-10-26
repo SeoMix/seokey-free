@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'You lost the key...' );
 }
 
-add_action( 'admin_init', 'seokey_admin_content_watcher', 10 );
+add_action( 'admin_init', 'seokey_admin_content_watcher', 100 );
 /**
  * Handle new content watcher
  *
@@ -27,7 +27,7 @@ add_action( 'admin_init', 'seokey_admin_content_watcher', 10 );
  */
 function seokey_admin_content_watcher(){
 	// Only on admin pages (not while doing ajax)
-	if ( defined( 'DOING_AJAX' ) || ! is_admin() ) {
+	if ( defined( 'DOING_AJAX' ) ) {
 		return;
 	}
 	// Last check was recent or not?
@@ -72,7 +72,7 @@ function seokey_admin_content_watcher(){
 					$new[] = $name->label;
 				}
 			}
-			set_transient( 'seokey_transient_admin_content_watcher', $new, 120 );
+			set_transient( 'seokey_transient_admin_content_watcher', $new, 150 );
 		}
 	}
 	// trigger notification if necessary
@@ -149,6 +149,7 @@ function seokey_admin_content_watcher_update_known( $value ) {
 		'taxonomies' => $taxonomies
 	];
 	update_option( 'seokey_admin_content_watcher_known', $content, true );
+	delete_transient('seokey_transient_admin_content_watcher');
 	// Let Wordpress handle this option value
 	return $value;
 }

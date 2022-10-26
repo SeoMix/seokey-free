@@ -492,7 +492,7 @@ class Seokey_Sitemap_Render {
 		if ( ! is_null( $elements ) ) {
 			foreach ( $elements as $image ) {
 				// Image URL
-				$loc = $image->getAttribute( 'src' );
+				$loc = utf8_decode( $image->getAttribute( 'src' ) );
 				if ( str_starts_with( $loc, 'http:' ) ) {
 					if ( true === wp_is_using_https() ) {
 						$loc = str_replace( 'http:', 'https:', $loc );

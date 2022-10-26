@@ -39,7 +39,8 @@ function seokey_meta_title_value( $type, $ID = 0, $args = array(), $default = fa
 	$default_value  = '';
 	// No ID ? You're doing it wrong
 	if ( !is_int ( $ID ) ) {
-		seokey_dev_error( __FUNCTION__, __LINE__, 'Title generation error : bad ID' ); // Do not translate.
+		$message = __FUNCTION__ .' Line '. __LINE__ . ' Title generation error : bad ID'; // Do not translate.
+		seokey_dev_write_log( $message );
 	}
 	// Get or generate title
 	switch ( $type ) {
@@ -129,7 +130,8 @@ function seokey_meta_desc_value( $type, $ID = 0, $args = array(), $default = fal
 	$default_value  = '';
 	// No ID ? You're doing it wrong
 	if ( !is_int ( $ID ) ) {
-		seokey_dev_error( __FUNCTION__, __LINE__, 'Meta desc generation error' ); // Do not translate.
+		$message = __FUNCTION__ .' Line '. __LINE__ . ' Meta desc generation error bad ID'; // Do not translate.
+		seokey_dev_write_log( $message );
 	}
 	// Get or generate meta desc
 	switch ( $type ) {

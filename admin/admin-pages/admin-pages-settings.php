@@ -36,8 +36,8 @@ if ( seokey_helpers_is_free() ) {
 				echo '<li>' . __( "Easily connect your Search Console and get more SEO data", "seo-key" ) . '</li>';
 				echo '<li>' . __( "See and fix Google 404 and WordPress automatic redirections", "seo-key" ) . '</li>';
 			echo '</ul>';
-			echo '<p>' . __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>", 'seo-key' ) . '</p>';
-			echo '<p>' . __( 'Already bought SEOKEY PRO? Download it from SEOKEY website and install it. When activated, SEOKEY free will automatically be deactivated.','seo-key'). '</p>';
+			echo '<p>' . __( "<a class='button button-secondary button-hero' target='_blank' href='https://www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>", 'seo-key' ) . '</p>';
+			
 		}
 	}
 }
@@ -482,7 +482,7 @@ function seokey_settings_add_htpass_desc_nouse( $field ){
 	}
 }
 
-add_action('seokey_action_setting_table_after', 'seokey_settings_import_text', 30, 1);
+add_action('seokey_action_setting_table_after', 'seokey_settings_import_text', 5, 1);
 // TODO Comments
 function seokey_settings_import_text( $data ) {
 	if ( "seokey-section-licence" === $data ) {

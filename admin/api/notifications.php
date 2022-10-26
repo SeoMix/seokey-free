@@ -95,7 +95,7 @@ add_action( 'admin_enqueue_scripts', 'seokey_enqueue_admin_notifications' );
  */
 function seokey_enqueue_admin_notifications() {
     // Enqueue settings CSS and JS
-    wp_enqueue_style( 'seokey-notifications', esc_url( SEOKEY_URL_ASSETS . 'css/seokey-notifications.css' ), false, SEOKEY_VERSION );
+	wp_enqueue_style( 'seokey-notifications', esc_url( SEOKEY_URL_ASSETS . 'css/seokey-notifications.css' ), false, SEOKEY_VERSION );
 }
 
 add_action ( 'current_screen', 'seokey_admin_notices_updated_settings', SEOKEY_PHP_INT_MAX );

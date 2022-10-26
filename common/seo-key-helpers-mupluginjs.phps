@@ -10,7 +10,6 @@ jQuery(element).click(function( e ) {
 		// Prevent default behaviour of the link
 		e.preventDefault();
 		// Get data before creating pointer
-		var id= jQuery(element).attr('id');
 		var url_delete      = jQuery(this).attr('href');
 		var url_delete_data = url_delete+'&delete_data=yes';
 		// Translation functions
@@ -72,7 +71,10 @@ jQuery(element).click(function( e ) {
 			jQuery('#' + id).pointer('close');
 			// Do we need to change the URL in order to tell our own function de delete data ?
 			if ( changed === 0 ) {
-				seokey_delete_option_free( 'all' );
+				// var changeurl = jQuery(element).attr('href');
+				// changeurl = changeurl+"&delete_data=yes";
+				// jQuery(element).attr( 'href', changeurl );
+				seokey_delete_option( 'all' );
 				changed = 1;
 			}
 			// click on '#delete-seo-key-pro' => delete plugin and it's data

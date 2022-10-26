@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SEOKEY Pro\n"
-"POT-Creation-Date: 2022-09-19 11:24+0200\n"
+"POT-Creation-Date: 2022-10-25 10:48+0200\n"
 "PO-Revision-Date: 2022-04-27 09:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: seo-key.php\n"
@@ -52,46 +52,29 @@ msgstr ""
 msgid "Too much text: you have %s extra character"
 msgstr ""
 
-#: admin/admin-menus/admin-links-admin-bar.php:143
+#: admin/admin-menus/admin-links-admin-bar.php:137
 msgid "Edit this Post Type Archive"
 msgstr ""
 
-#: admin/admin-menus/admin-links-admin-bar.php:159
+#: admin/admin-menus/admin-links-admin-bar.php:153
 msgid "View this Post Type Archive"
 msgstr ""
 
-#: admin/admin-menus/admin-links-menus.php:107
-#, php-format
-msgid ""
-"Redirections <span class=\"awaiting-mod redirection-menu-count\">%d</span>"
-msgstr ""
-
-#: admin/admin-menus/admin-links-menus.php:109 common/seo-key-config.php:62
-msgctxt "Redirections admin menu name"
-msgid "Redirections"
-msgstr ""
-
-#: admin/admin-menus/admin-links-menus.php:111
-#: admin/admin-pages/admin-pages-seo-key.php:83
-#: admin/modules/redirections/view_helpers.php:106
-msgid "Redirections"
-msgstr ""
-
-#: admin/admin-menus/admin-links-menus.php:117
+#: admin/admin-menus/admin-links-menus.php:109
 #, php-format
 msgid "Audit <span class=\"awaiting-mod audit-menu-count\">%d</span>"
 msgstr ""
 
-#: admin/admin-menus/admin-links-menus.php:119
+#: admin/admin-menus/admin-links-menus.php:111
 msgctxt "Redirections admin menu name"
 msgid "Audit"
 msgstr ""
 
-#: admin/admin-menus/admin-links-menus.php:121
+#: admin/admin-menus/admin-links-menus.php:113
 msgid "Audit"
 msgstr ""
 
-#: admin/admin-menus/admin-links-menus.php:127
+#: admin/admin-menus/admin-links-menus.php:119
 #, php-format
 msgid ""
 "<span class=\"awaiting-mod seokey-menu-count\" id=\"seokey-menu-count-main-"
@@ -199,6 +182,11 @@ msgstr ""
 msgid "SEO Audit"
 msgstr ""
 
+#: admin/admin-pages/admin-pages-seo-key.php:83
+#: admin/modules/redirections/view_helpers.php:106
+msgid "Redirections"
+msgstr ""
+
 #: admin/admin-pages/admin-pages-seo-key.php:86
 msgid "Image ALT editor"
 msgstr ""
@@ -262,22 +250,9 @@ msgid "See and fix Google 404 and WordPress automatic redirections"
 msgstr ""
 
 #: admin/admin-pages/admin-pages-settings.php:39
-#: admin/admin-pages/admin-pages-support.php:54
-#: admin/modules/audit/audit-single-content.php:275
-#: admin/modules/audit/audit-wp-list-table-errors.php:77
-#: admin/modules/audit/parts/view-all-url.php:17
-#: admin/modules/audit/parts/view-issues-all.php:18
-#: admin/modules/audit/parts/view-issues-content.php:17
-#: admin/modules/audit/parts/view-issues-technical.php:17
 msgid ""
-"<a class='button button-primary button-hero' target='_blank' href='https://"
+"<a class='button button-secondary button-hero' target='_blank' href='https://"
 "www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>"
-msgstr ""
-
-#: admin/admin-pages/admin-pages-settings.php:40
-msgid ""
-"Already bought SEOKEY PRO? Download it from SEOKEY website and install it. "
-"When activated, SEOKEY free will automatically be deactivated."
 msgstr ""
 
 #: admin/admin-pages/admin-pages-settings.php:105
@@ -346,7 +321,7 @@ msgid "You may need some tools to correctly use SEOKEY"
 msgstr ""
 
 #: admin/admin-pages/admin-pages-settings.php:388
-#: admin/plugin-check-plugins.php:188
+#: admin/plugin-check-plugins.php:191
 msgid "Licence & import"
 msgstr ""
 
@@ -390,6 +365,18 @@ msgstr ""
 
 #: admin/admin-pages/admin-pages-support.php:46
 msgid "Go Premium!"
+msgstr ""
+
+#: admin/admin-pages/admin-pages-support.php:54
+#: admin/modules/audit/audit-single-content.php:276
+#: admin/modules/audit/audit-wp-list-table-errors.php:77
+#: admin/modules/audit/parts/view-all-url.php:17
+#: admin/modules/audit/parts/view-issues-all.php:18
+#: admin/modules/audit/parts/view-issues-content.php:17
+#: admin/modules/audit/parts/view-issues-technical.php:17
+msgid ""
+"<a class='button button-primary button-hero' target='_blank' href='https://"
+"www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>"
 msgstr ""
 
 #: admin/admin-pages/admin-pages-support.php:55
@@ -508,16 +495,16 @@ msgstr ""
 
 #: admin/admin-pages/settings/admin-settings-fields-content.php:78
 #: admin/admin-pages/settings/admin-settings-fields-content.php:126
-#: admin/admin-pages/settings/admin-settings-fields-content.php:283
-#: admin/admin-pages/settings/admin-settings-fields-content.php:312
+#: admin/admin-pages/settings/admin-settings-fields-content.php:284
+#: admin/admin-pages/settings/admin-settings-fields-content.php:313
 msgctxt "Status of the `public` setting for a custom post type set on true"
 msgid "Show"
 msgstr ""
 
 #: admin/admin-pages/settings/admin-settings-fields-content.php:79
 #: admin/admin-pages/settings/admin-settings-fields-content.php:127
-#: admin/admin-pages/settings/admin-settings-fields-content.php:284
-#: admin/admin-pages/settings/admin-settings-fields-content.php:313
+#: admin/admin-pages/settings/admin-settings-fields-content.php:285
+#: admin/admin-pages/settings/admin-settings-fields-content.php:314
 msgctxt "Status of the `public` setting for a custom post type set on false"
 msgid "Hide"
 msgstr ""
@@ -575,114 +562,121 @@ msgid ""
 msgstr ""
 
 #: admin/admin-pages/settings/admin-settings-fields-content.php:174
+msgid ""
+"<strong>Is it useful for users or for Google ?</strong><br>If your answer is "
+"no, select \"Hide\". If you don't know, keep the \"Show\" option."
+msgstr ""
+
+#: admin/admin-pages/settings/admin-settings-fields-content.php:176
 #, php-format
 msgid "Actually, you do not have created any \"%s\"."
 msgstr ""
 
 #: admin/admin-pages/settings/admin-settings-fields-content.php:178
 msgid ""
-"<strong>Is it useful for users or for Google ?</strong><br>If the answer is "
-"no, select \"Hide\". If you don't know, keep the \"Show\" option."
-msgstr ""
-
-#: admin/admin-pages/settings/admin-settings-fields-content.php:192
-#, php-format
-msgid "Does \"%s\" taxonomy is useful ?"
+"If you are not planning on using this content type, <strong>you should hide "
+"it from Google</strong>. To do so, select \"Hide\". If you don't know, keep "
+"the \"Show\" option."
 msgstr ""
 
 #: admin/admin-pages/settings/admin-settings-fields-content.php:193
 #, php-format
+msgid "Does \"%s\" taxonomy is useful ?"
+msgstr ""
+
+#: admin/admin-pages/settings/admin-settings-fields-content.php:194
+#, php-format
 msgid "You can sort contents with the <strong>\"%s\"</strong> taxonomy."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:195
+#: admin/admin-pages/settings/admin-settings-fields-content.php:196
 msgid "<strong>What is a taxonomy?</strong> "
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:196
+#: admin/admin-pages/settings/admin-settings-fields-content.php:197
 msgid ""
 "It is used to display a list of contents. For example, \"categories\" are a "
 "taxonomy used to display \"posts\"."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:200
+#: admin/admin-pages/settings/admin-settings-fields-content.php:201
 #, php-format
 msgid ""
 "Here is an example URL for this taxonomy : <strong><a href=\"%s\" target="
 "\"_blank\">%s</a></strong>"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:202
+#: admin/admin-pages/settings/admin-settings-fields-content.php:203
 #, php-format
 msgid "Actually, you do not have created any \"%s\".\"."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:205
-#: admin/admin-pages/settings/admin-settings-fields-content.php:228
+#: admin/admin-pages/settings/admin-settings-fields-content.php:206
+#: admin/admin-pages/settings/admin-settings-fields-content.php:229
 msgid ""
-"<strong>Is it useful for users or for Google ?</strong><br>If the answer is "
+"<strong>Is it useful for users or for Google ?</strong><br>If your answer is "
 "no, select \"Hide\".  If you don't know, keep the \"Show\" option."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:210
+#: admin/admin-pages/settings/admin-settings-fields-content.php:211
 msgid "Are authors pages useful ?"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:218
+#: admin/admin-pages/settings/admin-settings-fields-content.php:219
 msgid "You can show author pages to Google."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:222
+#: admin/admin-pages/settings/admin-settings-fields-content.php:223
 #, php-format
 msgid ""
 "Here is an example author URL : <strong><a href=\"%s\" target=\"_blank\">%s</"
 "a></strong>"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:225
+#: admin/admin-pages/settings/admin-settings-fields-content.php:226
 msgid "Actually, you do no have created any author URL."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:256
+#: admin/admin-pages/settings/admin-settings-fields-content.php:257
 msgid "Author"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:266
-#: admin/admin-pages/settings/admin-settings-fields-content.php:295
+#: admin/admin-pages/settings/admin-settings-fields-content.php:267
+#: admin/admin-pages/settings/admin-settings-fields-content.php:296
 msgid "Are author pages useful for Google or users?"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:268
-#: admin/admin-pages/settings/admin-settings-fields-content.php:297
+#: admin/admin-pages/settings/admin-settings-fields-content.php:269
+#: admin/admin-pages/settings/admin-settings-fields-content.php:298
 msgid "Author pages can also be on Google. Tell us what to do with them."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:343
-msgid "Help us understand your content types"
+#: admin/admin-pages/settings/admin-settings-fields-content.php:344
+msgid "Help us understand your different content types"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:384
+#: admin/admin-pages/settings/admin-settings-fields-content.php:385
 #, php-format
 msgid ""
 "What makes it easier to describe or categorize this type of content \"%s\"?"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:404
+#: admin/admin-pages/settings/admin-settings-fields-content.php:405
 #, php-format
 msgid "What best describes \"%s\"?"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:437
+#: admin/admin-pages/settings/admin-settings-fields-content.php:438
 #, php-format
 msgid ""
 "<strong>%s</strong> is the only taxonomy for %s. We've selected it for you"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:446
+#: admin/admin-pages/settings/admin-settings-fields-content.php:447
 msgid ""
 "For some of the options below, if you don't know what contents you need to "
-"hide, do not change them. You can also use the question mark to have more "
-"information."
+"hide, <strong>do not change them</strong>.<br>You can also use each question "
+"mark to have more information about them."
 msgstr ""
 
 #: admin/admin-pages/settings/admin-settings-fields-schema-org.php:45
@@ -691,8 +685,7 @@ msgstr ""
 
 #: admin/admin-pages/settings/admin-settings-fields-schema-org.php:46
 msgid ""
-"Tell Search Engine more about you to improve your visibility: are you a "
-"business or a person?"
+"Tell Search Engine more about you to improve your visibility: who are you?"
 msgstr ""
 
 #: admin/admin-pages/settings/admin-settings-fields-schema-org.php:52
@@ -706,7 +699,7 @@ msgstr ""
 
 #: admin/admin-pages/settings/admin-settings-fields-schema-org.php:54
 msgctxt "context from schema.org"
-msgid "A business"
+msgid "A business, organization or association"
 msgstr ""
 
 #: admin/admin-pages/settings/admin-settings-fields-schema-org.php:73
@@ -934,6 +927,12 @@ msgstr ""
 msgid "Your SEOKEY settings have been updated"
 msgstr ""
 
+#: admin/assets/js/seokey-audit-content.js:37
+#: admin/assets/js/seokey-audit-content.js:195
+#: admin/assets/js/seokey-audit-content.js:287
+msgid "This is a private content: we do not audit them."
+msgstr ""
+
 #: admin/assets/js/seokey-audit-tables.js:9
 #: admin/modules/audit/audit-helpers-view.php:89
 msgid "See all"
@@ -1011,16 +1010,16 @@ msgstr ""
 msgid "Import ignored"
 msgstr ""
 
-#: admin/assets/js/seokey-import.js:47
+#: admin/assets/js/seokey-import.js:44
 msgid "Please wait, we will reload this page in 8 seconds"
 msgstr ""
 
-#: admin/assets/js/seokey-import.js:58
+#: admin/assets/js/seokey-import.js:54
 #, javascript-format
 msgid "Please wait, we will reload this page in %s seconds"
 msgstr ""
 
-#: admin/assets/js/seokey-import.js:68
+#: admin/assets/js/seokey-import.js:64
 msgid "Continue"
 msgstr ""
 
@@ -1184,8 +1183,8 @@ msgstr ""
 
 #: admin/modules/audit/audit-helpers-messages.php:39
 msgid ""
-"No internal links  found in your content: you should add some towards your "
-"important pages."
+"No internal links found in your content: you should add some towards your "
+"important contents in order to give them more popularity."
 msgstr ""
 
 #: admin/modules/audit/audit-helpers-messages.php:42
@@ -1392,8 +1391,8 @@ msgstr ""
 msgid "Optimize"
 msgstr ""
 
-#: admin/modules/audit/audit-single-content.php:53
-#: admin/modules/audit/audit-single-content.php:173
+#: admin/modules/audit/audit-single-content.php:54
+#: admin/modules/audit/audit-single-content.php:174
 #: admin/modules/audit/audit-wp-list-table-errors.php:451
 #: admin/modules/audit/audit.php:74 admin/modules/audit/audit.php:126
 #: admin/modules/audit/audit.php:199
@@ -1403,13 +1402,13 @@ msgstr ""
 msgid "Failed security check"
 msgstr ""
 
-#: admin/modules/audit/audit-single-content.php:261
+#: admin/modules/audit/audit-single-content.php:262
 #: admin/modules/audit/audit-wp-list-table-errors.php:228
 msgctxt "Audit List table row actions"
 msgid "Ignore"
 msgstr ""
 
-#: admin/modules/audit/audit-single-content.php:274
+#: admin/modules/audit/audit-single-content.php:275
 #: admin/modules/audit/audit-wp-list-table-errors.php:76
 #: admin/modules/audit/parts/view-issues-all.php:17
 msgid "Want more data? Go PRO!"
@@ -1561,7 +1560,7 @@ msgid "Fix my WordPress"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:92
-msgid "Titles and meta descriptions"
+msgid "Titles and meta descriptions:"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:92
@@ -1572,7 +1571,7 @@ msgid ""
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:95
-msgid "Date Archive"
+msgid "Date Archive:"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:95
@@ -1580,7 +1579,7 @@ msgid "We disabled date archives: you will have less poor content for Google"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:98
-msgid "Header cleaning"
+msgid "Header cleaning:"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:98
@@ -1588,7 +1587,7 @@ msgid "We removed useless content on the HTML head of your pages"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:101
-msgid "Custom post types archive page"
+msgid "Custom post types archive page:"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:101
@@ -1598,7 +1597,7 @@ msgid ""
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:104
-msgid "Login Page"
+msgid "Login Page:"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:104
@@ -1606,7 +1605,7 @@ msgid "We cleaned content on your login page"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:107
-msgid "Medias"
+msgid "Medias:"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:107
@@ -1614,7 +1613,7 @@ msgid "No more harmful attachment pages (and links to them)"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:110
-msgid "WordPress Pings"
+msgid "WordPress Pings:"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:110
@@ -1622,7 +1621,7 @@ msgid "No more harmful pings (prevents indexing hidden contents)"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:113
-msgid "Writing"
+msgid "Writing:"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:113
@@ -1630,7 +1629,7 @@ msgid "We removed bad options from both Gutenberg and TinyMCE editors"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:116
-msgid "Robots.txt file"
+msgid "Robots.txt file:"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:116
@@ -1638,7 +1637,7 @@ msgid "An improved robots.txt has been created"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:119
-msgid "Improved RSS feeds"
+msgid "Improved RSS feeds:"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:119
@@ -1647,7 +1646,7 @@ msgid ""
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:122
-msgid "Schema.org"
+msgid "Schema.org:"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:122
@@ -1655,7 +1654,7 @@ msgid "We've added schema.org markup to improve all of your contents"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:125
-msgid "WordPress sitemaps"
+msgid "WordPress sitemaps:"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:125
@@ -1663,7 +1662,7 @@ msgid "We replaced native WordPress sitemaps with powerful custom sitemaps"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:128
-msgid "User metas"
+msgid "User metas:"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:128
@@ -1673,7 +1672,7 @@ msgid ""
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:131
-msgid "Performance"
+msgid "Performance:"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:131
@@ -1707,41 +1706,41 @@ msgid ""
 "We removed your secondary RSS feeds: no more crawl for those useless URL"
 msgstr ""
 
-#: admin/modules/import.php:28 admin/modules/import.php:57
+#: admin/modules/import/import.php:28 admin/modules/import/import.php:57
 msgid "Import from other SEO plugins"
 msgstr ""
 
-#: admin/modules/import.php:32
+#: admin/modules/import/import.php:32
 #, php-format
 msgid ""
-"One SEO plugin with import functions has been detected. Would you like to "
-"import data from %1$s?"
+"Another SEO plugin has been detected. Would you like to import data from "
+"%1$s?"
 msgstr ""
 
-#: admin/modules/import.php:39
+#: admin/modules/import/import.php:39
 msgid ""
-"You have several active SEO plugins with import functions. Tell us from "
-"which plugin you want to import data."
+"You have several active SEO plugins. Tell us from which plugin you want to "
+"import data."
 msgstr ""
 
-#: admin/modules/import.php:50
+#: admin/modules/import/import.php:50
 msgid "Import data"
 msgstr ""
 
-#: admin/modules/import.php:52
+#: admin/modules/import/import.php:52
 msgid "Do not import data"
 msgstr ""
 
-#: admin/modules/import.php:58
+#: admin/modules/import/import.php:58
 msgid "No other SEO plugin with import function has been detected."
 msgstr ""
 
-#: admin/modules/import.php:516
-msgid "Import completed. "
+#: admin/modules/import/import.php:154
+msgid "Incorrect plugin name."
 msgstr ""
 
-#: admin/modules/import.php:519
-msgid "Incorrect plugin name. "
+#: admin/modules/import/import.php:175
+msgid "Import completed. "
 msgstr ""
 
 #: admin/modules/medias-library.php:76 admin/modules/medias-library.php:77
@@ -2058,7 +2057,6 @@ msgstr ""
 
 #: admin/modules/redirections/redirections_errors.php:40
 #: admin/modules/redirections/redirections_guessed.php:42
-#: admin/modules/search-console/search-console.php:43
 msgid ""
 "<a class='button button-primary button-hero' target='_blank' href='https://"
 "www.seo-key.fr/tarifs/'>Buy SEOKEY Premium</a>"
@@ -2170,6 +2168,12 @@ msgstr ""
 msgid ""
 "Upgrade now to improve your SEO: get more data, and automatically submit "
 "your sitemap!"
+msgstr ""
+
+#: admin/modules/search-console/search-console.php:43
+msgid ""
+"<a class='button button-secondary button-hero' target='_blank' href='https://"
+"www.seo-key.fr/tarifs/'>Buy SEOKEY Premium</a>"
 msgstr ""
 
 #: admin/modules/search-console/search-console.php:64
@@ -2366,31 +2370,32 @@ msgid ""
 "currently running the %3$s version."
 msgstr ""
 
-#: admin/plugin-check-plugins.php:168
+#: admin/plugin-check-plugins.php:170
 msgid "Here is the list of these plugins:"
 msgstr ""
 
-#: admin/plugin-check-plugins.php:174
+#: admin/plugin-check-plugins.php:176
 msgid " (import functions not yet available)"
 msgstr ""
 
-#: admin/plugin-check-plugins.php:180
-msgid "Warning: On deactivation, no data will be imported into SEOKEY"
+#: admin/plugin-check-plugins.php:183
+msgid ""
+"Warning: On deactivation, no data will be automatically imported into SEOKEY"
 msgstr ""
 
-#: admin/plugin-check-plugins.php:181
+#: admin/plugin-check-plugins.php:184
 msgid " (but no data will be deleted)."
 msgstr ""
 
-#: admin/plugin-check-plugins.php:190
+#: admin/plugin-check-plugins.php:193
 msgid "Go to import menu"
 msgstr ""
 
-#: admin/plugin-check-plugins.php:193
+#: admin/plugin-check-plugins.php:196
 msgid "Deactivate all of these plugins"
 msgstr ""
 
-#: admin/plugin-check-plugins.php:197
+#: admin/plugin-check-plugins.php:200
 msgid "Other SEO plugins are installed and may cause conflicts with SEOKEY. "
 msgstr ""
 
@@ -2498,6 +2503,11 @@ msgstr ""
 #: common/seo-key-config.php:56
 msgctxt "Automatic optimizations admin menu name"
 msgid "SEO optimizations"
+msgstr ""
+
+#: common/seo-key-config.php:62
+msgctxt "Redirections admin menu name"
+msgid "Redirections"
 msgstr ""
 
 #: common/seo-key-config.php:68
@@ -2616,20 +2626,20 @@ msgstr ""
 #: common/seo-key-helpers-help-messages.php:82
 msgid ""
 "By default, WordPress allows you to manage multiple content types (posts and "
-"pages). Depending on your theme and extensions, you may have others, such as "
-"products, sliders, clients, etc."
+"pages are the default ones). Depending on your theme and plugins, you may "
+"have others such as products, sliders, clients, ..."
 msgstr ""
 
 #: common/seo-key-helpers-help-messages.php:83
 msgid ""
-"But not all of these content types are always relevant. So you can hide some "
-"of them from Google."
+"But not all of these content types are always relevant. You can hide some of "
+"them from Google."
 msgstr ""
 
 #: common/seo-key-helpers-help-messages.php:84
 msgid ""
-"To better see what they are, hover over the question mark of each content "
-"type to get more information."
+"To better see what they are, use each question mark to get more information "
+"about a specific content type."
 msgstr ""
 
 #: common/seo-key-helpers-help-messages.php:87
@@ -3624,18 +3634,18 @@ msgstr ""
 msgid "Help text will be added soon"
 msgstr ""
 
-#: common/seo-key-helpers-metas.php:91
+#: common/seo-key-helpers-metas.php:92
 #, php-format
 msgid "%s, author"
 msgstr ""
 
-#: common/seo-key-helpers-metas.php:183
+#: common/seo-key-helpers-metas.php:185
 #, php-format
 msgid "Archive for: %s"
 msgstr ""
 
 #. translators: 1:User Display Name 2:Name of the website
-#: common/seo-key-helpers-metas.php:195
+#: common/seo-key-helpers-metas.php:197
 #, php-format
 msgid "%s is an author on %s website."
 msgstr ""
@@ -3709,18 +3719,18 @@ msgstr ""
 msgid "Read more:"
 msgstr ""
 
-#: third-party/third-party.php:65
+#: third-party/third-party.php:69
 msgid "Warning: Internationalization compatibility"
 msgstr ""
 
-#: third-party/third-party.php:66
+#: third-party/third-party.php:70
 msgctxt "notification text for a new content discovered"
 msgid ""
 "SEOKEY is not yet compatible with translation plugins such as Polylang or "
 "WPML."
 msgstr ""
 
-#: third-party/third-party.php:67
+#: third-party/third-party.php:71
 msgctxt "notification text for a new content discovered"
 msgid "Please wait our next update before using SEOKEY."
 msgstr ""
