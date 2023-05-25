@@ -32,6 +32,12 @@ class SeoKey_Audit_Launch_task_load_content {
         switch ( $args['type'] ) {
             case 'posts':
                 return $this->load_posts( $args['type'], $values, $args['task'], $noindex, $subtype );
+	        case 'medias':
+		        return $this->load_medias( $args['type'], $values, $args['task'], $noindex, $subtype );
+                break;
+            // TODO Terms
+            // TODO Authors
+            // TODO FILTER
         }
     }
 
@@ -45,11 +51,12 @@ class SeoKey_Audit_Launch_task_load_content {
         }
         // Get all posts
         $args = array(
-            'numberposts'               => 30,
+            'numberposts'               => 50,
             'post_type'                 => $post_types, // use "any" to get all post types
             'orderby'                   => 'date',
             'no_found_rows'             => true,
             'ignore_sticky_posts'       => true,
+            'lang'                      => '',
             'order'                     => 'ASC',
         );
         unset($post_types);
@@ -76,12 +83,12 @@ class SeoKey_Audit_Launch_task_load_content {
             foreach ( $post_list as $post ) {
                 // Return only some data
                 if ( !empty( $values) ) {
-                    $current_item = $this->seokey_helper_audit_content_get_data( $post, $values );
+                    $current_item = $this->seokey_helper_audit_content_get_data( $post, $values, $task );
                 }
                 // Needed values were not defined, return all values for this task
                 else {
                     // Get all values here
-                    $current_item = $this->seokey_helper_audit_content_get_data( $post );
+                    $current_item = $this->seokey_helper_audit_content_get_data( $post, [ "all" ], $task );
                 }
                 // Always add ID value
                 $current_item = array_merge( $current_item, ['id' => $post->ID ] );
@@ -95,13 +102,50 @@ class SeoKey_Audit_Launch_task_load_content {
         return $items;
     }
 
-	public function seokey_helper_audit_content_get_data( $post, $values = [ "all" ] ) {
+	public function load_medias( $type, $values, $task, $noindex, $subtype ) {
+		$args = array(
+			'post_type'         => 'attachment',
+			'order'             => 'DESC',
+			'orderby'           => 'date',
+			'numberposts'       => -1,
+			'post_mime_type'    => 'image',
+		);
+		if ( 'no-alt' === $values[0] ) {
+			$args['meta_query'] = array(
+					'relation' => 'OR',
+					array(
+						'key' => '_wp_attachment_image_alt',
+						'compare' => 'NOT EXISTS'
+					),
+					array(
+						'key' => '_wp_attachment_image_alt',
+						'value' => '',
+						'compare' => '='
+					)
+				);
+		}
+		// The Query
+		$posts      = [];
+		$contents   = get_posts( $args );
+		foreach ( $contents as $content ) {
+			$posts[] = get_object_vars( $content);
+		}
+		unset( $contents );
+		return $posts;
+	}
+
+
+    public function seokey_helper_audit_content_get_data( $post, $values, $task ) {
         $item = [];
+		// May be useful to remove/add filters
+		do_action ( 'seokey_action_helper_audit_content_get_data', $task );
         foreach ( $values as $value ) {
             switch ($value) {
                 case "content":
+	                $content = apply_filters( 'the_content', $post->post_content );
+	                $content = apply_filters( 'seokey_filter_helper_audit_content_data', $content, $post );
                     $item = array_merge( $item, [
-                        'content' => apply_filters('the_content', $post->post_content),
+                        'content' => $content,
                     ] );
                     break;
                 case "title":
@@ -169,13 +213,11 @@ class SeoKey_Audit_Launch_task_load_content {
                     ] );
                     break;
                 case "all":
-                    // Slugs functions
-//                    $permalink = get_permalink($post->ID);
-//                    $url = preg_replace('#^.+://[^/]+#', '', $permalink);
-//                    $url = seokey_helper_url_remove_slashes($url, "both");
+                    // default content
+                    $content = apply_filters( 'the_content', $post->post_content );
                     // all data
                     $item = [
-                        'content'               => apply_filters( 'the_content', $post->post_content ),
+                        'content'               => apply_filters( 'seokey_filter_helper_audit_content_data', $content ),
                         'title'                 => seokey_head_get_meta_title( $post->ID, 'singular' ),
                         'title_manual'          => get_post_meta( $post->ID, 'seokey-metatitle', true ),
                         'metadesc'              => seokey_meta_desc_value( 'singular', $post->ID, $args = array(), false ),

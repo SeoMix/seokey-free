@@ -71,8 +71,10 @@ function seokey_settings_add_base_sections_sitemaps_data( $id ) {
 		$sitemap = get_option( 'seokey_sitemap_creation' );
 		// Sitemaps created
 		if ( 'done' === $sitemap ) {
-			$sitemaps_url = '<a target="_blank" href="' . site_url( '/sitemap-index.xml' ) . '">' . esc_html__( 'View sitemaps files', 'seo-key' ) . '</a>';
-			echo '<p>' . esc_html__( 'You can see your sitemaps files here: ', 'seo-key' ) . $sitemaps_url . '</p>';
+            foreach (seokey_helper_cache_data('languages')['lang'] as $lang => $v) {
+                $sitemaps_url = '<a target="_blank" href="' . seokey_helpers_get_sitemap_base_url( $lang, true ).'sitemap-index-'.$lang.'.xml' . '">' . esc_html__('View sitemaps files', 'seo-key').'</a>';
+                echo '<p>' . esc_html__('You can see your sitemaps files here: ', 'seo-key') . $sitemaps_url .' ( '.$v['name'].' )</p>';
+            }
 		}
 		// Wizard variant
 		elseif ( false === $sitemap ) {

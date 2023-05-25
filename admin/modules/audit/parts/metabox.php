@@ -16,6 +16,9 @@ defined( 'ABSPATH' ) or die( 'Cheatin&#8217; uh?' );
 
 ?>
 <section id="seokey-content-audit">
+    <a href="<?php echo( esc_url( seokey_helper_admin_get_link('audit') ) );?>" id="seokey-audit-button" class="button button-primary button-hero">
+        <?php esc_html_e( 'Go to main audit', 'seo-key' );?>
+    </a>
     <p class="description">
         <?php esc_html_e( 'SEO audit of this content:', 'seo-key' ); ?>
     </p>

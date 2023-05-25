@@ -124,6 +124,16 @@
                     if( metadesc.length < 1 ) {
                         metadesc = '';
                     }
+                    // get main editor content
+                    var text    = tinymce.get("content").getContent();
+                    // Add second woocommerce editor if needed
+                    var woo = $('#post_type').val();
+                    if( woo.length >= 1 ) {
+                        woo = tinymce.get('excerpt');
+                        if ( woo && woo.getContent() ) {
+                            text = text + ' ' + woo.getContent();
+                        }
+                    }
                     this.content = {
                         'title': $('#seokey-googlepreview-title').text(),
                         'excerpt': excerpttinymce,
@@ -133,7 +143,7 @@
                         // 'last_date': date,
                         'author': $('#post_author_override').find(":selected").val(),
                         // TODO Later Hook
-                        'content': tinymce.get("content").getContent(),
+                        'content': text,
                         // 'content': this.editor.getContent(), // use JSON to avoid bad url forming
                         'permalink': $('#sample-permalink a').text(),
                         'keyword': main_keyword,
@@ -214,7 +224,7 @@
             $('input[name="content_visibility"]').on("click", function () {
                 audit_throttle_launch();
             });
-            
+
             // Actions within editors (user is saving post, is writing content, etc.)
             switch (this.editorType) {
                 // Gutenberg editor
@@ -309,6 +319,7 @@
                         action: 'seokey_audit_content_check',
                         security: seokey_audit_content.security,
                         datas: self.content,
+                        et_load_builder_modules: 1,
                     },
                     success: function (response) {
                         // response = JSON.parse(response);
@@ -322,10 +333,12 @@
                                 if( typeof seokey_issues_handler === "function") {
                                     seokey_issues_handler();
                                 }
+                                $('body').reloadTooltip();
                             }, 2000);
                         } else {
                             self.Refreshing = false;
                             $('#audit-content-loader').hide();
+                            $('body').reloadTooltip();
                         }
                     },
                     error: function (response) {
@@ -344,6 +357,7 @@
     $(window).on('load', function () {
         setTimeout(function(){
             seokeyAuditContent.init();
+            $('body').reloadTooltip();
         }, 3000);
     });
 

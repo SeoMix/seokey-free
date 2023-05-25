@@ -66,7 +66,7 @@ function seokey_admin_page_dashboard() {
                                 <div id="seokey-audit-score-outter-circle" class="good">
                                     <div id="seokey-audit-score-inner-circle">
                                         <div id="seokey-audit-score-int" class="<?php echo esc_attr( $score_class_move );?>"><?php echo $score_display;?></div>
-                                        <div id="seokey-audit-score-scale">/ 100</div>
+                                        <div id="seokey-audit-score-scale">/ 50</div>
                                         <div id="seokey-audit-score-variation" class="<?php echo esc_attr( $score_class );?>"><?php echo $score_variation;?></div>
                                     </div>
                                 </div>

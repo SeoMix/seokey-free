@@ -55,7 +55,7 @@ light grey #EAEAEB
 .seokey-redirections-tools,
 .tabs-content,
 .seokey-metabox-tab{
-    box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgba(17, 24, 39, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px;
+    box-shadow: rgb(255, 255, 255) 0 0 0 0, rgba(17, 24, 39, 0.05) 0 0 0 1px, rgba(0, 0, 0, 0.1) 0 20px 25px -5px, rgba(0, 0, 0, 0.1) 0 8px 10px -6px;
     border-radius: 0 0.5rem 0.5rem 0.5rem;
     /*border: 2px solid #0A4B78;*/
     /*border-top: 2px solid #0A4B78;*/
@@ -70,10 +70,11 @@ light grey #EAEAEB
     background: #fff;
     box-sizing: border-box;
     max-width: 100%;
-    box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgba(17, 24, 39, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px;
+    box-shadow: rgb(255, 255, 255) 0 0 0 0, rgba(17, 24, 39, 0.05) 0 0 0 1px, rgba(0, 0, 0, 0.1) 0 20px 25px -5px, rgba(0, 0, 0, 0.1) 0 8px 10px -6px;
     border-radius: 0.5rem;
     font-family: Roboto, sans-serif;
     margin: 20px 20px 0 0;
+    overflow:initial
 }
 .seokey-wrapper .nav-tab-wrapper {
     border: 0;
@@ -103,7 +104,7 @@ light grey #EAEAEB
     max-width: 1600px;
     margin: 0 auto 2em;
     box-sizing: border-box;
-    box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgba(17, 24, 39, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px;
+    box-shadow: rgb(255, 255, 255) 0 0 0 0, rgba(17, 24, 39, 0.05) 0 0 0 1px, rgba(0, 0, 0, 0.1) 0 20px 25px -5px, rgba(0, 0, 0, 0.1) 0 8px 10px -6px;
     border-radius: 0.5rem;
 }
 .seokey-section-dark h2{
@@ -283,7 +284,6 @@ light grey #EAEAEB
     font-size: 1.1em;
     font-family: Roboto, sans-serif;
     padding: 1em 1.5em 0.75em;
-    border: 0;
     border-radius: 0.5em 0.5em 0 0;
     background: #0C5D97;
     color: #fff;
@@ -457,6 +457,7 @@ light grey #EAEAEB
     display: inline-block;
 }
 .seokey-help-p a {
+    display: inline-block;
     color: #fff;
     text-decoration: none;
     background: #0677A9;
@@ -481,7 +482,18 @@ light grey #EAEAEB
     line-height: 1em;
     margin-left: auto
 }
-
+.has-explanation .seokey-tooltip-text.sx_changed .seokey-help-title {
+    font-size: 17px;
+}
+.has-explanation .seokey-tooltip-text.sx_changed .seokey-help-p {
+    font-size: 12px;
+}
+@media (max-width: 1380px) {
+    .seokey-whattodo-text{
+        display: block;
+        position: relative;
+    }
+}
 
 
 
@@ -512,6 +524,9 @@ light grey #EAEAEB
     top: 5px;
     margin: 0;
     padding: 0;
+}
+.seokey-redirections-tools .seokey-tooltip-parent .seokey-tooltip-icon {
+    bottom: -3px;
 }
 .seokey-section-dark .seokey-tooltip-icon,
 .seokey-switch-toggle-item .seokey-tooltip-icon {
@@ -547,7 +562,7 @@ light grey #EAEAEB
     z-index: 30000;
     border: 2px solid #0A4B78;
     min-width: 540px;
-    box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgba(17, 24, 39, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px;
+    box-shadow: rgb(255, 255, 255) 0 0 0 0, rgba(17, 24, 39, 0.05) 0 0 0 1px, rgba(0, 0, 0, 0.1) 0 20px 25px -5px, rgba(0, 0, 0, 0.1) 0 8px 10px -6px;
     border-radius: 0.5rem;
 }
 .seokey-tooltip-icon:hover .audit-show-table:hover > .seokey-tooltip-text {
@@ -667,17 +682,25 @@ light grey #EAEAEB
     border-radius: 0.2em;
     box-shadow: rgba(32, 33, 36, 0.28) 0 1px 6px;
     font-weight: 400;
+    background: #EEA940;
+    color: #333;
+}
+.seokey-whattodo-text.has-explanation {
+    padding: 0.75em 2.5em 0.75em 0.75em;
+    width: 12em;
 }
 .seokey-whattodo-text .seokey-tooltip-icon {
-    top: 0;
+    right: 0;
+    top: 50%;
+    margin-top: -10px;
 }
 .seokey-whattodo-text.worktodo_down4,
 .seokey-whattodo-text.worktodo_wait_7,
-.seokey-whattodo-text.worktodo_wait_30{
+.seokey-whattodo-text.worktodo_wait_30 {
     background: #0677A9;
     color: #fff;
 }
-.seokey-whattodo-text.worktodo{
+.seokey-whattodo-text.worktodo {
     background: #C52828;
     color: #fff;
 }

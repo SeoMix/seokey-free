@@ -86,7 +86,6 @@ jQuery(document).ready(function ($) {
                     $counter.css('color', 'red').text(seokey_metas.meta_counter_min_text.replace('%s', count));
                 }
             } else if (valLength >= seokey_metas.metadesc_counter_min && valLength <= seokey_metas.metadesc_counter_max) {
-                count = seokey_metas.metadesc_counter_max - valLength;
                 $counter.text('');
             } else {
                 if ( valLength > 0 ) {
@@ -112,8 +111,6 @@ jQuery(document).ready(function ($) {
                     $counter.css('color', 'red').text(seokey_metas.meta_counter_min_text.replace('%s', count));
                 }
             } else if (valLength >= seokey_metas.metatitle_counter_min && valLength <= seokey_metas.metatitle_counter_max) {
-                count = seokey_metas.metatitle_counter_max - valLength;
-                // $counter.css('color', 'green').text(seokey_metas.meta_counter_remaining_text.replace('%s', count));
                 $counter.css('color', 'green').text('');
             } else {
                 if (valLength > 0) {
@@ -149,12 +146,12 @@ jQuery(document).ready(function ($) {
         } else {
             id = $('#post_ID').val();
         }
-        const { __, _x, _n, _nx } = wp.i18n;
+        const { __ } = wp.i18n;
         // Translate text
         var good            = __( 'Keyword saved', 'seo-key' );
         var error           = __( 'Error', 'seo-key' );
-        var addkeyword      = __( 'Add keyword', 'seo-key' );
-        var removekeyword   = __( 'Update keyword', 'seo-key' );
+        var addkeyword      = __( 'Target this keyword or phrase', 'seo-key' );
+        var removekeyword   = __( 'Update keyword or phrase', 'seo-key' );
         var keyword         = $('input[name=seokey_audit_content_main_keyword]').val();
         $('#metabox-main-keyword-loader').show();
         $.ajax({
@@ -193,6 +190,7 @@ jQuery(document).ready(function ($) {
                 console.log(response.data);
                 $('.seokey-whattodo-text').replaceWith(response.data);
                 $('#metabox-main-keyword-loader').hide();
+                $('body').reloadTooltip();
             },
             error: function (response) {
                 console.log('error saving keyword');

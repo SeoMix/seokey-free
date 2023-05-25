@@ -146,6 +146,7 @@ function seokey_post_type_archive_content() {
 	$typenow_object = get_post_type_object( $typenow );
 	// Get the front archive link
 
+    // TODO Multilingual
 	$get_post_type_archive_link = esc_url( get_post_type_archive_link( $typenow ) );
 
 	// Get metas previous values
@@ -161,7 +162,7 @@ function seokey_post_type_archive_content() {
         <div id="poststuff">
             <!--// Custom desc and title box //-->
             <form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-				<?php wp_nonce_field( 'meta-infos-' . $typenow ); ?>
+                <?php wp_nonce_field( 'meta-infos-' . $typenow ); ?>
                 <input type="hidden" name="action" value="seokey-archive-meta-infos">
                 <input type="hidden" name="typenow" value="<?php echo esc_attr( $typenow ); ?>">
                 <div id="post-body" class="metabox-holder columns-1">

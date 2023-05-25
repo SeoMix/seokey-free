@@ -251,7 +251,7 @@ class Seokey_Redirections_Form {
 		}
 		// Check if source is already here
 		$results = $wpdb->get_results(
-			$wpdb->prepare( "SELECT source FROM {$wpdb->prefix}seokey_redirections WHERE source=%s", $this->datas['source'] )
+			$wpdb->prepare( "SELECT source FROM {$wpdb->prefix}seokey_redirections WHERE BINARY source=%s", $this->datas['source'] )
 		);
 		// We found data, the redirection is already here
 		if ( ! empty( $results ) ) {
@@ -283,31 +283,26 @@ class Seokey_Redirections_Form {
 		// Source URL (remove spaces)
 		$source = trim( $this->datas['source'] );
 		// Check source type, sanitize data and remove domain if necessary
-        if ( filter_var( $source, FILTER_VALIDATE_URL ) !== FALSE) {
-            // Check if user is trying to redirect an URL from his own domain first
-	        $domain = seokey_helper_url_extract_domain( $source, true );
-	        // Abort if source is not using current domain
-	        if ( user_trailingslashit( home_url() ) === user_trailingslashit( $domain ) ) {
-		        if ( defined('DOING_AJAX') && DOING_AJAX ) {
-			        wp_send_json_error( __( 'You can\'t redirect an external URL', 'seo-key' ) );
-		        }
-		        return false;
-	        }
-            // This is a full URL, sanitize data and remove domain
-		    $source = esc_url_raw( seokey_helper_url_remove_domain( $source ) );
-        } else {
-            // This is supposed to be a slug, sanitize data
-            $source = sanitize_title( $source );
+        $source = seokey_helpers_get_current_domain($source);
+        // Check if user is trying to redirect an URL from one of his own domains first
+        $domain = seokey_helper_url_extract_domain( $source, true );
+        $checkDomain = false;
+        foreach ( seokey_helpers_get_available_domains() as $domainAvailable ){
+            if( seokey_helper_url_extract_domain( $domainAvailable, true ) === $domain ){
+                $checkDomain = true;
+                break;
+            }
         }
-		// Remove first and last slashes before database insertion
-		$source = seokey_helper_url_remove_slashes( $source, 'start' );
-		// just add one slash at the beginning
-		$url_first_caract = substr( $source, 0, 1 );
-		if ( $url_first_caract !== '/' ) {
-			$source = '/' . $source;
-		}
+        // If not a good domain
+        if( false === $checkDomain ){
+            if ( defined('DOING_AJAX') && DOING_AJAX ) {
+                wp_send_json_error( __( 'You can\'t redirect an external URL', 'seo-key' ) );
+            }
+            return false;
+        }
 		// Return data
 		$this->datas['source'] = $source;
+
 	}
 
 	/**
@@ -328,43 +323,34 @@ class Seokey_Redirections_Form {
 			'type'   => $datas['type'],
 			'status' => $datas['status'],
 		];
-        // Abort if source = target
-        if ( $request_datas['target'] === home_url( $request_datas['source'] ) ) {
+        // Create full URL
+        $request_datas['source'] = seokey_helpers_get_current_domain( $request_datas['source'] );
+        global $wpdb;
+        // First: check if something has changed
+        $checkChanges = $wpdb->get_results(
+            $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}seokey_redirections WHERE source=%s AND target=%s", $datas['source'] ,$datas['target'] )
+        );
+        if ( !empty( $checkChanges ) ) {
+            if ( defined('DOING_AJAX') && DOING_AJAX ) {
+                wp_send_json_error( __( 'Redirection already exists', 'seo-key' ) );
+            }
+            return false;
+        }
+        // Second: check if source = target
+        if ( $request_datas['target'] === seokey_helpers_get_current_domain( $request_datas['source'] ) ) {
 	        if ( defined('DOING_AJAX') && DOING_AJAX ) {
 		        wp_send_json_error( __( 'Source and target are identical', 'seo-key' ) );
             }
 	        return false;
         }
 		// Database Object
-		global $wpdb;
 		$table = $wpdb->prefix . 'seokey_redirections';
-		// We want to change a redirect
+		// If we have ID : it's an update
 		if ( ! empty( $id ) ) {
-            // SQL insertion format
-            $format = ['%s', '%s', '%s', '%d', '%s'];
-            // Check if source has changed in order to reset hits
-            $results = $wpdb->get_results(
-	            $wpdb->prepare( "SELECT source FROM {$wpdb->prefix}seokey_redirections WHERE id=%s", $id )
-            );
-            $old_source = get_object_vars($results[0]);
-            if ( $datas['source'] !== $old_source ) {
-
-	            // Check if new source exists elsewhere
-	            $results = $wpdb->get_results(
-		            $wpdb->prepare( "SELECT source FROM {$wpdb->prefix}seokey_redirections WHERE source=%s",$datas['source'] )
-	            );
-                // Abort if necessary
-	            if ( empty( $results) ) {
-		            if ( defined('DOING_AJAX') && DOING_AJAX ) {
-			            wp_send_json_error( __( 'New source already exists', 'seo-key' ) );
-		            }
-		            return false;
-                }
-                // New source does not exist => update data
-                $request_datas['hits'] = 0;
-	            // Source target type status hits
-                $format = ['%s', '%s', '%s', '%d', '%d'];
-            }
+            // If update = reset hits
+            $request_datas['hits'] = 0;
+            // Source target type status hits
+            $format = ['%s', '%s', '%s', '%d', '%d'];
 			// Update
 			$result = $wpdb->update( $table, $request_datas, ['id' => $id ], $format, ['%d'] );
 			// Define success message
@@ -373,9 +359,9 @@ class Seokey_Redirections_Form {
 				'message' => esc_html( 'Redirection changed', 'seo-key' )
 			];
 			$this->message_value = true;
-			update_option( 'seokey_redirection_notice', $response, false );
+            update_option( 'seokey_redirection_notice', $response, false );
 			// Send message for ajax and non-ajax requests
-            $good_or_not = ( (int) 1 === $result ) ? true : false;
+            $good_or_not = ( 1 === $result ) ? true : false;
 			if ( TRUE === $good_or_not ) {
 				// Clean bad URL if necessary (404 and automatic redirections)
 				$this->seokey_redirections_cleaning( $request_datas['source'] );
@@ -397,7 +383,7 @@ class Seokey_Redirections_Form {
 			// Date format
             // Source Target Type Status Created_at
 			$format = ['%s', '%s', '%s', '%d', '%s'];
-			// Save data
+            // Save data
 			$wpdb->insert( $table, $request_datas, $format );
 			// Define success message
 			$response = [
@@ -469,7 +455,8 @@ class Seokey_Redirections_Form {
         global $wpdb;
         $table = $wpdb->prefix . 'seokey_redirections_bad';
         // Delete
-        $wpdb->delete( $table, ['source' => $source ] );
+		$wpdb->delete( $table, ['source' => $source ] );
+        $wpdb->delete( $table, ['source' => str_replace( '&', '&#038;', $source ) ] );
     }
 
 	/**

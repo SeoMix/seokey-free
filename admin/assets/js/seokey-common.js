@@ -24,6 +24,7 @@
 })(jQuery);
 
 jQuery(document).ready(function($) {
+    // TODO improve detection of sidebars in WP admin
     /* Begin Tooltip always visible */
     // Tooltips always visible ... Not definitive version
     $(".seokey-tooltip-icon").hover(function(){

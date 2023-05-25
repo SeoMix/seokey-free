@@ -1,0 +1,28 @@
+#seokey-keywords-content{
+    max-width: 1600px;
+    margin: 0 auto;
+}
+.widefat th, .widefat thead td, .widefat tfoot td {
+    font-size: 15px;
+}
+.widefat td, .widefat td p, .widefat td ol, .widefat td ul {
+    font-size: 14px;
+}
+
+.seokey-whattodo-text.has-explanation {
+    box-sizing: border-box;
+}
+@media (min-width: 1700px) {
+    .column-content {
+        width: 23em;
+    }
+    .seokey-whattodo-text.has-explanation {
+        width: 15em;
+    }
+}
+@media (max-width: 1659px) {
+    .seokey-whattodo-text.has-explanation {
+        box-sizing: border-box;
+        width: 100%;
+    }
+}

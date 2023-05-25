@@ -81,12 +81,12 @@ class Seokey_Sitemap_Render {
 			'post_translations',
 		],
 	];
-	
+
 	// Get filtered excluded
 	public function get_excluded() {
 		return apply_filters( "seokey_filter_sitemap_sender_excluded", $this->excluded );
 	}
-	
+
 	// Unserializing instances of this class is forbidden.
 	public static function get_instance() {
 		if ( is_null( self::$instance ) ) {
@@ -94,7 +94,7 @@ class Seokey_Sitemap_Render {
 		}
 		return self::$instance;
 	}
-	
+
 	/**
 	 * Seokey_Sitemap constructor.
 	 *
@@ -107,13 +107,13 @@ class Seokey_Sitemap_Render {
 		add_action( 'transition_post_status',   [ $this, 'seokey_sitemap_init_posts_transition'], 12, 3 );
 
         // Create sitemap on taxonomy modification
-		$taxos = get_taxonomies( ['public' => true, 'show_ui' => true ] );
+		$taxos = get_taxonomies( ['public' => true, 'show_ui' => true, 'lang' => 'all' ] );
 		foreach ( $taxos as $tax ) {
 			add_action( 'edit_' . $tax,         [ $this, 'seokey_sitemap_init_terms'], 12, 2 );
 			add_action( 'create_' . $tax,       [ $this, 'seokey_sitemap_init_terms'], 12, 2 );
 		}
         // Create sitemap on each term deletion
-		add_action( 'delete_term',              [ $this, 'seokey_sitemap_init_terms_delete',  ], 12, 3 );
+		add_action( 'delete_term',              [ $this, 'seokey_sitemap_init_terms_delete',  ], 200, 3 );
 		// Update options
 		add_action( 'updated_option',           [ $this, 'seokey_sitemap_updated_option'] );
 		add_action( 'added_option',             [ $this, 'seokey_sitemap_updated_option'] );
@@ -124,7 +124,8 @@ class Seokey_Sitemap_Render {
         // TODO Later : improve generation : only delete/update/create necessary sitemaps
         // TODO Later : improve author generation : only if user role needs a sitemap refresh
 	}
-	/**
+
+     /**
 	 * Seokey_Sitemap Trigger specific sitemap creation or deletion
 	 *
 	 * @since   0.0.1
@@ -138,8 +139,9 @@ class Seokey_Sitemap_Render {
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
-		$post_type = get_post_type( $post );
-		$allowed = get_option('seokey-field-cct-cpt');
+		$post_type  = get_post_type( $post );
+		$allowed    = get_option('seokey-field-cct-cpt');
+		$allowed    = ( is_array( $allowed ) ) ? $allowed : array( $allowed );
 		if ( in_array( $post_type, $allowed ) && 'running' !== get_option('seokey_sitemap_creation') ) {
 			$this->seokey_sitemap_init('post', $post_type );
 			update_option( 'seokey_sitemap_creation', 'running', true );
@@ -147,7 +149,7 @@ class Seokey_Sitemap_Render {
 	}
 	public function seokey_sitemap_init_posts_transition( $to, $from, $post_object ) {
 		if ( 'publish' === $from && $from !== $to && 'running' !== get_option('seokey_sitemap_creation') ) {
-			$data = get_object_vars($post_object);
+			$data = get_object_vars( $post_object );
 			$this->seokey_sitemap_init('post', $data['post_type'] );
 			update_option( 'seokey_sitemap_creation', 'running', true );
 		}
@@ -161,7 +163,7 @@ class Seokey_Sitemap_Render {
 	public function seokey_sitemap_init_authors(){
 		$this->seokey_sitemap_init( 'author' );
 	}
-	
+
 	/**
 	 * Check if one of our content option has been changed
 	 *
@@ -189,30 +191,33 @@ class Seokey_Sitemap_Render {
      * @author  Léo Fontin
      */
     public function seokey_sitemap_init( $type = 'all', $data = '' ) {
-    	switch ( $type ) {
-		    case 'all':
-			    // Generate sitemaps for all post
-			    $this->seokey_sitemap_generate_all_post_type( $data );
-			    // Generate sitemaps for all taxo
-			    $this->seokey_sitemap_generate_all_taxo( $data );
-			    // Author sitemap generation
-			    $this->seokey_sitemap_generate_all_author();
-		    	break;
-		    case 'post':
-			    // Generate sitemaps for all posts
-			    $this->seokey_sitemap_generate_all_post_type( $data );
-			    break;
-		    case 'term':
-			    // Generate sitemaps for all taxo
-			    $this->seokey_sitemap_generate_all_taxo( $data );
-			    break;
-		    case 'author':
-			    // Author sitemap generation
-			    $this->seokey_sitemap_generate_all_author();
-			    break;
-	    }
-	    // Index sitemap generation
-	    $this->seokey_sitemap_generate_index( $type );
+		// Create sitemap for each language
+        foreach ( seokey_helper_cache_data('languages')['lang'] as $lang => $v ) {
+            switch ( $type) {
+                case 'all':
+                    // Generate sitemaps for all post
+                    $this->seokey_sitemap_generate_all_post_type( $lang, $data );
+                    // Generate sitemaps for all taxo
+                    $this->seokey_sitemap_generate_all_taxo( $lang, $data );
+                    // Author sitemap generation
+                    $this->seokey_sitemap_generate_all_author( $lang );
+                    break;
+                case 'post':
+                    // Generate sitemaps for all posts
+                    $this->seokey_sitemap_generate_all_post_type( $lang, $data );
+                    break;
+                case 'term':
+                    // Generate sitemaps for all taxo
+                    $this->seokey_sitemap_generate_all_taxo( $lang, $data );
+                    break;
+                case 'author':
+                    // Author sitemap generation
+                    $this->seokey_sitemap_generate_all_author( $lang );
+                    break;
+            }
+            // Index sitemap generation
+            $this->seokey_sitemap_generate_index( $type, $lang );
+        }
     }
 
 	/**
@@ -221,16 +226,16 @@ class Seokey_Sitemap_Render {
 	 * @since   0.0.1
 	 * @author  Léo Fontin
 	 */
-	public function seokey_sitemap_generate_all_post_type( $data = '') {
+	public function seokey_sitemap_generate_all_post_type( $lang, $data = '' ) {
 		// Get all post types
-		$post_types = ( !empty( $data ) ) ? array( $data ) : $this->seokey_sitemap_get_post_types();
+		$post_types = ( !empty( $data ) ) ? array( $data ) : $this->seokey_sitemap_get_post_types(  $lang );
 		$allowed = get_option('seokey-field-cct-cpt');
 		// Generate each sitemap
 		foreach ( $post_types as $type ) {
 			if ( in_array( $type, $allowed ) ){
-				$this->seokey_sitemap_generate_by_post_type( $type );
-			}
-		}
+				$this->seokey_sitemap_generate_by_post_type( $lang, $type );
+            }
+        }
 	}
 
 	/**
@@ -241,9 +246,9 @@ class Seokey_Sitemap_Render {
 	 *
 	 * @since   0.0.1
 	 */
-	public function seokey_sitemap_get_post_types() {
+	public function seokey_sitemap_get_post_types( $lang ) {
 	    // Get website configuration
-		$post_types = seokey_helper_get_option( 'cct-cpt', get_post_types( ['public' => true ] ) );
+		$post_types = seokey_helper_get_option( 'cct-cpt', get_post_types( ['public' => true, 'lang' => $lang ] ) );
 		if ( ! empty( $post_types ) ) {
 			foreach ( $post_types as $k => $cpt ) {
 				if ( in_array( $cpt, $this->get_excluded()['cpt'] ) ) {
@@ -264,16 +269,16 @@ class Seokey_Sitemap_Render {
 	 *
 	 * @since   0.0.1
 	 */
-	public function seokey_sitemap_generate_by_post_type( $post_type = 'posts' ) {
+	public function seokey_sitemap_generate_by_post_type( $lang, $post_type = 'posts' ) {
 		// Get allo posts from a post type
-		$posts = $this->seokey_sitemap_get_posts( $post_type );
+        $posts = $this->seokey_sitemap_get_posts( $post_type, $lang );
 		// Add information to our global variable
 		$this->seokey_sitemap_set_posts( $posts, $post_type );
 		// Clean data
 		$posts_datas = [];
 		// Add homepage for page post type if necessary
 		if ( $post_type === 'page' ) {
-			$homepage = $this->seokey_sitemap_get_homepage();
+			$homepage = $this->seokey_sitemap_get_homepage( $lang );
 			if ( $homepage !== false ) {
 				$posts_datas[] = $homepage;
 			}
@@ -300,15 +305,18 @@ class Seokey_Sitemap_Render {
                 // Final data
 				$posts_datas[] = [
 					'loc'     => get_the_permalink( $post->ID ),
-					'lastmod' => esc_xml( $date) ,
+					'lastmod' => esc_xml( $date ),
 					'images'  => $images
 				];
 			}
-			// Create XML sitemap code
-			$code = $this->seokey_sitemap_get_code( $posts_datas, 'url' );
-			$post_type = str_replace('_','-', $post_type);
-			// Create final file
-			$this->seokey_sitemap_output( $code, 'sitemap-' . $post_type . '.xml' );
+            // Create XML sitemap code
+            $post_type = str_replace( '_','-', $post_type );
+            // No attachment sitemap, just to be sure...
+            if ( $post_type !== 'attachment' ) {
+                $code = $this->seokey_sitemap_get_code( $posts_datas, $lang, 'url' );
+                // Create final file
+                $this->seokey_sitemap_output( $code, 'sitemap-' . $post_type . '-'.$lang.'.xml', $lang );
+            }
 		}
 	}
 
@@ -322,7 +330,7 @@ class Seokey_Sitemap_Render {
 	 * @author  Léo Fontin
 	 *
 	 */
-	public function seokey_sitemap_get_posts( $post_type ) {
+	public function seokey_sitemap_get_posts( $post_type, $lang ) {
 		// Post array
 		$posts = [];
 		// Get all posts from post type
@@ -331,7 +339,8 @@ class Seokey_Sitemap_Render {
 			'posts_per_page'    => "-1",
 			'post_status'       => ['publish'],
             'orderby'           => 'modified',
-            'order'             => 'DESC'
+            'order'             => 'DESC',
+            'lang'              => seokey_helper_cache_data('languages')['lang'][$lang]['iso2'],
 		] );
         // Do we have posts ?
 		if ( ! empty( $posts_datas->posts ) ) {
@@ -357,23 +366,22 @@ class Seokey_Sitemap_Render {
 	}
 
 	/**
-	 * Récupère l'url et la date de modificatio nde la home
-	 * Prend en compte la configuration de la home (page/dernier articles)
+	 * Add homepage to sitemap page when front_page is set to last posts
 	 *
-	 * @return array|bool
+	 * @since   1.6.0
+	 * @author  Gauvain Van Ghele, Daniel Roch
+	 * @return array|bool array with homepage data, or boolean false
 	 */
-	public function seokey_sitemap_get_homepage() {
+	public function seokey_sitemap_get_homepage( $lang ) {
 		// Are we using a page for our homepage
 		$homepage_type = get_option( 'show_on_front' );
 		// Homepage is set to last posts
 		if ( $homepage_type === 'posts' ) {
-			// Get last post to get a lastmod data
-			$posts = new WP_Query( ['posts_per_page' => '1'] );
-			if ( ! empty( $posts->posts ) ) {
-				$post = current( $posts->posts );
+			$lang_data = seokey_helper_cache_data('languages');
+			if ( !empty ( $lang_data['lang'][$lang]['domain'] ) ) {
 				return [
-					'loc'     => trailingslashit( get_home_url() ),
-					'lastmod' => get_the_modified_date( 'Y-m-d H:i:s', $post->ID )
+					'loc'     => user_trailingslashit( $lang_data['lang'][$lang]['domain'] ),
+					'lastmod' => current_time( 'Y-m-d H:i:s' )
 				];
 			}
 		}
@@ -445,7 +453,7 @@ class Seokey_Sitemap_Render {
 		// Thumbnail
 		$thumb_id = get_post_thumbnail_id( $post );
 		if ( ! empty( $thumb_id ) ) {
-			$url = get_the_post_thumbnail_url($post);
+			$url = get_the_post_thumbnail_url( $post );
 			// Image title
 			$title = get_the_title( $thumb_id );
 			$title = html_entity_decode( $title );
@@ -529,15 +537,15 @@ class Seokey_Sitemap_Render {
 	 * @since   0.0.1
 	 * @author  Léo Fontin
 	 */
-	public function seokey_sitemap_generate_all_taxo( $data = '' ) {
+	public function seokey_sitemap_generate_all_taxo( $lang, $data = '' ) {
 		// Get all taxonomies or defined taxonomies*
-		$taxos = ( !empty( $data ) ) ? array( $data ) : $this->seokey_sitemap_get_taxos();
+		$taxos = ( !empty( $data ) ) ? array( $data ) : $this->seokey_sitemap_get_taxos( $lang );
 		$allowed = get_option('seokey-field-cct-taxo');
 		// Create each taxonomy sitemap
 		if ( ! empty( $taxos ) ) {
 			foreach ( $taxos as $taxo ) {
 				if ( in_array( $taxo, $allowed ) ) {
-					$this->seokey_sitemap_generate_by_taxo( $taxo );
+                    $this->seokey_sitemap_generate_by_taxo( $taxo, $lang );
 				}
 			}
 		}
@@ -548,9 +556,10 @@ class Seokey_Sitemap_Render {
 	 *
 	 * @return bool|mixed|void
 	 */
-	public function seokey_sitemap_get_taxos() {
+	public function seokey_sitemap_get_taxos( $lang ) {
+
 		// Get all public taxonomies
-		$taxos = seokey_helper_get_option( 'cct-taxo', get_taxonomies( ['public' => true, 'show_ui' => true ] ) );
+		$taxos = seokey_helper_get_option( 'cct-taxo', get_taxonomies( ['public' => true, 'show_ui' => true , 'lang' => $lang] ) );
 		if ( ! empty( $taxos ) ) {
 			foreach ( $taxos as $k => $tax ) {
 				if ( in_array( $tax, $this->get_excluded()['taxo'] ) ) {
@@ -569,9 +578,9 @@ class Seokey_Sitemap_Render {
 	 * @author  Léo Fontin
 	 * @since   0.0.1
 	 */
-	public function seokey_sitemap_generate_by_taxo( $taxo ) {
+	public function seokey_sitemap_generate_by_taxo( $taxo, $lang ) {
 		// Get all non empty terms from this taxonomy
-		$terms = $this->seokey_sitemap_get_taxo_terms( $taxo );
+		$terms = $this->seokey_sitemap_get_taxo_terms( $taxo, $lang );
 		if ( ! empty( $terms ) ) {
 			// Final array
 			$terms_datas = [];
@@ -593,12 +602,24 @@ class Seokey_Sitemap_Render {
 					];
 				}
 			}
-			// Final sitemap code
-			$code = $this->seokey_sitemap_get_code( $terms_datas, 'url' );
-			$file_name = str_replace( '_', '-', $taxo );
-            // Create file
-			$this->seokey_sitemap_output( $code, 'sitemap-' . $file_name . '.xml' );
+            $file_name = str_replace( '_', '-', $taxo );
+            // No attachment sitemap, just to be sure...
+            if ( $file_name != 'attachment' ){
+                // Final sitemap code
+                $code = $this->seokey_sitemap_get_code( $terms_datas, $lang, 'url' );
+                // Create file
+                $this->seokey_sitemap_output( $code, 'sitemap-' . $file_name . '-'.$lang.'.xml' , $lang );
+            }
 		}
+        else {
+            // No terms for this taxonomy, delete this file
+            $file_name  = 'sitemap-' . $taxo . '.xml';
+            $file_name  = str_replace( '_', '-', $file_name );
+            $path       = ABSPATH . $file_name;
+            if ( file_exists( $path ) ) {
+                unlink( $path );
+            }
+        }
 	}
 
 	/**
@@ -611,10 +632,10 @@ class Seokey_Sitemap_Render {
 	 * @author  Léo Fontin
 	 *
 	 */
-	public
-	function seokey_sitemap_get_taxo_terms( $taxo ) {
-		$terms = $terms = get_terms( [
+	public function seokey_sitemap_get_taxo_terms( $taxo, $lang ) {
+		$terms = get_terms( [
 			'taxonomy'   => $taxo,
+            'lang'       => seokey_helper_cache_data('languages')['lang'][$lang]['iso2'],
 			'hide_empty' => false,
             'orderby' => 'meta_value_num',
             'order' => 'DESC',
@@ -641,18 +662,20 @@ class Seokey_Sitemap_Render {
 	 * @since   0.0.1
 	 * @author  Léo Fontin
 	 */
-	public function seokey_sitemap_generate_all_author() {
+	public function seokey_sitemap_generate_all_author( $lang ) {
 		// Get global users visibilty
 		$pages = seokey_helper_get_option( 'cct-pages', [] );
 		if ( ! empty( $pages ) && in_array( 'author', $pages ) ) {
 			// Get all users
-			$users = $this->seokey_sitemap_get_authors();
+			$users = $this->seokey_sitemap_get_authors( $lang );
 			$users_datas = [];
 			if ( ! empty( $users ) ) {
 				foreach ( $users as $user ) {
                     $images = $this->seokey_sitemap_get_images( $user, 'author' );
+                    // Delete prefix domain Url : we need good domain prefix for each language
+                    $author_posts_url_short = str_replace( home_url(), '', get_author_posts_url( $user->ID ) );
 					$users_datas[] = [
-						'loc'     => get_author_posts_url( $user->ID ),
+						'loc'     => seokey_helper_cache_data('languages')['lang'][$lang]['domain'] . $author_posts_url_short,
 						'lastmod' => get_user_meta( $user->ID, 'seokey-sitemap-lastmod', true ),
                         'images'  => $images
 					];
@@ -660,8 +683,8 @@ class Seokey_Sitemap_Render {
 			}
 			if ( ! empty( $users_datas ) ) {
 				// Create sitemap file
-				$code = $this->seokey_sitemap_get_code( $users_datas, 'url' );
-				$this->seokey_sitemap_output( $code, 'sitemap-author.xml' );
+				$code = $this->seokey_sitemap_get_code( $users_datas, $lang, 'url' );
+				$this->seokey_sitemap_output( $code, 'sitemap-author-'.$lang.'.xml' ,$lang );
 			}
 		}
 	}
@@ -674,14 +697,30 @@ class Seokey_Sitemap_Render {
 	 *
 	 * @since   0.0.1
 	 */
-	public
-	function seokey_sitemap_get_authors() {
-		// Get all users
-		$users_datas = get_users( array ( 'has_published_posts' => true ) );
-		$users = [];
+	public function seokey_sitemap_get_authors( $lang ) {
+        // Get all published post from $lang
+        $args = array(
+            'post_type'      => 'post', // replace with your post type
+            'post_status'    => 'publish', // only retrieve published posts
+            'lang'           => seokey_helper_cache_data('languages')['lang'][$lang]['iso2'],
+
+        );
+        $query      = new WP_Query( $args );
+        $author_ids = array();
+        if ( $query->have_posts() ) {
+            while ( $query->have_posts() ) {
+                $query->the_post();
+                $author_ids[] = get_the_author_meta( 'ID' );
+            }
+        }
+        wp_reset_postdata();
+		unset( $query );
+        // Retrieve the users with the given author IDs
+        $users_datas    = get_users( array( 'include' => $author_ids ) );
+        $users          = [];
 		if ( ! empty( $users_datas ) ) {
 			foreach ( $users_datas as $user ) {
-				// Si user is a least a contributor
+				// If user is a least a contributor
 				// And he has at least publish one post
 				if ( $user->has_cap( 'edit_posts' ) && count_user_posts( $user->ID ) >= 1 ) {
 				    // Check if this is a private author
@@ -691,6 +730,7 @@ class Seokey_Sitemap_Render {
 				}
 			}
 		}
+        unset( $users_datas );
 		return ( ! empty( $users ) ) ? $users : false;
 	}
 
@@ -700,7 +740,7 @@ class Seokey_Sitemap_Render {
 	 * @since   0.0.1
 	 * @author  Léo Fontin
 	 */
-	public function seokey_sitemap_generate_index( $type ) {
+	public function seokey_sitemap_generate_index( $type, $lang ) {
         // Delete OLD file
 		if ( 'all' === $type ) {
 			$this->seokey_sitemap_delete_old();
@@ -711,7 +751,7 @@ class Seokey_Sitemap_Render {
 			$current_list= [];
 		}
 		// Get all files
-		$files = $this->seokey_sitemap_get_files();
+		$files = $this->seokey_sitemap_get_files( $lang );
 		$default_last_mod =  $this->seokey_sitemap_get_formated_current_time();
 		$index_datas = [];
 		if ( ! empty( $files ) ) {
@@ -727,16 +767,16 @@ class Seokey_Sitemap_Render {
 				}
 			}
 		}
-		$current_list[] = 'sitemap-index.xml';
+		$current_list[] = 'sitemap-index-'.$lang.'.xml';
 		update_option ( 'seokey_option_sitemap_list', array_unique( $current_list ), false );
 		// Generate Index code and generate Sitemap
-		$code = $this->seokey_sitemap_get_code( $index_datas, 'index' );
-		$this->seokey_sitemap_output( $code, 'sitemap-index.xml' );
+		$code = $this->seokey_sitemap_get_code( $index_datas, $lang, 'index' );
+		$this->seokey_sitemap_output( $code, 'sitemap-index-'.$lang.'.xml', $lang );
 		// create a new robots.txt file
 		seokey_helper_files( 'delete', 'robots' );
 		seokey_helper_files( 'create', 'robots' );
 	}
-	
+
 	/**
 	 * Get current formate date
 	 *
@@ -748,8 +788,8 @@ class Seokey_Sitemap_Render {
 		$format = DATE_W3C;
 		return $immutable_date->format( $format );
 	}
-	
-	
+
+
 	/**
 	 * Get sitemap list with relative data
 	 *
@@ -758,38 +798,50 @@ class Seokey_Sitemap_Render {
 	 *
 	 * @since   0.0.1
 	 */
-	public function seokey_sitemap_get_files() {
-		// Is it a sitemap ?
-		$pattern = '#^sitemap-([a-zA-Z0-9-]+).xml$#';
-		$files = [];
-		// let's find current file
-		if ( $handle = opendir( ABSPATH ) ) {
-			while ( false !== ( $file = readdir( $handle ) ) ) {
-				// THis is a sitemap
-				if ( preg_match( $pattern, $file ) ) {
-					// Path
-					$path = ABSPATH . $file;
-					if ( file_exists( $path ) ) {
+	public function seokey_sitemap_get_files( $lang = null ) {
+        if ( is_null ( $lang ) ){
+            $check = -4;
+            $substr = ".xml";
+        } else {
+            $check = -7;
+            $substr = $lang.".xml";
+        }
+        // Is it a sitemap ?
+        $pattern = '#^sitemap-([a-zA-Z0-9-]+).xml$#';
+        $files = [];
+		// Create sitemap Folder if necessary
+		seokey_helper_create_folder( SEOKEY_SITEMAPS_PATH, true );
+        // let's find current file
+        if ( $handle = opendir( SEOKEY_SITEMAPS_PATH  ) ) {
+            while ( false !== ( $file = readdir( $handle ) ) ) {
+                // THis is a sitemap
+               // if ( preg_match( $pattern, $file )  ) {
+                if ( preg_match( $pattern, $file ) && substr( $file, $check ) == $substr ) {
+                    // Path
+                    $path = SEOKEY_SITEMAPS_PATH . $file;
+                    if ( file_exists( $path ) ) {
                         // URL
-						$url = get_site_url() . '/' . $file;
-						// Get file data
-						preg_match_all( $pattern, $file, $match, PREG_PATTERN_ORDER );
-						$type = $match[1][0];
-						$date = filectime( $path );
-						$date = date( 'Y-m-d H:i:s', $date );
-						$date = get_date_from_gmt( $date, 'Y-m-d H:i:s' );
-						$files[] = [
-							'path' => $path,
-							'url'  => $url,
-							'file' => $file,
-							'type' => $type,
-							'date' => $date
-						];
-					}
-				}
-			}
-			closedir( $handle );
-		}
+                        // TODO GOV Test sur Seokey
+                        $url = seokey_helpers_get_sitemap_base_url( $lang ) . $file;
+                        // Get file data
+                        //preg_match_all( $pattern, $file, $match, PREG_PATTERN_ORDER );
+                        $types = explode( "-", $file );
+                        $type = $types[1];
+                        $date = filectime( $path );
+                        $date = date( 'Y-m-d H:i:s', $date );
+                        $date = get_date_from_gmt( $date, 'Y-m-d H:i:s' );
+                        $files[] = [
+                            'path' => $path,
+                            'url'  => $url,
+                            'file' => $file,
+                            'type' => $type,
+                            'date' => $date
+                        ];
+                    }
+                }
+            }
+            closedir( $handle );
+        }
 		return $files;
 	}
 
@@ -803,10 +855,10 @@ class Seokey_Sitemap_Render {
 	 * @author  Léo Fontin
 	 *
 	 */
-	public function seokey_sitemap_get_sitemap_base( $type ) {
+	public function seokey_sitemap_get_sitemap_base( $type, $lang ) {
 		// Define encoding and style
 		$doctype = '<?xml version="1.0" encoding="UTF-8"?>';
-		$doctype .= '<?xml-stylesheet type="text/xsl" href="' . site_url( "/sitemap-seokey-render.xsl") .'"?>';
+		$doctype .= '<?xml-stylesheet type="text/xsl" href="' . seokey_helpers_get_sitemap_base_url( $lang, true ).'sitemap-seokey-render-'.$lang.'.xsl' .'"?>';
 		// Data for images
 		$images  = 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd"';
 		switch ( $type ) {
@@ -838,9 +890,9 @@ class Seokey_Sitemap_Render {
 	 *
 	 * @since   0.0.1
 	 */
-	public function seokey_sitemap_get_code( $datas, $type = 'url' ) {
+	public function seokey_sitemap_get_code( $datas, $lang, $type = 'url' ) {
 		// Get sitemap codebase
-		$base = $this->seokey_sitemap_get_sitemap_base( $type );
+		$base = $this->seokey_sitemap_get_sitemap_base( $type, $lang );
 		// Sitemap header
 		$sitemap = $base['header'];
 		// Foreach sitemap item
@@ -894,12 +946,11 @@ class Seokey_Sitemap_Render {
 	 * @author  Léo Fontin
 	 *
 	 */
-	public function seokey_sitemap_output( $code, $file_name ) {
-		$this->seokey_sitemap_output_xsl_file( $file_name );
+	public function seokey_sitemap_output( $code, $file_name, $lang ) {
+		$this->seokey_sitemap_output_xsl_file( $file_name, $lang );
 		$this->seokey_sitemap_output_file( $code, $file_name );
         // Flush rewrites rules
-        global $wp_rewrite;
-        $wp_rewrite->flush_rules();
+        flush_rewrite_rules();
 		// TODO Later fallback with rewrite rules
         // $this->seokey_sitemap_output_bdd( $code, $file_name );
 	}
@@ -915,8 +966,10 @@ class Seokey_Sitemap_Render {
 	 * @author  Léo Fontin
 	 */
 	public function seokey_sitemap_output_file( $code, $file_name ) {
+		// Create sitemap Folder if necessary
+		seokey_helper_create_folder( SEOKEY_SITEMAPS_PATH, true );
 		// Path
-		$file = ABSPATH . $file_name;
+		$file = SEOKEY_SITEMAPS_PATH . $file_name;
 		// Open file (create it if not here)
 		$file_open = @fopen( $file, 'w' );
 		// Insert data
@@ -928,7 +981,7 @@ class Seokey_Sitemap_Render {
 	}
 
 	/**
-	 * Create XLS file (allow user to have a "beautiful" sitemap
+	 * Create XSL file (allow user to have a "beautiful" sitemap
 	 *
 	 * @param $code
 	 * @param $file_name
@@ -936,19 +989,22 @@ class Seokey_Sitemap_Render {
 	 * @since   0.0.1
 	 * @author  Léo Fontin
 	 */
-	public function seokey_sitemap_output_xsl_file( $file_name ) {
+	public function seokey_sitemap_output_xsl_file( $file_name, $lang ) {
+		// Create sitemap Folder if necessary
+		seokey_helper_create_folder( SEOKEY_SITEMAPS_PATH, true );
+		// TODO use WordPress file class
 		// Path
-		$file = ABSPATH . 'sitemap-seokey-render.xsl';
-		// Open file (create it if not here
-		$file_open = @fopen( $file, 'w' );
-		// Insert data
-		require_once( dirname( __file__ ) . '/sitemaps-xsl.php' );
-		$code = seokey_sitemap_output_xsl_file_content();
-		@fwrite( $file_open, $code );
-		// Close file
-		@fclose( $file_open );
-		// Add file to sitemap file list
-		$this->seokey_sitemap_set_generated_files( $file_name );
+        $file = SEOKEY_SITEMAPS_PATH . 'sitemap-seokey-render-'.$lang.'.xsl';
+        // Open file (create it if not here
+        $file_open = @fopen( $file, 'w' );
+        // Insert data
+        require_once( dirname( __file__ ) . '/sitemaps-xsl.php' );
+        $code = seokey_sitemap_output_xsl_file_content( $lang );
+        @fwrite( $file_open, $code );
+        // Close file
+        @fclose( $file_open );
+        // Add file to sitemap file list
+        $this->seokey_sitemap_set_generated_files( $file_name );
 	}
 
 	/**

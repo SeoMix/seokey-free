@@ -110,22 +110,24 @@ function seokey_admin_tooltips_menus() {
 		} else {
 			$text = esc_html_x( 'Audit', 'Redirections admin menu name', 'seo-key' );
 		}
-		$key                           = array_search( __( 'Audit', 'seo-key' ), array_column( $submenu['seo-key'], '0' ) );
-		$submenu['seo-key'][ $key ][0] = $text;
-		// Menu tooltip
-		global $menu;
-		$count = $count + $count_audit;
-		if ( $count > 0 ) {
-			$text = sprintf( wp_kses_post( __( SEOKEY_NAME . '<span class="awaiting-mod seokey-menu-count" id="seokey-menu-count-main-menu">%d</span>', 'seo-key' ) ), $count );
-		} else {
-			$text = SEOKEY_NAME;
-		}
-		// see https://core.trac.wordpress.org/ticket/40927
-		foreach ( array_keys( $menu ) as $i => $key ) {
-			if ( ( $i + 1 ) % ( $found_key + 1 ) ) {
-				continue;
+		if ( !empty( $submenu['seo-key'] ) ) {
+			$key                           = array_search( __( 'Audit', 'seo-key' ), array_column( $submenu['seo-key'], '0' ) );
+			$submenu['seo-key'][ $key ][0] = $text;
+			// Menu tooltip
+			global $menu;
+			$count = $count + $count_audit;
+			if ( $count > 0 ) {
+				$text = sprintf( wp_kses_post( __( SEOKEY_NAME . '<span class="awaiting-mod seokey-menu-count" id="seokey-menu-count-main-menu">%d</span>', 'seo-key' ) ), $count );
+			} else {
+				$text = SEOKEY_NAME;
 			}
-			$menu[ $key ][0] = $text;
+			// see https://core.trac.wordpress.org/ticket/40927
+			foreach ( array_keys( $menu ) as $i => $key ) {
+				if ( ( $i + 1 ) % ( $found_key + 1 ) ) {
+					continue;
+				}
+				$menu[ $key ][0] = $text;
+			}
 		}
 	}
 }

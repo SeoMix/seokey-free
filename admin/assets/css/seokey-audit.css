@@ -14,7 +14,7 @@
 }
 
 #wpbody-content {
-    padding-bottom: 0px;
+    padding-bottom: 0;
 }
 #audit-header {
     padding: 0.5em 3em 3em;
@@ -31,7 +31,7 @@
 }
 /* same font family for all */
 .seo-key_page_seo-key-audit .seokey-wrapper{
-    font-family: Roboto;
+    font-family: Roboto, 'sans-serif';
     color: #333;
 }
 /*fix screen option margin */
@@ -46,7 +46,7 @@
 /************************** header-top **************************/
 #audit-header {
     background-color: #EAEAEB;
-    box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgba(17, 24, 39, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px;
+    box-shadow: rgb(255, 255, 255) 0 0 0 0, rgba(17, 24, 39, 0.05) 0 0 0 1px, rgba(0, 0, 0, 0.1) 0 20px 25px -5px, rgba(0, 0, 0, 0.1) 0 8px 10px -6px;
     border-radius: 0.5rem;
     padding: 2em;
     box-sizing: border-box;
@@ -54,7 +54,7 @@
 }
 #audit-header h2 {
     text-align: center;
-    text-shadow: 0px 3px 2px rgba(0, 0, 0, 0.075);
+    text-shadow: 0 3px 2px rgba(0, 0, 0, 0.075);
     font-size: 2em;
     margin: 0 0 0.75em;
     padding: 0;
@@ -79,7 +79,7 @@
     margin-left: 36px;
     margin-top: 65px;
     text-transform: uppercase;
-    text-shadow: 0px 3px 2px rgba(0,0,0,0.075);
+    text-shadow: 0 3px 2px rgba(0,0,0,0.075);
 }
 
 
@@ -273,11 +273,12 @@
     margin-top: auto;
     position: relative;
     display: flex;
+    overflow: inherit;
 }
 
 #audit-welcome, #audit-message {
     line-height: 1em;
-    text-shadow: 0px 3px 2px rgba(0,0,0,0.075);
+    text-shadow: 0 3px 2px rgba(0,0,0,0.075);
 }
 #audit-welcome{
     font-size: 24px;
@@ -292,7 +293,7 @@
 #audit-last-time{
     font-size: 1em;
     margin: 0.25em 0 0;
-    font-family: Helvetica;
+    font-family: Helvetica, 'serif';
     font-weight: 300;
 }
 #audit-details {
@@ -393,7 +394,7 @@
 #seokey-audit-issues-count p {
     text-align: center;
     width: 100%;
-    font-family: Roboto;
+    font-family: Roboto, 'sans-serif';
     font-size: 1.1em;
     font-weight: 500;
     color: #f8f8f8;
@@ -512,9 +513,8 @@
     background: #F4F4F5;
 }
 .task {
-    /*box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 10px 18px -15px inset;*/
     background: #FFF;
-    box-shadow: rgb(255, 255, 255) 0px 0px 0px 0px, rgba(17, 24, 39, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px;
+    box-shadow: rgb(255, 255, 255) 0 0 0 0, rgba(17, 24, 39, 0.05) 0 0 0 1px, rgba(0, 0, 0, 0.1) 0 20px 25px -5px, rgba(0, 0, 0, 0.1) 0 8px 10px -6px;
     border-radius: 0.5rem;
     margin-bottom: 0.5em;
 }
@@ -522,6 +522,7 @@
 /* Easier to read */
 #audit-main .widefat th, #audit-main .widefat td {
     font-size: 1.15em;
+    position: relative;
 }
 .no-js .row-actions, tr:hover .row-actions, .mobile .row-actions, .row-actions.visible, .comment-item:hover .row-actions {
     padding: 0 0 2px;
@@ -529,16 +530,16 @@
 #audit-main .priority.column-priority.has-row-actions.column-primary {
     padding: 1em;
 }
+#audit-main .widefat .sorting-indicator {
+    position: absolute;
+    display: inline-block;  
+}
 /* Last column : keep it wide */
 #audit-main .widefat #actions {
     min-width: 9em;
 }
-
-
-
-
 .task header {
-    font-family: Roboto;
+    font-family: Roboto, 'sans-serif';
     font-size: 16px;
     font-weight: 500;
     line-height: normal;
@@ -564,7 +565,9 @@
 .task.is-opened header {
     border: 0;
 }
-
+.item-discarded {
+    text-decoration: none;
+}
 
 
 
@@ -694,6 +697,18 @@ th#priority {
     background: #fff;
     color: #1180D0;
 }
+.issue-discard.button.button-secondary {
+    background: #fff;
+    color: #1180D0;
+}
+/*.wp-core-ui .button.button-small.audit-show-table {*/
+/*    min-height: 26px;*/
+/*    padding: 0 8px;*/
+/*    font-size: 12px;*/
+/*    line-height: 26px;*/
+/*}*/
+
+
 
 
 /* All URL tab */
@@ -707,6 +722,7 @@ th#priority {
 }
 .error-list li{
     position: relative;
+    list-style: none;
 }
 .error-list li::before {
     left: -11px;
@@ -731,6 +747,7 @@ th#priority {
 .task .audit-table {
     position: relative;
     padding: 0 1em;
+    overflow: inherit;
 }
 .audit-table table.fixed,
 .audit-table .tablenav,
@@ -764,7 +781,7 @@ th#priority {
 
 
 
-/* modified items */
+/* discarded and modified items */
 .striped tbody .item_updated {
     background: repeating-linear-gradient(
             45deg,
@@ -774,6 +791,15 @@ th#priority {
             #C7ECF9 20px
     );
 }
+.striped tbody .item-discarded {
+     background: repeating-linear-gradient(
+             45deg,
+             #eee,
+             #eee 10px,
+             #ddd 10px,
+             #ddd 20px
+     );
+ }
 
 
 .audit-table .widefat td, .widefat th {

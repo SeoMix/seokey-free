@@ -26,6 +26,9 @@ require SEOKEY_PATH_COMMON . 'seo-key-helpers-dev.php';
 // Singleton CLASS
 require SEOKEY_PATH_COMMON . 'class-singleton.php';
 
+// Countries iso
+require SEOKEY_PATH_COMMON . 'seo-key-helpers-data-countryiso.php';
+
 // Metas helpers functions
 require SEOKEY_PATH_COMMON . 'seo-key-helpers-metas.php';
 
@@ -68,6 +71,92 @@ function seokey_helper_get_option( $option_name, $default_value = false ) {
 function seokey_helper_isLocalhost( $whitelist = ['127.0.0.1', '::1'] ) {
 	$remote_addr = ( isset( $_SERVER['REMOTE_ADDR'] ) ) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1';
 	return in_array( $remote_addr, $whitelist );
+}
+
+/**
+ * Create folder if not exists & parent folder if not exist
+ *
+ * @author Gauvain
+ * @since  1.6.0
+ *
+ */
+function seokey_helper_create_folder( $path , $indexFile = false ){
+    require_once ABSPATH . 'wp-admin/includes/file.php';
+    $filesystem = seokey_helper_filesystem();
+    $parent_path = dirname( $path );
+	if( is_null( $filesystem ) ) {
+		return;
+	} else {
+		if ( ! $filesystem->exists( $parent_path ) ) {
+			if ( $filesystem->mkdir( $parent_path, 0755 ) ) {
+				// add index.php
+				if ( true === $indexFile ) {
+					seokey_helper_create_index_file( $parent_path );
+				}
+			} else {
+				seokey_helper_create_folder( $parent_path, $indexFile );
+			}
+		}
+		if ( ! $filesystem->exists( $path ) ) {
+			if ( $filesystem->mkdir( $path, 0755 ) ) {
+				if ( true === $indexFile ) {
+					seokey_helper_create_index_file( $path );
+				}
+			} else {
+				seokey_dev_write_log( 'Error creating folder : ' . $path );
+			}
+		}
+	}
+}
+
+
+/**
+ * Delete folder & all files inside
+ *
+ * @param string $path
+ * @author Gauvain Van Ghele
+ * @since  1.6.0
+ *
+ */
+function seokey_helper_delete_folder( $path ){
+    $filesystem = seokey_helper_filesystem();
+    if( is_null( $filesystem ) ){
+        seokey_dev_write_log('Object filesystem is Null while deleting folder : '. $path );
+    }else {
+        if ($filesystem->exists($path)) {
+            $filesystem->delete($path, true);
+        }
+    }
+    return;
+}
+
+/**
+ * Create empty index.php in a folder
+ *
+ * @param string $directory
+ * @author Gauvain
+ * @since  1.6.0
+ *
+ */
+function seokey_helper_create_index_file( $directory ){
+    $filesystem = seokey_helper_filesystem();
+    if( is_null( $filesystem ) ){
+        seokey_dev_write_log('Object filesystem is Null while creating index file in : '. $directory );
+    }else {
+        $content = $filesystem->get_contents(SEOKEY_PATH_COMMON . 'index.phps');
+        $file = $directory . "/index.php";
+
+        // We check if directory is here
+        if ( ! $filesystem->is_dir( $directory ) ) {
+            $filesystem->mkdir( $directory );
+        }
+        // Don't do anything if directory is still not here or file exists
+        if ( $filesystem->exists( $file ) || ! $filesystem->is_dir( $directory ) ) {
+            return false;
+        }
+        // Create our new file
+        return $filesystem->put_contents($file, utf8_decode($content));
+    }
 }
 
 /**
@@ -266,7 +355,7 @@ function seokey_helper_url_get_clean_plugin_slug( $dirty ) {
  **/
 function seokey_helper_is_sitemap() {
 	// Home URL
-	$home = trailingslashit( home_url() );
+	$home = trailingslashit( apply_filters( 'seokey_filter_home_url', home_url() ) );
 	// Core Sitemap URL start
 	$homesitemap    = $home . 'wp-sitemap';
 	$customsitemaps = $home . 'sitemap';
@@ -325,6 +414,34 @@ function seokey_helper_get_paged() {
 	}
 	// Return data
 	return (int) $pagination;
+}
+
+/**
+ * Return paginated URL
+ *
+ * @author Daniel ROCH
+ * @since  1.6.0
+ *
+ * @param string $url Base URL
+ * @return string $url Paginated URL
+ */
+function seokey_helper_get_paginated_url( $url, $type = 'term' ) {
+	// Get pagination variables
+	$pagenum = seokey_helper_get_paged();
+	// Do we have pagination ?
+	if ( $pagenum > 1 ) {
+		// Ensure URl has a trailingslash
+		$base = trailingslashit( $url );
+		// For terms, get pagination_base rewrite structure (no need for paginated posts)
+		if ( 'term' === $type ) {
+			global $wp_rewrite;
+			$pagination_base = $wp_rewrite->pagination_base;
+			$base .= $pagination_base . '/';
+		}
+		$url = $base . $pagenum . '/';
+	}
+	// Return cleaned URL
+	return esc_url( $url );
 }
 
 /**
@@ -388,6 +505,12 @@ function seokey_helper_files( $action = 'create', $what = '' ) {
 			$deleteold       = 'checkfirst';
 			$createdirectory = false;
 			break;
+		case 'robotsforce':
+			// Directory
+			$directory = ABSPATH;
+			// Robots.txt file URL
+			$file = $directory . "robots.txt";
+			break;
 		default:
 			return;
 	}
@@ -406,6 +529,14 @@ function seokey_helper_files( $action = 'create', $what = '' ) {
 				elseif ( 'checkfirst' === $deleteold ) {
 					// Check current content
 					$currentcontent    = file_get_contents( $file );
+					$check_start = "# BEGIN SEOKEY Robots.txt file : DO NOT EDIT our rules";
+					$check_end = "# END SEOKEY Robots.txt file (add your custom rules below)";
+					if ( true == str_starts_with( $currentcontent, $check_start ) ) {
+						// Does it ends with .xml
+						if ( true === str_ends_with( $currentcontent, $check_end ) ) {
+							$filesystem->delete( $file );
+						}
+					}
 					// Delete it only if it is our file
 					if ( seokey_robots_txt_content() === $currentcontent ) {
 						$filesystem->delete( $file );
@@ -421,7 +552,7 @@ function seokey_helper_files( $action = 'create', $what = '' ) {
 				return FALSE;
 			}
 			// Create our new file
-			return $filesystem->put_contents( $file, $content );
+			return $filesystem->put_contents( $file, utf8_decode( $content ) );
 		case 'delete':
 			// Delete old file !
 			if ( file_exists( $file ) ) {
@@ -431,11 +562,13 @@ function seokey_helper_files( $action = 'create', $what = '' ) {
                     $currentcontent    = file_get_contents( $file );
                     if ( true === str_starts_with( $currentcontent, '# BEGIN SEOKEY Robots.txt file' ) &&
                          true === str_ends_with( $currentcontent, '# END SEOKEY Robots.txt file (add your custom rules below)' ) ) {
-                        $filesystem->delete($file);
+                        $filesystem->delete( $file );
                     }
-                } else {
+                } elseif ( 'robotsforce' === $what ) {
+					$filesystem->delete( $file );
+				} else {
                     // For all other files: delete them!
-                    $filesystem->delete($file);
+                    $filesystem->delete( $file );
                 }
 			}
 			break;
@@ -706,17 +839,15 @@ function seokey_helper_get_screen_option( $type, $key, $default ) {
  * @return array|int sorted array
  */
 function seokey_helper_usort_reorder( $a, $b ) {
-    $var        = seokey_helper_cache_data( 'seokey_helper_usort_reorder');
-    $var_order  = seokey_helper_cache_data( 'seokey_helper_usort_reorder_order');
-    $orderby    = ( ! empty( $_REQUEST['orderby'] ) )   ? esc_html( strtolower( $_REQUEST['orderby'] ) ): $var;
-    $order      = ( ! empty( $_REQUEST['order'] ) )     ? esc_html( $_REQUEST['order'] ) : $var_order;
-    $result     = strnatcmp( $a[ $orderby ], $b[ $orderby ] );
+    $orderby    = ( ! empty( $_REQUEST['orderby'] ) )   ? esc_html( strtolower( $_REQUEST['orderby'] ) ):   seokey_helper_cache_data( 'seokey_helper_usort_reorder');
+    $order      = ( ! empty( $_REQUEST['order'] ) )     ? esc_html( $_REQUEST['order'] ) :                  seokey_helper_cache_data( 'seokey_helper_usort_reorder_order');
+	$result     = strnatcmp( $a[ $orderby ], $b[ $orderby ] );
     return ( 'ASC' === strtoupper( $order ) ) ? $result : -$result;
 }
 
 
 /**
- * Check if current admin page is a our post type archive menus
+ * Check if current admin page is our post type archive menu
  *
  * @since   0.0.1
  * @author  Daniel Roch, Julio Potier
@@ -775,10 +906,8 @@ echo '<div id="' . sanitize_html_class( $id ) . '-loader" class="' . sanitize_ht
 }
 
 // TODO comments
-function seokey_helper_suggestion_action( $data ) {
-    $render = '
-    <span class="seokey-whattodo-text ' . $data["id"] . '">' .$data['worktodo'] .
-        seokey_helper_help_messages( $data["id"] ).'</span>';
+function seokey_helper_suggestion_action( $id, $text, $placement = true, $data = '' ) {
+	$render = '<div class="seokey-whattodo-text has-explanation ' . $id . '">' . $text . seokey_helper_help_messages( $id, $placement, $data ) . '</div>';
     return $render;
 }
 
@@ -791,35 +920,39 @@ function seokey_helper_suggestion_action( $data ) {
  * @author  Daniel Roch
  */
 function seokey_helper_parse_request_get_rules(){
-	// TODO Cache (transient, CRON or someting else)
-	global $wp_rewrite;
-	// Track down which rewrite rules are associated with which methods by breaking it down.
-	$rewrite_rules_by_source             = array();
-	$rewrite_rules_by_source['post']     = $wp_rewrite->generate_rewrite_rules( $wp_rewrite->permalink_structure, EP_PERMALINK );
-//	$rewrite_rules_by_source['date']     = $wp_rewrite->generate_rewrite_rules( $wp_rewrite->get_date_permastruct(), EP_DATE );
-	$rewrite_rules_by_source['root']     = $wp_rewrite->generate_rewrite_rules( $wp_rewrite->root . '/', EP_ROOT );
-	$rewrite_rules_by_source['comments'] = $wp_rewrite->generate_rewrite_rules( $wp_rewrite->root . $wp_rewrite->comments_base, EP_COMMENTS, true, true, true, false );
-	$rewrite_rules_by_source['search']   = $wp_rewrite->generate_rewrite_rules( $wp_rewrite->get_search_permastruct(), EP_SEARCH );
-	$rewrite_rules_by_source['author']   = $wp_rewrite->generate_rewrite_rules( $wp_rewrite->get_author_permastruct(), EP_AUTHORS );
-	$rewrite_rules_by_source['page']     = $wp_rewrite->page_rewrite_rules();
-    // Extra permastructs including tags, categories, etc.
-    foreach ( $wp_rewrite->extra_permastructs as $permastructname => $permastruct ) {
-        if ( is_array( $permastruct ) ) {
-            $rewrite_rules_by_source[ $permastructname ] = $wp_rewrite->generate_rewrite_rules( $permastruct['struct'], $permastruct['ep_mask'], $permastruct['paged'], $permastruct['feed'], $permastruct['forcomments'], $permastruct['walk_dirs'], $permastruct['endpoints'] );
-        } else {
-            $rewrite_rules_by_source[ $permastructname ] = $wp_rewrite->generate_rewrite_rules( $permastruct, EP_NONE );
-        }
-    }
-    // Unset useless rewrites rules
-    if ( !empty ( $rewrite_rules_by_source['post_format'] ) ) {
-        unset( $rewrite_rules_by_source['post_format'] );
-    }
-	// Clean rules for better use
-	$cleaned_rules_by_source=[];
-	foreach ( $rewrite_rules_by_source as $key => $source ) {
-		foreach ( $source as $subkey => $value ) {
-			$cleaned_rules_by_source[$key][] = $subkey;
+	$cleaned_rules_by_source = seokey_helper_cache_data( 'seokey_cache_helper_parse_request_get_rules' );
+	if ( null === $cleaned_rules_by_source ) {
+		// TODO Cache (transient, CRON or someting else)
+		global $wp_rewrite;
+		// Track down which rewrite rules are associated with which methods by breaking it down.
+		$rewrite_rules_by_source         = array();
+		$rewrite_rules_by_source['post'] = $wp_rewrite->generate_rewrite_rules( $wp_rewrite->permalink_structure, EP_PERMALINK );
+		//	$rewrite_rules_by_source['date']     = $wp_rewrite->generate_rewrite_rules( $wp_rewrite->get_date_permastruct(), EP_DATE );
+		$rewrite_rules_by_source['root']     = $wp_rewrite->generate_rewrite_rules( $wp_rewrite->root . '/', EP_ROOT );
+		$rewrite_rules_by_source['comments'] = $wp_rewrite->generate_rewrite_rules( $wp_rewrite->root . $wp_rewrite->comments_base, EP_COMMENTS, true, true, true, false );
+		$rewrite_rules_by_source['search']   = $wp_rewrite->generate_rewrite_rules( $wp_rewrite->get_search_permastruct(), EP_SEARCH );
+		$rewrite_rules_by_source['author']   = $wp_rewrite->generate_rewrite_rules( $wp_rewrite->get_author_permastruct(), EP_AUTHORS );
+		$rewrite_rules_by_source['page']     = $wp_rewrite->page_rewrite_rules();
+		// Extra permastructs including tags, categories, etc.
+		foreach ( $wp_rewrite->extra_permastructs as $permastructname => $permastruct ) {
+			if ( is_array( $permastruct ) ) {
+				$rewrite_rules_by_source[ $permastructname ] = $wp_rewrite->generate_rewrite_rules( $permastruct['struct'], $permastruct['ep_mask'], $permastruct['paged'], $permastruct['feed'], $permastruct['forcomments'], $permastruct['walk_dirs'], $permastruct['endpoints'] );
+			} else {
+				$rewrite_rules_by_source[ $permastructname ] = $wp_rewrite->generate_rewrite_rules( $permastruct, EP_NONE );
+			}
 		}
+		// Unset useless rewrites rules
+		if ( ! empty ( $rewrite_rules_by_source['post_format'] ) ) {
+			unset( $rewrite_rules_by_source['post_format'] );
+		}
+		// Clean rules for better use
+		$cleaned_rules_by_source = [];
+		foreach ( $rewrite_rules_by_source as $key => $source ) {
+			foreach ( $source as $subkey => $value ) {
+				$cleaned_rules_by_source[ $key ][] = $subkey;
+			}
+		}
+		seokey_helper_cache_data( 'seokey_cache_helper_parse_request_get_rules', $cleaned_rules_by_source );
 	}
 	return $cleaned_rules_by_source;
 }
@@ -902,7 +1035,6 @@ function seokey_helper_is_global_checked( $type = 'posts', $data = 'none' ) {
 				}
 			}
 			return $global_checked;
-			break;
 		case 'taxonomies':
 			$global_checked = ! isset( array_flip( seokey_helper_get_option( 'cct-taxo', [] ) )[ $data ] );
 			// noindexed ?
@@ -916,7 +1048,6 @@ function seokey_helper_is_global_checked( $type = 'posts', $data = 'none' ) {
 				}
 			}
 			return $global_checked;
-			break;
 	}
 	// Default to false
 	return false;
@@ -1010,8 +1141,203 @@ function seokey_helpers_redirections_is_redirect_editor(){
 
 //TODO comments
 function seokey_helpers_is_free() {
-	if ( "SEOKEY" === SEOKEY_NAME ) {
-		return true;
+    if ( "SEOKEY" === SEOKEY_NAME ) {
+        return true;
+    }
+    return false;
+}
+
+/**
+ * Helper function: Create cache helper to know if multilingual plugin is active
+ *
+ * @author Gauvain Van Ghele
+ * @since  1.6
+ */
+function seokey_helpers_get_languages() {
+	$lang           = 'single';
+    $plugins        = get_option( 'active_plugins' );
+    $pluginscheck   = [
+        'wpmlpro'       => 'sitepress-multilingual-cms/sitepress.php',
+        'weglotpro'     => 'weglot-pro/weglot-pro.php',
+        'polylangpro'   => 'polylang-pro/polylang.php',
+        'weglot'        => 'weglot/weglot.php',
+        'polylang'      => 'polylang/polylang.php',
+    ];
+    // TODO Comment hook
+    $pluginscheck =  apply_filters( 'seokey_filter_get_languages', $pluginscheck );
+    foreach ( $pluginscheck as $pluginName => $plugin ) {
+        if ( in_array( $plugin, $plugins ) ) {
+	        $lang = $pluginName;
+            break;
+        }
+    }
+	seokey_helper_cache_data('languages', $lang );
+}
+
+/**
+ * Check if url is valid and return a full url with domain.
+ *
+ * @param string $link ( optionnal )
+ *
+ * @return ( string ) with full url
+ * @author  Gauvain Van Ghele
+ *
+ * @since   1.5.X
+ */
+function seokey_helpers_get_current_domain( $link = null ){
+    // Check if this is a valid url and add domain if not.
+    if( wp_http_validate_url( $link ) ) {
+        return $link;
+    } else {
+        // Check if my array is here
+        if ( seokey_helper_cache_data('languages') ) {
+            foreach ( seokey_helper_cache_data('languages')['lang'] as $lang ) {
+                // If multilingual plugin installed
+                if ( isset( seokey_helper_cache_data('languages')['plugin'] ) ) {
+                    // Check for plugin ( only polylang for now )
+                    switch ( seokey_helper_cache_data('languages')['plugin'] ) {
+                        case 'polylang':
+                        case 'polylangpro':
+                            if ( function_exists('pll_current_language' ) ) {
+                                if ( $lang['iso2'] == pll_current_language() ) {
+                                    $domain = $lang['domain'];
+                                    break;
+                                }
+                            }
+                            break;
+                        case 'wpmlpro':
+                            if ( defined(ICL_LANGUAGE_CODE ) ) {
+                                if ( $lang['iso2'] == ICL_LANGUAGE_CODE ) {
+                                    $domain = $lang['domain'];
+                                    break;
+                                }
+                            }
+                            break;
+                        // TODO Weglot
+                        default:
+                            break;
+                    }
+                } else {
+                    // If not multilingual
+                    if ( $lang['locale'] == get_locale() ) {
+                        $domain = $lang['domain'];
+                        break;
+                    }
+                }
+            }
+        }
+        $domain = isset( $domaine ) ? $domaine : home_url();
+        // Check if first slash is here
+        if ( !is_null( $link ) ) {
+            if ( substr( $link, 0, 1 ) !== '/' ) {
+                $link = '/' . $link;
+            }
+        }
+        return $domain . $link;
+    }
+}
+
+// TODO Comment
+function seokey_helpers_get_base_url( $link = null ) {
+    $base_url = get_option('siteurl');
+    // Check if first slash is here
+    if ( !is_null($link) ){
+        if ( substr( $link, 0, 1 ) !== '/' ) {
+            $link = '/' . $link;
+        }
+        $base_url = $base_url.$link;
+    }
+    return esc_url( $base_url );
+}
+
+// TODO Comment
+function seokey_helpers_get_available_domains(){
+    if ( seokey_helper_cache_data('languages') ) {
+        foreach ( seokey_helper_cache_data('languages')['lang'] as $lang ) {
+            $domains[] = $lang['domain'];
+        }
+    } else {
+        $domains[] = home_url();
+    }
+    return $domains;
+}
+
+/**
+ * Get base url, depends on single site / multi / domain type
+ *
+ * @param string $relative (optional)
+ * $relative is only for xsl : need short path
+ *
+ * @return ( string ) with url
+ * @author  Gauvain Van Ghele
+ *
+ * @since   1.5.X
+ */
+function seokey_helpers_get_sitemap_base_url( $langIso3 = null, $relative = false ){
+	// Get upload path
+	$uploads_path = seokey_helpers_get_short_upload_dir( $relative );
+	// Define path
+	if ( true === $relative ) {
+		$url = $uploads_path . '/seokey/sitemaps/';
+	} else {
+		if ( !is_null( $langIso3 ) ) {
+			switch ( seokey_helper_cache_data('languages' )['site']['domain_type'] ){
+				case 'subdomain':
+				case 'domain':
+					// Avoid double '//' with ltrim / rtrim in case of subfolder
+					$url = rtrim( seokey_helper_cache_data('languages' )['lang'][$langIso3]['domain'],"/")."/" . ltrim( $uploads_path,"/" ) . '/seokey/sitemaps/';
+					break;
+				case 'suffix':
+				case 'single':
+				default:
+					$url = home_url( $uploads_path . '/seokey/sitemaps/');
+					break;
+			}
+		} else {
+			$url = $uploads_path . '/seokey/sitemaps/';
+		}
+	}
+	return $url;
+}
+
+
+/**
+ * Get short upload dir
+ *
+ * @param string $relative ( optionnal )
+ * $relative is only for WordPress if in subfolder : add this folder before wp-content
+ *
+ * @author  Gauvain Van Ghele
+ *
+ * @since   1.6.2
+ */
+function seokey_helpers_get_short_upload_dir( $relative = false ){
+	// Get data from home option
+	$parts = parse_url( get_option('home') );
+	// Get short URL for "uploads" folder
+	$exploded_url = explode( untrailingslashit( site_url() ), wp_upload_dir()['baseurl'] );
+	if ( count( $exploded_url ) > 1 ) {
+		$uploads_path = $exploded_url[1];
+	} else {
+		// Get URL for "wp-content" folder
+		$content_url = content_url();
+		// Rebuild wp-content/uploads
+		$uploads_path = str_replace( untrailingslashit( site_url() ), '', $content_url ) . '/uploads';
+	}
+	// If Wordpress is in a subfolder and url is short : Get subfolder/upload_path
+	if ( isset( $parts['path'] ) && $parts['path'] != '/' && true === $relative ) {
+		$uploads_path = "/". rtrim( ltrim( $parts['path'],"/" ),"/" ) . $uploads_path;
+	}
+	// return data
+	return $uploads_path;
+}
+
+// TODO Comment
+function seokey_helpers_get_parent_key( $array, $search_value, $key ) {
+	foreach ( $array as $parent_key => $child_array ) {
+		if ( isset( $child_array[$key]) && $child_array[$key] == $search_value ) {
+			return $parent_key;
+		}
 	}
 	return false;
 }

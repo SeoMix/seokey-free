@@ -118,6 +118,7 @@ function seokey_head_meta_title() {
 	// It's time to clean our title
 	$title = implode( " $sep ", array_filter( (array) $title ) );
 	$title = esc_html( $title );
+	$title = trim( $title );
 	$title = capital_P_dangit( $title );
 
 	/**
@@ -130,8 +131,6 @@ function seokey_head_meta_title() {
 	 */
 	return apply_filters( 'seokey_filter_head_meta_title', $title );
 }
-
-
 
 /**
  * Back-office Meta title generator
@@ -249,6 +248,7 @@ function seokey_head_get_meta_title( $ID, $type, $data = '' ) {
     $title = wptexturize( $title );
     $title = convert_chars( $title );
     $title = esc_html( $title );
+	$title = trim( $title );
     $title = capital_P_dangit( $title );
     /**
      * Filter and return final <title> tag

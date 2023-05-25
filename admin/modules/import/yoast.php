@@ -99,16 +99,14 @@ $cctcpt = [ 'i_am_a_dummy_value' ];
 if ( !empty( $all_cpts ) ) {
 	foreach ( $all_cpts  as $post_type ) {
 		$name = 'noindex-' . $post_type;
+		// Tell which one to keep (noindex)
+		if ( 1 !== (int) $yoast_wpseo_titles[$name] ) {
+			$cctcpt[] = $post_type;
+		}
+		// Define main taxonomy for each post type
+		$name = 'post_types-' . $post_type . '-maintax';
 		if ( !empty( $yoast_wpseo_titles[$name] ) ) {
-			// Tell which one to keep (noindex)
-			if ( 1 !== (int) $yoast_wpseo_titles[$name] ) {
-				$cctcpt[] = $post_type;
-			}
-			// Define main taxonomy for each post type
-			$name = 'post_types-' . $post_type . '-maintax';
-			if ( !empty( $yoast_wpseo_titles[$name] ) ) {
-				update_option('seokey-field-cct-taxonomy-choice-' . $post_type, $yoast_wpseo_titles[$name], true );
-			}
+			update_option('seokey-field-cct-taxonomy-choice-' . $post_type, $yoast_wpseo_titles[$name], true );
 		}
 	}
 	update_option( 'seokey-field-cct-cpt', $cctcpt, true );
@@ -202,7 +200,11 @@ while ( $offset < $totalcount) {
 				// Main keyword
 				$data = get_post_meta( $post->ID, '_yoast_wpseo_focuskw', true );
 				if ( '' != $data ) {
-					update_post_meta( $post->ID, 'seokey-main-keyword', sanitize_text_field( seokey_helper_import_parsing( $data, 'post', $post->ID, $post->post_type ) ) );
+					$keyword = sanitize_text_field( seokey_helper_import_parsing( $data, 'post', $post->ID, $post->post_type ) );
+					if ( ! add_post_meta( $post->ID, 'seokey-main-keyword', $keyword, true ) ) {
+						update_post_meta ( $post->ID, 'seokey-main-keyword', $keyword );
+					}
+					unset($keyword);
 				}
 				// Noindex
 				$data = (int) get_post_meta( $post->ID, '_yoast_wpseo_meta-robots-noindex', true );

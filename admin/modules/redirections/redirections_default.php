@@ -93,7 +93,7 @@ class seokey_WP_List_Table_redirections extends seokey_WP_List_Table_base {
 		return array(
 			//'cb'           => '<input type="checkbox" />',
 			'source'       => esc_html__( 'Redirect this URL', 'seo-key' ),
-			'target'       => esc_html__( 'to', 'seo-key' ),
+			'target'       => esc_html__( 'To', 'seo-key' ),
 			'actions'      => esc_html__( 'Actions', 'seo-key' ),
 			'hits'         => esc_html__( 'Hits', 'seo-key' ),
 			'hits_last_at' => esc_html__( 'Last hit', 'seo-key' ),
@@ -109,7 +109,7 @@ class seokey_WP_List_Table_redirections extends seokey_WP_List_Table_base {
 			'_seokey_redirection_list_nonce',
 		);
 	}
-	
+
 	/**
 	 * @return array
 	 *
@@ -145,10 +145,8 @@ class seokey_WP_List_Table_redirections extends seokey_WP_List_Table_base {
 	 * @return string
 	 */
 	public function column_source( $item ) {
-		$link = home_url( $item['source'] );
-		$html = '<a class="sourceurl" href="' . esc_url( $link ) . '">' . esc_html( $item['source'] ) . '</a>';
-		return $html;
-	}
+        return seokey_redirection_display_column_source($item);
+    }
 
 	/**
 	 * Target Column CB

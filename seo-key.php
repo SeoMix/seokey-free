@@ -8,9 +8,9 @@
  * Contributors: Daniel Roch, Léo Fontin, Julio Potier, Gauvain Van Ghele
  * Text Domain: seo-key
  * Domain Path: /public/assets/languages/
- * Version: 1.4.0
- * Requires at least:  5.5
- * Tested up to: 6.0.3
+ * Version: 1.6.2
+ * Requires at least: 5.5
+ * Tested up to: 6.2
  * Requires PHP: 7.2
  * Network: true
  * License: GPLv2
@@ -31,7 +31,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( defined( 'SEOKEY_NAME' ) ) {
 	return;
 }
-
 /**
  * SEOKEY constants
  *
@@ -43,7 +42,7 @@ if ( defined( 'SEOKEY_NAME' ) ) {
 // Constants that may need to be changed on each update
 define( 'SEOKEY_PHP_MIN',               '7.2' );                                                // PHP Minimum Version
 define( 'SEOKEY_WP_MIN',                '5.5' );                                                // WP Minimum Version
-define( 'SEOKEY_VERSION', 			    '1.4.0' );                                                // SEOKEY actual version
+define( 'SEOKEY_VERSION', 			    '1.6.2' );                                              // SEOKEY actual version
 // Static Constants
 define( 'SEOKEY_SETTINGS_SLUG', 	    'seokey-settings' );                            	    // SEOKEY Settings Slug in options table
 define( 'SEOKEY_HOME', 				    'https://www.seo-key.com/' );                           // SEOKEY Website
@@ -58,6 +57,8 @@ define( 'SEOKEY_URL_ASSETS', 		    plugin_dir_url( __FILE__ ) . 'admin/assets/' 
 define( 'SEOKEY_URL_ASSETS_PUBLIC',     plugin_dir_url( __FILE__ ) . 'public/assets/' );    // Assets directory URL
 define( 'SEOKEY_URL', 		            plugin_dir_url( __FILE__ ) );                       // Plugin directory URL
 define( 'SEOKEY_PHP_INT_MAX', 	        PHP_INT_MAX - 20 );                                     // Custom PHP_INT_MAX
+define( 'SEOKEY_SITEMAPS_PATH',         wp_upload_dir()['basedir'].'/seokey/sitemaps/' );       // Sitemap folder path
+
 // Audit Constants
 define( 'CONTENT_MIN_WORDS_COUNT',      300 );                                                  // Minimum words in content
 define( 'CONTENT_MIN_KEYWORD_RATIO',    10 );                                                   // Minimum keyword count in content
@@ -118,11 +119,14 @@ class SEOKEY_Free {
 	public static function seokey_load() {
 		// Load language files
 		add_action( 'plugins_loaded', array( __CLASS__, 'seokey_plugin_language' ) );
-
 		// Security
 		require SEOKEY_PATH_COMMON . 'seo-key-security.php';
 		// Get common helpers and functions
 		require_once SEOKEY_PATH_COMMON . 'seo-key-helpers.php';
+        // Check if Website is multilingual
+        if( function_exists('seokey_helpers_get_languages') ){
+            seokey_helpers_get_languages();
+        }
 		// For activation and deactivation purposes
 		if ( is_admin() ) {
 			// Add activation rules
@@ -132,11 +136,6 @@ class SEOKEY_Free {
 			// Add uninstall rules
 			register_uninstall_hook( __FILE__, array( __CLASS__, 'seokey_plugin_uninstall' ) );
 		}
-		// Widget initialization (widgets_init fires at 'init' priority 1 and so before 'init' actions with priority > 1! )
-		// if ( 'goodtogo' === get_option( 'seokey_option_first_wizard_seokey_notice_wizard' ) ) {
-		// TODO DOES NOT WORK: Gutenberg is just ignoring old hooks...
-		// add_action( 'widgets_init', array( __CLASS__, 'seokey_plugin_widgets_init' ), 1 );
-		// }
 		// Remove right now native sitemaps generation
 		if ( 'goodtogo' === get_option( 'seokey_option_first_wizard_seokey_notice_wizard' ) ) {
 			remove_action( 	'init', 'wp_sitemaps_get_server' );
@@ -215,6 +214,8 @@ class SEOKEY_Free {
 		require SEOKEY_PATH_PUBLIC . 'public-modules.php';
 		// Third party Modules
 		require SEOKEY_PATH_ROOT . 'third-party/third-party.php';
+        // Upgrader
+        require_once SEOKEY_PATH_ADMIN . 'plugin-upgrade.php';
 		/**
 		 *
 		 * Fires when SEOKEY has load all files
@@ -224,5 +225,6 @@ class SEOKEY_Free {
 		do_action( 'seokey_loaded' );
 	}
 }
+
 // Let's go !
 SEOKEY_Free::get_instance();

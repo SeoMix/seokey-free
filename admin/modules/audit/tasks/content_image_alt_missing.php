@@ -102,6 +102,22 @@ class Seokey_Audit_Tasks_content_image_alt_missing {
                 foreach ( $x->query( '//img' ) as $node ) {
                     $images_count = $images_count + 1;
                     $alt = stripslashes( $node->getAttribute( 'alt' ) );
+	                // Auditing a specific content, we need to trigger same behaviour as front-office
+	                if ( true === seokey_helper_cache_data('audit_single_running' ) ) {
+		                // Get current image class
+		                $class = $node->getAttribute( 'class' );
+		                // Check if we can get an attachment ID
+		                if ( preg_match( '/wp-image-([0-9]+)/i', $class, $class_id ) ) {
+			                // Check if we will replace this empty ALT with a correct one
+			                $attachment_id = absint( $class_id[1] );
+			                if ( is_integer( $attachment_id ) ) {
+				                $newalt = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
+				                if ( ! empty( $newalt ) ) {
+					                $alt = $newalt;
+				                }
+			                }
+		                }
+	                }
                     if ( empty( $alt ) ) {
                         $count++;
                     }

@@ -52,6 +52,7 @@ function seokey_admin_page_header() {
                 </div>
             </div>
         <?php
+	        do_action( 'seokey_action_admin_pages_wrapper_print_notices_after_title' );
         }
     }
 }

@@ -90,6 +90,7 @@ function seokey_helper_admin_get_menus() {
 		    require_once( $filename );
         }
 	}
+	ksort( $menus );
 	return $menus;
 }
 
@@ -150,9 +151,13 @@ function seokey_audit_screen_option_save( $status, $option, $value ) {
     if ( 'seokey_audit_per_page' == $option ) {
         return $value;
     }
+	if ( 'seokey_keywords_per_page' == $option ) {
+		return $value;
+	}
     if ( 'seokey_redirections_per_page' == $option ) {
         return $value;
     }
+	return $value;
 }
 
 

@@ -33,11 +33,6 @@ add_action( 'admin_bar_menu', 'seokey_admin_bar', SEOKEY_PHP_INT_MAX );
 function seokey_admin_bar( $wp_admin_bar ) {
 	// Get main menu and sub-menus
 	$menus     = apply_filters( 'seokey_filter_admin_bar', seokey_helper_admin_get_menus() );
-	$alt_editor_menu = $menus[500];
-	unset($menus[500]);
-	// Add it to the right place
-	$menus = seokey_helper_array_insert_at_position( $menus, 3, $alt_editor_menu );
-	ksort($menus);
 	// Current should not see main menu ? die here
 	if ( ! current_user_can($menus[0]['capability'] ) ) {
 		return;
@@ -139,22 +134,25 @@ function seokey_admin_bar_post_type_archive( $wp_admin_bar ) {
 			]
 		);
 	} elseif ( is_admin() ) {
-		global $typenow;
-		// Get the post type object
-		$typenow_object = get_post_type_object( $typenow );
-		if ( null !== $typenow_object ) {
-			if ( true === $typenow_object->has_archive ) {
-				// Get the front archive link
-				$get_post_type_archive_link = esc_url( get_post_type_archive_link( $typenow ) );
-				// Add parent admin bar menu
-				$wp_admin_bar->add_menu(
-					[
-						'id'    => SEOKEY_SLUG . '_post_type_archive',
-						'title' => __( 'View this Post Type Archive', 'seo-key' ),
-						'href'  => esc_url( $get_post_type_archive_link ),
-					]
-				);
-			}
-		}
+        if ( true === seokey_helper_cache_data ('seokey_metabox_post_type_archive' ) ) {
+            global $typenow;
+            // Get the post type object
+            $typenow_object = get_post_type_object($typenow);
+            if (null !== $typenow_object) {
+                $continue = apply_filters( 'seokey_filter_admin_bar_post_type_archive_has_archive', $typenow_object->has_archive );
+                if ( true === $continue ) {
+                    // Get the front archive link
+                    $get_post_type_archive_link = esc_url(get_post_type_archive_link($typenow));
+                    // Add parent admin bar menu
+                    $wp_admin_bar->add_menu(
+                        [
+                            'id' => SEOKEY_SLUG . '_post_type_archive',
+                            'title' => __('View this Post Type Archive', 'seo-key'),
+                            'href' => esc_url($get_post_type_archive_link),
+                        ]
+                    );
+                }
+            }
+        }
 	}
 }

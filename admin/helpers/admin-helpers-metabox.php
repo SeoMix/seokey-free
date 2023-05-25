@@ -146,16 +146,16 @@ function seokey_helper_admin_print_meta_fields_html_visibility( $args ) {
         <?php
         if ( ! $site_checked ) { ?>
             <input type="checkbox" autocomplete="off" name="content_visibility" value="1" checked="checked" readonly="readonly" disabled="disabled">
-            <?php printf( esc_html__( 'Search engines are discouraged from indexing this site (%sChange this%s)', 'seo-key' ), '<a href="' . admin_url( 'options-reading.php' ) . '">', '</a>' ); ?> <em>(noindex)</em>
+            <?php printf( esc_html__( 'Search engines are discouraged from indexing this site (%schange this%s)', 'seo-key' ), '<a href="' . admin_url( 'options-reading.php' ) . '">', '</a>' ); ?> <em>(noindex)</em>
             <?php
         } elseif ( $global_checked ) { ?>
             <input type="checkbox" autocomplete="off" name="content_visibility" value="1" checked="checked" readonly="readonly" disabled="disabled">
             <?php
             if ( isset( $args['term'] ) ) {
-                printf( esc_html__( 'This taxonomy is hidden (%sChange this%s)', 'seo-key' ), '<a href="' . esc_url( admin_url( 'admin.php?page=seo-key-settings#contents' ) ) . '">', '</a>' ); ?> <em>(noindex)</em>
+                printf( esc_html__( 'This taxonomy is hidden (%schange this%s)', 'seo-key' ), '<a href="' . esc_url( admin_url( 'admin.php?page=seo-key-settings#contents' ) ) . '">', '</a>' ); ?> <em>(noindex)</em>
                 <?php
             } else {
-                printf( esc_html__( 'This post type is hidden (%sChange this%s)', 'seo-key' ), '<a href="' . esc_url( admin_url( 'admin.php?page=seo-key-settings#contents' ) ). '">', '</a>' ); ?> <em>(noindex)</em>
+                printf( esc_html__( 'This post type is hidden (%schange this%s)', 'seo-key' ), '<a href="' . esc_url( admin_url( 'admin.php?page=seo-key-settings#contents' ) ). '">', '</a>' ); ?> <em>(noindex)</em>
                 <?php
             }
         } else { ?>

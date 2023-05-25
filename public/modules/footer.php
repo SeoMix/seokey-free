@@ -17,7 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'You lost the key...' );
 }
 
-
 add_action( 'wp_footer', 'seokey_footer' );
 /**
  * Action seokey dans le footer

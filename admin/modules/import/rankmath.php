@@ -190,7 +190,10 @@ while ( $offset < $totalcount ) {
 						$data = explode( ",", $data );
 						$data = $data[0];
 					}
-					update_post_meta( $post->ID, 'seokey-main-keyword', sanitize_text_field( seokey_helper_import_parsing( $data, 'post', $post->ID, $post->post_type ) ) );
+					$keyword = sanitize_text_field( seokey_helper_import_parsing( $data, 'post', $post->ID, $post->post_type ) );
+					if ( ! add_post_meta( $post->ID, 'seokey-main-keyword', $keyword, true ) ) {
+						update_post_meta ( $post->ID, 'seokey-main-keyword', $keyword );
+					}
 				}
 				// Noindex
 				$data = get_post_meta( $post->ID, 'rank_math_robots', true );

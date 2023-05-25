@@ -1,7 +1,7 @@
 /* Hide old term editor */
 #addtag .term-description-wrap,
 #edittag .term-description-wrap {
-    display:none;
+      display:none;
 }
 /* Show new term editor */
 #addtag .term-description-wrap-show {

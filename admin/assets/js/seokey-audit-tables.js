@@ -45,6 +45,7 @@ jQuery(document).ready(function($) {
                 // Lets get ajax calls available
                 list.init(tabtask, tab, task, myaction);
                 $(loader).hide();
+                $('body').reloadTooltip();
             },
             error: function (data) {
                 console.log('error display audit list');
@@ -132,6 +133,7 @@ jQuery(document).ready(function($) {
                         // Lets get ajax calls available
                         list.init( data.tabtask, data.tab, data.task, myaction );
                     }
+                    $('body').reloadTooltip();
                 },
                 error: function (data) {
                     console.log('error update list');

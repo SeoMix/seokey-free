@@ -31,6 +31,7 @@ function seokey_audit_task_list_content() {
 			// Text
             'words_count',
             'image_alt_missing',
+            'no_image',
             'no_links',
 	        'title_length',
 	        'meta_desc_length',

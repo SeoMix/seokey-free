@@ -32,7 +32,7 @@ function seokey_enqueue_admin_audit_page() {
     $current_screen = seokey_helper_get_current_screen();
     if ( $current_screen->base === 'seokey_page_seo-key-audit' ) {
         // Enqueue settings CSS and JS
-        wp_enqueue_style('seokey-common',           esc_url( SEOKEY_URL_ASSETS . 'css/seokey-common.css' ), false, SEOKEY_VERSION );
+	    seokey_enqueue_admin_common_scripts();
         wp_enqueue_style('seokey-audit', esc_url(SEOKEY_URL_ASSETS . 'css/seokey-audit.css'), false, SEOKEY_VERSION );
 	    if ( seokey_helpers_is_free() ) {
 		    wp_enqueue_style( 'seokey-common-free', esc_url( SEOKEY_URL_ASSETS . 'css/seokey-common-free.css' ), false, SEOKEY_VERSION );

@@ -46,18 +46,8 @@
 })(jQuery);
 
 
-
-
-
-
-
-
-
-
-
-
 jQuery(document).ready(function ($) {
-    const { __, _x, _n, _nx } = wp.i18n;
+    const { __ } = wp.i18n;
 
     // Prevent buttons to do anything
     $(".seokey-audit-button-ajax").on("click", function (e) {
@@ -93,8 +83,6 @@ jQuery(document).ready(function ($) {
     } else {
         // Allow new audits
         prepare_audit_launch();
-
-
     }
 
     // Function used to launch an audit
@@ -121,7 +109,7 @@ jQuery(document).ready(function ($) {
 
     // Checking current audit status
     function check_current_audit (){
-        var timeout = 3000;
+        var timeout = 3500;
         var retry = 0;
         var lastcount = 0;
         var lasttask = '';
@@ -139,7 +127,7 @@ jQuery(document).ready(function ($) {
                     console.log(response);
                     if ( response.success === true ) {
                         // Translation functions
-                        const { __, _x, _n, _nx } = wp.i18n;
+                        const { __ } = wp.i18n;
                         // get data
                         var tasks = response.data;
                         // Password protected website

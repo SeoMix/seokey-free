@@ -39,7 +39,7 @@ function seokey_dev_error( $function, $line, $message ) {
  * Write logs in the debug log file
  *
  * @since  0.0.1
- * @author Daniel Roch
+ * @author Daniel Roch, Julio Potier
  *
  * @param string|array|object $log Data to write
  * @return void

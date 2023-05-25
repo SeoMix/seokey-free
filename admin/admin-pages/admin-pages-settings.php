@@ -37,8 +37,8 @@ if ( seokey_helpers_is_free() ) {
 				echo '<li>' . __( "See and fix Google 404 and WordPress automatic redirections", "seo-key" ) . '</li>';
 			echo '</ul>';
 			echo '<p>' . __( "<a class='button button-secondary button-hero' target='_blank' href='https://www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>", 'seo-key' ) . '</p>';
-			
-		}
+            echo '<p>' . __( "If you bought SEOKEY PRO and you don't know how to install it, just follow <a href='https://www.seo-key.com/faqs/'>our FAQ</a>.", "seo-key" ) . '</p>';
+        }
 	}
 }
 
@@ -475,11 +475,12 @@ function seokey_settings_breadcrumbs_text( $data ){
 add_action('seokey_action_setting_field_before_field', 'seokey_settings_add_htpass_desc_nouse', 20, 1);
 // TODO comments
 function seokey_settings_add_htpass_desc_nouse( $field ){
-	if ( "seokey-field-tools-htpasslogin" === $field['id'] ) {
-		echo '<p>' . __( 'It seems your website is not password protected or that your actual credentials are already correct.<br>Check the box below to display htaccess/htpasswd credentials anyway.', 'seo-key' ) . '</p>';
-		echo '<input autocomplete="off" id="showhtpass" name="showhtpass" type="checkbox">';
-		echo '<label for="showhtpass">' . esc_html__( 'Show credentials', 'seo-key' ) . '</label><br>';
-	}
+    if ( "seokey-field-tools-htpasslogin" === $field['id'] ) {
+        echo '<p>' . __( 'Only use the option below if you are currently protecting your site from Google, for example if the site is being created on a development server.<br>', 'seo-key' ) . '</p>';
+        echo '<p>' . __( 'Check the box below to display htaccess/htpasswd credentials option: it will allow SEOKEY to use them to audit your website.', 'seo-key' ) . '</p>';
+        echo '<input autocomplete="off" id="showhtpass" name="showhtpass" type="checkbox">';
+        echo '<label for="showhtpass">' . esc_html__( 'Show credentials', 'seo-key' ) . '</label><br>';
+    }
 }
 
 add_action('seokey_action_setting_table_after', 'seokey_settings_import_text', 5, 1);

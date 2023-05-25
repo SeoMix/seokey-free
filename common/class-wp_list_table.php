@@ -77,7 +77,7 @@ class seokey_WP_List_Table_base extends WP_List_Table {
 			)
 		);
 	}
- 
+
 	/**
 	 * @param $item
 	 * @param $column_name
@@ -129,44 +129,8 @@ class seokey_WP_List_Table_base extends WP_List_Table {
         echo '<span id="search-table-element">';
 		    $this->search_box( __( 'search', 'seo-key'), 'search_id' );
 		echo '</span>';
-  
-  
 		// Parent Display method
-
-		$singular = $this->_args['singular'];
-		
-		$this->display_tablenav( 'top' );
-		
-		$this->screen->render_screen_reader_content( 'heading_list' );
-		?>
-        <table class="wp-list-table <?php echo implode( ' ', $this->get_table_classes() ); ?>">
-            <thead>
-            <tr>
-				<?php $this->print_column_headers(); ?>
-            </tr>
-            </thead>
-
-            <tbody id="the-list"
-				<?php
-				if ( $singular ) {
-					echo " data-wp-lists='list:$singular'";
-				}
-				?>
-            >
-			<?php $this->display_rows_or_placeholder(); ?>
-
-            </tbody>
-
-            <tfoot>
-            <?php do_action( 'seokey_audit_free_tfoot' );?>
-            <tr>
-				<?php $this->print_column_headers( false ); ?>
-            </tr>
-            </tfoot>
-
-        </table>
-		<?php
-		$this->display_tablenav( 'bottom' );
+		parent::display();
 	}
 
     /**

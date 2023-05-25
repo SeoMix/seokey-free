@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'You lost the key...' );
 }
 
+// Display text for free version
 if ( seokey_helpers_is_free() ) {
 	add_filter( 'seokey_filter_get_config_sections', 'seokey_gsc_settings_add_tab', SEOKEY_PHP_INT_MAX );
 	function seokey_gsc_settings_add_tab( $tabs ) {
@@ -38,9 +39,9 @@ if ( seokey_helpers_is_free() ) {
 			$screen       = seokey_helper_get_current_screen();
 			$current_page = $screen->base;
 			if ( $current_page === 'seokey_page_seo-key-settings' ) {
-				echo '<h2>' . __( 'Automatic connection to Search Console is only available in the PRO version.', 'seo-key') . '</h2>';
-				echo '<p>' . __( 'Upgrade now to improve your SEO: get more data, and automatically submit your sitemap!', 'seo-key') . '</p>';
-				echo '<p>' . __( "<a class='button button-secondary button-hero' target='_blank' href='https://www.seo-key.fr/tarifs/'>Buy SEOKEY Premium</a>", 'seo-key' ) . '</p>';
+				echo '<h2>' . __( 'Connecting to Search Console is only available in the PRO version.', 'seo-key') . '</h2>';
+				echo '<p>' . __( 'Upgrade now to improve your SEO!', 'seo-key') . '</p>';
+				echo '<p>' . __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.fr/tarifs/'>Buy SEOKEY Premium</a>", 'seo-key' ) . '</p>';
 				
 			}
 		}
@@ -65,14 +66,14 @@ if ( seokey_helpers_is_free() ) {
 			$position    = __( '--- average position', 'seo-key' );
 			$keywords    = __( '--- known keywords', 'seo-key' );
 			$whattodo   = seokey_audit_whattodo( get_the_ID(), false );
+			$dataforsuggestion = '';
 			// Render
 			$render = '<section id="seokey-metabox-figures">
 				<div>' . $clics . '</div>
 				<div>' . $position . '</div>
 				<div>' . $keywords . '</div>
-				<div class="has-explanation">
-					' . __( "Suggestion: ", "seo-key" ) . '<span class="seokey-whattodo-text ' . $whattodo["id"] . '">' .$whattodo['worktodo'] .
-				          seokey_helper_help_messages( $whattodo["id"], true ).'</span>
+				<div class="seokey-whattodo has-explanation ' . $whattodo["id"] . '">
+					' . __( "Suggestion: ", "seo-key" ) . seokey_helper_suggestion_action( $whattodo["id"], $whattodo['worktodo'] , true, $dataforsuggestion ) . '
 				</div>
 			</section>';
 			echo $render;

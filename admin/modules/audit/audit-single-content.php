@@ -32,8 +32,8 @@ function seokey_enqueue_admin_metabox_metas_audit( ) {
     $goforit = seokey_helper_cache_data('SEOKEY_METABOX' );
     if ( $goforit === TRUE ) {
         // JS for all admin pages
-	    wp_enqueue_script('wp-i18n');
-        wp_enqueue_script(  'seokey-metabox-audit', SEOKEY_URL_ASSETS . 'js/build/seokey-audit-content.js', array( 'jquery', 'wp-i18n' ), SEOKEY_VERSION, TRUE );
+	    wp_enqueue_script( 'wp-i18n' );
+        wp_enqueue_script( 'seokey-metabox-audit', SEOKEY_URL_ASSETS . 'js/build/seokey-audit-content.js', array( 'jquery', 'wp-i18n' ), SEOKEY_VERSION, TRUE );
         $args = array(
             // Ajax URL
             'ajaxUrl'               => admin_url( 'admin-ajax.php' ),
@@ -123,11 +123,17 @@ class Seokey_Audit_Content {
         }
         $keyword            = ( isset( $_GET['seokey_audit_content_main_keyword'] ) ) ? sanitize_text_field( $_GET['seokey_audit_content_main_keyword'] ) : '';
         $whattodo           = seokey_audit_whattodo( $post_id, $keyword );
-        $updatesuggestion   = seokey_helper_suggestion_action( $whattodo );
+		if ( !is_null( $worktodo_data_details = seokey_helper_cache_data( 'worktodo_data_details-' . $post_id ) ) ) {
+			$updatesuggestion = seokey_helper_suggestion_action( $whattodo['id'], $whattodo['worktodo'], false, $worktodo_data_details );
+		} else {
+			$updatesuggestion = seokey_helper_suggestion_action( $whattodo['id'], $whattodo['worktodo'], false, $post_id );
+		}
         // Do we have a keyword ?
         if ( !empty ( $keyword ) ) {
             // Update post meta
-            update_post_meta( $post_id, 'seokey-main-keyword', $keyword );
+	        if ( ! add_post_meta( $post_id, 'seokey-main-keyword', $keyword, true ) ) {
+		        update_post_meta ( $post_id, 'seokey-main-keyword', $keyword );
+	        }
             // We need to add our keyword in our specific table
             // Get Database Object
             global $wpdb;
@@ -182,14 +188,20 @@ function _seokey_audit_content_check_callback() {
 	} else {
 		$id = (int) $datas["id"];
 	}
+    $url        = seokey_helper_url_remove_slashes( seokey_helper_url_remove_domain($datas["permalink"]), 'both' );
     $excerpt    = ( empty ( $datas["excerpt"] ) ) ? '' : $datas["excerpt"];
+	$date =  ( !empty( $datas["date"] ) ) ? $datas["date"] : get_the_date( 'c', $datas["id"] );
     // We do not want the <p> tag for excerpts
     remove_filter( 'the_excerpt', 'wpautop' );
     $item[ $id ]    = [
-        'content'       => apply_filters( 'the_content',    $datas["content"] ),
-        'title'         => apply_filters( 'the_title',      $datas["title"] ),
+        'content'       => apply_filters( 'the_content',    stripslashes( $datas["content"] ) ),
+        'title'         => apply_filters( 'the_title',      $datas["title"], $id ),
         'excerpt'       => apply_filters( 'the_excerpt',    $excerpt ),
         'metadesc'      => sanitize_text_field($datas["metadesc"]),
+        'slug'          => $url,
+        'date'          => $date,
+        'keyword'       => $datas["keyword"],
+        'author'        => ( !empty( $datas["author"] ) )? $datas["author"] : get_post_field( 'post_author', $id ),
         'id'            => $id,
     ];
     // add again the <p> tag filter to excerpts
@@ -204,6 +216,8 @@ function _seokey_audit_content_check_callback() {
 	$task_list = seokey_audit_task_list_content();
     // Prepare Queue for content issues
     if ( !empty ( $task_list ) ) {
+		// Tell WP we are running an audit while editing on specific content
+		seokey_helper_cache_data('audit_single_running', true );
         foreach ( $task_list as $type => $task_list_details ) {
             foreach ( $task_list_details as $task ) {
                 $task       = 'content||' . $type . '||' . $task;

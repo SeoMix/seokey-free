@@ -19,6 +19,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 $status = get_option( 'seokey_option_first_wizard_seokey_notice_wizard' );
 // Load admin only assets
 if ( is_admin() ) {
+
+	/**
+	 * Enqueue common scripts and CSS
+	 *
+	 * @author  Gauvain Vanb Ghele
+	 * @since   1.5.2
+	 *
+	 * @uses    wp_enqueue_style()
+	 * @hook    admin_enqueue_scripts
+	 */
+	function seokey_enqueue_admin_common_scripts(){
+		// Enqueue settings CSS
+		wp_enqueue_style('seokey-common', esc_url(SEOKEY_URL_ASSETS . 'css/seokey-common.css'), false, SEOKEY_VERSION);
+		// Enqueue settings JS
+		wp_enqueue_style('seokey-tooltip', esc_url(SEOKEY_URL_ASSETS . 'css/seokey-tooltip.css'), false, SEOKEY_VERSION);
+		wp_enqueue_script('seokey-tooltip-js', esc_url(SEOKEY_URL_ASSETS . 'js/seokey-tooltip.js'), array('jquery'), SEOKEY_VERSION);
+	}
+
  	// Wizard has ended, add all other admin assets !
 	if ( 'goodtogo' === $status ) {
 
@@ -35,7 +53,7 @@ if ( is_admin() ) {
         function seokey_enqueue_admin_ALT_editor() {
             if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
                 // Enqueue CSS
-                wp_enqueue_style('seokey-common', esc_url(SEOKEY_URL_ASSETS . 'css/seokey-common.css'), false, SEOKEY_VERSION);
+                seokey_enqueue_admin_common_scripts();
                 wp_enqueue_style('seokey-alt-editor', esc_url(SEOKEY_URL_ASSETS . 'css/seokey-alt-editor.css'), FALSE, SEOKEY_VERSION);
             }
         }
@@ -73,15 +91,12 @@ if ( is_admin() ) {
 			// CSS for setting pages
 			$current_screen = seokey_helper_get_current_screen();
 			if ( str_starts_with( $current_screen->base, 'seokey_page_seo-key-' ) ) {
-				// Enqueue settings CSS
-				wp_enqueue_style( 'seokey-common', esc_url( SEOKEY_URL_ASSETS . 'css/seokey-common.css' ), false, SEOKEY_VERSION );
-				if ( seokey_helpers_is_free() ) {
-					wp_enqueue_style( 'seokey-common-free', esc_url( SEOKEY_URL_ASSETS . 'css/seokey-common-free.css' ), false, SEOKEY_VERSION );
-				}
-				// Enqueue settings JS
-                wp_enqueue_script('seokey-common-js',       esc_url( SEOKEY_URL_ASSETS . 'js/seokey-common.js' ), array('jquery'), SEOKEY_VERSION );
+                if ( seokey_helpers_is_free() ) {
+                    wp_enqueue_style( 'seokey-common-free', esc_url( SEOKEY_URL_ASSETS . 'css/seokey-common-free.css' ), false, SEOKEY_VERSION );
+                }
+				seokey_enqueue_admin_common_scripts();
             }
-		}
+        }
 
         add_action( 'admin_enqueue_scripts', 'seokey_enqueue_admin_settings_page', 15 );
         /**
@@ -103,9 +118,9 @@ if ( is_admin() ) {
                 wp_enqueue_script('seokey-automatic',       esc_url( SEOKEY_URL_ASSETS . 'js/settings-automatic-optimizations.js' ), array('jquery'), SEOKEY_VERSION );
             }
 	        if ( $current_screen->base === 'toplevel_page_seo-key' ) {
-		        wp_enqueue_style('seokey-common',    esc_url( SEOKEY_URL_ASSETS . 'css/seokey-common.css' ), false, SEOKEY_VERSION);
-		        wp_enqueue_style('seokey-dashboard', esc_url( SEOKEY_URL_ASSETS . 'css/seokey-dashboard.css' ), array('seokey-common'), SEOKEY_VERSION);
-	        }
+                seokey_enqueue_admin_common_scripts();
+                wp_enqueue_style('seokey-dashboard', esc_url( SEOKEY_URL_ASSETS . 'css/seokey-dashboard.css' ), array('seokey-common'), SEOKEY_VERSION);
+            }
 	        if ( $current_screen->base === 'seokey_page_seo-key-wizard' ) {
 		        wp_localize_script( 'seokey-admin-settings', 'seokey_gsc',
 			        [
@@ -149,7 +164,7 @@ if ( is_admin() ) {
 			}
 			// We need a metabox, let's continue
 			// JS for admin pages with our metaboxes
-			wp_enqueue_script( 'seokey-js-metabox', SEOKEY_URL_ASSETS . 'js/seokey-metabox.js', array( 'jquery', 'wp-i18n' ), SEOKEY_VERSION, TRUE );
+            wp_enqueue_script( 'seokey-js-metabox', SEOKEY_URL_ASSETS . 'js/seokey-metabox.js', array( 'jquery', 'wp-i18n' ), SEOKEY_VERSION, TRUE );
 			wp_localize_script( 'seokey-js-metabox', 'seokey_metas',
 				[
 					'ajaxurl'                               => admin_url( 'admin-ajax.php' ),
@@ -166,11 +181,12 @@ if ( is_admin() ) {
 					'meta_counter_max_text_single'          => esc_html__( 'Too much text: you have %s extra character', 'seo-key' ),
 				]
 			);
-			// and corresponding CSS
-			wp_enqueue_style('seokey-common',    esc_url( SEOKEY_URL_ASSETS . 'css/seokey-common.css' ), false, SEOKEY_VERSION);
+
+            // and corresponding CSS
+            seokey_enqueue_admin_common_scripts();
             wp_enqueue_style( 'dashicons' );
             wp_enqueue_style( 'seokey-metabox',  esc_url( SEOKEY_URL_ASSETS . 'css/seokey-metabox.css' ), ('dashicons'), SEOKEY_VERSION );
-		}
+        }
 
 		add_action( 'admin_enqueue_scripts', 'seokey_enqueue_admin_options_discussion' );
 		/**

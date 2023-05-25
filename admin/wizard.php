@@ -69,7 +69,7 @@ function seokey_enqueue_admin_wizard() {
     $current_screen = seokey_helper_get_current_screen();
     if ( $current_screen->base === 'seokey_page_seo-key-wizard' ) {
         // Enqueue settings CSS and JS
-        wp_enqueue_style('seokey-common', esc_url(SEOKEY_URL_ASSETS . 'css/seokey-common.css'), false, SEOKEY_VERSION);
+	    seokey_enqueue_admin_common_scripts();
         wp_enqueue_style('seokey-settings', esc_url( SEOKEY_URL_ASSETS . 'css/seokey-settings.css' ), false, SEOKEY_VERSION);
 	    wp_enqueue_style('seokey-wizard',   esc_url( SEOKEY_URL_ASSETS . 'css/seokey-wizard.css' ), false, SEOKEY_VERSION);
 	    wp_enqueue_style('seokey-automatic',   esc_url( SEOKEY_URL_ASSETS . 'css/seokey-automatic-optimizations.css' ), false, SEOKEY_VERSION);
@@ -157,10 +157,10 @@ function seokey_wizard_get_next_step_from_referer(){
     $from   = wp_get_referer();
     $query  = parse_url($from, PHP_URL_QUERY);
     parse_str($query, $params);
-	// Find next step
+    // Find next step
 	$status = ( !empty( $params['wizard-status'] ) ) ? $params['wizard-status'] : '1_0_0';
-	$nextkey = array_search( $status, array_keys( $steps ) ) + 1;
-    $nextkey = array_slice( $steps, $nextkey, 1 );
+    $nextkey = array_search( $status, array_keys( $steps ) ) + 1;
+	$nextkey = array_slice( $steps, $nextkey, 1 );
     return $nextkey;
 }
 
@@ -251,9 +251,10 @@ function seokey_admin_page_wizard_define_content() {
         $url = seokey_helper_url_get_current();
         // Check if user wants to skip wizard
         if ( str_contains( $url, 'skipwizard=yes' ) ) {
-			update_option ( 'seokey-field-cct-cpt', get_post_types( ['public' => true ] ) );
+	        update_option ( 'seokey-field-cct-cpt', get_post_types( ['public' => true ] ) );
 	        update_option ( 'seokey-field-cct-taxo', get_taxonomies( ['public' => true, 'show_ui' => true ] ) );
             // Skip wizard, launch all wings
+	        update_option('seokey-gsc-site-disconnected', 'disconnected', true );
             seokey_wizard_end();
             // Redirect user
             wp_safe_redirect( seokey_helper_admin_get_link( 'audit') );
@@ -265,11 +266,11 @@ function seokey_admin_page_wizard_define_content() {
             $status = seokey_admin_wizard_get_status();
             $all_steps = seokey_admin_wizard_steps();
             end($all_steps);
-            if ($status === 'none' || $status === key($all_steps)) {
+            if ( $status === 'none' || $status === key( $all_steps ) ) {
                 return;
             }
             // Launch settings API function
-            add_action('seokey_admin_page_wizard_content', 'seokey_admin_page_content');
+            add_action( 'seokey_admin_page_wizard_content', 'seokey_admin_page_content' );
         }
     }
 }
@@ -476,6 +477,8 @@ function seokey_admin_wizard_hide_menu_page( $submenu_file ) {
  * @author  Daniel Roch
  */
 function seokey_wizard_end(){
+	// Define current SEOKEY version
+	update_option( 'seokey_version', SEOKEY_VERSION, true );
     // Define the wizard end
     update_option( 'seokey_option_first_wizard_seokey_notice_wizard', 'goodtogo', true );
     // SEOKEY Files creation

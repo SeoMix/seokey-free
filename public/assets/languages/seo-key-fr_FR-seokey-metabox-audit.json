@@ -11,6 +11,10 @@
         "lang":"fr_FR",
       },
       "This is a private content: we do not audit them.":["C'est un contenu privé (noindex): nous ne les auditons pas."],
+      "Keyword saved":["Mot clé sauvegardé"],
+      "Error":["Erreur"],
+      "Target this keyword or phrase":["Cibler ce mot clé ou cette expression"],
+      "Update keyword or phrase":["Mettre à jour le mot clé ou l'expression"],
     }
   }
 }

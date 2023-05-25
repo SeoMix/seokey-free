@@ -11,15 +11,7 @@
  * Security
  */
 if ( ! defined( 'ABSPATH' ) ) {
-	die( 'You lost the key...' );
-}
-
-add_filter( 'admin_notices', 'seokey_medias_library_header_text', 10, 1 );
-// TODO Comments
-function seokey_medias_library_header_text( ) {
-	if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
-        echo '<div class="alt-editor-header-explanation seokey-tooltip-parent">Version ' . SEOKEY_VERSION . '</div>';
-    }
+    die( 'You lost the key...' );
 }
 
 add_filter( 'parent_file', 'seokey_medias_library_editor_menu_highlight' );
@@ -32,11 +24,11 @@ add_filter( 'parent_file', 'seokey_medias_library_editor_menu_highlight' );
  * @hook parent_file
  */
 function seokey_medias_library_editor_menu_highlight( $file ) {
-	// Are we in the ALT editor ?
-	if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
-		$file = 'seo-key';
-	}
-	return $file;
+    // Are we in the ALT editor ?
+    if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
+        $file = 'seo-key';
+    }
+    return $file;
 }
 
 add_action( 'admin_menu', 'seokey_medias_library_menu_move', 200 );
@@ -51,14 +43,14 @@ add_action( 'admin_menu', 'seokey_medias_library_menu_move', 200 );
  * @see seokey_admin_menus()
  */
 function seokey_medias_library_menu_move() {
-	global $submenu;
+    global $submenu;
     // Get alt editor menu
     // TODO later find a better way to target correct $submenu['seo-key']
-	$alt_editor_menu = $submenu['seo-key'][0];
+    $alt_editor_menu = $submenu['seo-key'][0];
     // delete it
-	unset($submenu['seo-key'][0]);
+    unset($submenu['seo-key'][0]);
     // Add it to the right place
-	$submenu['seo-key'] = seokey_helper_array_insert_at_position( $submenu['seo-key'], 4, $alt_editor_menu);
+    $submenu['seo-key'] = seokey_helper_array_insert_at_position( $submenu['seo-key'], 4, $alt_editor_menu);
 }
 
 add_action( 'admin_menu', 'seokey_medias_library_menu', 5 );
@@ -71,15 +63,15 @@ add_action( 'admin_menu', 'seokey_medias_library_menu', 5 );
  * @hook admin-menu
  */
 function seokey_medias_library_menu() {
-	add_submenu_page(
-		'seo-key',
-		__( 'ALT Editor', 'seo-key' ),
+    add_submenu_page(
+        'seo-key',
         __( 'ALT Editor', 'seo-key' ),
-		seokey_helper_user_get_capability( 'editor' ),
-		'upload.php?mode=list&seokeyalteditor=yes',
-		'',
+        __( 'ALT Editor', 'seo-key' ),
+        seokey_helper_user_get_capability( 'editor' ),
+        'upload.php?mode=list&seokeyalteditor=yes',
+        '',
         20
-	);
+    );
 }
 
 add_filter('submenu_file', 'seokey_medias_library_menu_highlight');
@@ -107,12 +99,13 @@ add_action( 'admin_init', 'seokey_medias_library_notice' );
  */
 function seokey_medias_library_notice() {
     // Are we using media library ?
-	global $pagenow;
-	if ( 'upload.php' === $pagenow && true !== seokey_helpers_medias_library_is_alt_editor() ) {
-	    add_filter('seokey_filter_admin_notices_launch', 'seokey_medias_library_notice_content_grid', 1 );
-    } elseif( seokey_helpers_medias_library_is_alt_editor() ){
-        add_filter('seokey_filter_admin_notices_launch', 'seokey_medias_library_notice_fix_images', 1);
-    }
+	if ( true !== seokey_helpers_medias_library_is_alt_editor() ) {
+		add_filter('seokey_filter_admin_notices_launch', 'seokey_medias_library_notice_content_grid', 1 );
+	} else {
+        // Avoid errors with third party plugins
+		remove_all_filters( 'bulk_actions-upload' );
+		add_filter('seokey_filter_admin_notices_launch', 'seokey_medias_library_notice_fix_images', 11);
+	}
 }
 
 /**
@@ -122,37 +115,59 @@ function seokey_medias_library_notice() {
  * @author  Daniel Roch
  */
 function seokey_medias_library_notice_fix_images( $args ) {
+    global $wp_version;
+    // WP version is before 6.0
+    if ( 0 > version_compare( $wp_version, '6.0.0' ) ) {
+        $broken_text = '<div class="notice-flexboxcolumn">';
+        $broken_text .= '<h3>'. __( 'WordPress Media library is broken', 'seo-key' ) . '</h3>';
+        $broken_text .= '<p>'. __( 'WordPress Media Library allows users to manage their media and update their alternative texts.', 'seo-key' ) . '</p>';
+        $broken_text .= '<p>';
+        $broken_text .= __( 'But, it <strong>does not natively update alternative texts everywhere</strong>. When you add a media into your content, it is no longer linked to the media library. Changing the ALT in the media library does not change update your media within in your contents.', 'seo-key' );
+        $broken_text .= seokey_helper_help_messages( 'alt-editor-media-library' );
+        $broken_text .= '</p>';
+        $broken_text .= '<p>';
+        $broken_text .= __( "<strong>Update to WordPress 6.0 or above to allow SEOKEY to fix this issue</strong>.", 'seo-key' );
+        $broken_text .= '</p>';
+        $broken_text .= '</div>';
+    }
+    // WP Version is after 6.0
+    else {
+        $broken_text = '<div class="notice-flexboxcolumn">';
+        $broken_text .= '<h3>'. __( 'SEOKEY fixes the WordPress media library', 'seo-key' ) . '</h3>';
+        $broken_text .= '<p>'. __( 'WordPress Media Library allows users to manage their media and update their alternative texts.', 'seo-key' ) . '</p>';
+        $broken_text .= '<p>';
+        $broken_text .= __( 'But, it <strong>does not natively update alternative texts everywhere</strong>. When you add a media into your content, it is no longer linked to the media library. Changing the ALT in the media library does not change update your media within in your contents.', 'seo-key' );
+        $broken_text .= seokey_helper_help_messages( 'alt-editor-media-library-fixed' );
+        $broken_text .= '</p>';
+        $broken_text .= '<p>';
+        $broken_text .= __( "<strong>SEOKEY PRO do it automatically for you</strong>, you have nothing to do.", 'seo-key' );
+        $broken_text .= '</p>';
+        $broken_text .= '</div>';
+    }
     $text = '<div class="flexbox">';
-	    $text .= '<div class="notice-flexboxcolumn">';
-            $text .= '<h3>'. __( 'Why alternative texts are important?', 'seo-key' ) . '</h3>';
-	        $text .= '<p>';
-                $text .= __( 'With an alternative text, Google will understand your images.', 'seo-key' );
-	            $text .= seokey_helper_help_messages( 'alt-explanations' );
-	        $text .= '</p>';
-            $text .= '<p>'. __( 'It will improve your visibility and accessibility on Search Engines Results.', 'seo-key' ) . '</p>';
-	    $text .= '</div>';
-        $text .= '<div class="notice-flexboxcolumn">';
-            $text .= '<h3>'. __( 'Why is the WordPress Media library broken?', 'seo-key' ) . '</h3>';
-            $text .= '<p>'. __( 'WordPress Media Library allows users to manage their media and update their alternative texts.', 'seo-key' ) . '</p>';
-	        $text .= '<p>';
-                $text .= __( "<strong>But it DOES NOT UPDATE ALTERNATIVE TEXTS for medias already in your contents</strong>. It's up to you to fix them manually.", 'seo-key' );
-	            $text .= seokey_helper_help_messages( 'alt-editor-media-library' );
-            $text .= '</p>';
-        $text .= '</div>';
-        $text .= '<div class="notice-flexboxcolumn">';
-            $text .= '<h3>'. __( 'How to use our SEO ALT editor ?', 'seo-key' ) . '</h3>';
-            $text .= '<p>'. __( 'Use the forms below to update each alternative text. You can use keyboard TAB to switch from one ALT to the next one while updating them.', 'seo-key' ) . '</p>';
-	        $text .= '<p>'. __( 'We added a filter above the media library to allow quick access to all images without alternative texts..', 'seo-key' ) . '</p>';
-	    $text .= '</div>';
-	$text .= '</div>';
+    $text .= '<div class="notice-flexboxcolumn">';
+    $text .= '<h3>'. __( 'Why alternative texts are important?', 'seo-key' ) . '</h3>';
+    $text .= '<p>';
+    $text .= __( 'With an alternative text, Google will understand your images.', 'seo-key' );
+    $text .= seokey_helper_help_messages( 'alt-explanations' );
+    $text .= '</p>';
+    $text .= '<p>'. __( 'It will improve your visibility and accessibility on Search Engines Results.', 'seo-key' ) . '</p>';
+    $text .= '</div>';
+    $text .= $broken_text;
+    $text .= '<div class="notice-flexboxcolumn">';
+    $text .= '<h3>'. __( 'How to use our SEO ALT editor ?', 'seo-key' ) . '</h3>';
+    $text .= '<p>'. __( 'Use the forms below to update each alternative text. You can use keyboard TAB to switch from one ALT to the next one while updating them.', 'seo-key' ) . '</p>';
+    $text .= '<p>'. __( 'We added a filter above the media library to allow quick access to all images without alternative texts..', 'seo-key' ) . '</p>';
+    $text .= '</div>';
+    $text .= '</div>';
     $new_args = array(
-        sanitize_title( 'seokey_notice_media_library_fix_mages' ), // Unique ID.
+        sanitize_title( 'seokey_notice_media_library_fix_images' ), // Unique ID.
         '',
         $text,
         [
             'scope'         => 'user',       // Dismiss is per-user instead of global.
-            'type'          => 'information',    // Make this a warning (orange color).
-            'capability'    => seokey_helper_user_get_capability('editor' ), // only for theses users and above
+            'type'          => 'information',    // Make this an information
+            'capability'    => seokey_helper_user_get_capability('editor' ), // only for these users and above
             'alt_style'     => false, // alternative style for notice
             'option_prefix' => 'seokey_notice_show_media_library',   // Change the user-meta or option prefix.
             'state'         => 'permanent',
@@ -186,10 +201,10 @@ add_filter( 'manage_media_columns', 'seokey_medias_library_columns', SEOKEY_PHP_
 function seokey_medias_library_columns( $columns ) {
     if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
         // Only our custom columns
-        $list['cb']                         = $columns['cb'];
-	    $list['seokey_column_media']        = $columns['seokey_column_media'];
+        // $list['cb']                         = $columns['cb'];
+        $list['seokey_column_media']        = $columns['seokey_column_media'];
         $list['seokey_column_media_alt']    = $columns['seokey_column_media_alt'];
-	    $list['seokey_column_media_name']   = $columns['seokey_column_media_name'];
+        $list['seokey_column_media_name']   = $columns['seokey_column_media_name'];
         return $list;
     }
     // return all columns
@@ -199,9 +214,9 @@ function seokey_medias_library_columns( $columns ) {
 add_filter( 'bulk_actions-upload', 'seokey_medias_library_remove_bulkactions', SEOKEY_PHP_INT_MAX );
 // TODO comment
 function seokey_medias_library_remove_bulkactions($bulk_actions) {
-	if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
-		return [];
-	}
+    if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
+        return [];
+    }
     return $bulk_actions;
 }
 
@@ -241,11 +256,11 @@ function seokey_medias_library_notice_content_grid( $args ) {
             esc_url ( $url )
         ),
         [
-            'scope'         => 'user',       // Dismiss is per-user instead of global.
-            'type'          => 'information',    // Make this a warning (orange color).
-            'capability'    => seokey_helper_user_get_capability('editor' ), // only for theses users and above
-            'alt_style'     => false, // alternative style for notice
-            'state'         => 'permanent',   // Change the user-meta or option prefix.
+	        'scope'         => 'user',       // Dismiss is per-user instead of global.
+	        'type'          => 'information',    // Make this a warning (orange color).
+	        'capability'    => seokey_helper_user_get_capability('editor' ), // only for theses users and above
+	        'screens'       => ['upload'],
+	        'alt_style'     => false, // alternative style for notice
         ]
     );
     array_push($args, $new_args );
@@ -258,7 +273,7 @@ function seokey_medias_library_notice_content_grid( $args ) {
 
 if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
 
-	/************************************ ALT Column **********************************/
+    /************************************ ALT Column **********************************/
     add_filter( 'manage_media_columns', 'seokey_medias_library_column', 50 );
     /**
      * Add our ALT column
@@ -272,13 +287,13 @@ if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
      */
     function seokey_medias_library_column( $posts_columns ) {
         // Add an ALT column
-	    $posts_columns['seokey_column_media_name']  = esc_html__( 'Media information', 'seo-key' );
-	    $posts_columns['seokey_column_media']       = esc_html__( 'Media', 'seo-key' );
-	    $posts_columns['seokey_column_media_alt']   = esc_html__( 'Media ALT attribute', 'seo-key' );
+        $posts_columns['seokey_column_media_name']  = esc_html__( 'Media information', 'seo-key' );
+        $posts_columns['seokey_column_media']       = esc_html__( 'Media', 'seo-key' );
+        $posts_columns['seokey_column_media_alt']   = esc_html__( 'Media ALT attribute', 'seo-key' );
         // Return all colunms
         return $posts_columns;
     }
-    
+
     add_filter( 'manage_upload_sortable_columns', 'seokey_medias_library_column_sortable', SEOKEY_PHP_INT_MAX );
     /**
      * Make our ALT column sortable
@@ -293,11 +308,11 @@ if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
     function seokey_medias_library_column_sortable( $columns ) {
         // Add an ALT column
         $columns['seokey_column_media_alt'] = '_wp_attachment_image_alt';
-	    $columns['seokey_column_media_name'] = 'title';
+        $columns['seokey_column_media_name'] = 'title';
         // Return all colunms
         return $columns;
     }
-    
+
     add_filter( 'request', 'seokey_medias_library_column_sortable_orderby' );
     /**
      * Get the orderby value for our ALT sortable column
@@ -312,9 +327,9 @@ if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
     function seokey_medias_library_column_sortable_orderby( $vars ) {
         if ( isset( $vars['orderby'] ) && '_wp_attachment_image_alt' == $vars['orderby'] ) {
             $vars = array_merge( $vars, array(
-                'orderby' => 'meta_value',
-                'meta_query' => array(
-                    'relation' => 'OR',
+                    'orderby' => 'meta_value',
+                    'meta_query' => array(
+                        'relation' => 'OR',
                         array(
                             'key' => '_wp_attachment_image_alt',
                             'compare' => 'NOT EXISTS'
@@ -329,7 +344,7 @@ if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
         }
         return $vars;
     }
-    
+
     /************************************ ALT Form **********************************/
     add_action( 'manage_media_custom_column', 'seokey_medias_library_column_content_alt_form', 10, 2 );
     /**
@@ -349,131 +364,131 @@ if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
         $alt = get_post_meta( $id, '_wp_attachment_image_alt', true);
         seokey_medias_library_alt_form( $alt, $id );
     }
-	
-	add_action( 'manage_media_custom_column', 'seokey_medias_library_column_content_name', 10, 2 );
-	/**
-	 * Get our Data and form for ALT column
-	 *
-	 * @since   0.0.1
-	 * @author  Daniel Roch
-	 *
-	 * @hook manage_media_custom_column
-	 * @param string $column_name Column name
-	 * @param int $id Media ID
-	 */
-	function seokey_medias_library_column_content_name( $column_name, $id ) {
-		if ( 'seokey_column_media_name' !== $column_name ) {
-			return;
-		}
-		seokey_medias_library_get_file_infos( $id );
-	}
-	
-	add_action( 'manage_media_custom_column', 'seokey_medias_library_column_content_file', 10, 2 );
-	/**
-	 * Get our Data and form for ALT column
-	 *
-	 * @since   0.0.1
-	 * @author  Daniel Roch
-	 *
-	 * @hook manage_media_custom_column
-	 * @param string $column_name Column name
-	 * @param int $id Media ID
-	 */
-	function seokey_medias_library_column_content_file( $column_name, $id ) {
-		if ( 'seokey_column_media' !== $column_name ) {
-			return;
-		}
-		seokey_medias_library_get_media( $id );
-	}
-	
-	// TODO Comment
-	function seokey_medias_library_get_media( $id ) {
-		$post = get_post( $id );
-		list( $mime ) = explode( '/', $post->post_mime_type );
-		
-		$title      = _draft_or_post_title();
-		$thumb      = wp_get_attachment_image( $post->ID, array( 60, 60 ), true, array( 'alt' => '' ) );
-	
-		$class = $thumb ? ' class="has-media-icon"' : '';
-		?>
+
+    add_action( 'manage_media_custom_column', 'seokey_medias_library_column_content_name', 10, 2 );
+    /**
+     * Get our Data and form for ALT column
+     *
+     * @since   0.0.1
+     * @author  Daniel Roch
+     *
+     * @hook manage_media_custom_column
+     * @param string $column_name Column name
+     * @param int $id Media ID
+     */
+    function seokey_medias_library_column_content_name( $column_name, $id ) {
+        if ( 'seokey_column_media_name' !== $column_name ) {
+            return;
+        }
+        seokey_medias_library_get_file_infos( $id );
+    }
+
+    add_action( 'manage_media_custom_column', 'seokey_medias_library_column_content_file', 10, 2 );
+    /**
+     * Get our Data and form for ALT column
+     *
+     * @since   0.0.1
+     * @author  Daniel Roch
+     *
+     * @hook manage_media_custom_column
+     * @param string $column_name Column name
+     * @param int $id Media ID
+     */
+    function seokey_medias_library_column_content_file( $column_name, $id ) {
+        if ( 'seokey_column_media' !== $column_name ) {
+            return;
+        }
+        seokey_medias_library_get_media( $id );
+    }
+
+    // TODO Comment
+    function seokey_medias_library_get_media( $id ) {
+        $post = get_post( $id );
+        list( $mime ) = explode( '/', $post->post_mime_type );
+
+        $title      = _draft_or_post_title();
+        $thumb      = wp_get_attachment_image( $post->ID, array( 60, 60 ), true, array( 'alt' => '' ) );
+
+        $class = $thumb ? ' class="has-media-icon"' : '';
+        ?>
         <strong<?php echo $class; ?>>
-			<?php
-			if ( $thumb ) :
-				?>
+            <?php
+            if ( $thumb ) :
+                ?>
                 <span class="media-icon <?php echo sanitize_html_class( $mime . '-icon' ); ?>"><?php echo $thumb; ?></span>
-			<?php
-			endif;
-			_media_states( $post );
-			?>
+            <?php
+            endif;
+            _media_states( $post );
+            ?>
         </strong>
-		<?php
-	}
- 
-	// TODO Comment
-	function seokey_medias_library_get_file_infos( $id ) {
-		$post = get_post( $id );
-		list( $mime ) = explode( '/', $post->post_mime_type );
-		$title      = _draft_or_post_title();
-		$link_start = '';
-		$link_end   = '';
-		?>
+        <?php
+    }
+
+    // TODO Comment
+    function seokey_medias_library_get_file_infos( $id ) {
+        $post = get_post( $id );
+        list( $mime ) = explode( '/', $post->post_mime_type );
+        $title      = _draft_or_post_title();
+        $link_start = '';
+        $link_end   = '';
+        ?>
         <span>
             <?php _e( 'Title in media library:', 'seo-key' ); ?>
         </span>
         <strong>
-			<?php
-                echo $title;
-                _media_states( $post  );
-			?>
+            <?php
+            echo $title;
+            _media_states( $post  );
+            ?>
         </strong>
         <br>
         <span>
             <?php _e( 'File name:', 'seo-key'  ); ?>
         </span>
         <strong>
-			<?php
-			$file = get_attached_file( $post->ID );
-			echo esc_html( wp_basename( $file ) );
+            <?php
+            $file = get_attached_file( $post->ID );
+            echo esc_html( wp_basename( $file ) );
             ?>
         </strong>
         <br>
         <?php seokey_medias_library_get_parent( $post );
-	}
-    
+    }
+
     // TODO Comment
     function seokey_medias_library_get_parent( $post ) {
-		if ( $post->post_parent > 0 ) {
-			$parent = get_post( $post->post_parent );
-		} else {
-			$parent = false;
-		}
+        if ( $post->post_parent > 0 ) {
+            $parent = get_post( $post->post_parent );
+        } else {
+            $parent = false;
+        }
         if ( $parent ) {
             ?>
             <span>
                 <?php _e( 'This file was uploaded in this content:', 'seo-key'  ); ?>
             </span>
             <?php
-			$title       = _draft_or_post_title( $post->post_parent );
-			$parent_type = get_post_type_object( $parent->post_type );
-			if ( $parent_type && $parent_type->show_ui && current_user_can( 'edit_post', $post->post_parent ) ) {
+            $title       = _draft_or_post_title( $post->post_parent );
+            $parent_type = get_post_type_object( $parent->post_type );
+            if ( $parent_type && $parent_type->show_ui && current_user_can( 'edit_post', $post->post_parent ) ) {
                 ?>
                 <strong>
                     <a href="<?php echo get_edit_post_link( $post->post_parent ); ?>">
-						<?php echo $title; ?>
+                        <?php echo $title; ?>
                     </a>
                 </strong>
-				<?php
-			} elseif ( $parent_type && current_user_can( 'read_post', $post->post_parent ) ) {
-				?>
+                <?php
+            } elseif ( $parent_type && current_user_can( 'read_post', $post->post_parent ) ) {
+                ?>
                 <strong>
                     <?php echo $title; ?>
                 </strong>
-				<?php
-			}
-		}
-	}
+                <?php
+            }
+        }
+    }
 
-    
+
     /**
      * Add ALT form if necessary
      *
@@ -499,7 +514,7 @@ if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
                         esc_html_e( 'No ALT found', 'seo-key' );
                     }
                     echo '<br>';
-                    esc_html_e( 'This media belongs to another author: you can\'t change it.', 'seo-key' );
+                    esc_html_e( "This media belongs to another author: you can't change it.", 'seo-key' );
                     return;
                 }
             }
@@ -507,7 +522,7 @@ if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
             seokey_medias_library_alt_form_content( $alt, $id );
         }
     }
-    
+
     /**
      * ALT Form content
      *
@@ -535,7 +550,7 @@ if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
         </form>
         <?php
     }
-    
+
     add_action( 'admin_enqueue_scripts', 'seokey_medias_library_alt_form_js' );
     /**
      * Add JS for ALT Editor
@@ -572,26 +587,26 @@ add_action( 'wp_ajax_seokey_medias_library_alt_form_update' , 'seokey_medias_lib
  */
 
 function seokey_medias_library_alt_form_update() {
-	// Security check
-	if ( ! check_ajax_referer( 'seokey-js-media-library-alt-nonce', 'security', false ) ||
-	     ! current_user_can( seokey_helper_user_get_capability ('author' ) ) ) {
-		wp_send_json_error( 'Security Issue' );
-		return;
-	}
+    // Security check
+    if ( ! check_ajax_referer( 'seokey-js-media-library-alt-nonce', 'security', false ) ||
+        ! current_user_can( seokey_helper_user_get_capability ('author' ) ) ) {
+        wp_send_json_error( 'Security Issue' );
+        return;
+    }
     // Data
-	$media_post_id  = absint ( $_POST['post_id'] );
+    $media_post_id  = absint ( $_POST['post_id'] );
     // Check if this is your media (if you are not an editor or above)
-	if ( ! current_user_can( seokey_helper_user_get_capability('editor') ) ) {
-		$author_id    = (int) get_post_field( 'post_author', $media_post_id );
-		$current_user = (int) get_current_user_id();
-		if ( $current_user !== $author_id ) {
-		    // This is not your media : die here
-			wp_send_json_error( 'This is not your content' );
-			return;
-		}
-	}
+    if ( ! current_user_can( seokey_helper_user_get_capability('editor') ) ) {
+        $author_id    = (int) get_post_field( 'post_author', $media_post_id );
+        $current_user = (int) get_current_user_id();
+        if ( $current_user !== $author_id ) {
+            // This is not your media : die here
+            wp_send_json_error( 'This is not your content' );
+            return;
+        }
+    }
     // Do we have data ?
-	$media_alt_text = wp_strip_all_tags( $_POST['alt_text'] );
+    $media_alt_text = wp_strip_all_tags( $_POST['alt_text'] );
     $data = sanitize_text_field( $media_alt_text );
     if ( empty ( $data) ) {
         // empty ALT, delete meta
@@ -617,7 +632,7 @@ add_action( 'restrict_manage_posts', 'seokey_medias_library_filter_alt_images', 
  * @hook restrict_manage_posts
  */
 function seokey_medias_library_filter_alt_images(){
-	if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
+    if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
         seokey_medias_library_filter_alt_images_select( array(
             'show_option_all'   => __( 'All medias (with or without ALT)', 'seo-key' ),
             'selected'          => sanitize_title( get_query_var( 'seokey-alt-filter', 0 ) ),
@@ -635,9 +650,9 @@ add_action( 'restrict_manage_posts',  'seokey_medias_library_clean_otheractions'
  * @return void
  */
 function seokey_medias_library_clean_otheractions() {
-	if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
-		remove_all_actions( 'restrict_manage_posts' );
-	}
+    if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
+        remove_all_actions( 'restrict_manage_posts' );
+    }
 }
 
 
@@ -654,34 +669,34 @@ function seokey_medias_library_clean_otheractions() {
  * @param array|string $args Current select arguments
  */
 function seokey_medias_library_filter_alt_images_select( $args = '' ) {
-	$defaults = array(
-		'show_option_all'         => '',
-		'selected'                => 0,
-		'name'                    => 'seokey-alt-filter',
-	);
-	$parsed_args        = wp_parse_args( $args, $defaults );
-	$show_option_all    = esc_html( $parsed_args['show_option_all'] );
-	$name               = esc_attr( $parsed_args['name'] );
-	$output = '';
+    $defaults = array(
+        'show_option_all'         => '',
+        'selected'                => 0,
+        'name'                    => 'seokey-alt-filter',
+    );
+    $parsed_args        = wp_parse_args( $args, $defaults );
+    $show_option_all    = esc_html( $parsed_args['show_option_all'] );
+    $name               = esc_attr( $parsed_args['name'] );
+    $output = '';
     $output .= '<select autocomplete="off" name="' . $name . '">';
     $values = [
-            'without_alt'   => __( 'Images without ALT', 'seo-key'),
-            'with_alt'      => __( 'Images with ALT', 'seo-key')
+        'without_alt'   => __( 'Images without ALT', 'seo-key'),
+        'with_alt'      => __( 'Images with ALT', 'seo-key')
     ];
     if ( $show_option_all ) {
         $output .= "\t<option value='0'>$show_option_all</option>\n";
     }
-	$currentfilter = '';
-	if ( isset( $_GET['seokey-alt-filter'] ) ) {
-		$currentfilter         = sanitize_text_field( $_GET['seokey-alt-filter'] );
-	}
+    $currentfilter = '';
+    if ( isset( $_GET['seokey-alt-filter'] ) ) {
+        $currentfilter         = sanitize_text_field( $_GET['seokey-alt-filter'] );
+    }
     foreach ( (array) $values as $key => $value ) {
-	    $key        = esc_attr( $key );
-	    $_selected  = selected( $key, $currentfilter, false );
+        $key        = esc_attr( $key );
+        $_selected  = selected( $key, $currentfilter, false );
         $output .= "\t<option value='$key' $_selected>" . esc_html( $value ) . "</option>\n";
     }
     $output .= '</select>';
-	echo $output;
+    echo $output;
 }
 
 add_action('pre_get_posts', 'seokey_medias_library_filter_alt_images_request_filter');
@@ -744,9 +759,9 @@ add_filter ( 'disable_months_dropdown', 'seokey_medias_library_clean_dates' );
  * @since   0.0.1
  */
 function seokey_medias_library_clean_dates(){
-	if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
-		return true;
-	}
+    if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
+        return true;
+    }
     return false;
 }
 
@@ -759,8 +774,8 @@ add_filter( 'bulk_actions-upload', 'seokey_medias_library_clean_bulkactions' );
  * @since   0.0.1
  */
 function seokey_medias_library_clean_bulkactions($actions) {
-	if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
+    if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
         return '';
-	}
-	return $actions;
+    }
+    return $actions;
 }

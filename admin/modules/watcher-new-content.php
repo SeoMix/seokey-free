@@ -94,15 +94,16 @@ function seokey_admin_content_watcher(){
  * @hook seokey_filter_admin_notices_launch
  */
 function seokey_admin_content_watcher_notification( $args ) {
-	$title  = '<p>' . esc_html__('New content discovered', 'seo-key') . '</p>';
-	// TODO FIX LINK
-	$contents = sanitize_title( __( 'Contents', 'seo-key' ) );
-	$url    = seokey_helper_admin_get_link('settings') . '#' . $contents;
-	$new    = seokey_helper_cache_data('seokey_new_content');
-	$text   = '<p>' . esc_html_x('SEOKEY has discovered new content on your website: ', 'notification text for a new content discovered', 'seo-key');
-	$text   .= '<strong>' . implode( ', ', $new ) . '</strong>. ';
-	$text   .= esc_html_x('You need to check your SEO settings.', 'notification text for a new content discovered', 'seo-key' ) . '</p>';
-	$text   .= '<p>' . esc_html__('Go to your settings page, check public contents and taxonomies, then save your settings: ', 'seo-key' ) . '<a href="' . $url . '">' . esc_html__('Go to content settings', 'seo-key') . '</a></p>';
+	// data
+	$title      = '<p>' . esc_html__('New content discovered', 'seo-key') . '</p>';
+	$contents   = sanitize_title( __( 'Contents', 'seo-key' ) );
+	$url        = seokey_helper_admin_get_link('settings') . '#' . $contents;
+	$new        = seokey_helper_cache_data('seokey_new_content');
+	// Final content
+	$text   = '<p>' . esc_html_x('SEOKEY has discovered new content types on your website: ', 'notification text for a new content discovered', 'seo-key');
+	$text   .= '<strong>' . implode( ', ', $new ) . '</strong>.</p>';
+	$text   .= '<p><strong>' . esc_html_x('You need to check your SEO settings.', 'notification text for a new content discovered', 'seo-key' ) . '</strong> ';
+	$text   .= wp_kses_post ( sprintf( __( '<a href="%s">Go to your settings page</a>, check public contents and taxonomies, then %ssave your settings%s.', 'seo-key' ), $url, '<strong>', '</strong>' ) . '</p>' );
 	$new_args = array(
 		sanitize_title('seokey_notice_content_watcher'), // Unique ID.
 		$title, // The title for this notice.

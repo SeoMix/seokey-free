@@ -98,30 +98,24 @@ function seokey_admin_term_tinymce_render( $tag, $taxonomy = '' ) {
     );
     // rendering html
     $current_action = current_action();
-    switch( $current_action ) {
-        case 'category_edit_form_fields':
-            ?>
-             <tr class="form-field term-description-wrap term-description-wrap-show">
-                <th scope="row">
-                    <label for="description"><?php _e( 'Description' ); ?></label>
-                </th>
-                <td>
-                    <?php wp_editor( $tag_description, 'html-tag-description', $settings ); ?>
-                    <p class="description"><?php esc_html_e( 'The description is not prominent by default; however, some themes may show it.' ); ?></p>
-                </td>
-            </tr>
-            <?php
-            break;
-        case 'category_add_form_fields':
-            ?>
-            <div class="form-field term-description-wrap term-description-wrap-show">
-                <label for="tag-description"><?php esc_html_e( 'Description' ); ?></label>
-                <?php wp_editor( '', 'html-tag-description', $settings ); ?>
-                <p><?php esc_html_e( 'The description is not prominent by default; however, some themes may show it.' ); ?></p>
-            </div>
-            <?php
-            break;
-    }
+    if( str_contains( $current_action, 'edit_form_fields' ) ): ?>
+        <tr class="form-field term-description-wrap term-description-wrap-show sk-term-description-tinymce">
+            <th scope="row">
+                <label for="description"><?php _e( 'Description' ); ?></label>
+            </th>
+            <td>
+                <?php wp_editor( $tag_description, 'html-tag-description', $settings ); ?>
+                <p class="description"><?php esc_html_e( 'The description is not prominent by default; however, some themes may show it.' ); ?></p>
+            </td>
+        </tr>
+    <?php endif; if( str_contains( $current_action, 'add_form_fields' ) ): ?>
+        <div class="form-field term-description-wrap term-description-wrap-show sk-term-description-tinymce">
+            <label for="tag-description"><?php esc_html_e( 'Description' ); ?></label>
+            <?php wp_editor( '', 'html-tag-description', $settings ); ?>
+            <p><?php esc_html_e( 'The description is not prominent by default; however, some themes may show it.' ); ?></p>
+        </div>
+    <?php endif;
+
 }
 
 add_action( 'current_screen', 'seokey_admin_term_tinymce_init_admin', SEOKEY_PHP_INT_MAX );

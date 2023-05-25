@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin WP List Table : display audit data
+ * Admin WP List Table: display audit data
  *
  * @Loaded  on 'init' + role editor
  *
@@ -152,7 +152,7 @@ class seokey_WP_List_Table_audit_errors extends seokey_WP_List_Table_base {
         $class .= ' issue'. (int) $item['priority'];
         echo '<tr class="' . $class . '" id="auditrow-' . (int) $item['item_id'] . '">';
             $this->single_row_columns( $item );
-		echo '</tr>';
+        echo '</tr>';
     }
 
     /**
@@ -225,7 +225,7 @@ class seokey_WP_List_Table_audit_errors extends seokey_WP_List_Table_base {
         }
         // Get data
         $action         = 'discard';
-        $action_name    = _x( 'Ignore', 'Audit List table row actions', 'seo-key');
+        $action_name    = _x( 'Ignore (PRO only)', 'Audit List table row actions', 'seo-key');
         switch ( $item['item_type_global'] ) {
             case 'post':
                 $type           = "post";

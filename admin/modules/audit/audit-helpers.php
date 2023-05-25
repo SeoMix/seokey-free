@@ -89,6 +89,22 @@ function seokey_audit_get_task_messages( $task = false ) {
 	return 'false';
 }
 
+// TODO COMMENT
+// TODO MOVE
+function seokey_helper_get_meta_values( $key = '' ) {
+	global $wpdb;
+	if( empty( $key ) ) {
+		return '';
+	}
+	$r = $wpdb->get_col( $wpdb->prepare( "
+        SELECT meta_value FROM {$wpdb->postmeta} WHERE meta_key = %s
+    ", $key ) );
+	foreach ( $r as $key => $result ) {
+		$r[$key] = strtolower($result);
+	}
+	return $r;
+}
+
 /**
  * Tell user what he needs to do
  *
@@ -111,18 +127,16 @@ function seokey_audit_whattodo( $id = 0, $keyword = false ) {
 		// Wait ?
 		$current_time   = current_time ('timestamp' );
 		$date           = get_post_timestamp( $id ) + MONTH_IN_SECONDS ;
-
 		// Recent post
 		if ( $date >= $current_time ) {
 			$message['worktodo'] = __( "Wait", "seo-key" );
 			$message['id']       = "worktodo_wait_30";
 		} else {
 			// Get keyword data
-			$keyword_data   = seokey_audit_keyword_data( $keyword );
 			$updated_date   = get_post_modified_time( 'U', true, $id );
 			$diff = (int) ( ( $current_time - $updated_date ) / DAY_IN_SECONDS );
 			// Post recently updated
-			if ( $diff < 7 ) {
+			if ( $diff < 14 ) {
 				$message['worktodo'] = __( "Wait", "seo-key" );
 				$message['id']       = "worktodo_wait_7";
 			}
@@ -135,28 +149,4 @@ function seokey_audit_whattodo( $id = 0, $keyword = false ) {
 	}
 	// return data
 	return $message;
-}
-
-/**
- * Get keyword position
- *
- * @param  int $count
- *
- * @return string
- */
-function seokey_audit_keyword_data( $keyword ) {
-	$position = '';
-	// Get position data
-	global $wpdb;
-	$table_name = $wpdb->prefix . 'seokey_gsc_keywords';
-	$sql        = $wpdb->prepare( "SELECT * FROM $table_name WHERE keyword = %s", $keyword );
-	$result     = $wpdb->get_results( $sql );
-	if ( !empty( $result ) ) {
-		$result = get_object_vars( $result[0] );
-		$position = [
-			'position'  => $result['position'],
-			'url'       => $result['url'],
-		];
-	}
-	return $position;
 }

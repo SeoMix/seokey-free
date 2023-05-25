@@ -122,7 +122,7 @@ function seokey_automatic_optimizations_list(){
 			__( 'Schema.org:', 'seo-key' ) => __( "We've added schema.org markup to improve all of your contents", 'seo-key' ),
 		],
         'WordPress sitemaps'                => [
-			__( 'WordPress sitemaps:', 'seo-key' ) => __( "We replaced native WordPress sitemaps with powerful custom sitemaps", 'seo-key' ),
+			__( 'WordPress XML sitemaps:', 'seo-key' ) => __( "We replaced native WordPress sitemaps with powerful custom sitemaps", 'seo-key' ),
         ],
         'User metas'                        => [
 			__( 'User metas:', 'seo-key' ) => __( "We added some new fields to each user: fill them to help Google understand your authors", 'seo-key' ),

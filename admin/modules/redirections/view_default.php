@@ -24,10 +24,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php include_once plugin_dir_path( __FILE__ ) . 'form.php'; ?>
 
 <h2>
-    <?php esc_html_e('Active redirections', 'seo-key'); ?>
+    <?php esc_html_e('Active redirects', 'seo-key'); ?>
 </h2>
-<p>
-    <?php esc_html_e ( 'Find below all your current manual and active redirections:', 'seo-key');?>
+<p class="seokey-tooltip-parent">
+    <?php esc_html_e ( 'Find below the list of redirections that you have added manually:', 'seo-key');?>
+    <?php echo seokey_helper_help_messages( 'redirection-table-active-redirects');?>
 </p>
 
 <?php

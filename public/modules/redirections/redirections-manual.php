@@ -39,7 +39,7 @@ class Seokey_Redirections {
 	public function seokey_redirections_get_types() {
 		$types = [
 			'direct',
-//			'regex'
+			// 'regex'
 		];
 		return $types;
 	}
@@ -47,10 +47,10 @@ class Seokey_Redirections {
 	 * Redirection init
 	 */
 	public function seokey_redirections_init() {
-		// Get current URL without ending slash
-		$url = seokey_helper_url_get_current();
+		// Get current URL without ending slash (no cache and no port to prevent errors on local)
+		$url = seokey_helper_url_get_current( false, false );
 		// Remove domain from URL
-		$this->url = esc_url_raw( seokey_helper_url_remove_domain( $url ) );
+		$this->url = esc_url_raw( seokey_helpers_get_current_domain ( $url ) );
 		// Get redirection types
 		$types = $this->seokey_redirections_get_types();
 		// Let's go to work
@@ -58,7 +58,7 @@ class Seokey_Redirections {
 			$this->seokey_redirections_check( sanitize_title( $key ) );
 		}
 	}
-
+	
 	/**
 	 * Does this URL need to be redirected ?
 	 *
@@ -74,20 +74,11 @@ class Seokey_Redirections {
 				// Check redirection type
 				switch ( $type ) {
 					case 'direct':
-						if ( $redirection->source === $this->url ) {
+						if ( $redirection->source === htmlspecialchars_decode( $this->url ) || $redirection->source === seokey_helper_url_remove_domain( htmlspecialchars_decode( $this->url ) ) ) {
 							$this->seokey_redirections_execute_redirection( $redirection, 'direct' );
 						}
 						break;
-
-					// TODO Later Regex
-//					case 'regex':
-//						// Pattern
-//						$pattern = "#^" . $redirection->source . "$#";
-//						// If there is match
-//						if ( preg_match( $pattern, $this->url ) ) {
-//							$this->seokey_redirections_execute_redirection( $redirection, 'regex' );
-//						}
-//						break;
+					// TODO Later regex
 					default:
 						break;
 					// End switch
@@ -104,19 +95,15 @@ class Seokey_Redirections {
 	 * @return array|bool|object|null
 	 */
 	public function seokey_redirections_get_db( $type ) {
+		$urls = array( htmlspecialchars_decode( $this->url ), htmlspecialchars_decode( seokey_helper_url_remove_domain( $this->url ) ) );
 		switch ( $type ) {
 			case 'direct':
 				$where = [
-					'query' => "source = %s",
-					'value' => $this->url
+					'query' => "source IN (%s, %s)",
+					'value' => $urls
 				];
 				break;
-//			case 'regex':
-//				$where = [
-//					'query' => "type = %s",
-//					'value' => 'regexp'
-//				];
-//				break;
+			// TODO Later regex
 			default:
 				break;
 			// End switch

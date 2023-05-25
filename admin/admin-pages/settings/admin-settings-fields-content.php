@@ -169,7 +169,7 @@ function seokey_settings_add_contents_explanations( $value, $messageid ) {
 		$value['text']  .= esc_html__( "It is a kind of content. For example, WordPress have two default post types : posts and pages.", 'seo-key' );
 		$value['text']  .= '<br><br>';
 		if ( !empty( $recent_post ) ) {
-			$value['text']  .= sprintf( __( 'Here is an example URL for this post type : <strong><a href="%s" target="_blank">%s</a></strong>', 'seo-key' ), get_permalink( $recent_post[0]['ID'] ), esc_html( $recent_post[0]['post_title'] ) );
+			$value['text']  .= sprintf( __( 'Here is an example of content found for this post type: <strong><a href="%s" target="_blank">%s</a></strong>', 'seo-key' ), get_permalink( $recent_post[0]['ID'] ), esc_html( $recent_post[0]['post_title'] ) );
 			$value['text']  .= '<br><br>';
 			$value['text']  .= __( '<strong>Is it useful for users or for Google ?</strong><br>If your answer is no, select "Hide". If you don\'t know, keep the "Show" option.', 'seo-key' );
 		} else {
@@ -194,13 +194,13 @@ function seokey_settings_add_contents_explanations( $value, $messageid ) {
 		$value['text']  = sprintf( __( 'You can sort contents with the <strong>"%s"</strong> taxonomy.', 'seo-key'), $labels->labels->name );
 		$value['text']  .= '<br><br>';
 		$value['text']  .= __( '<strong>What is a taxonomy?</strong> ', 'seo-key' );
-		$value['text']  .= esc_html__( 'It is used to display a list of contents. For example, "categories" are a taxonomy used to display "posts".', 'seo-key' );
+        $value['text']  .= esc_html__( "It is used to display a list of contents. For example, 'categories' are a taxonomy used to display 'posts'.", 'seo-key' );
 
 		$value['text']  .= '<br><br>';
 		if ( !is_wp_error( $recent_term ) && !empty( $recent_term ) ) {
-			$value['text']  .= sprintf( __( 'Here is an example URL for this taxonomy : <strong><a href="%s" target="_blank">%s</a></strong>', 'seo-key' ), get_term_link( $recent_term->term_id ), esc_html( $recent_term->name ) );
+			$value['text']  .= sprintf( __( 'Here is an example of content found for this taxonomy: <strong><a href="%s" target="_blank">%s</a></strong>', 'seo-key' ), get_term_link( $recent_term->term_id ), esc_html( $recent_term->name ) );
 		} else {
-			$value['text']  .= sprintf( __( 'Actually, you do not have created any "%s".".', 'seo-key' ), $labels->labels->name );
+			$value['text']  .= sprintf( __( 'Actually, you do not have created any "%s".', 'seo-key' ), $labels->labels->name );
 		}
 		$value['text']  .= '<br><br>';
 		$value['text']  .= __( '<strong>Is it useful for users or for Google ?</strong><br>If your answer is no, select "Hide".  If you don\'t know, keep the "Show" option.', 'seo-key' );

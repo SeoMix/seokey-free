@@ -71,10 +71,10 @@
     background-color: #bd4b00;
     background-image:url('../img/picto-warning-white.png');
 }
-.seokey-notice.notice-warning,
-.seokey-notice.notice-warning .notice-title {
-    color: #bd4b00;
-}
+/*.seokey-notice.notice-warning,*/
+/*.seokey-notice.notice-warning .notice-title {*/
+/*    color: #bd4b00;*/
+/*}*/
 
 /* Add faded image background for notic icons */
 .seokey-notice .notice-icon::before {
@@ -113,6 +113,7 @@
 }
 .seokey-notice .notice-content {
     padding: 0.5em 0.5em 1em;
+    width: 100%;
 }
 
 
@@ -145,4 +146,20 @@
 }
 .notice-content a.button {
     margin: 0 0.5em 0 0;
+}
+
+
+@media screen and (max-width: 782px){
+    .flexbox {
+        display: block;
+    }
+    .notice-flexboxcolumn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1;
+        margin: 1em 10px 1em 0;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+        padding: 20px;
+    }
 }

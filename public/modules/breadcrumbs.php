@@ -34,7 +34,7 @@ function seokey_breacrumbs_data(){
 	$data[] = [
 		'position'  => 1,
 		'url'       => get_home_url(),
-		'name'      => get_bloginfo( 'name' ),
+		'name'      => ( !empty( get_bloginfo( 'name' ) ) ) ? get_bloginfo( 'name' ) : esc_html__( 'Homepage', 'seo-key' ),
 	];
 	// Let's start the clock
 	$i = 2;

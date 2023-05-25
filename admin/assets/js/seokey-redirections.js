@@ -184,17 +184,11 @@ jQuery(document).ready(function($) {
             });
 
 
-
-
-
             $('#seokey-redirections-form').one('submit', function (e) {
                 e.preventDefault();
                 var source = $('#seokey-redirections-form #source').val();
                 var target = $('#seokey-redirections-form #target').val();
                 seokey_redirections_submit(e, source, target);
-                $('#seokey-redirections-form #source').val('');
-                $('#seokey-redirections-form #target').val('');
-                $('#seokey-redirections-form #id').val('');
             });
 
         },
@@ -239,6 +233,7 @@ jQuery(document).ready(function($) {
                         list.init();
                         // loader
                         $('.seokey-loader').hide();
+                        $('body').reloadTooltip();
                     }
                 },
                 error: function (data) {
@@ -319,12 +314,23 @@ jQuery(document).ready(function($) {
                         per_page: $('input[name=per_page]').val() || '20',
                         s: $('#search_id-search-input').val(),
                     };
+                    $('#seokey-redirections-form #source').val('');
+                    $('#seokey-redirections-form #target').val('');
+                    $('#seokey-redirections-form #id').val('');
                     list.update(datalist);
                 } else {
                     console.log(data.data);
                     console.log(data);
                     alert(data.data);
-                    list.reload();
+                    var query = window.location.search.substring(1);
+                    var datalist = {
+                        paged: list.__query(query, 'paged') || '1',
+                        order: 'DESC',
+                        orderby: 'hits_last_at',
+                        per_page: $('input[name=per_page]').val() || '20',
+                        s: $('#search_id-search-input').val(),
+                    };
+                    list.update(datalist);
                 }
             },
             error: function (data) {

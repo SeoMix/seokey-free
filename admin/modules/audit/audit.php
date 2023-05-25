@@ -80,8 +80,6 @@ function _seokey_audit_ajax_launch_callback() {
         $audit_status = get_option( 'seokey_audit_running' );
         // No audit, launch one
         if ( true !== $audit_status ) {
-	        // Check CRON before
-//	        seokey_helper_cron_check();
 	        // Tell people an audit is running
             update_option( 'seokey_audit_running', true, false );
             // Launch
@@ -207,6 +205,7 @@ function _seokey_audit_kill_process_callback() {
 	delete_option( 'seokey_audit_tasks_count_types' );
     delete_option( 'seokey_audit_running' );
     delete_option( 'seokey_audit_running_401_test' );
+	delete_option( 'seokey_audit_global_last_update' );
 	delete_option( 'seokey_audit_global_url_count_withoutinfo' );
 	delete_option( 'seokey_audit_global_task_max_score' );
 	delete_option( 'seokey_audit_global_issues_count_old' );

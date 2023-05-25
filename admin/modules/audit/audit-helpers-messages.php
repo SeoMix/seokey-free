@@ -35,6 +35,9 @@ function seokey_audit_get_task_messages_content() {
         'image_alt_missing' => [
             '3' => __( '%d of %d images do not have an alternative text (ALT) in your content. You need to describe each image for Search Engines.', 'seo-key' ),
         ],
+        'no_image' => [
+            '3' => __( 'No image has been found in your content: you should at least add one to improve it.', 'seo-key' ),
+        ],
 	    'no_links' => [
 		    '2' => __( 'No internal links found in your content: you should add some towards your important contents in order to give them more popularity.', 'seo-key' ),
 	    ],
@@ -61,6 +64,7 @@ function seokey_audit_get_task_messages_content_subpriority() {
 	]);
 }
 
+					
 
 /**
  * Get task message detail
@@ -73,6 +77,7 @@ function seokey_audit_get_task_text_with_count( $text, $count ) {
         'title_length'              => _n( '<span class="seokey-issue-count">%s</span> issue with a content title', '<span class="seokey-issue-count">%s</span> issues with titles', (int) $count, 'seo-key' ),
         'meta_desc_length'          => _n( '<span class="seokey-issue-count">%s</span> issue with a meta description', '<span class="seokey-issue-count">%s</span> issues with meta descriptions', (int) $count, 'seo-key' ),
         'image_alt_missing'         => _n( '<span class="seokey-issue-count">%s</span> content with images without descriptions (ALT text)', '<span class="seokey-issue-count">%s</span> contents with images without descriptions (ALT text)', (int) $count, 'seo-key' ),
+        'no_image'                  => _n( '<span class="seokey-issue-count">%s</span> content without image', '<span class="seokey-issue-count">%s</span> contents without image', (int) $count, 'seo-key' ),
         'no_links'                  => _n( '<span class="seokey-issue-count">%s</span> content without internal link', '<span class="seokey-issue-count">%s</span> contents without internal links', (int) $count, 'seo-key' ),
         'main_keyword_selection'    => _n( '<span class="seokey-issue-count">%s</span> content without a main keyword chosen', '<span class="seokey-issue-count">%s</span> contents without a main keyword chosen', (int) $count, 'seo-key' ),
         'words_count'               => _n( '<span class="seokey-issue-count">%s</span> content too short', '<span class="seokey-issue-count">%s</span> contents too short', (int) $count, 'seo-key' ),
@@ -89,7 +94,8 @@ function seokey_audit_get_task_name() {
 		'title_length'              => esc_html__( 'Issues with meta title', 'seo-key' ),
 		'meta_desc_length'          => esc_html__( 'Issues with meta descriptions', 'seo-key' ),
 		'image_alt_missing'         => esc_html__( 'Image ALT missing in contents', 'seo-key' ),
-		'no_links'                  => esc_html__( 'No internal links in contents', 'seo-key' ),
+        'no_image'                  => esc_html__( 'No image in contents', 'seo-key' ),
+        'no_links'                  => esc_html__( 'No internal links in contents', 'seo-key' ),
 		'main_keyword_selection'    => esc_html__( 'Main keyword selection', 'seo-key' ),
 		'words_count'               => esc_html__( 'Word Count', 'seo-key' ),
 	] );
@@ -119,7 +125,7 @@ function seokey_audit_task_list_global_types() {
 function seokey_audit_message( $score ){
     // switch
     if ( false === $score ) {
-        return esc_html__( "No audit data yet ",'seo-key'  );
+	    return esc_html__( "No audit data yet ",'seo-key'  );
     }
     $score = (int) $score;
     if ( $score > 85 && $score <= 100 ) {
@@ -166,6 +172,7 @@ function seokey_audit_message_detail_issues() {
     echo '<ul id="audit-details">';
         if ( false !== $content_checked ) {
             echo '<li>';
+			// TODO singular/plural
             printf( __( '<span class="seokey-audit-show-numbers">%1$s</span> content checked', 'seo-key' ), (int) $content_checked );
         }  else {
             echo '<li class="notyet">';
@@ -174,6 +181,7 @@ function seokey_audit_message_detail_issues() {
         echo '</li>';
         if ( false !== $tasks ) {
             echo '<li>';
+	        // TODO singular/plural
             printf( __( '<span class="seokey-audit-show-numbers">%1$s</span> audit tasks performed', 'seo-key' ), (int) $tasks - 2 );
         } else {
             echo '<li class="notyet">';

@@ -280,10 +280,16 @@ class seokey_Schema_Org {
 
 	// TODO Comments
 	public function seokey_schema_org_breadcrumbs() {
+		$name = get_bloginfo( 'name' );
+		// user has not defined a name...
+		if ( empty ( $name ) ) {
+			$parsed = parse_url( get_home_url() );
+			$name   =  $parsed['host'];
+		}
 		// Define base data
 		$breadcrumb     = seokey_breacrumbs_data();
 		$datas['@type'] = 'BreadcrumbList';
-		$datas['@name'] = get_bloginfo( 'name' );
+		$datas['@name'] = $name;
 		// Iterate
 		if ( ! empty( $breadcrumb ) ) {
 			$datas['itemListElement'] = [];
@@ -315,8 +321,8 @@ class seokey_Schema_Org {
 	 */
 	public function seokey_schema_org_actions() {
 		$datas['@type'] = 'WebSite';
-		$datas['name'] = get_bloginfo( 'name' );
-		$datas['url'] = home_url();
+        $datas['name']  = apply_filters( 'seokey_filter_schema_org_actions_name', get_bloginfo( 'name' ) );
+        $datas['url']   = home_url();
 		$datas['potentialAction'] = [
 			'@type'     => 'SearchAction',
 			'target'    => [

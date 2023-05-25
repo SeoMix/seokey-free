@@ -33,12 +33,24 @@ add_filter ( 'seokey_admin_notices_allowed_html', 'seokey_admin_notices_allowed_
  */
 function seokey_admin_notices_allowed_tags( $tags ){
     $new_tags = [
-	    'button'      => [
-		    'class' => [],
+        'button'      => [
+            'class' => [],
             'id' => [],
-	    ],
+        ],
+        'span'      => [
+            'class'                             => [],
+            'data-ot-fixed'                     => [],
+            'data-ot-remove-elements-on-hide'   => [],
+            'data-ot-title'                     => [],
+            'data-ot'                           => [],
+            'data-ot-stem'                      => [],
+            'data-ot-stem-base'                 => [],
+            'data-ot-stem-length'               => [],
+        ],
         'ul'      => [],
         'li'      => [],
+        'br'      => [],
+        'strong'  => [],
     ];
     $tags = array_merge( $new_tags, $tags );
     return $tags;

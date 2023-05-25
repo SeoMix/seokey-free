@@ -109,21 +109,27 @@ add_action( 'template_redirect', 'seokey_redirections_authors', 10 );
  * @return void
  */
 function seokey_redirections_authors() {
-	if ( is_author() ) {
-		// All author pages are privates ?
-		$page = seokey_helper_get_option( 'cct-pages', [] );
-		if ( ! empty( $page ) && ! in_array( 'author', $page ) ) {
-			wp_safe_redirect( esc_url( get_home_url() ), 301 );
-			die;
-		}
-		// Is this an author pagination ?
-		$pagination = seokey_helper_get_paged();
-		if ( $pagination >= 2 ) {
-			$url = get_author_posts_url( get_the_author_meta( 'ID' ) );
-			wp_safe_redirect( esc_url( $url ), 301 );
-			die;
-		}
-	}
+    if ( is_author() ) {
+        // All author pages are privates ?
+        $page = seokey_helper_get_option( 'cct-pages', [] );
+        if ( ! empty( $page ) && ! in_array( 'author', $page ) ) {
+            wp_safe_redirect( esc_url( get_home_url() ), 301 );
+            die;
+        }
+        // Is this an author pagination ?
+        $disabled = seokey_helper_get_option('seooptimizations-pagination-authors', 'yes' );
+        // Remove secondary feeds (manual option to disable all or automatic without user choice)
+        if ( 'yes' === $disabled || (string) 1 === $disabled ) {
+            // Redirect author pages
+            $pagination = seokey_helper_get_paged();
+            if ( $pagination >= 2 ) {
+                $url = get_author_posts_url( get_the_author_meta( 'ID' ) );
+                wp_safe_redirect( esc_url( $url ), 301 );
+                die;
+            }
+        }
+
+    }
 }
 
 add_action( 'template_redirect', 'seokey_redirections_attachment', 1 );
@@ -190,6 +196,7 @@ function seokey_redirections_410() {
 		$check = [
 			$content_dir.'/cache', // WP Rocket and many other cache plugins
 			$content_dir.'/glc_cache', // "gravatar local cache"
+			$content_dir.'/et-cache', // Divi cache
             $content_dir.'/uploads/gravatar-cache', // "Harry gravatar cache"
             $content_dir.'/uploads/hummingbird-assets', // "Hummingbird assets"
             $content_dir.'/uploads/wphb-cache', // "Hummingbird cache"
@@ -201,9 +208,11 @@ function seokey_redirections_410() {
 		 * @since 0.0.1
 		 * @param (array) $check List of wp-content directories
 		 */
-		$check = apply_filters( 'seokey_filter_redirections_410_ressources', $check );
-		$current_url = seokey_helper_url_get_current();
-		// do we need a 410 code ?
+		$check          = apply_filters( 'seokey_filter_redirections_410_ressources', $check );
+		$current_url    = seokey_helper_url_get_current();
+		// Remove parameters if necessary
+		$current_url    = strtok( $current_url, "?" );
+		// Do we need a 410 code ?
 		if ( true === seokey_helper_strpos_array( $current_url, $check ) ) {
 			// Get files extensions available in WordPress core
 			$extensions = wp_get_ext_types();
@@ -250,22 +259,34 @@ function seokey_redirections_archive_date() {
  * @hook template_redirect
  * @return void
  */
-add_action ( 'template_redirect', 'seokey_sitemap_native_redirect', 10000 );
-function seokey_sitemap_native_redirect() {
+add_action ( 'template_redirect', 'seokey_redirections_sitemap_native_redirect', 10000 );
+function seokey_redirections_sitemap_native_redirect() {
 	if ( is_404() ) {
 		// Is it a native sitemap URL ?
 		if ( seokey_helper_is_sitemap() ) {
 			// User has defined good and bad content ?
-			if ( ! empty(get_option('seokey-field-cct-cpt'))) {
-				// SEOKEY Sitemaps index URL
-				$custom_sitemaps = home_url( '/sitemap-index.xml') ;
+			if ( ! empty( get_option('seokey-field-cct-cpt') ) ) {
+				$lang		= apply_filters('seokey_filter_sitemap_native_redirect_lang', 'default_lang' );
+				// Search for data in both locale then iso2 data (each multingual plugin seems to do whatever they want...)
+				$parent_key = seokey_helpers_get_parent_key( seokey_helper_cache_data('languages')["lang"], $lang, 'locale' );
+				if ( false === $parent_key ) {
+					$parent_key = seokey_helpers_get_parent_key( seokey_helper_cache_data('languages')["lang"], $lang, 'iso2' );
+				}
+				// Find correct sitemap URL to redirect to
+				if ( false !== $parent_key) {
+					$sitemap_name	= 'sitemap-index-' . $parent_key. '.xml';
+				} else {
+					$sitemap_name	= 'sitemap-index-' . seokey_helper_cache_data('languages')['site']['default_lang'] . '.xml';
+				}
+				$custom_sitemaps    = wp_upload_dir()['baseurl'].'/seokey/sitemaps/' . $sitemap_name;
 				// Do you need another URL to redirect to ?
-				$redirecturl = apply_filters( 'seokey_filter_sitemap_native_redirect', $custom_sitemaps, seokey_helper_url_get_current() );
+				$redirecturl        = apply_filters( 'seokey_filter_sitemap_native_redirect', $custom_sitemaps, seokey_helper_url_get_current() );
 			}
 			// User has not defined good and bad content : sitemaps are not yet available
 			else {
-				$redirecturl = home_url();
+				$redirecturl = user_trailingslashit( apply_filters( 'seokey_filter_home_url', home_url() ) );
 			}
+			seokey_dev_write_log($redirecturl);
 			wp_safe_redirect( esc_url( $redirecturl ), 301 );
 			die;
 		}

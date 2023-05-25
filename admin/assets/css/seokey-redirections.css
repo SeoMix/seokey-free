@@ -194,7 +194,7 @@
     top: 14px;
     left: 14px;
     border-radius: 50%;
-    border: 8px solid #000;
+    border: 8px solid #2aacd6;
     border-color: #2aacd6 transparent #2aacd6 transparent;
     animation: ldio-196n3v9fpr3h 1s linear infinite;
 }
@@ -289,9 +289,6 @@
     .column-actions-wrapper {
         display: flex;
         flex-direction: column;
-    }
-    .seokey-tooltip-icon {
-        right: 28px;
     }
     .seokey-redirections-tools p {
         padding-right: 50px;

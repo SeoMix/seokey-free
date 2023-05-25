@@ -121,7 +121,8 @@ class SeoKeyActivateDeactivate {
 			}
 		}
 	}
-	
+
+
 	/**
 	 * WordPress and PHP version check
 	 *
@@ -252,13 +253,14 @@ class SeoKeyActivateDeactivate {
     */
 	protected function seokey_activate_deactivate_sitemaps_delete(){
         // TODO Delete batch !
-		include_once( SEOKEY_PATH_ADMIN. 'modules/sitemap/sitemaps-delete.php' );
+        include_once( SEOKEY_PATH_COMMON. 'seo-key-helpers.php' );
+        include_once( SEOKEY_PATH_ADMIN. 'modules/sitemap/sitemaps-delete.php' );
 		if ( class_exists( 'Seokey_Sitemap_Delete' ) && method_exists( 'Seokey_Sitemap_Delete', 'seokey_sitemap_delete_init' ) ) {
 			$sitemap = new Seokey_Sitemap_Delete();
 			$sitemap->seokey_sitemap_delete_init();
 		}
 	}
-	
+
     /**
      * Create all sitemaps
      *
@@ -278,21 +280,6 @@ class SeoKeyActivateDeactivate {
 		    update_option( 'seokey_sitemap_creation', 'running', true );
         }
     }
-
-	/**
-	 * Add our files
-	 *
-	 * @since   0.0.1
-	 * @author  Daniel Roch
-	 *
-	 * @hook register_activation_hook()
-	 */
-//	protected function seokey_activate_deactivate_files_add(){
-//		seokey_helper_files( 'create', 'muplugin' );
-//        seokey_helper_files( 'create', 'mupluginjs' );
-//        seokey_helper_files( 'create', 'muplugincss' );
-//		seokey_helper_files( 'create', 'robots' );
-//	}
 
     /**
      * Clean Crons
@@ -379,51 +366,5 @@ class SeoKeyActivateDeactivate {
 		$wpdb->query( "DELETE FROM `{$wpdb->prefix}postmeta` WHERE `meta_key` LIKE 'seokey-%'");
 		$wpdb->query( "DELETE FROM `{$wpdb->prefix}termmeta` WHERE `meta_key` LIKE 'seokey-%'");
 		$wpdb->query( "DELETE FROM `{$wpdb->prefix}usermeta` WHERE `meta_key` LIKE 'seokey-%'");
-	}
-
-	/**
-	 * Remove all sitemaps from search console
-	 *
-	 * @since   0.0.1
-	 * @author  Leo Fontin
-	 *
-	 * @hook register_deactivation_hook()
-	 */
-	public function seokey_activate_deactivate_search_console_deactivation() {
-		require_once( SEOKEY_PATH_ADMIN . 'modules/search-console/search-console.php' );
-		$gsc = new Seokey_SearchConsole();
-		// Remove sitemaps from Search Console
-		$gsc->sitemaps->seokey_gsc_sitemaps_get_selected_site();
-		// Vérifier si index sur la search console //
-		$gsc->sitemaps->seokey_gsc_sitemaps_get_online();
-		if ( str_starts_with( $gsc->sitemaps->site['url'], 'sc-domain:' ) ) {
-			$gsc->sitemaps->site['http'] = home_url();
-		}
-		foreach ( $gsc->sitemaps->items as $item => $data ) {
-			$gsc->sitemaps->seokey_gsc_sitemaps_delete( $item );
-		}
-		$gsc->sitemaps->seokey_gsc_sitemaps_delete( home_url( '/feed/') );
-	}
-
-	/**
-	 * Remove all data in WordPress (token, selected site and data)
-	 *
-	 * @since   0.0.1
-	 * @author  Leo Fontin
-	 *
-	 * @hook register_uninstall_hook()
-	 */
-	public function seokey_activate_deactivate_search_console_uninstall() {
-		require_once( SEOKEY_PATH_ADMIN . 'modules/search-console/search-console.php' );
-		$gsc = new Seokey_SearchConsole();
-		// Revoke token with oauth api
-		$gsc->seokey_gsc_set_api();
-		$gsc->api->seokey_gsc_api_revoke_token();
-		// Delete option with token
-		delete_option( Seokey_SearchConsole::OPTION_AUTH_TOKEN );
-		// Delete option site selected
-		delete_option( Seokey_SearchConsole::OPTION_SITE_SELECTED );
-		// Delete cache
-		$gsc->seokey_gsc_delete_cache();
 	}
 }

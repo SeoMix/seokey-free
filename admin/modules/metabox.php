@@ -85,7 +85,7 @@ function seokey_meta_boxes_add( $term ) {
 	global $current_screen, $taxnow;
 	// Taxonomies
 	if ( 'edit-' . $taxnow === $current_screen->id ) {
-  
+
 		add_meta_box(
 			'seokey-metatags',
 			'<i class="dashicons dashicons-seokey-lock"></i> ' .__( 'SEOKEY - Improve your visibility', 'seo-key' ),
@@ -141,11 +141,9 @@ function seokey_meta_boxes_add_filter_taxo_accordion_sections( $safe_text, $text
  * @global $taxnow
  **/
 function seokey_meta_boxes_public_taxos_callback( $dummy, $box ) {
-    ?>
-    <span id="tab-seokey-metas" class="seokey-metabox-tab seokey-metabox-tab-first">
-        <p class="description"><?php esc_html_e( 'Tell Google what your content is about:', 'seo-key' ); ?></p>
-        <span class="seokey-flex">
-            <?php
+    echo '<span id="tab-seokey-metas" class="seokey-metabox-tab seokey-metabox-tab-first">';
+        echo '<p class="description">'.esc_html_e( 'Tell Google what your content is about:', 'seo-key' ).'</p>';
+        echo '<span class="seokey-flex">';
             // Define our variables
             global $taxnow;
             $is_term = false;
@@ -195,7 +193,7 @@ function seokey_meta_boxes_public_taxos_callback( $dummy, $box ) {
                 ]
             );
         echo '</span>';
-        seokey_helper_admin_print_meta_fields_html_visibility( $args2 );
+    seokey_helper_admin_print_meta_fields_html_visibility( $args2 );
 	echo '</span>';
 }
 
@@ -210,47 +208,31 @@ function seokey_meta_boxes_public_taxos_callback( $dummy, $box ) {
  **/
 function seokey_meta_boxes_public_cpts_callback() {
     echo '<div id="seokey-stats">';
-        echo '<p class="description">';
+        echo '<p class="description has-explanation">';
             esc_html_e( 'SEO performance for this content', 'seo-key' );
+            echo seokey_helper_help_messages('metabox-data-source-sc');
         echo '</p>';
         $search = new Seokey_SearchConsole();
         $content = $search->seokey_gsc_metabox_render('post', get_the_ID() );
         echo $content;
         ?>
-
-        <p class="description">
+        <p class="description" id="seokey-seo-goal">
             <?php esc_html_e( 'Your SEO goal', 'seo-key' ); ?>
         </p>
         <p>
             <?php esc_html_e( 'Tell SEOKEY what is the main topic of this content to receive better advice.', 'seo-key' ); ?>
         </p>
-        <div id="main-keyword-block">
-            <?php
-            $suggested_keywords = seokey_helper_cache_data( 'seokey_metabox_suggested_keyword' );
-            // Check if we have data
-            if ( !empty( $suggested_keywords ) ) {
-                echo '<p>';
-                    $data = new Seokey_SearchConsole_Analytics();
-                    $text = $data->seokey_gsc_analytics_get_suggestions( $suggested_keywords );
-                    unset($data);
-                    echo ' ' . esc_html__( 'Suggestion from Search Console Data: ', 'seo-key' ) . '<strong>' . $text .'</strong>';
-                echo '</p>';
-                seokey_helper_loader('metabox-main-keyword');
-            }
-            ?>
-        </div>
         <?php
         $current_keyword = get_post_meta( get_the_ID(), "seokey-main-keyword", true );
-        $button_text = ( empty( $current_keyword ) ) ? __( 'Add keyword', 'seo-key' ) : __( 'Update keyword', 'seo-key' );
+        $button_text = ( empty( $current_keyword ) ) ? __( 'Target this keyword or phrase', 'seo-key' ) : __( 'Update keyword or phrase', 'seo-key' );
         ?>
         <input id="seokey_audit_content_main_keyword" type="text" name="seokey_audit_content_main_keyword" value="<?php echo esc_attr( $current_keyword  ); ?>"/>
         <button id ="content_main_keyword_submit" type="submit" class="button button-primary"><?php echo esc_html( $button_text ); ?></button>
         <span id="seokey_audit_content_main_keyword_message" style="display:none"></span>
-        <p class="description">
+        <p class="description" id="seokey-seo-optimize">
             <?php esc_html_e( 'Optimize and audit your content', 'seo-key' ); ?>
         </p>
     </div>
-
     <?php
     $html = '';
     $links      = [
@@ -268,7 +250,6 @@ function seokey_meta_boxes_public_cpts_callback() {
         $html.= '<a id="' . sanitize_html_class( $key ) . '" href="#' . sanitize_html_class( $key ) . '" class="' . $class . '">' . $type . '</a>';
     }
     ?>
-
     <?php
     echo '<nav role="navigation" class="nav-tab-wrapper">' . $html . '</nav>';
     ?>
@@ -384,6 +365,8 @@ function seokey_meta_boxes_profile_callback() {
         );
     echo '</span>';
     seokey_helper_admin_print_meta_fields_html_visibility( $args );
+
+
 	seokey_users_profile_form( $user_id );
 }
 
@@ -453,5 +436,33 @@ function seokey_meta_boxes_save_all( $object_id, $post_or_tt_id = null ) {
 		} else {
 			$delete_object_meta( $object_id, 'seokey-content_visibility' );
 		}
+	}
+}
+
+add_action( 'created_term', 'seokey_meta_boxes_created_term_save_meta', 10, 3 );
+/**
+ * Save custom data on term creation
+ *
+ * @author Gauvain Van Ghele, Daniel Roch
+ * @since  1.5.2
+ *
+ * @hook   created_term
+ * @param int $term_id Term ID
+ * @param int $tt_id Term ID + Taxonomy
+ * @param string $taxonomy Taxonmy name
+ * @return void
+ */
+function seokey_meta_boxes_created_term_save_meta(  $term_id, $tt_id, $taxonomy ) {
+    // Meta Title
+    if( isset( $_POST['metatitle'] ) ){
+        add_term_meta( $term_id, 'seokey-metatitle', sanitize_text_field( $_POST['metatitle'] ) );
+    }
+    // Metdesc
+    if( isset( $_POST['metadesc'] ) ) {
+        add_term_meta( $term_id, 'seokey-metadesc', sanitize_textarea_field( $_POST['metadesc'] ) );
+    }
+    // Noindex
+	if( isset( $_POST['content_visibility'] ) ) {
+		add_term_meta( $term_id, 'seokey-content_visibility', (int) $_POST['content_visibility'] );
 	}
 }

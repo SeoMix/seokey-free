@@ -121,3 +121,14 @@ function seokey_redirections_display_nav_tabs() {
     $html = '<nav role="navigation" class="nav-tab-wrapper">' . $html . '</nav>';
 	return $html;
 }
+
+// TODO Comments
+function seokey_redirection_display_column_source( $item ){
+    if( !wp_http_validate_url( $item['source'] ) ) {
+        $link = home_url( $item['source'] );
+    } else {
+        $link = $item['source'];
+    }
+    $html = '<a class="sourceurl" href="' . esc_url( $link ) . '">' . esc_html( $link ) . '</a>';
+    return $html;
+}

@@ -66,8 +66,17 @@ function seokey_head_meta_canonical_get(){
 			$current_url = home_url( '?' . add_query_arg( array(), $wp->query_string ) );
 		} else {
 			// we have a clean URL structure
-			// TODO Does not work with incorrect folders in terms URL (for example wrong parent folder in product_category URL
-			$current_url = home_url( add_query_arg( array(), $wp->request ) );
+			if ( is_singular() ) {
+				$current_url = get_permalink();
+				$current_url = seokey_helper_get_paginated_url( $current_url, 'post' );
+			 }
+			// Do not use is_archive() function, it will break with date, author and post type archives
+			elseif ( is_tag() || is_category() || is_tax() ) {
+				$current_url = get_term_link( get_queried_object()->term_id );
+				$current_url = seokey_helper_get_paginated_url( $current_url );
+			} else {
+				$current_url = home_url( add_query_arg( array(), $wp->request ) );
+			}
 		}
 	}
 	/**

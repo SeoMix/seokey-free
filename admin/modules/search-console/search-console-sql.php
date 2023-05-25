@@ -38,6 +38,7 @@ function seokey_gsc_create_table() {
                 `impressions` int(11) DEFAULT NULL,
                 `position` float DEFAULT NULL,
                 `url` text,
+                `item_id` int(11) DEFAULT NULL,
                 PRIMARY KEY (`id`)
             ) $collate";
     maybe_create_table( $table_name, $sql );
@@ -55,6 +56,8 @@ function seokey_gsc_create_table() {
                 PRIMARY KEY (`id`)
             ) $collate";
     maybe_create_table( $table_name, $sql );
+	
+	// TODO Later: delete this table ?
     // SQL creation : our targeted keywords !
     $table_name = $wpdb->base_prefix . 'seokey_keywords';
     $sql = "CREATE TABLE `$table_name` ( 
@@ -67,6 +70,7 @@ function seokey_gsc_create_table() {
             ) $collate";
     maybe_create_table( $table_name, $sql );
 }
+
 
 /**
  * Delete tables on plugin uninstall

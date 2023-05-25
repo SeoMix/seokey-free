@@ -85,7 +85,7 @@
 
 
 #automatic_optimizations_list_items {
-    max-width: 800px;
+    max-width: 900px;
     margin: 1.75em auto 3em;
 }
 .automatic_optimization_input:checked + label {

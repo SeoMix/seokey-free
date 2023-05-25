@@ -98,3 +98,32 @@ function seokey_redirections_delete_table_bad() {
 	$sql        = "DROP TABLE IF EXISTS $table_name";
 	$wpdb->query( $sql );
 }
+
+/**
+ * Update URL to use full link (only when updating)
+ *
+ * @since   1.6.0
+ * @author  Gauvain Van Ghele
+ */
+function seokey_redirections_update_full_url(){
+    global $wpdb;
+    $tables = array(
+        $wpdb->prefix . 'seokey_redirections',
+        $wpdb->prefix . 'seokey_redirections_bad',
+    );
+    foreach ( $tables as $table ){
+        $redirections = $wpdb->get_results( "SELECT * FROM $table" );
+        foreach( $redirections as $redirection ) {
+            if ( filter_var( $redirection->source, FILTER_VALIDATE_URL ) === FALSE ) {
+                $datas  = ['source' => seokey_helpers_get_base_url( $redirection->source ) ];
+                $format = ['%s'];
+                $wpdb->update( $table, $datas, ['id' => (int) $redirection->id ], $format, ['%d'] );
+            }
+            // Check & delete duplicated redirections
+            $duplicated_redirection = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $table WHERE source = %s", $redirection->target  ) );
+            if( $duplicated_redirection ){
+                $wpdb->delete( $table, array( 'source' => $redirection->target ) );
+            }
+        }
+    }
+}

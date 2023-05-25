@@ -127,6 +127,8 @@ function seokey_audit_get_task_score_sub_priority( $array ) {
     return $array;
 }
 
+
+
 /**
  * Get audit issues count
  */

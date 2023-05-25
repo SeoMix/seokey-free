@@ -87,18 +87,28 @@ class Notice {
 		'p'         => [],
 		'h3'         => [],
 		'a'         => [
-			'href'  => [],
-			'rel'   => [],
-			'class' => [],
+			'href'      => [],
+			'rel'       => [],
+            'id'        => [],
+            'class'     => [],
+            'target'    => [],
 		],
 		'em'        => [],
 		'strong'    => [],
 		'br'        => [],
-		'span'      => [
-			'class' => [],
-		],
+        'span'      => [
+            'id'                                => [],
+            'class'                             => [],
+            'rel'                               => [],
+            'data-ot'                           => [],
+            'data-ot-title'                     => [],
+            'data-ot-fixed'                     => [],
+            'data-ot-remove-elements-on-hide'   => [],
+            'data-ot-stem'                      => [],
+        ],
 		'div'      => [
-			'class' => [],
+            'id' => [],
+            'class' => [],
 		],
 	];
 
@@ -172,16 +182,16 @@ class Notice {
 	 * @return void
 	 */
 	public function the_notice() {
-		
+
 		// Early exit if we don't want to show this notice.
 		if ( ! $this->show() ) {
 			return;
 		}
-		
+
 		$html    = $this->get_title();
 		$html    .= $this->get_message();
 		$classes = $this->get_classes();
-		
+
 		if ( !empty($this->options['state'] ) &&  'permanent' === $this->options['state'] ) {
 			$classes = explode(' ', $classes );
 			if ( ( $key = array_search( 'is-dismissible', $classes ) ) !== false ) {

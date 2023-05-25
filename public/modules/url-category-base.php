@@ -37,7 +37,7 @@ function seokey_permalinks_category_base_flush_init() {
         if ( class_exists( 'Seokey_Sitemap_Render' ) ) {
             $sitemaps = Seokey_Sitemap_Render::get_instance();
             $sitemaps->seokey_sitemap_init( 'term', 'category' );
-	        $sitemaps->seokey_sitemap_init( 'post', 'post' );
+            $sitemaps->seokey_sitemap_init( 'post', 'post' );
         }
 	}
 }
@@ -101,13 +101,12 @@ if ( seokey_helper_get_option( 'metas-category_base') ) {
 	 * @return array New Rewrites Rules
 	 */
 	function seokey_permalinks_category_base_rewrite_rules( $rules ) {
-		// TODO Later : WPML Compatibility
-		//	if ( class_exists( 'Sitepress' ) ) {
-		//		// WPML compatibility
-		//		global $sitepress;
-		//		remove_filter( 'terms_clauses', array( $sitepress, 'terms_clauses' ) );
-		//		$categories = get_categories( array( 'hide_empty' => false ) );
-		//		add_filter( 'terms_clauses', array( $sitepress, 'terms_clauses' ), 10, 4 );
+		// WPML compatibility
+		if ( class_exists( 'Sitepress' ) ) {
+            global $sitepress;
+            remove_filter('terms_clauses', array($sitepress, 'terms_clauses'));
+            add_filter('terms_clauses', array($sitepress, 'terms_clauses'), 10, 4);
+        }
 		// Get categories
 		$categories = get_categories( array( 'hide_empty' => false ) );
 		if ( is_array( $categories ) && ! empty( $categories ) ) {
@@ -153,10 +152,21 @@ if ( seokey_helper_get_option( 'metas-category_base') ) {
 			if ( '' == $category_base ) {
 				$category_base = 'category';
 			}
+			// TODO later: move these function into third-party folder
+			// WPML compatibility
+            if ( class_exists( 'Sitepress' ) && defined( 'ICL_LANGUAGE_CODE' ) ) {
+                $args = array('element_id' => $term->term_id, 'element_type' => 'category' );
+                $taxonomy_language_code = apply_filters( 'wpml_element_language_code', null, $args );
+                $category_base = apply_filters('wpml_translate_single_string', 'category', 'WordPress', 'URL category tax slug', $taxonomy_language_code);
+            }
+            // Polylang compatibility
+            if ( function_exists( 'pll_translate_string' ) ) {
+                $category_base = pll_translate_string( $category_base, pll_get_term_language($term->term_id) );
+            }
 			// Replace category base
 			$termlink = preg_replace( '`' . preg_quote( trailingslashit( $category_base ), '`' ) . '`u', '', $termlink, 1 );
 		}
-		// return link
+        // return link
 		return $termlink;
 	}
 
@@ -200,13 +210,15 @@ add_action( 'template_redirect', 'seokey_permalinks_default_category_base_redire
  * @hook template_redirect
  */
 function seokey_permalinks_default_category_base_redirect() {
+    // Compare current URL & the URL we want
+    seokey_permalinks_redirect_category_if_wrong_url();
 	// Only on error pages
 	if ( is_404() ) {
-		$category_base = get_option( 'category_base' ); // fsdfd
+		$category_base = get_option( 'category_base' );
 		// User has changed the category base slug for categories
 		if ( '' !== $category_base ) {
 			// Get current URL and default categories base URL
-			$current_url     = seokey_helper_url_get_current( false, false ); http://test2.local:10005/fsdfd/uncategorized/
+			$current_url = seokey_helper_url_get_current( false, false );
 			if ( str_starts_with( $current_url, ( home_url( 'category/' ) ) ) ) {
 				// Let's find the correct category
 				$current_cat_slug = basename( $current_url );
@@ -215,10 +227,33 @@ function seokey_permalinks_default_category_base_redirect() {
 				if ( false === $category ) {
 					return;
 				}
-				// We found it : redirect !
 				wp_redirect( get_category_link( $category ), 301 );
 				exit();
 			}
 		}
 	}
+}
+
+/**
+ * Compare current URL & URL we want ( without / category )
+ * Redirect if not the same
+ *
+ * @author  Gauvain Van Ghele
+ * @since   1.6.0
+ *
+ */
+function seokey_permalinks_redirect_category_if_wrong_url(){
+	// When no 404 is triggered but this not the rigth category URL
+    if ( is_category() ) {
+        $category_link  = get_category_link( get_queried_object()->term_id );
+        $category_url   = parse_url( $category_link );
+        $current_url    = parse_url( seokey_helper_url_get_current( false, false ) );
+        $path1          = explode('/', trim($category_url['path'], '/'));
+        $path2          = explode('/', trim($current_url['path'], '/'));
+        if ( $path1[0] !== $path2[0] ) {
+            // If URl does not match, redirect
+            wp_redirect( $category_link, 301 );
+            die;
+        }
+    }
 }

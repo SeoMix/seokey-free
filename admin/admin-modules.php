@@ -61,7 +61,6 @@ if ( is_admin() ) {
 	    seokey_helper_require_file( 'user-profile',             $modules, 'author', $condition );
 }
 
-
 // Always loaded
 	// Custom extended WP List table class for next modules
 	seokey_helper_require_file( 'class-wp_list_table',          SEOKEY_PATH_COMMON, 'contributor' );
@@ -94,3 +93,5 @@ if ( is_admin() ) {
 	seokey_helper_require_file( 'audit',                        $modules . 'audit/', 'contributor', $condition );
 	// Load ajax functions
 	seokey_helper_require_file( 'admin-ajax',                   SEOKEY_PATH_ADMIN . 'helpers/', 'contributor', $condition );
+	// Load Keyword module
+	seokey_helper_require_file( 'keywords',                     $modules. 'keywords/', 'author', $condition );
