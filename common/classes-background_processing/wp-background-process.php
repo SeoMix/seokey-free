@@ -361,7 +361,7 @@ if ( ! class_exists( 'SeoKey_WP_Background_Process' ) ) {
          */
         protected function memory_exceeded() {
             wp_raise_memory_limit();
-            $memory_limit   = $this->get_memory_limit() * 0.8; // default to 90% of max memory
+            $memory_limit   = $this->get_memory_limit() * 0.9; // default to 90% of max memory
             $current_memory = memory_get_usage( true );
             $return         = false;
             if ( $current_memory >= $memory_limit ) {

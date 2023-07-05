@@ -289,7 +289,7 @@ class seokey_Schema_Org {
 		// Define base data
 		$breadcrumb     = seokey_breacrumbs_data();
 		$datas['@type'] = 'BreadcrumbList';
-		$datas['@name'] = $name;
+		$datas['@name'] = apply_filters( 'seokey_filter_schema_org_actions_name', $name );
 		// Iterate
 		if ( ! empty( $breadcrumb ) ) {
 			$datas['itemListElement'] = [];
@@ -320,18 +320,23 @@ class seokey_Schema_Org {
 	 * @param $datas
 	 */
 	public function seokey_schema_org_actions() {
-		$datas['@type'] = 'WebSite';
-        $datas['name']  = apply_filters( 'seokey_filter_schema_org_actions_name', get_bloginfo( 'name' ) );
-        $datas['url']   = home_url();
-		$datas['potentialAction'] = [
-			'@type'     => 'SearchAction',
-			'target'    => [
-				'@type'     => 'EntryPoint',
-				'urlTemplate' => home_url( '?s=' ) . '{search_term_string}',
-			],
-			'query-input' => "required name=search_term_string"
-		];
-		$this->seokey_schema_org_display( $datas );
+		if ( is_front_page() ) {
+			$pagination = seokey_helper_get_paged();
+			if ( $pagination < 2 ) {
+				$datas['@type']           = 'WebSite';
+				$datas['name']            = apply_filters( 'seokey_filter_schema_org_actions_name', get_bloginfo( 'name' ) );
+				$datas['url']             = home_url();
+				$datas['potentialAction'] = [
+					'@type'       => 'SearchAction',
+					'target'      => [
+						'@type'       => 'EntryPoint',
+						'urlTemplate' => home_url( '?s=' ) . '{search_term_string}',
+					],
+					'query-input' => "required name=search_term_string"
+				];
+				$this->seokey_schema_org_display( $datas );
+			}
+		}
 	}
 	
 	/**

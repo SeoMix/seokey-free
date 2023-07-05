@@ -154,7 +154,7 @@ function seokey_audit_message_detail( $score ){
     if ( $score > 90 && $score <= 100 ) {
         $message = __( 'Almost perfect','seo-key' );
     } elseif ( $score > 50 && $score <= 90 ) {
-        $message = __( 'Keep going, you are almost there','seo-key' );
+        $message = __( 'You are almost there','seo-key' );
     } elseif ( $score > 25 && $score <= 50 ) {
         $message = __( 'You still need to improve your SEO','seo-key' );
     } else {

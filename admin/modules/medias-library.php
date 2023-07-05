@@ -465,7 +465,7 @@ if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
         if ( $parent ) {
             ?>
             <span>
-                <?php _e( 'This file was uploaded in this content:', 'seo-key'  ); ?>
+                <?php _e( 'This file was uploaded while editing this content:', 'seo-key'  ); ?>
             </span>
             <?php
             $title       = _draft_or_post_title( $post->post_parent );

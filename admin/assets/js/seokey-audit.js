@@ -109,7 +109,7 @@ jQuery(document).ready(function ($) {
 
     // Checking current audit status
     function check_current_audit (){
-        var timeout = 3500;
+        var timeout = 4500;
         var retry = 0;
         var lastcount = 0;
         var lasttask = '';
@@ -161,7 +161,7 @@ jQuery(document).ready(function ($) {
                             $("#audit-loader-main-text-details").html( ' ' );
                             if ( false === tasks.tasks_done || jQuery.isEmptyObject(tasks.tasks_done) ) {
                                 retry = retry + 1;
-                                if ( retry > 6 ) {
+                                if ( retry > 9 ) {
                                     // End script
                                     clearInterval(i);
                                     // Reset audit

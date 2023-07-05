@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SEOKEY Pro\n"
-"POT-Creation-Date: 2023-05-24 10:30+0200\n"
-"PO-Revision-Date: 2023-05-24 10:30+0200\n"
+"POT-Creation-Date: 2023-06-06 14:29+0200\n"
+"PO-Revision-Date: 2023-06-06 14:29+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -2196,8 +2196,8 @@ msgid "File name:"
 msgstr "Nom du fichier:"
 
 #: admin/modules/medias-library.php:468
-msgid "This file was uploaded in this content:"
-msgstr "Ce fichier a été téléchargé dans ce contenu :"
+msgid "This file was uploaded while editing this content:"
+msgstr "Ce fichier a été téléchargé lors de l'édition de ce contenu :"
 
 #: admin/modules/medias-library.php:514
 msgid "No ALT found"

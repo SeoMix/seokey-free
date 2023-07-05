@@ -889,11 +889,39 @@ th#priority {
 
 
 
+
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px){
+    #audit-launch{
+        display:block;
+        text-align:center
+    }
+    #audit-loader-main-text{
+        margin:10px auto;
+    }
+    #audit-launch #main-audit-loader{
+        position:relative;
+        left:0;
+        top:0;
+        margin-top:20px;
+    }
+    .seokey-wrapper .nav-tab, .seokey-wrapper .nav-tab-active, #seokey-metabox .nav-tab, #seokey-metabox .nav-tab-active {
+        font-size: 1em;
+    }
+}
+
+.seokey-wrapper .nav-tab-wrapper {
+    display: flex;
+}
+.seokey-wrapper .nav-tab {
+    white-space: break-spaces;
+}
+
 .seokey-spinner::before {
-    border-bottom-color: #EAEAEB;;
-    border-right-color: #EAEAEB;;
+    border-bottom-color: #EAEAEB;
+    border-right-color: #EAEAEB;
 }
 .loader-dark .seokey-spinner::after {
-    border-top-color: #EAEAEB;;
-    border-left-color: #EAEAEB;;
+    border-top-color: #EAEAEB;
+    border-left-color: #EAEAEB;
 }
