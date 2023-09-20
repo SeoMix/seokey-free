@@ -365,9 +365,9 @@ function seokey_meta_boxes_profile_callback() {
         );
     echo '</span>';
     seokey_helper_admin_print_meta_fields_html_visibility( $args );
-
-
-	seokey_users_profile_form( $user_id );
+	if ( function_exists( 'seokey_users_profile_form' ) ) {
+		seokey_users_profile_form( $user_id );
+	}
 }
 
 add_action( 'save_post', 'seokey_meta_boxes_save_all', 10, 2 );

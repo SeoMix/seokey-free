@@ -26,7 +26,7 @@ add_action( 'transition_post_status', 'seokey_ping_publish_post_transition', 10 
  */
 function seokey_ping_publish_post_transition() {
 	// Our mu-plugin is not active, stop what we are doing and let WordPress do his job
-	if ( !defined( SEOKEY_MUPLUGIN_ACTIVE ) ) {
+	if ( !defined( 'SEOKEY_MUPLUGIN_ACTIVE' ) ) {
 		return;
 	}
 	// Post status is changing, check if user has ticked the "noindex" checkbox
@@ -53,7 +53,7 @@ add_action( 'publish_post', 'seokey_ping_publish_post_hook', 6, 1 );
  */
 function seokey_ping_publish_post_hook( $post_id )  {
 	// Our mu-plugin is not active, stop what we are doing
-	if ( !defined( SEOKEY_MUPLUGIN_ACTIVE ) ) {
+	if ( !defined( 'SEOKEY_MUPLUGIN_ACTIVE' ) ) {
 		return;
 	}
 	// Specific action for XML RPC publication

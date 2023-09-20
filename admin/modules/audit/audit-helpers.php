@@ -150,3 +150,26 @@ function seokey_audit_whattodo( $id = 0, $keyword = false ) {
 	// return data
 	return $message;
 }
+
+/**
+ * Return DOMDocument of the given content
+ *
+ * @param  string  $content
+ * @param  boolean  $striplashes  if you need to add striplashes
+ *
+ * @return object
+ */
+function seokey_audit_get_domdocument( $content = '', $striplashes = false ) {
+	$contentToDOM = $striplashes ? stripslashes( $content ) : $content;
+	$dom          = new DOMDocument();
+	// Prevent errors if the content is empty
+	if ( !empty( $contentToDOM ) ) {
+		$dom->loadHTML( $contentToDOM,
+			LIBXML_HTML_NOIMPLIED |      # Make sure no extra BODY
+			LIBXML_HTML_NODEFDTD |              # or DOCTYPE is created
+			LIBXML_NOERROR |                    # Suppress any errors
+			LIBXML_NOWARNING                    # or warnings about prefixes.
+		);
+	}
+	return $dom;
+}

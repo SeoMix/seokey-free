@@ -1081,9 +1081,11 @@ function seokey_sitemap_output_htaccess( $rules ) {
     $new_rules = <<<EOD
 
 # BEGIN SEOKEY
+<IfModule mod_headers.c>
 <files sitemap*.xml>
 Header set X-Robots-Tag "noindex,follow"
 </files>
+</IfModule>
 # END SEOKEY
 
 EOD;

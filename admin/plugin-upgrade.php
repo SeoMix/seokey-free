@@ -173,4 +173,8 @@ function seokey_upgrader_function( $new_version, $actual_version ) {
 		// Launch new sitemap creation
 		update_option( 'seokey_sitemap_creation', 'running', true );
 	}
+    if ( version_compare( $actual_version, '1.6.5' ) < 0 ) {
+        // force htaccess rewrite
+        flush_rewrite_rules();
+    }
 }

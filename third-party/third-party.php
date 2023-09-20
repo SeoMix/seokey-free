@@ -98,3 +98,14 @@ function seokey_admin_compatibility_i18n( $args ) {
 	array_push( $args, $new_args );
 	return $args;
 }
+
+// TODO move into specific file
+add_action( 'after_setup_theme', 'seokey_thirdparty_hello_elementor_metadesc_disable' );
+/**
+ * Remove Hello Elementor meta description tag
+ *
+ * @since 1.6.5
+ */
+function seokey_thirdparty_hello_elementor_metadesc_disable() {
+    remove_action( 'wp_head', 'hello_elementor_add_description_meta_tag' );
+}

@@ -4,9 +4,9 @@ Contributors: seokey, seomix, confridin
 Donate link: https://www.seo-key.com/
 Tags: seo audit, seo, search engine, google, content analysis, schema, référencement, breadcrumbs, référencement naturel, indexation, crawl, rich snippets, serp, search engine, search engine optimization, alternative text, redirection
 Requires at least: 5.5
-Tested up to: 6.2.2
+Tested up to: 6.3.1
 Requires PHP: 7.2
-Stable tag: 1.6.4
+Stable tag: 1.6.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,8 @@ SEOKEY: the simplest and most effective SEO plugin for WordPress
 
 SEOKEY's goal is simple: **to make SEO easier for everyone**.
 
+SEOKEY tells you what you need to do next to boost your SEO! Discover our genuine SEO audit tool, our customized advice for each content, our automatic SEO optimizations and our easy-to-use settings.
+
 Since 2008, we have been improving our SEO expertise for all types of websites: B2C or B2B, for small websites or large international corporations. When it comes to WordPress, we made a straightforward observation: **current SEO plugins are too complex, they don't guide users in their next actions, and the have a number of technical SEO weaknesses**.
 
 SEOKEY Free contains everything you need to manage your SEO: meta tags, redirects, alt editor, and much more. With the <a href="https://www.seo-key.com">SEOKEY PRO plugin</a>, go even further with an enhanced audit, Google bot monitoring, and Search Console connection.
@@ -30,17 +32,17 @@ SEOKEY is the **all-in-one plugin to rank higher in search engine, audit your co
 
 ### Why SEOKEY is different?
 
-We give you all the keys to succeed:
+We give you all the keys to succeed in Search Engines :
 
-- A unique **global SEO audit tool** with real SEO advice
-- **Automatic technical optimizations** without frustrating options
-- A complete **SEO toolbox** (redirections, ALT editor, etc.)
+- A **global SEO audit tool** for WordPress with practical SEO advice
+- **Automatic SEO technical optimizations** without frustrating options
+- A complete **SEO toolbox** (redirections, image ALT editor, etc.)
 - A really **easy-to-use interface**
 
 
 ### WordPress SEO audit
 
-#### Global SEO audit
+#### Global SEO audit for WordPress
 There is no point in getting tips on a single content if you don't have the whole picture. With SEOKEY, you can **audit all your content in one go** to improve your visibility in Google and other Search Engines!
 
 You can then easily consult all your SEO issues, or see at a glance which content is causing the most problems.
@@ -50,7 +52,7 @@ With PRO version, we go even further with a more detailed analysis of 100% of yo
 
 SEOKEY PRO is the only SEO plugin providing a global SEO audit based on real trafic data!
 
-#### Individual SEO audit
+#### Individual SEO audit for each content
 When you edit a specific content in WordPress, we also provide you with a full SEO content analysis.
 
 With PRO version, we also display your SEO data for each content: clics, impressions, visible keywords count
@@ -71,11 +73,11 @@ The result: you can configure and use SEOKEY much faster than with any other SEO
 
 With our global and individual content analysis, you'll be able to correct all your content immediately!
 
-### SEO toolbox (redirections, ALT editor, etc.)
+### SEO toolbox (redirections, images ALT editor, etc.)
 
 SEOKEY provides you with all basic features needed in SEO, without installing third-party plugins or the need to upgrade to the PRO version.
 
-SEOKEY offers a complete WordPress SEO toolbox:
+Our SEO plugin offers a complete WordPress SEO toolbox:
 
 - easily manage your **301 redirects**
 - an **alternative text editor** to modify them all in one place (and we use these new ALT texts to fix images without one within your contents)
@@ -83,7 +85,7 @@ SEOKEY offers a complete WordPress SEO toolbox:
 - we create **new management pages for your Post Type archives** if you have any (for example, your shop product page with Woocommerce)
 - fast and reliable XML sitemap files for all Search engines (Google, Bing and the others). We physically create these files to boost crawling and indexing speed!
 
-### SEOKEY WordPress SEO Plugin: The PRO version to take you even further!
+### SEOKEY WordPress SEO Plugin: PRO version will take you even further!
 
 With SEOKEY PRO, our audit is more in-depth with a much more in-depth analysis of your content.
 
@@ -151,11 +153,15 @@ No, absolutely not. We import all the data from your current SEO plugin without 
 
 = Is SEOKEY compatible with other WordPress extensions and themes?
 
-Yes, SEOKEY is compatible with all popular themes and plugins such as Elementor, Gutenberg, Divi, Astra, WP Rocket, Contact Form, and more.
+Yes, our SEO plugin is compatible with all popular themes and plugins such as Elementor, Gutenberg, Divi, Astra, WP Rocket, Contact Form, and more.
+
+= With SEOKEY PRO, do you have access to my Search Console Data
+
+No. Your Search Console SEO data belongs to you. When connected, data will be imported into your WordPress database and our team never use it.
 
 = What are the automatic SEO optimizations?
 
-Here is a list of the optimized elements:
+Here is a list of our automatic SEO optimizations:
 
 - **Date Archive**: they are disabled (bad content for Google)
 - **Titles and meta descriptions**: They are automatically filled in while awaiting manual improvement by the author (No more %%title%% painful options)
@@ -179,6 +185,19 @@ Please report security bugs found in the source code of the SEO KEY plugin throu
 
 == Changelog ==
 Public roadmap is here: https://trello.com/b/jauwlc3J/seokey-pro-public-roadmap
+
+= 1.6.6
+* Improvement: improved audit task about images when using WooCommerce (Products main images were not correctly detected)
+* Third-party: fix wrong canonical tag with Polylang and folders configuration
+* Fixed: avoid rare errors when seokey_users_profile_form function is not yet defined
+* Fixed: restore FAQ schema when website was using Yoast SEO before
+
+= 1.6.5
+* Improvement: Increase post count limitation to 100 on free audit
+* Improvement: Improved "no link" task explanation
+* Fixed: prevent PHP error after login with some hosting providers (PHP constant name badly recognised)
+* Fixed: prevent PHP error with some hosting providers without mod_headers activated (for example WAMP will now work as intended)
+* Third-party: remove Hello Elementor meta description tag
 
 = 1.6.4
 * Improvement: Improved audit performance on large website

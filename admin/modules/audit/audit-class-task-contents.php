@@ -51,7 +51,7 @@ class SeoKey_Audit_Launch_task_load_content {
         }
         // Get all posts
         $args = array(
-            'numberposts'               => 50,
+            'numberposts'               => 100,
             'post_type'                 => $post_types, // use "any" to get all post types
             'orderby'                   => 'date',
             'no_found_rows'             => true,

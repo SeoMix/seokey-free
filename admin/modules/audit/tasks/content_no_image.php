@@ -49,7 +49,22 @@ class Seokey_Audit_Tasks_content_no_image extends Seokey_Audit_Tasks {
 	 */
 	public function seokey_audit_tasks_audit( $data = '' ) {
 		foreach ( $data as $key => $item ) {
-			$count = preg_match_all("/<img/is", $item['content'], $matches);
+			$dom = seokey_audit_get_domdocument( $item['content'] );
+			$x = new DOMXPath( $dom );
+			$count = count( $x->query( '//img' ) );
+			// If woocommerce is active and we do not have images in the content (no need to check further for this task if we already have images)
+			if( $count === 0 ) {
+				if( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+					// Check if we currently are with a product
+					if ( get_post_type( $item['id'] ) === 'product' ) {
+						// We need to check if the product have at least 1 image because looking in the content will not show any images. Woocommerce will automatically insert product images on product pages
+						$product = wc_get_product( $item['id'] );
+						// If we have images for the product, we need to make $count superior than 0
+						! empty( $product->get_image_id() ) ? $count ++ : '';
+						! empty( $product->get_gallery_image_ids() ) ? $count ++ : '';
+					}
+				}
+			}
 			if ( $count > 0 ) {
 				unset($this->items[ $key ]);
 			} else {

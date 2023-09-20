@@ -38,9 +38,9 @@ function seokey_audit_get_task_messages_content() {
         'no_image' => [
             '3' => __( 'No image has been found in your content: you should at least add one to improve it.', 'seo-key' ),
         ],
-	    'no_links' => [
-		    '2' => __( 'No internal links found in your content: you should add some towards your important contents in order to give them more popularity.', 'seo-key' ),
-	    ],
+        'no_links' => [
+            '2' => __( 'No internal link found in the main content: you should add some towards your important pages.', 'seo-key' ),
+        ],
         'main_keyword_selection'   => [
             '4' => __( 'No keyword has been chosen for this content: please choose one to receive more SEO advice.', 'seo-key' ),
         ],
@@ -78,7 +78,7 @@ function seokey_audit_get_task_text_with_count( $text, $count ) {
         'meta_desc_length'          => _n( '<span class="seokey-issue-count">%s</span> issue with a meta description', '<span class="seokey-issue-count">%s</span> issues with meta descriptions', (int) $count, 'seo-key' ),
         'image_alt_missing'         => _n( '<span class="seokey-issue-count">%s</span> content with images without descriptions (ALT text)', '<span class="seokey-issue-count">%s</span> contents with images without descriptions (ALT text)', (int) $count, 'seo-key' ),
         'no_image'                  => _n( '<span class="seokey-issue-count">%s</span> content without image', '<span class="seokey-issue-count">%s</span> contents without image', (int) $count, 'seo-key' ),
-        'no_links'                  => _n( '<span class="seokey-issue-count">%s</span> content without internal link', '<span class="seokey-issue-count">%s</span> contents without internal links', (int) $count, 'seo-key' ),
+        'no_links'                  => _n( '<span class="seokey-issue-count">%s</span> content without internal link in the main content', '<span class="seokey-issue-count">%s</span> contents without internal link in the main content', (int) $count, 'seo-key' ),
         'main_keyword_selection'    => _n( '<span class="seokey-issue-count">%s</span> content without a main keyword chosen', '<span class="seokey-issue-count">%s</span> contents without a main keyword chosen', (int) $count, 'seo-key' ),
         'words_count'               => _n( '<span class="seokey-issue-count">%s</span> content too short', '<span class="seokey-issue-count">%s</span> contents too short', (int) $count, 'seo-key' ),
     ] );
@@ -95,8 +95,8 @@ function seokey_audit_get_task_name() {
 		'meta_desc_length'          => esc_html__( 'Issues with meta descriptions', 'seo-key' ),
 		'image_alt_missing'         => esc_html__( 'Image ALT missing in contents', 'seo-key' ),
         'no_image'                  => esc_html__( 'No image in contents', 'seo-key' ),
-        'no_links'                  => esc_html__( 'No internal links in contents', 'seo-key' ),
-		'main_keyword_selection'    => esc_html__( 'Main keyword selection', 'seo-key' ),
+        'no_links'                  => esc_html__( 'No internal link in the main content', 'seo-key' ),
+        'main_keyword_selection'    => esc_html__( 'Main keyword selection', 'seo-key' ),
 		'words_count'               => esc_html__( 'Word Count', 'seo-key' ),
 	] );
 }

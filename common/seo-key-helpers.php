@@ -1341,3 +1341,29 @@ function seokey_helpers_get_parent_key( $array, $search_value, $key ) {
 	}
 	return false;
 }
+
+/**
+ * Clean and escape HTML
+ *
+ * @param string $html HTML code to clean
+ * @author  Daniel Roch
+ * @since   1.6.6
+ */
+function seokey_helpers_data_clean_escaped_html( $html ) {
+	// New lines => spaces
+	$html = preg_replace( '/(\r|\n)/', ' ', $html );
+	// <br> => spaces.
+	$html = preg_replace( '/<br(\s*)?\/?>/i', ' ', $html );
+	// <li> => •
+	$html = preg_replace( '/(<li[^>]*>)/i', '$1• ', $html );
+	// Replace closing tags with a space after it (useful for removing tags
+	$html = preg_replace( '/<\/(p|div|h\d)>/i', '</$1> ', $html );
+	// Strip tags
+	$html = wp_strip_all_tags( $html );
+	// Replace multiple spaces with one (created wih our wp_strip_all_tags)
+	$html = preg_replace( '!\s+!', ' ', $html );
+	// Escape (you can never be too careful)
+	$html = esc_html( $html );
+	// Return trimmed data
+	return trim( $html );
+}
