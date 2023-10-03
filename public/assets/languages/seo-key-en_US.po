@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SEOKEY Pro\n"
-"POT-Creation-Date: 2023-10-03 12:02+0200\n"
-"PO-Revision-Date: 2023-10-03 12:02+0200\n"
+"POT-Creation-Date: 2023-10-03 14:25+0200\n"
+"PO-Revision-Date: 2023-10-03 14:25+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -1288,9 +1288,6 @@ msgstr ""
 
 #: admin/modules/audit/audit-helpers-messages.php:48
 #, php-format
-#| msgid ""
-#| "Your main keyword for this content \"%s\" is used in %s%% of your "
-#| "content. You should use it more."
 msgid ""
 "Your main keyword \"%s\" does not appear in the first paragraph or first 100 "
 "words of your content. You should add it there."
@@ -1351,10 +1348,6 @@ msgstr[1] "<span>%s</span> URL with issues"
 
 #: admin/modules/audit/audit-helpers-messages.php:83
 #, php-format
-#| msgid ""
-#| "<span class=\"seokey-issue-count\">%s</span> issue with a content title"
-#| msgid_plural ""
-#| "<span class=\"seokey-issue-count\">%s</span> issues with titles"
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> issue with title tag length"
 msgid_plural ""
@@ -1366,10 +1359,6 @@ msgstr[1] ""
 
 #: admin/modules/audit/audit-helpers-messages.php:84
 #, php-format
-#| msgid ""
-#| "<span class=\"seokey-issue-count\">%s</span> issue with a meta description"
-#| msgid_plural ""
-#| "<span class=\"seokey-issue-count\">%s</span> issues with meta descriptions"
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> issue with meta description "
 "length"
@@ -1400,9 +1389,6 @@ msgstr[1] ""
 
 #: admin/modules/audit/audit-helpers-messages.php:86
 #, php-format
-#| msgid "<span class=\"seokey-issue-count\">%s</span> content without image"
-#| msgid_plural ""
-#| "<span class=\"seokey-issue-count\">%s</span> contents without image"
 msgid "<span class=\"seokey-issue-count\">%s</span> content without any images"
 msgid_plural ""
 "<span class=\"seokey-issue-count\">%s</span> contents without any images"
@@ -1413,11 +1399,6 @@ msgstr[1] ""
 
 #: admin/modules/audit/audit-helpers-messages.php:87
 #, php-format
-#| msgid ""
-#| "<span class=\"seokey-issue-count\">%s</span> content without internal link"
-#| msgid_plural ""
-#| "<span class=\"seokey-issue-count\">%s</span> contents without internal "
-#| "links"
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> content without internal link "
 "in the main content"
@@ -1448,12 +1429,6 @@ msgstr[1] ""
 
 #: admin/modules/audit/audit-helpers-messages.php:89
 #, php-format
-#| msgid ""
-#| "<span class=\"seokey-issue-count\">%s</span> content without a main "
-#| "keyword chosen"
-#| msgid_plural ""
-#| "<span class=\"seokey-issue-count\">%s</span> contents without a main "
-#| "keyword chosen"
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> content without main keyword at "
 "the beginning of the content"
@@ -1486,7 +1461,6 @@ msgid "Meta title length"
 msgstr "Meta title length"
 
 #: admin/modules/audit/audit-helpers-messages.php:103
-#| msgid "Meta description is missing."
 msgid "Meta descriptions length"
 msgstr "Meta descriptions length"
 
@@ -1499,12 +1473,10 @@ msgid "No image in contents"
 msgstr "No image in contents"
 
 #: admin/modules/audit/audit-helpers-messages.php:106
-#| msgid "No internal links in contents"
 msgid "No internal link in main content"
 msgstr "No internal link in main content"
 
 #: admin/modules/audit/audit-helpers-messages.php:107
-#| msgid "Main keyword selection"
 msgid "Main keyword selected"
 msgstr "Main keyword selected"
 
@@ -1517,7 +1489,6 @@ msgid "Word Count"
 msgstr "Word Count"
 
 #: admin/modules/audit/audit-helpers-messages.php:110
-#| msgid "Contents excluded from searches"
 msgid "Noindex contents excluded from Search Engines"
 msgstr "Noindex contents excluded from Search Engines"
 
@@ -1542,8 +1513,6 @@ msgid "Almost perfect"
 msgstr "Almost perfect"
 
 #: admin/modules/audit/audit-helpers-messages.php:167
-#| msgctxt "notification title for the wizard installation"
-#| msgid "You are almost done !"
 msgid "You are almost there"
 msgstr "You are almost there"
 
