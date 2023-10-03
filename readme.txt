@@ -6,7 +6,7 @@ Tags: seo audit, seo, search engine, google, content analysis, schema, référen
 Requires at least: 5.5
 Tested up to: 6.3.1
 Requires PHP: 7.2
-Stable tag: 1.7.0
+Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,9 @@ Please report security bugs found in the source code of the SEO KEY plugin throu
 
 == Changelog ==
 Public roadmap is here: https://trello.com/b/jauwlc3J/seokey-pro-public-roadmap
+
+= 1.7.1
+* Fixed: adding missing french translations
 
 = 1.7.0
 * New: new audit task about main keyword missing in the first part of your content

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SEOKEY Pro\n"
-"POT-Creation-Date: 2023-06-06 14:29+0200\n"
-"PO-Revision-Date: 2023-06-06 14:29+0200\n"
+"POT-Creation-Date: 2023-10-03 12:02+0200\n"
+"PO-Revision-Date: 2023-10-03 12:07+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.4\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: seo-key.php\n"
@@ -1021,8 +1021,8 @@ msgid "Your SEOKEY settings have been updated"
 msgstr "Vos réglages SEOKEY ont été mis à jour"
 
 #: admin/assets/js/seokey-audit-content.js:37
-#: admin/assets/js/seokey-audit-content.js:205
-#: admin/assets/js/seokey-audit-content.js:297
+#: admin/assets/js/seokey-audit-content.js:202
+#: admin/assets/js/seokey-audit-content.js:294
 msgid "This is a private content: we do not audit them."
 msgstr "Ceci est un contenu privé: nous ne les auditons pas."
 
@@ -1036,7 +1036,7 @@ msgid "See less"
 msgstr "Voir moins"
 
 #: admin/assets/js/seokey-audit.js:66
-#: admin/modules/audit/audit-helpers-messages.php:147
+#: admin/modules/audit/audit-helpers-messages.php:157
 msgid "Please wait"
 msgstr "Veuillez patienter"
 
@@ -1237,12 +1237,12 @@ msgid "All issues"
 msgstr "Tous les problèmes"
 
 #: admin/modules/audit/audit-configuration.php:87
-#: admin/modules/audit/audit-helpers-messages.php:118
+#: admin/modules/audit/audit-helpers-messages.php:128
 msgid "Content issues"
 msgstr "Problèmes de contenus"
 
 #: admin/modules/audit/audit-configuration.php:91
-#: admin/modules/audit/audit-helpers-messages.php:119
+#: admin/modules/audit/audit-helpers-messages.php:129
 msgid "Technical issues"
 msgstr "Problèmes techniques"
 
@@ -1301,11 +1301,12 @@ msgstr ""
 
 #: admin/modules/audit/audit-helpers-messages.php:42
 msgid ""
-"No internal links found in your content: you should add some towards your "
-"important contents in order to give them more popularity."
+"No internal link found in the main content: you should add some towards your "
+"important pages."
 msgstr ""
-"Aucun lien n'a été trouvé dans le contenu : vous devriez en ajouter quelques-"
-"uns vers vos contenus importants pour leur donner plus de popularité."
+"Aucun lien n'a été trouvé dans le contenu principal : vous devriez en "
+"ajouter quelques-uns vers vos contenus importants pour leur donner plus de "
+"popularité."
 
 #: admin/modules/audit/audit-helpers-messages.php:45
 msgid ""
@@ -1316,10 +1317,19 @@ msgstr ""
 "recevoir plus de conseils en matière de SEO."
 
 #: admin/modules/audit/audit-helpers-messages.php:48
+#, php-format
+msgid ""
+"Your main keyword \"%s\" does not appear in the first paragraph or first 100 "
+"words of your content. You should add it there."
+msgstr ""
+"Votre mot clé principal «%s» n'apparaît pas dans le premier paragraphe ou "
+"dans les 100 premiers mots de votre contenu. Vous devriez l'y ajouter."
+
+#: admin/modules/audit/audit-helpers-messages.php:51
 msgid "Your content is empty."
 msgstr "Le contenu est vide."
 
-#: admin/modules/audit/audit-helpers-messages.php:49
+#: admin/modules/audit/audit-helpers-messages.php:52
 #, php-format
 msgid ""
 "The length of your content is %d words instead of <strong>%d minimum</"
@@ -1328,7 +1338,7 @@ msgstr ""
 "La longueur de votre contenu est de %d mots au lieu de <strong>%d minimum</"
 "strong>. Vous devez le développer."
 
-#: admin/modules/audit/audit-helpers-messages.php:50
+#: admin/modules/audit/audit-helpers-messages.php:53
 #, php-format
 msgid ""
 "The length of your content is %d words, close to the %d limit. You can do "
@@ -1337,52 +1347,65 @@ msgstr ""
 "La longueur de votre contenu est de %d mots, proche de la limite de %d. Vous "
 "pouvez faire mieux."
 
-#: admin/modules/audit/audit-helpers-messages.php:59
+#: admin/modules/audit/audit-helpers-messages.php:56
+msgid ""
+"This content is hidden from Google. If you want it to appear, you need to "
+"change this option."
+msgstr ""
+"Ce contenu est caché à Google. Si vous voulez qu’il apparaisse, vous devez "
+"modifier cette option."
+
+#: admin/modules/audit/audit-helpers-messages.php:65
 msgid "Meta description empty: you should write one"
 msgstr "Meta description manquante : vous devriez en écrire une"
 
-#: admin/modules/audit/audit-helpers-messages.php:61
+#: admin/modules/audit/audit-helpers-messages.php:67
 #, php-format
 msgid "Meta description too short (%s characters): you should expand it"
 msgstr "Meta description trop courte (%s caractères): vous devriez l'étoffer"
 
-#: admin/modules/audit/audit-helpers-messages.php:63
+#: admin/modules/audit/audit-helpers-messages.php:69
 #, php-format
 msgid "Meta description too long (%s characters): you should reduce it"
 msgstr ""
 "La méta description est trop longue (%s caractères): vous devriez la réduire"
 
-#: admin/modules/audit/audit-helpers-messages.php:75
+#: admin/modules/audit/audit-helpers-messages.php:81
 #, php-format
 msgid "<span class=\"seokey-issue-count\">%s</span> URL with issue"
 msgid_plural "<span>%s</span> URL with issues"
 msgstr[0] "<span class=\"seokey-issue-count\">%s</span> URL avec problème"
 msgstr[1] "<span>%s</span> URL avec problèmes"
 
-#: admin/modules/audit/audit-helpers-messages.php:77
-#, php-format
-msgid "<span class=\"seokey-issue-count\">%s</span> issue with a content title"
-msgid_plural "<span class=\"seokey-issue-count\">%s</span> issues with titles"
-msgstr[0] ""
-"<span class=\"seokey-issue-count\">%s</span> problème avec le contenu d’un "
-"titre"
-msgstr[1] ""
-"<span class=\"seokey-issue-count\">%s</span> problèmes avec les titresc"
-
-#: admin/modules/audit/audit-helpers-messages.php:78
+#: admin/modules/audit/audit-helpers-messages.php:83
 #, php-format
 msgid ""
-"<span class=\"seokey-issue-count\">%s</span> issue with a meta description"
+"<span class=\"seokey-issue-count\">%s</span> issue with title tag length"
 msgid_plural ""
-"<span class=\"seokey-issue-count\">%s</span> issues with meta descriptions"
+"<span class=\"seokey-issue-count\">%s</span> issues with title tag length"
 msgstr[0] ""
-"<span class=\"seokey-issue-count\">%s</span> problème avec une méta-"
-"description"
+"<span class=\"seokey-issue-count\">%s</span> problème avec la longueur de la "
+"balise Title"
 msgstr[1] ""
-"<span class=\"seokey-issue-count\">%s</span> problèmes avec des méta-"
-"descriptions"
+"<span class=\"seokey-issue-count\">%s</span> problèmes avec la longueur des "
+"balises Title"
 
-#: admin/modules/audit/audit-helpers-messages.php:79
+#: admin/modules/audit/audit-helpers-messages.php:84
+#, php-format
+msgid ""
+"<span class=\"seokey-issue-count\">%s</span> issue with meta description "
+"length"
+msgid_plural ""
+"<span class=\"seokey-issue-count\">%s</span> issues with meta description "
+"lengths"
+msgstr[0] ""
+"<span class=\"seokey-issue-count\">%s</span> problème avec la longueur de la "
+"méta-description"
+msgstr[1] ""
+"<span class=\"seokey-issue-count\">%s</span> problèmes avec la longueur des "
+"métas-descriptions"
+
+#: admin/modules/audit/audit-helpers-messages.php:85
 #, php-format
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> content with images without "
@@ -1397,26 +1420,32 @@ msgstr[1] ""
 "<span class=\"seokey-issue-count\">%s</span> contenus avec des images sans "
 "description (texte ALT)"
 
-#: admin/modules/audit/audit-helpers-messages.php:80
+#: admin/modules/audit/audit-helpers-messages.php:86
 #, php-format
-msgid "<span class=\"seokey-issue-count\">%s</span> content without image"
+msgid "<span class=\"seokey-issue-count\">%s</span> content without any images"
 msgid_plural ""
-"<span class=\"seokey-issue-count\">%s</span> contents without image"
-msgstr[0] "<span class=\"seokey-issue-count\">%s</span> contenu sans image"
-msgstr[1] "<span class=\"seokey-issue-count\">%s</span> contenus sans image"
+"<span class=\"seokey-issue-count\">%s</span> contents without any images"
+msgstr[0] ""
+"<span class=\"seokey-issue-count\">%s</span> contenu sans aucune image"
+msgstr[1] ""
+"<span class=\"seokey-issue-count\">%s</span> contenus sans aucune image"
 
-#: admin/modules/audit/audit-helpers-messages.php:81
+#: admin/modules/audit/audit-helpers-messages.php:87
 #, php-format
 msgid ""
-"<span class=\"seokey-issue-count\">%s</span> content without internal link"
+"<span class=\"seokey-issue-count\">%s</span> content without internal link "
+"in the main content"
 msgid_plural ""
-"<span class=\"seokey-issue-count\">%s</span> contents without internal links"
+"<span class=\"seokey-issue-count\">%s</span> contents without internal link "
+"in the main content"
 msgstr[0] ""
-"<span class=\"seokey-issue-count\">%s</span> contenu sans lien interne"
+"<span class=\"seokey-issue-count\">%s</span> contenu sans lien interne dans "
+"le contenu principal"
 msgstr[1] ""
-"<span class=\"seokey-issue-count\">%s</span> contenus sans lien interne"
+"<span class=\"seokey-issue-count\">%s</span> contenus sans lien interne dans "
+"le contenu principal"
 
-#: admin/modules/audit/audit-helpers-messages.php:82
+#: admin/modules/audit/audit-helpers-messages.php:88
 #, php-format
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> content without a main keyword "
@@ -1431,84 +1460,114 @@ msgstr[1] ""
 "<span class=\"seokey-issue-count\">%s</span> contenus sans mot-clé principal "
 "choisi"
 
-#: admin/modules/audit/audit-helpers-messages.php:83
+#: admin/modules/audit/audit-helpers-messages.php:89
+#, php-format
+msgid ""
+"<span class=\"seokey-issue-count\">%s</span> content without main keyword at "
+"the beginning of the content"
+msgid_plural ""
+"<span class=\"seokey-issue-count\">%s</span> contents without main keyword "
+"at the beginning of the content"
+msgstr[0] ""
+"<span class=\"seokey-issue-count\">%s</span> contenu sans son mot-clé "
+"principal présent dans le début du contenu"
+msgstr[1] ""
+"<span class=\"seokey-issue-count\">%s</span> contenus sans leurs mots-clés "
+"principaux présents dans le début du contenu"
+
+#: admin/modules/audit/audit-helpers-messages.php:90
 #, php-format
 msgid "<span class=\"seokey-issue-count\">%s</span> content too short"
 msgid_plural "<span class=\"seokey-issue-count\">%s</span> contents too short"
 msgstr[0] "<span class=\"seokey-issue-count\">%s</span> contenu trop court"
 msgstr[1] "<span class=\"seokey-issue-count\">%s</span> contenus trop courts"
 
-#: admin/modules/audit/audit-helpers-messages.php:94
-msgid "Issues with meta title"
-msgstr "Problème avec les méta titres"
+#: admin/modules/audit/audit-helpers-messages.php:91
+#, php-format
+msgid "<span class=\"seokey-issue-count\">%s</span> hidden content"
+msgid_plural "<span class=\"seokey-issue-count\">%s</span> hidden contents"
+msgstr[0] "<span class=\"seokey-issue-count\">%s</span> contenu masqué"
+msgstr[1] "<span class=\"seokey-issue-count\">%s</span> contenus masqués"
 
-#: admin/modules/audit/audit-helpers-messages.php:95
-msgid "Issues with meta descriptions"
-msgstr "Problème avec les méta descriptions"
+#: admin/modules/audit/audit-helpers-messages.php:102
+msgid "Meta title length"
+msgstr "Longueur de la balise title"
 
-#: admin/modules/audit/audit-helpers-messages.php:96
+#: admin/modules/audit/audit-helpers-messages.php:103
+msgid "Meta descriptions length"
+msgstr "Longueur de la méta description"
+
+#: admin/modules/audit/audit-helpers-messages.php:104
 msgid "Image ALT missing in contents"
 msgstr "Texte alternatif des images manquant dans les contenus"
 
-#: admin/modules/audit/audit-helpers-messages.php:97
+#: admin/modules/audit/audit-helpers-messages.php:105
 msgid "No image in contents"
 msgstr "Aucune image dans les contenus"
 
-#: admin/modules/audit/audit-helpers-messages.php:98
-msgid "No internal links in contents"
+#: admin/modules/audit/audit-helpers-messages.php:106
+msgid "No internal link in main content"
 msgstr "Aucun liens interne dans les contenus"
 
-#: admin/modules/audit/audit-helpers-messages.php:99
-msgid "Main keyword selection"
+#: admin/modules/audit/audit-helpers-messages.php:107
+msgid "Main keyword selected"
 msgstr "Sélection des mots-clés principaux"
 
-#: admin/modules/audit/audit-helpers-messages.php:100
+#: admin/modules/audit/audit-helpers-messages.php:108
+msgid "Main keyword is missing at the beginning of content"
+msgstr "Contenu principal manquant au début du contenu"
+
+#: admin/modules/audit/audit-helpers-messages.php:109
 msgid "Word Count"
 msgstr "Nombre de mots"
 
-#: admin/modules/audit/audit-helpers-messages.php:128
+#: admin/modules/audit/audit-helpers-messages.php:110
+msgid "Noindex contents excluded from Search Engines"
+msgstr "Contenus exclus des recherches"
+
+#: admin/modules/audit/audit-helpers-messages.php:138
 msgid "No audit data yet "
 msgstr "Pas encore de données d’audit "
 
-#: admin/modules/audit/audit-helpers-messages.php:132
+#: admin/modules/audit/audit-helpers-messages.php:142
 msgid "Good job "
 msgstr "Bon travail "
 
-#: admin/modules/audit/audit-helpers-messages.php:134
+#: admin/modules/audit/audit-helpers-messages.php:144
 msgid "Keep working "
 msgstr "Continuez à travailler "
 
-#: admin/modules/audit/audit-helpers-messages.php:149
+#: admin/modules/audit/audit-helpers-messages.php:159
 msgid "You need to launch an audit"
 msgstr "Vous devez lancer un audit"
 
-#: admin/modules/audit/audit-helpers-messages.php:155
+#: admin/modules/audit/audit-helpers-messages.php:165
 msgid "Almost perfect"
 msgstr "Presque parfait"
 
-#: admin/modules/audit/audit-helpers-messages.php:157
-msgid "Keep going, you are almost there"
-msgstr "Continuez, vous y êtes presque"
+#: admin/modules/audit/audit-helpers-messages.php:167
+msgid "You are almost there"
+msgstr "Vous avez presque terminé"
 
-#: admin/modules/audit/audit-helpers-messages.php:159
+#: admin/modules/audit/audit-helpers-messages.php:169
 msgid "You still need to improve your SEO"
 msgstr "Vous devez encore améliorer votre référencement"
 
-#: admin/modules/audit/audit-helpers-messages.php:161
+#: admin/modules/audit/audit-helpers-messages.php:171
 msgid "You still need a lot of work to improve your SEO"
 msgstr "Vous avez encore du travail à faire pour améliorer votre référencement"
 
-#: admin/modules/audit/audit-helpers-messages.php:176
+#: admin/modules/audit/audit-helpers-messages.php:186
 #, php-format
 msgid "<span class=\"seokey-audit-show-numbers\">%1$s</span> content checked"
 msgstr ""
 "<span class=\"seokey-audit-show-numbers\">%1$s</span> contenus vérifiés"
 
-#: admin/modules/audit/audit-helpers-messages.php:179
+#: admin/modules/audit/audit-helpers-messages.php:189
 msgid "No content checked yet"
 msgstr "Aucun contenu n’a encore été vérifié"
 
-#: admin/modules/audit/audit-helpers-messages.php:185
+#: admin/modules/audit/audit-helpers-messages.php:195
 #, php-format
 msgid ""
 "<span class=\"seokey-audit-show-numbers\">%1$s</span> audit tasks performed"
@@ -1516,7 +1575,7 @@ msgstr ""
 "<span class=\"seokey-audit-show-numbers\">%1$s</span> tâches d’audit "
 "effectuées"
 
-#: admin/modules/audit/audit-helpers-messages.php:188
+#: admin/modules/audit/audit-helpers-messages.php:198
 msgid "No SEO issues analyzed yet"
 msgstr "Aucun contenu SEO n’a encore été analysé"
 
@@ -4554,6 +4613,15 @@ msgstr "SeoMix - Daniel Roch"
 msgid "https://www.seomix.fr"
 msgstr "https://www.seomix.fr"
 
+#~ msgid "Issues with meta title"
+#~ msgstr "Problème avec les méta titres"
+
+#~ msgid "Issues with meta descriptions"
+#~ msgstr "Problème avec les méta descriptions"
+
+#~ msgid "Keep going, you are almost there"
+#~ msgstr "Continuez, vous y êtes presque"
+
 #~ msgid "New source already exists"
 #~ msgstr "La nouvelle source existe déjà"
 
@@ -4720,14 +4788,6 @@ msgstr "https://www.seomix.fr"
 
 #, php-format
 #~ msgid ""
-#~ "Your main keyword for this content \"%s\" is used in %s%% of your "
-#~ "content. You should use it more."
-#~ msgstr ""
-#~ "Votre mot clé principal pour ce contenu «%s» est utilisé dans %s%% de "
-#~ "votre contenu. Vous devriez l’utiliser davantage."
-
-#, php-format
-#~ msgid ""
 #~ "This content shares the <strong>\"%s\"</strong> permalink with this "
 #~ "category <a href=\"%s\">%s</a> (<a href=\"%s\">view</a>). You have to "
 #~ "change your category or your content slug."
@@ -4735,13 +4795,6 @@ msgstr "https://www.seomix.fr"
 #~ "Ce contenu <strong>\"%s\"</strong> utilise le même permalien que la "
 #~ "catégorie <a href=\"%s\">%s</a> (<a href=\"%s\">voir</a>). Vous devez "
 #~ "impérativement changer le permalien de ce contenu ou de la catégorie."
-
-#~ msgid ""
-#~ "This content is hidden from Google. If you want it to appear, you need to "
-#~ "change this option."
-#~ msgstr ""
-#~ "Ce contenu est caché à Google. Si vous voulez qu’il apparaisse, vous "
-#~ "devez modifier cette option."
 
 #, php-format
 #~ msgid ""
@@ -4936,12 +4989,6 @@ msgstr "https://www.seomix.fr"
 #~ "catégories et le contenu"
 
 #, php-format
-#~ msgid "<span class=\"seokey-issue-count\">%s</span> hidden content"
-#~ msgid_plural "<span class=\"seokey-issue-count\">%s</span> hidden contents"
-#~ msgstr[0] "<span class=\"seokey-issue-count\">%s</span> contenu masqué"
-#~ msgstr[1] "<span class=\"seokey-issue-count\">%s</span> contenus masqués"
-
-#, php-format
 #~ msgid ""
 #~ "<span class=\"seokey-issue-count\">%s</span> content with not enough "
 #~ "traffic"
@@ -5069,9 +5116,6 @@ msgstr "https://www.seomix.fr"
 
 #~ msgid "Slug conflict between posts and categories"
 #~ msgstr "Conflit de slugs entre les articles et les catégories"
-
-#~ msgid "Contents excluded from searches"
-#~ msgstr "Contenus exclus des recherches"
 
 #~ msgid "Not enough traffic"
 #~ msgstr "Trafic insuffisant"
