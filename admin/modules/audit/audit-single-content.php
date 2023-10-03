@@ -219,40 +219,40 @@ function _seokey_audit_content_check_callback() {
 		// Tell WP we are running an audit while editing on specific content
 		seokey_helper_cache_data('audit_single_running', true );
         foreach ( $task_list as $type => $task_list_details ) {
-            foreach ( $task_list_details as $task ) {
-                $task       = 'content||' . $type . '||' . $task;
-                $details    = explode( '||', $task );
-                $task_name  = sanitize_title ( $details[0] . '_' . $details[2] );
-                $file       = SEOKEY_PATH_ADMIN . 'modules/audit/tasks/' . $task_name . '.php';
-                if ( file_exists( $file ) ) {
-                    seokey_helper_require_file( $task_name, SEOKEY_PATH_ADMIN . 'modules/audit/tasks/', 'contributor' );
-                    $class  = 'Seokey_Audit_Tasks_' . $task_name;
-                    if ( class_exists( $class ) ) {
-                        // Run task now
-                        $run = new $class( $item );
-                        if ( !empty( $run->tasks_status ) ) {
-                            $raw_data = array_shift( $run->tasks_status );
-                            $current_task       = $raw_data['task'];
-                            // Get message for classic task
-                            if ( empty( $raw_data['sub_priority'] ) ) {
-                                $current_priority   = substr( $raw_data['priority'], 0, 1 );
-                                $error = $messages[ $current_task ][ $current_priority ];
-                            }
-                            // Get message for subpriority task
-                            else {
-                                $error          = $submessages[ $raw_data['sub_priority'] ];
-                                $current_task   = $raw_data['sub_priority'];
-                            }
-                            // Do we have data to use ?
-                            if ( !empty( $raw_data['datas'] ) ) {
-                                $error = wp_kses_post( vsprintf( $error, $raw_data['datas'] ) );
-                            }
-	                        $error_list[$current_task] = $error;
+				foreach ( $task_list_details as $task ) {
+					$task      = 'content||' . $type . '||' . $task;
+					$details   = explode( '||', $task );
+					$task_name = sanitize_title( $details[0] . '_' . $details[2] );
+					$file      = SEOKEY_PATH_ADMIN . 'modules/audit/tasks/' . $task_name . '.php';
+					if ( file_exists( $file ) ) {
+						seokey_helper_require_file( $task_name, SEOKEY_PATH_ADMIN . 'modules/audit/tasks/', 'contributor' );
+						$class = 'Seokey_Audit_Tasks_' . $task_name;
+						if ( class_exists( $class ) ) {
+							// Run task now
+							$run = new $class( $item );
+							if ( ! empty( $run->tasks_status ) ) {
+								$raw_data     = array_shift( $run->tasks_status );
+								$current_task = $raw_data['task'];
+								// Get message for classic task
+								if ( empty( $raw_data['sub_priority'] ) ) {
+									$current_priority = substr( $raw_data['priority'], 0, 1 );
+									$error            = $messages[ $current_task ][ $current_priority ];
+	                            }
+	                            // Get message for subpriority task
+								else {
+									$error        = $submessages[ $raw_data['sub_priority'] ];
+									$current_task = $raw_data['sub_priority'];
+								}
+								// Do we have data to use ?
+								if ( ! empty( $raw_data['datas'] ) ) {
+									$error = wp_kses_post( vsprintf( $error, $raw_data['datas'] ) );
+								}
+								$error_list[ $current_task ] = $error;
 
-                        }
-                    }
-                }
-            }
+						}
+					}
+				}
+			}
         }
     }
     // Do we have SEO issues ?
@@ -271,9 +271,9 @@ function _seokey_audit_content_check_callback() {
             // TODO terms and authors
             $type           = "post";
 			if ( !is_numeric( $issue ) ) {
-                $class = "task issue";
-                $action = 'discard';
-                $action_name = _x('Ignore', 'Audit List table row actions', 'seo-key');
+	                $class = "task issue";
+	                $action = 'discard';
+	                $action_name = _x('Ignore', 'Audit List table row actions', 'seo-key');
                 if ( current_user_can( seokey_helper_user_get_capability( 'editor') ) ) {
                     $discard_action = ' <button disabled data-sub_priority="' . esc_attr( $key ) . '" data-task="' . esc_attr( $key ) . '" data-type="' . $type . '" data-useraction="' . $action . '" data-item="' . $id . '" class="issue-' . $action . ' button button-small button-secondary">' . $action_name . '</button>';
                 } else {

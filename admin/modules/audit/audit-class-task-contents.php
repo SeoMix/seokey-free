@@ -28,10 +28,12 @@ class SeoKey_Audit_Launch_task_load_content {
         $noindex    = ( !empty( $args['noindex'] ) ) ? $args['noindex'] : 'exclude';
 	    $subtype    = ( !empty( $args['subtype'] ) ) ? $args['subtype'] : 'no';
         $values     = ( !empty( $args['values'] ) )  ? $args['values']  : '';
+        $metaquery  = ( !empty( $args['meta_query'] ) )  ? $args['meta_query']  : 'no';
+        $post_id    = ( !empty( $args['post_id'] ) )  ? $args['post_id']  : '';
         // What content do we need ?
         switch ( $args['type'] ) {
             case 'posts':
-                return $this->load_posts( $args['type'], $values, $args['task'], $noindex, $subtype );
+                return $this->load_posts( $args['type'], $values, $args['task'], $noindex, $subtype, $post_id, $metaquery );
 	        case 'medias':
 		        return $this->load_medias( $args['type'], $values, $args['task'], $noindex, $subtype );
                 break;
@@ -42,7 +44,7 @@ class SeoKey_Audit_Launch_task_load_content {
     }
 
     // $task is not yet used
-    public function load_posts( $type, $values, $task, $noindex, $subtype ) {
+    public function load_posts( $type, $values, $task, $noindex, $subtype, $post_id, $metaquery ) {
         $items = [];
         // All public CPT in options
 	    $post_types = ( "no" === $subtype ) ? seokey_helper_get_option( 'cct-cpt', get_post_types( ['public' => true ] ) ) : $subtype;
@@ -51,17 +53,24 @@ class SeoKey_Audit_Launch_task_load_content {
         }
         // Get all posts
         $args = array(
-            'numberposts'               => 100,
-            'post_type'                 => $post_types, // use "any" to get all post types
-            'orderby'                   => 'date',
-            'no_found_rows'             => true,
-            'ignore_sticky_posts'       => true,
-            'lang'                      => '',
-            'order'                     => 'ASC',
+            'numberposts'           => 125,
+            'post_type'             => $post_types, // use "any" to get all post types
+            'orderby'               => 'date',
+            'no_found_rows'         => true,
+            'ignore_sticky_posts'   => true,
+            'lang'                  => '',
+            'order'                 => 'DESC',
         );
         unset($post_types);
+        // Include meta query if there is any
+        if ( $metaquery !== 'no' && is_array( $metaquery ) ) {
+            $args['meta_query'] = array(
+                'relation' => 'AND',
+                $metaquery
+            );
+        }
         if ( 'include' !== $noindex ) {
-	        $args['meta_query'] = array(
+            $visibility_metaquery = array(
                 'relation' => 'OR',
                 // Include posts where user has not yet defined the private/public value
                 array(
@@ -76,6 +85,15 @@ class SeoKey_Audit_Launch_task_load_content {
                     'compare'   => '!=',
                 ),
             );
+            // if there is not already a meta_query in $args, create it, else push it in
+            if ( empty( $args['meta_query'] ) ) {
+                $args['meta_query'] = $visibility_metaquery;
+            } else {
+                array_push( $args['meta_query'], $visibility_metaquery );
+            }
+        }
+        if ( ! empty( $post_id ) ) {
+            $args['include'] = $post_id;
         }
         $post_list = get_posts( $args );
         // Keep only what we will need

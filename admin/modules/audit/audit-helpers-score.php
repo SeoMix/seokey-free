@@ -23,45 +23,55 @@ defined( 'ABSPATH' ) or die( 'Cheatin&#8217; uh?' );
  */
 function seokey_audit_get_task_score() {
 	$score = array(
-	    // Content tasks
+		'words_count'               => array(
+			'global'        => 100,
+			'critical'      => 500, // no content
+			'error'         => 50, // far from limit
+			'type'          => 'critical',
+		),
 		'title_length'             => array(
-			'global'        => 6,
+			'global'        => 22,
 			'critical'      => 6, // h1 in content
 			'error'         => 6, // h1 in content
-            'type'          => 'critical',
+			'type'          => 'critical',
 		),
-        'meta_desc_length'      => array(
-            'global'        => 5,
-            'warning'       => 5, // Main keyword not on Google first page
-            'type'          => 'warning',
-        ),
-		'image_alt_missing'         => array(
-            'global'        => 3,
-            'warning'       => 3, // images without ALT in content
-            'type'          => 'warning',
-        ),
-		'no_image'         => array(
-			'global'        => 1,
-			'warning'       => 1, // images without ALT in content
+		'main_keyword_content'    => array(
+			'global'        => 10,
+			'warning'       => 10, // No keyword has been selected for this post
 			'type'          => 'warning',
 		),
 		'no_links'         => array(
 			'global'        => 6,
-			'error'         => 1, // contents without internal links
+			'warning'       => 1, // contents without internal links
+			'error'         => 1,
 			'type'          => 'warning',
 		),
-        'main_keyword_selection'    => array(
+		'no_image'         => array(
+			'global'        => 4,
+			'warning'       => 1, // contents without images
+			'type'          => 'warning',
+		),
+		'image_alt_missing'         => array(
+			'global'        => 3,
+			'warning'       => 3, // images without ALT in content
+			'type'          => 'warning',
+		),
+		'meta_desc_length'      => array(
+			'global'        => 2,
+			'warning'       => 4,
+			'type'          => 'warning',
+		),
+		'main_keyword_selection'    => array(
+			'global'        => 1,
+			'information'   => 0, // No keyword has been selected for this post
+			'type'          => 'information',
+		),
+        'noindex_contents'          => array(
             'global'        => 0,
-            'information'   => 0, // No keyword has been selected for this post
+            'information'   => 0, // This content is private
             'type'          => 'information',
         ),
-        'words_count'               => array(
-            'global'        => 100,
-            'critical'      => 500, // no content
-            'error'         => 100, // far from limit
-            'type'          => 'critical',
-        ),
-    );
+	);
 	return apply_filters( 'seokey_filter_audit_get_task_score', $score );
 }
 
@@ -103,16 +113,6 @@ function seokey_audit_get_tasks_quartiles( $array, $quartile ) {
 add_filter( 'seokey_filter_audit_get_task_score', 'seokey_audit_get_task_score_sub_priority');
 // TODO Comments
 function seokey_audit_get_task_score_sub_priority( $array ) {
-    $no_score = array(
-        'global'        => 0,
-        'information'   => 0, // Main keyword not on Google first page
-        'type'          => 'information',
-    );
-    $new_data['traffic_main_keyword1'] = $no_score;
-    $new_data['traffic_main_keyword2'] = $no_score;
-    $new_data['traffic_main_keyword3'] = $no_score;
-    $new_data['traffic_main_keyword4'] = $no_score;
-
     $score = array(
         'global'        => 5,
         'warning'       => 5, // no meta desc
@@ -122,7 +122,6 @@ function seokey_audit_get_task_score_sub_priority( $array ) {
     $score['warning'] = 2; // meta desc too long or too short
     $new_data['meta_desc_length2'] = $score;
     $new_data['meta_desc_length3'] = $score;
-
     $array = array_merge( $array, $new_data);
     return $array;
 }
@@ -199,7 +198,7 @@ function seokey_audit_global_data_ignored_tasks(){
 	if ( $query->have_posts() ) {
 		while ( $query->have_posts() ) {
 			$query->the_post();
-			// First, we need to know which contents are noindexed
+			// First, we need to know wich contents are noindexed
 			$noindex = get_post_meta( $query->post->ID, 'seokey-content_visibility', true );
 			if ( !empty( $noindex) ) {
 				$values['noindex'][] = $query->post->ID;
@@ -254,13 +253,13 @@ function seokey_audit_global_data_score_global() {
 				$score = $score + 0;
 				break;
 			case 3:
-				$score = $score + 3;
+				$score = $score + 1;
 				break;
 			case 2:
-				$score = $score + 6;
+				$score = $score + 2;
 				break;
 			case 1:
-				$score = $score + 12;
+				$score = $score + 6;
 				break;
 		}
 	}

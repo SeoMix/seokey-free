@@ -153,9 +153,6 @@
             }
         },
 
-
-
-
         /**
          * Init user action : trigger audits only when necessary
          */

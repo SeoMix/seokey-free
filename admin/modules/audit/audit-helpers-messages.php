@@ -35,19 +35,25 @@ function seokey_audit_get_task_messages_content() {
         'image_alt_missing' => [
             '3' => __( '%d of %d images do not have an alternative text (ALT) in your content. You need to describe each image for Search Engines.', 'seo-key' ),
         ],
-        'no_image' => [
-            '3' => __( 'No image has been found in your content: you should at least add one to improve it.', 'seo-key' ),
-        ],
-        'no_links' => [
-            '2' => __( 'No internal link found in the main content: you should add some towards your important pages.', 'seo-key' ),
+	    'no_image' => [
+		    '3' => __( 'No image has been found in your content: you should at least add one to improve it.', 'seo-key' ),
+	    ],
+	    'no_links' => [
+            '3' => __( 'No internal link found in the main content: you should add some towards your important pages.', 'seo-key' ),
         ],
         'main_keyword_selection'   => [
             '4' => __( 'No keyword has been chosen for this content: please choose one to receive more SEO advice.', 'seo-key' ),
+        ],
+        'main_keyword_content'   => [
+            '3' => __( 'Your main keyword "%s" does not appear in the first paragraph or first 100 words of your content. You should add it there.', 'seo-key' ),
         ],
         'words_count'       => [
             '1'  => __( 'Your content is empty.', 'seo-key' ),
             '2'  => __( 'The length of your content is %d words instead of <strong>%d minimum</strong>. You need to expand it.', 'seo-key' ),
             '3'  => __( 'The length of your content is %d words, close to the %d limit. You can do better.', 'seo-key' ),
+        ],
+        'noindex_contents'     => [
+            '4' => __( 'This content is hidden from Google. If you want it to appear, you need to change this option.' , 'seo-key' ),
         ],
     ]);
 }
@@ -71,17 +77,19 @@ function seokey_audit_get_task_messages_content_subpriority() {
  */
 function seokey_audit_get_task_text_with_count( $text, $count ) {
     $array = apply_filters( 'seokey_filter_audit_get_task_text_with_count', [
-        // 'urls' is not a specific task message : it's use for the audit URL tab message
-        'urls'                      => _n( '<span class="seokey-issue-count">%s</span> URL with issue', '<span>%s</span> URL with issues', (int) $count, 'seo-key' ),
+        // 'urls' is not a specific task message: it's use for the audit URL tab message
+        'urls'                          => _n( '<span class="seokey-issue-count">%s</span> URL with issue', '<span>%s</span> URL with issues', (int) $count, 'seo-key' ),
         // Content tasks
-        'title_length'              => _n( '<span class="seokey-issue-count">%s</span> issue with a content title', '<span class="seokey-issue-count">%s</span> issues with titles', (int) $count, 'seo-key' ),
-        'meta_desc_length'          => _n( '<span class="seokey-issue-count">%s</span> issue with a meta description', '<span class="seokey-issue-count">%s</span> issues with meta descriptions', (int) $count, 'seo-key' ),
-        'image_alt_missing'         => _n( '<span class="seokey-issue-count">%s</span> content with images without descriptions (ALT text)', '<span class="seokey-issue-count">%s</span> contents with images without descriptions (ALT text)', (int) $count, 'seo-key' ),
-        'no_image'                  => _n( '<span class="seokey-issue-count">%s</span> content without image', '<span class="seokey-issue-count">%s</span> contents without image', (int) $count, 'seo-key' ),
-        'no_links'                  => _n( '<span class="seokey-issue-count">%s</span> content without internal link in the main content', '<span class="seokey-issue-count">%s</span> contents without internal link in the main content', (int) $count, 'seo-key' ),
-        'main_keyword_selection'    => _n( '<span class="seokey-issue-count">%s</span> content without a main keyword chosen', '<span class="seokey-issue-count">%s</span> contents without a main keyword chosen', (int) $count, 'seo-key' ),
-        'words_count'               => _n( '<span class="seokey-issue-count">%s</span> content too short', '<span class="seokey-issue-count">%s</span> contents too short', (int) $count, 'seo-key' ),
-    ] );
+        'title_length'                  => _n( '<span class="seokey-issue-count">%s</span> issue with title tag length', '<span class="seokey-issue-count">%s</span> issues with title tag length', (int) $count, 'seo-key' ),
+        'meta_desc_length'              => _n( '<span class="seokey-issue-count">%s</span> issue with meta description length', '<span class="seokey-issue-count">%s</span> issues with meta description lengths', (int) $count, 'seo-key' ),
+        'image_alt_missing'             => _n( '<span class="seokey-issue-count">%s</span> content with images without descriptions (ALT text)', '<span class="seokey-issue-count">%s</span> contents with images without descriptions (ALT text)', (int) $count, 'seo-key' ),
+        'no_image'                      => _n( '<span class="seokey-issue-count">%s</span> content without any images', '<span class="seokey-issue-count">%s</span> contents without any images', (int) $count, 'seo-key' ),
+        'no_links'                      => _n( '<span class="seokey-issue-count">%s</span> content without internal link in the main content', '<span class="seokey-issue-count">%s</span> contents without internal link in the main content', (int) $count, 'seo-key' ),
+		'main_keyword_selection'        => _n( '<span class="seokey-issue-count">%s</span> content without a main keyword chosen', '<span class="seokey-issue-count">%s</span> contents without a main keyword chosen', (int) $count, 'seo-key' ),
+        'main_keyword_content'          => _n( '<span class="seokey-issue-count">%s</span> content without main keyword at the beginning of the content', '<span class="seokey-issue-count">%s</span> contents without main keyword at the beginning of the content', (int) $count, 'seo-key' ),
+        'words_count'                   => _n( '<span class="seokey-issue-count">%s</span> content too short', '<span class="seokey-issue-count">%s</span> contents too short', (int) $count, 'seo-key' ),
+        'noindex_contents'              => _n( '<span class="seokey-issue-count">%s</span> hidden content', '<span class="seokey-issue-count">%s</span> hidden contents', (int) $count, 'seo-key' ),
+    ]);
     return sprintf( $array[ $text ], (int) $count  ) ;
 }
 
@@ -91,13 +99,15 @@ function seokey_audit_get_task_text_with_count( $text, $count ) {
 function seokey_audit_get_task_name() {
 	return apply_filters( 'seokey_filter_audit_get_task_name', [
 		// Content tasks
-		'title_length'              => esc_html__( 'Issues with meta title', 'seo-key' ),
-		'meta_desc_length'          => esc_html__( 'Issues with meta descriptions', 'seo-key' ),
-		'image_alt_missing'         => esc_html__( 'Image ALT missing in contents', 'seo-key' ),
-        'no_image'                  => esc_html__( 'No image in contents', 'seo-key' ),
-        'no_links'                  => esc_html__( 'No internal link in the main content', 'seo-key' ),
-        'main_keyword_selection'    => esc_html__( 'Main keyword selection', 'seo-key' ),
-		'words_count'               => esc_html__( 'Word Count', 'seo-key' ),
+		'title_length'                  => esc_html__( 'Meta title length', 'seo-key' ),
+		'meta_desc_length'              => esc_html__( 'Meta descriptions length', 'seo-key' ),
+        'image_alt_missing'             => esc_html__( 'Image ALT missing in contents', 'seo-key' ),
+		'no_image'                      => esc_html__( 'No image in contents', 'seo-key' ),
+		'no_links'                      => esc_html__( 'No internal link in main content', 'seo-key' ),
+		'main_keyword_selection'        => esc_html__( 'Main keyword selected', 'seo-key' ),
+        'main_keyword_content'          => esc_html__( 'Main keyword is missing at the beginning of content', 'seo-key' ),
+		'words_count'                   => esc_html__( 'Word Count', 'seo-key' ),
+        'noindex_contents'              => esc_html__( 'Noindex contents excluded from Search Engines', 'seo-key' ),
 	] );
 }
 

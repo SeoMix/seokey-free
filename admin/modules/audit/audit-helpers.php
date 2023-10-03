@@ -173,3 +173,17 @@ function seokey_audit_get_domdocument( $content = '', $striplashes = false ) {
 	}
 	return $dom;
 }
+
+/**
+ * Return a string in lowercase without special chars and accents, ideal for string comparison
+ *
+ * @param  string  $content
+ *
+ * @return string
+ */
+function seokey_audit_clean_string( $content = '' ) {
+	$cleaned_string = str_replace( '\’', '', $content );// Better for english text
+	$cleaned_string = remove_accents( $cleaned_string );
+	$cleaned_string = strtolower( $cleaned_string );
+	return $cleaned_string;
+}

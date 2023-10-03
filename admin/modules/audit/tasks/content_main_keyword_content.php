@@ -4,13 +4,11 @@
  *
  * @package SEOKEY
  */
-
 //* If this file is called directly, abort.
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
-
-class Seokey_Audit_Tasks_content_no_links extends Seokey_Audit_Tasks {
+class Seokey_Audit_Tasks_content_main_keyword_content extends Seokey_Audit_Tasks {
 	/**
 	 * Define only one instance of our class
 	 */
@@ -22,7 +20,7 @@ class Seokey_Audit_Tasks_content_no_links extends Seokey_Audit_Tasks {
 	public function __construct( $items = '' ) {
 		parent::__construct($items);
 	}
-
+	
 	/**
 	 * Task Class logic
 	 */
@@ -32,48 +30,47 @@ class Seokey_Audit_Tasks_content_no_links extends Seokey_Audit_Tasks {
 			$loader = new SeoKey_Audit_Launch_task_load_content();
 			// Lets define what we will need
 			$args = [
-				'type'  => 'posts',
-				'values' => [
-					'content',
+				'type'          => 'posts',
+				'values'        => [
+					'content', 'keyword'
 				],
-				'task'  => 'no_links',
+                'meta_query'    => [
+					'key'       => 'seokey-main-keyword',
+					'compare'   => 'EXISTS'
+				],
+				'task'          => 'main_keyword_content',
 			];
 			$this->items = $loader->run( $args );
 		}
 		parent::load_task();
 	}
-
+	
 	/**
 	 * Task class audit
 	 * @return void
 	 */
 	public function seokey_audit_tasks_audit( $data = '' ) {
-		$home = untrailingslashit( home_url() );
 		foreach ( $data as $key => $item ) {
-			if ( !empty( $item['content'] ) ) {
-				$dom = seokey_audit_get_domdocument( $item['content'], true );
-				$anchorTags = $dom->getElementsByTagName( 'a' );
-				$count = 0;
-				//Loop through anchors tags
-				foreach( $anchorTags as $anchorTag ) {
-					// Get only internal links
-					if ( str_starts_with( $anchorTag->getAttribute( 'href' ), $home ) ) {
-						// Exclude internal nofollow
-						if ( ! str_contains( $anchorTag->getAttribute( 'rel' ), 'nofollow' ) ) {
-							$count ++;
-						}
-					}
-				}
-				if ( $count > 0 ) {
-					unset($this->items[ $key ]);
-				} else {
-					$this->items[$key] = $item;
-				}
+            // Clean keyword
+            $keyword = seokey_audit_clean_string( $item['keyword'] );
+			// Apply shortcodes and blocks
+			$text = apply_filters( 'the_content', $item['content'] );
+			// Clean HTML tags
+			$text = wp_strip_all_tags( $text );
+			// Get the first 100 words
+			$text = wp_trim_words( $text, 100 );
+			// Clean the text
+			$text = seokey_audit_clean_string( $text );
+			// If the keyword is in the first 100 words unset, else add to the errors list
+			if ( str_contains( $text, $keyword ) ) {
+				unset($this->items[ $key ]);
+			} else {
+				$item['keyword']   = $item['keyword'];
+				$this->items[$key] = $item;
 			}
 		}
-		parent::seokey_audit_tasks_audit();
 	}
-
+	
 	/**
 	 * Set status of this task
 	 * @return void
@@ -83,10 +80,10 @@ class Seokey_Audit_Tasks_content_no_links extends Seokey_Audit_Tasks {
 			$this->tasks_status[$key] = [
 				'item_type_global' => 'post',
 				'audit_type'       => 'content',
-				'task'             => 'no_links',
-				'name'             => 'No links in content',
+				'task'             => 'main_keyword_content',
+				'name'             => 'Targeted keyword missing at start of content',
 				'priority'         => '3warning',
-				'datas'            => '',
+                'datas'            => [ 'keyword' => $item['keyword'] ]
 			];
 		}
 		parent::seokey_audit_tasks_get_status();

@@ -6,7 +6,7 @@ Tags: seo audit, seo, search engine, google, content analysis, schema, référen
 Requires at least: 5.5
 Tested up to: 6.3.1
 Requires PHP: 7.2
-Stable tag: 1.6.6
+Stable tag: 1.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,9 +14,7 @@ SEOKEY: the simplest and most effective SEO plugin for WordPress
 
 == Description ==
 
-**New in 1.6:** multilingual compatibility with WPML and Polylang + compatibility with DIVI, Elementor and WooCommerce.
-
-**Coming soon in 1.7:** Major SEO audit improvement for both Free and PRO versions.
+**New in SEOKEY 1.7:** Major SEO audit improvement for both Free and PRO versions.
 
 ### SEOKEY: the simplest and most effective SEO plugin
 
@@ -26,7 +24,7 @@ SEOKEY tells you what you need to do next to boost your SEO! Discover our genuin
 
 Since 2008, we have been improving our SEO expertise for all types of websites: B2C or B2B, for small websites or large international corporations. When it comes to WordPress, we made a straightforward observation: **current SEO plugins are too complex, they don't guide users in their next actions, and the have a number of technical SEO weaknesses**.
 
-SEOKEY Free contains everything you need to manage your SEO: meta tags, redirects, alt editor, and much more. With the <a href="https://www.seo-key.com">SEOKEY PRO plugin</a>, go even further with an enhanced audit, Google bot monitoring, and Search Console connection.
+Our SEO plugin contains everything you need to manage your SEO: meta tags, redirects, alt editor, and much more. With the <a href="https://www.seo-key.com">SEOKEY PRO plugin</a>, go even further with an enhanced audit, Google bot monitoring, and Search Console connection.
 
 SEOKEY is the **all-in-one plugin to rank higher in search engine, audit your content, and determine the NEXT action you should take**.
 
@@ -52,7 +50,7 @@ With PRO version, we go even further with a more detailed analysis of 100% of yo
 
 SEOKEY PRO is the only SEO plugin providing a global SEO audit based on real trafic data!
 
-#### Individual SEO audit for each content
+#### Individual SEO audit an content analysis for each content
 When you edit a specific content in WordPress, we also provide you with a full SEO content analysis.
 
 With PRO version, we also display your SEO data for each content: clics, impressions, visible keywords count
@@ -65,7 +63,7 @@ That's why **SEOKEY automatically deploys SEO improvements without any clicks**:
 
 Need more information about it? Check here all our <a href="https://www.seo-key.com/features/optimizations/">SEO optimizations</a>
 
-### Easy-to-use interface
+### Easy-to-use interface for better WordPress SEO
 
 Unlike other SEO plugins, SEOKEY's interface is by far the simplest one. We've removed all unnecessary options, and simplified the ones that will really improve your visibility.
 
@@ -147,6 +145,14 @@ Starting with SEO KEY is easy
 = I already have an SEO plugin. What do I need to do?
 Do not worry, SEOKEY has an import system that allows you to retrieve all your SEO data in a single click from best known plugins: Yoast SEO, Rankmath and many more.
 
+= Why SEOKEY SEO plugin is different?
+
+SEOKEY focuses on one thing: telling you what you need to do to improve WordPress SEO.
+
+Having features isn't enough. That's why we remove those that are useless, and focus on what's essential: a global audit of all your content, not just the home page.
+
+With the PRO version, Search Console data can be used to go much further, giving you a main recommendation for each content.
+
 = Is there any risk in switching to SEOKEY?
 
 No, absolutely not. We import all the data from your current SEO plugin without modifying them. You can deactivate SEOKEY at any time without any loss of information.
@@ -185,6 +191,15 @@ Please report security bugs found in the source code of the SEO KEY plugin throu
 
 == Changelog ==
 Public roadmap is here: https://trello.com/b/jauwlc3J/seokey-pro-public-roadmap
+
+= 1.7.0
+* New: new audit task about main keyword missing in the first part of your content
+* New: new audit tasks about private contents (noindex meta tag)
+* Improvement: increased post limitation in free version (you can now audit up to 125 contents)
+* Improvement: improved audit performance
+* Improvement: improved score for many audit tasks (better SEO accuracy) - first iteration
+* Improvement: improved density task calculation to avoid keyword stuffing - second iteration
+* Many more audit tasks were added or improved in SEOKEY PRO.
 
 = 1.6.6
 * Improvement: improved audit task about images when using WooCommerce (Products main images were not correctly detected)

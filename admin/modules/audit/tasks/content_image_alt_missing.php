@@ -90,14 +90,7 @@ class Seokey_Audit_Tasks_content_image_alt_missing {
             if ( empty ( $item['content'] ) ) {
                 unset( $this->items[$key] );
             } else {
-                $content = stripslashes($item['content']);
-                $dom = new DOMDocument();
-                $dom->loadHTML( $content,
-                    LIBXML_HTML_NOIMPLIED |      # Make sure no extra BODY
-                    LIBXML_HTML_NODEFDTD |              # or DOCTYPE is created
-                    LIBXML_NOERROR |                    # Suppress any errors
-                    LIBXML_NOWARNING                    # or warnings about prefixes.
-                );
+                $dom = seokey_audit_get_domdocument( $item['content'], true );
                 $x = new DOMXPath( $dom );
                 foreach ( $x->query( '//img' ) as $node ) {
                     $images_count = $images_count + 1;

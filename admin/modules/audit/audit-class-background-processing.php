@@ -112,7 +112,7 @@ class SeoKey_Class_Audit_Background_Process extends SeoKey_WP_Background_Process
         }
         gc_enable();
         gc_collect_cycles();
-        sleep(1.5);
+        sleep(1);
         // task completed, remove it from queue with false return value
         return false;
     }
