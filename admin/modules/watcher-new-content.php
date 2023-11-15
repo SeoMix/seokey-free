@@ -194,6 +194,10 @@ function seokey_admin_content_watcher_fix_option_taxo( $value, $option ){
 			}
 		}
 	}
+	// Fix to avoid fatal errors if $value is not an array
+	if ( !is_array( $value ) ) {
+		$value = array( $value );
+	}
 	// remove potential duplicate values
 	return array_unique( $value );
 }

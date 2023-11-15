@@ -235,7 +235,7 @@ class SeoKey_Audit_Launch_task_load_content {
                     $content = apply_filters( 'the_content', $post->post_content );
                     // all data
                     $item = [
-                        'content'               => apply_filters( 'seokey_filter_helper_audit_content_data', $content ),
+                        'content'               => apply_filters( 'seokey_filter_helper_audit_content_data', $content, $post ),
                         'title'                 => seokey_head_get_meta_title( $post->ID, 'singular' ),
                         'title_manual'          => get_post_meta( $post->ID, 'seokey-metatitle', true ),
                         'metadesc'              => seokey_meta_desc_value( 'singular', $post->ID, $args = array(), false ),

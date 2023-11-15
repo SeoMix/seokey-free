@@ -231,4 +231,23 @@ if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
 		}
 		return $content;
 	}
+
+	if ( is_plugin_active( 'woocommerce-request-a-quote/class-addify-request-for-quote.php' ) ) {
+		add_filter( 'seokey_filter_helpers_admin_is_post_type_archive', 'seokey_thirdparty_request_a_quote_fix' );
+		/**
+		 * Fix for "Request a quote for Woocommerce", prevent the menu to be hidden 
+		 *
+		 * @param object $typenow_object
+		 * @since   1.7.3
+		 * @author  Arthur Leveque
+		 *
+		 */
+		function seokey_thirdparty_request_a_quote_fix( $typenow_object ) {
+			//  Check if current page is "addify_quote" post type admin archive page
+			if ( $typenow_object->name === "addify_quote" ) {
+				return false;
+			}
+			return $typenow_object->has_archive;
+		}
+	}
 }

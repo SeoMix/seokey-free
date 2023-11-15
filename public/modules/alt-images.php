@@ -46,6 +46,8 @@ function seokey_alt_images_front( $filtered_image, $context, $attachment_id ) {
 			// Add ALT value to HTML
 			$filtered_image = str_replace( 'alt=""', 'alt="' . htmlspecialchars( esc_attr( $alt ) ) . '"', $filtered_image );
 		}
+		// Filter for fix if there is no $attachment_id with certain themes or if changing the HTML is needed for a specific image
+		$filtered_image = apply_filters( 'seokey_filter_image_html_tag', $filtered_image, $attachment_id );
 	}
 	// Return image
 	return $filtered_image;

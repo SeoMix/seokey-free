@@ -31,9 +31,21 @@ function seokey_breacrumbs_data(){
 	$queried_object = get_queried_object();
 	global $wp_rewrite;
 	// Home (for all)
+	$home_url = get_home_url();
+	// If we have a multilingual site, check for the plugin to get the correct current language home url
+	if ( isset( seokey_helper_cache_data('languages')['plugin'] ) ) {
+		switch( seokey_helper_cache_data('languages')['plugin'] ) {
+			case 'polylangpro' :
+			case 'polylang' :
+				if ( function_exists('pll_home_url') ) {
+					$home_url = pll_home_url();
+				}
+				break;
+		}
+	}
 	$data[] = [
 		'position'  => 1,
-		'url'       => get_home_url(),
+		'url'       => $home_url,
 		'name'      => ( !empty( get_bloginfo( 'name' ) ) ) ? get_bloginfo( 'name' ) : esc_html__( 'Homepage', 'seo-key' ),
 	];
 	// Let's start the clock
@@ -151,12 +163,15 @@ function seokey_breacrumbs_data(){
 					}
 					// Get data for current (and last) term
 					$term_data = get_term_by( 'id', $term, $taxonomy );
-					$data[]    = [
-						'position' => $i,
-						'url'      => esc_url( get_term_link( $term ) ),
-						'name'     => esc_html( $term_data->name ),
-					];
-					$i ++;
+					// If state to fix polylang and WPML - prevent languages to be added in the breadcrumbs
+					if ( $term_data->taxonomy !== "language" && $term_data->taxonomy !== "translation_priority" ) {
+						$data[]    = [
+							'position' => $i,
+							'url'      => esc_url( get_term_link( $term ) ),
+							'name'     => esc_html( $term_data->name ),
+						];
+						$i ++;
+					}
 				}
 			}
 		}

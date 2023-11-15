@@ -198,3 +198,19 @@ jQuery(document).ready(function ($) {
         });
     });
 });
+/* Prevent metaboxes to be side-draggable */
+jQuery(document).ready(function ($) {
+    // Add class to #seokey-metabox if it exists
+    if ( $("#seokey-metabox").length != 0 ) {
+        $("#seokey-metabox").addClass("no-sidebar");
+    }
+    $("#normal-sortables")
+    .sortable({ beforeStop: function (event, ui) { 
+        if ($("#side-sortables").find('.no-sidebar').length) {
+            // can the sort before adding the element to the sidebar
+            return false;
+        }
+    } })
+    // refresh the instance
+    .sortable('refresh'); 
+});

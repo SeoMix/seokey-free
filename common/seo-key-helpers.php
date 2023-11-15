@@ -859,8 +859,15 @@ function seokey_helpers_admin_is_post_type_archive() {
     global $typenow;
     // Get the post type object
     $typenow_object = get_post_type_object( $typenow );
-	// return value
-	return isset( $typenow_object->has_archive ) && $typenow_object->has_archive;
+	// Check if current post type have an archive
+	if ( isset( $typenow_object->has_archive ) ) {
+    	$post_type_archive = $typenow_object->has_archive;
+		// Filter for specific post types
+		$post_type_archive = apply_filters( 'seokey_filter_helpers_admin_is_post_type_archive', $typenow_object );
+		// return value
+		return $post_type_archive;
+    }
+	return false;
 }
 
 /* Helper function */
@@ -1290,7 +1297,11 @@ function seokey_helpers_get_sitemap_base_url( $langIso3 = null, $relative = fals
 				case 'suffix':
 				case 'single':
 				default:
-					$url = home_url( $uploads_path . '/seokey/sitemaps/');
+					if ( str_starts_with( $uploads_path, home_url() ) ) {
+						$url = $uploads_path . '/seokey/sitemaps/';
+					} else {
+						$url = home_url( $uploads_path . '/seokey/sitemaps/');
+					}
 					break;
 			}
 		} else {

@@ -109,7 +109,7 @@ jQuery(document).ready(function ($) {
 
     // Checking current audit status
     function check_current_audit (){
-        var timeout = 4000;
+        var timeout = 4500;
         var retry = 0;
         var lastcount = 0;
         var lasttask = '';

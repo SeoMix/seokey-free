@@ -4,9 +4,9 @@ Contributors: seokey, seomix, confridin
 Donate link: https://www.seo-key.com/
 Tags: seo audit, seo, search engine, google, content analysis, schema, référencement, breadcrumbs, référencement naturel, indexation, crawl, rich snippets, serp, search engine, search engine optimization, alternative text, redirection
 Requires at least: 5.5
-Tested up to: 6.3.1
+Tested up to: 6.4
 Requires PHP: 7.2
-Stable tag: 1.7.1
+Stable tag: 1.7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,21 @@ Please report security bugs found in the source code of the SEO KEY plugin throu
 
 == Changelog ==
 Public roadmap is here: https://trello.com/b/jauwlc3J/seokey-pro-public-roadmap
+
+= 1.7.4
+* Fixed: fix a rare bug where the installation wizard was causing fatal errors for some taxonomies
+* Fixed: fix wrong URL in sitemap index when WordPress is installed in another folder and with a custom wp-content folder name located at domain root
+* Third-party: fix a bug where the alt of some images entered in the SeoKey alt editor will not show on front and audit for the Astra theme
+
+= 1.7.3
+* Improvement: improved audit timing between tasks for slower servers
+* Improvement: SEOKEY metabox can no longer be moved to the right side of WordPress editor
+* Fixed: fix audit infinite loading when website is using WooCommerce
+* Fixed: fix a bug where language was sometimes shown in breadcrumbs (Polylang or WPML)
+* Fixed: front page URL in SEOKEY breadcrumbs is now the correct language one (Polylang)
+
+= 1.7.2
+* Fixed: fix main keyword audit tasks when using ’ instead of '
 
 = 1.7.1
 * Fixed: adding missing french translations

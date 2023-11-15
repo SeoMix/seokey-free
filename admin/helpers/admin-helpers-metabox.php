@@ -165,9 +165,15 @@ function seokey_helper_admin_print_meta_fields_html_visibility( $args ) {
                 printf( esc_html__( 'Hide this %s post type archive, I don\'t want to see it on Google', 'seo-key' ), strtolower( get_post_type_object( $typenow )->labels->singular_name ) ); ?> <em>(noindex)</em>
                 <?php
             } elseif ( isset( $args['term'] ) ) {
-                printf( esc_html__( 'Hide this %s, I don\'t want to see it on Google', 'seo-key' ), sprintf( '%s %s', strtolower( get_taxonomy_labels( get_taxonomy( $taxnow ) )->singular_name ), esc_html__( 'archive' ) ) ); ?> <em>(noindex)</em>
-                <?php
-            } elseif( !empty( $typenow ) ) {
+	            if ( is_null($args['term']->taxonomy)) {
+		            $name = $args['term']->label;
+	            } else {
+		            $tax_labels = get_taxonomy_labels( get_taxonomy( $args['term']->taxonomy ) );
+		            $name = $tax_labels->singular_nam;
+	            }
+	            printf( esc_html__( 'Hide this %s, I don\'t want to see it on Google', 'seo-key' ), sprintf( '%s %s', strtolower( $name ), esc_html__( 'archive' ) ) ); ?> <em>(noindex)</em>
+	            <?php
+            }  elseif( !empty( $typenow ) ) {
                 printf( esc_html__( 'Hide this %s, I don\'t want to see it on Google', 'seo-key' ), strtolower( get_post_type_object( $typenow )->labels->singular_name ) ); ?> <em>(noindex)</em>
                 <?php
             } elseif( !empty( $user_id ) ) {

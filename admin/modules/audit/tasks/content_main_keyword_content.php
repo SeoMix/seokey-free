@@ -34,7 +34,7 @@ class Seokey_Audit_Tasks_content_main_keyword_content extends Seokey_Audit_Tasks
 				'values'        => [
 					'content', 'keyword'
 				],
-                'meta_query'    => [
+				'meta_query'    => [
 					'key'       => 'seokey-main-keyword',
 					'compare'   => 'EXISTS'
 				],
@@ -51,8 +51,11 @@ class Seokey_Audit_Tasks_content_main_keyword_content extends Seokey_Audit_Tasks
 	 */
 	public function seokey_audit_tasks_audit( $data = '' ) {
 		foreach ( $data as $key => $item ) {
-            // Clean keyword
-            $keyword = seokey_audit_clean_string( $item['keyword'] );
+			// Clean keyword
+			$keyword = stripslashes( seokey_audit_clean_string( $item['keyword'] ) );
+			if ( DOING_AJAX ) {
+				$item['content'] = html_entity_decode( stripslashes( ( $item['content'] ) ) );
+			}
 			// Apply shortcodes and blocks
 			$text = apply_filters( 'the_content', $item['content'] );
 			// Clean HTML tags
@@ -61,6 +64,8 @@ class Seokey_Audit_Tasks_content_main_keyword_content extends Seokey_Audit_Tasks
 			$text = wp_trim_words( $text, 100 );
 			// Clean the text
 			$text = seokey_audit_clean_string( $text );
+			$text       = str_replace( "’", "'", $text );
+			$keyword    = str_replace( "’", "'", $keyword );
 			// If the keyword is in the first 100 words unset, else add to the errors list
 			if ( str_contains( $text, $keyword ) ) {
 				unset($this->items[ $key ]);
@@ -83,7 +88,7 @@ class Seokey_Audit_Tasks_content_main_keyword_content extends Seokey_Audit_Tasks
 				'task'             => 'main_keyword_content',
 				'name'             => 'Targeted keyword missing at start of content',
 				'priority'         => '3warning',
-                'datas'            => [ 'keyword' => $item['keyword'] ]
+				'datas'            => [ 'keyword' => stripslashes( $item['keyword'] ) ]
 			];
 		}
 		parent::seokey_audit_tasks_get_status();
