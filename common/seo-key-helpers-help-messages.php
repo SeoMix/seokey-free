@@ -64,6 +64,7 @@ function seokey_helper_help_messages( $id = false, $right = false, $data = "" ) 
         case 'worktodo_wait_7':
             $h2 = __( 'You should wait','seo-key');
             $text = __('You content has been updated less than 7 days ago.','seo-key');
+            $text .= ' ';
             $text .= __('Wait before doing any major optimization.','seo-key');
             $text .= "<strong>" . __( "Full advices are only available in PRO version",'seo-key')  . "</strong>";
 			break;

@@ -71,6 +71,17 @@ function seokey_audit_get_task_score() {
             'information'   => 0, // This content is private
             'type'          => 'information',
         ),
+		'author_incomplete_infos' => array(
+			'global'        => 2,
+			'warning'       => 4, // Authours without description
+			'type'          => 'warning',
+		),
+		// Technical
+		'incomplete_who_are_you' => array(
+            'global'        => 15,
+            'warning'       => 5, // Checking "Who are you ?" settings
+            'type'          => 'warning',
+        ),
 	);
 	return apply_filters( 'seokey_filter_audit_get_task_score', $score );
 }

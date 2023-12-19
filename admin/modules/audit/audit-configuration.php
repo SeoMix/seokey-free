@@ -36,6 +36,8 @@ function seokey_audit_task_list_content() {
 	        'title_length',
 	        'meta_desc_length',
             'main_keyword_selection',
+            // Users
+            'author_incomplete_infos',
         ],
     ];
     return $tasks;
@@ -53,6 +55,8 @@ function seokey_audit_task_list_technical() {
     // Define technical tasks with content type
     $tasks = [
         'global' => [
+            // SeoKey settings
+			'incomplete_who_are_you',
         ],
     ];
     return apply_filters( 'seokey_filter_audit_task_list_technical', $tasks );

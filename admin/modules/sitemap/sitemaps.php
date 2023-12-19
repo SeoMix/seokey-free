@@ -86,3 +86,23 @@ function seokey_settings_add_base_sections_sitemaps_data( $id ) {
 		}
 	}
 }
+
+add_action('update_option_WPLANG', 'seokey_sitemap_generate_sitemap_switch_language_settings', 10, 2);
+/**
+ * Replace sitemap language when site language is changed in WordPress settings
+ *
+ * @since  1.8.0
+ * @author Arthur Leveque
+ *
+ * @hook   update_option_WPLANG
+ **/
+function seokey_sitemap_generate_sitemap_switch_language_settings($old_value, $new_value) {
+	// Delete current sitemap to prevent it to be still active in the database and files
+	require_once( dirname( __file__ ) . '/sitemaps-delete.php' );
+	$sitemap_delete = new Seokey_Sitemap_Delete();
+	$sitemap_delete->seokey_sitemap_delete_files();
+	// Create the new sitemap
+	new Seokey_Sitemap_Lastmod();
+    // Inform user that the sitemap creation is running
+	update_option( 'seokey_sitemap_creation', 'running', true );
+}

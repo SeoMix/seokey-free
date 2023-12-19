@@ -182,6 +182,10 @@ class seokey_WP_List_Table_audit_errors extends seokey_WP_List_Table_base {
 				$url        = false;
 				$edit_link  = false;
 				break;
+            case 'author':
+                $url        = esc_url( get_author_posts_url( (int) $item['item_id'] ) );
+                $edit_link  = esc_url( get_edit_user_link( (int) $item['item_id'] ) );
+                break;
 			default:
 				break;
 		}
@@ -238,6 +242,10 @@ class seokey_WP_List_Table_audit_errors extends seokey_WP_List_Table_base {
 		        $actions['alt-editor'] = '<a class="button button-primary" href="' . $url . ' ">' . _x( 'Go to ALT Editor', 'List table row action', 'seo-key' ) . '</a>';
 		        // False = no option
 		        break;
+            case 'author':
+                $type           = "author";
+                $id             = (int) $item['id'];
+                break;
             case 'global':
                 $type           = "global";
                 $id             = (int) $item['id'];

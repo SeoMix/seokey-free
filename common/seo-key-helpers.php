@@ -1300,7 +1300,11 @@ function seokey_helpers_get_sitemap_base_url( $langIso3 = null, $relative = fals
 					if ( str_starts_with( $uploads_path, home_url() ) ) {
 						$url = $uploads_path . '/seokey/sitemaps/';
 					} else {
-						$url = home_url( $uploads_path . '/seokey/sitemaps/');
+						if ( str_starts_with( $uploads_path, WP_CONTENT_URL ) ) {
+							$url = $uploads_path . '/seokey/sitemaps/';
+						} else {
+							$url = home_url( $uploads_path . '/seokey/sitemaps/');
+						}
 					}
 					break;
 			}
@@ -1377,4 +1381,30 @@ function seokey_helpers_data_clean_escaped_html( $html ) {
 	$html = esc_html( $html );
 	// Return trimmed data
 	return trim( $html );
+}
+
+/**
+ * Get all arrays in multidimensional array where a key equals a value and send them to a new array
+ *
+ * @param array $array array to do our research
+ * @param string $key_to_find name of the key we need
+ * @param mixed $value_for_key value for the key we need
+ * @param array $result_array array that will be alimented through the process
+ * @author  Arthur Leveque
+ * @since   1.8.0
+ */
+function seokey_helpers_get_subarrays_with_key( $array, $key_to_find, $value_for_key, &$result_array ) {
+	// Explore the current array
+	foreach ( $array as $key => $value ) {
+		// If our current element is an array, do a recursive call
+		if ( is_array( $value ) ) {
+			seokey_helpers_get_subarrays_with_key( $value, $key_to_find, $value_for_key, $result_array );
+		} else {
+			// If this element is not an array, check the key and the value
+			if ( $key == $key_to_find && $value == $value_for_key ) {
+				// If this is what we want, add it to the final array
+				array_push( $result_array, $array );
+			}
+		}
+	}
 }

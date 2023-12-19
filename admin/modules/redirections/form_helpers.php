@@ -149,11 +149,11 @@ class Seokey_Redirections_Form {
 		$datas    = [];
 		// How do we need to clean data ?
 		$sanitize = [
-			'id'     => "sanitize_key",
-			'source' => 'sanitize_text_field',
-			'target' => 'esc_url_raw',
-			'type'   => "sanitize_text_field",
-			'status' => "sanitize_text_field",
+			'id'                => "sanitize_key",
+			'source'            => 'sanitize_text_field',
+			'target'            => 'esc_url_raw',
+			'type'              => "sanitize_text_field",
+			'status'            => "sanitize_text_field",
 		];
 		// If we have data
 		if ( ! empty( $data ) ) {
@@ -298,7 +298,7 @@ class Seokey_Redirections_Form {
             if ( defined('DOING_AJAX') && DOING_AJAX ) {
                 wp_send_json_error( __( 'You can\'t redirect an external URL', 'seo-key' ) );
             }
-            return false;
+			return false;
         }
 		// Return data
 		$this->datas['source'] = $source;

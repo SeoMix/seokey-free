@@ -329,7 +329,18 @@ light grey #EAEAEB
     cursor: inherit;
 }
 
-
+@media (max-width: 1240px) {
+    .seokey-wrapper .nav-tab,
+    .seokey-wrapper .nav-tab-active,
+    #seokey-metabox .nav-tab,
+    #seokey-metabox .nav-tab-active{
+        font-size: 1em;
+        padding: .5em 1em 0.25em;
+        border-radius: 0.5em 0.5em 0 0;
+        line-height: 1.6em;
+        margin-left: .3em;
+    }
+}
 
 
 

@@ -150,9 +150,11 @@ function seokey_rss_content_add_readmore_link( $content ) {
     $excerpt_more = apply_filters( 'seokey_filter_rss_content_read_more', $excerpt_more );
     // "Read More" link
     global $post;
-    $excerpt_more_link  = ' <a href="' . esc_url( get_permalink( $post->ID ) ) . '">' . apply_filters( 'the_title_rss', get_the_title( $post->ID ) ) . '</a>';
-    // Render final "Read More" link on RSS feeds
-    $excerpt_more = $excerpt_more . $excerpt_more_link;
+    if ( isset( $post->ID ) ) {
+        $excerpt_more_link  = ' <a href="' . esc_url( get_permalink( $post->ID ) ) . '">' . apply_filters( 'the_title_rss', get_the_title( $post->ID ) ) . '</a>';
+        // Render final "Read More" link on RSS feeds
+        $excerpt_more = $excerpt_more . $excerpt_more_link;
+    }
     // Improve content with Read More link
     $content = $content . $excerpt_more;
 	// Return Data

@@ -4,9 +4,9 @@ Contributors: seokey, seomix, confridin
 Donate link: https://www.seo-key.com/
 Tags: seo audit, seo, search engine, google, content analysis, schema, référencement, breadcrumbs, référencement naturel, indexation, crawl, rich snippets, serp, search engine, search engine optimization, alternative text, redirection
 Requires at least: 5.5
-Tested up to: 6.4
+Tested up to: 6.4.2
 Requires PHP: 7.2
-Stable tag: 1.7.4
+Stable tag: 1.8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,21 @@ Please report security bugs found in the source code of the SEO KEY plugin throu
 
 == Changelog ==
 Public roadmap is here: https://trello.com/b/jauwlc3J/seokey-pro-public-roadmap
+
+= 1.8.0
+* New: ACF fields can now be used during your SEO audit
+* New: adding SEOKEY FAQ blocks with schema markup (and convert Yoast blocks)
+* New: new audit task about incomplete "Who are you?" settings
+* New: new audit task about incomplete authors data (job, birthdate)
+* Improvement: source URL can now be different from current domain if needed
+* Third-party: fix a bug where SEOKEY was blocking login errors messages from Easy Digital Downloads login screen
+* Fixed: texts and translations fixes
+* Fixed: settings screen is now compatible with on smaller devices
+* Fixed: fix a bug where the sitemap URL path was wrong if WP_CONTENT_URL was defined as a subdomain
+* Fixed: fix a bug where the TinyMCE editor was broken for contributors
+* Fixed: sitemaps are now created again if the site language is changed in WordPress general settings
+* Fixed: fix a bug where terms where not correctly audited in rare cases
+* Fixed: fix a bug with SEO plugins data import when posts did not have authors
 
 = 1.7.4
 * Fixed: fix a rare bug where the installation wizard was causing fatal errors for some taxonomies

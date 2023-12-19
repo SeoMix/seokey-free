@@ -1,0 +1,61 @@
+#editor .wp-block-seokey-faq-block {
+    display: flex;
+    flex-direction: column;
+    background: #EAEAEB;
+    padding: 8px;
+}#editor .wp-block-seokey-faq-block .seokey-faq-question-editor input, #editor .wp-block-seokey-faq-block .seokey-faq-response-editor textarea {
+    border: none;
+}#editor .wp-block-seokey-faq-block .seokey-faq-question-editor > div {
+    margin-bottom: 0.5em;
+}#editor .wp-block-seokey-faq-block .seokey-faq-response-editor > div {
+    margin-bottom: 0;
+    width: 100%;
+}#editor .wp-block-seokey-faq-block .seokey-faq-qr-editor {
+    background: #fff;
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    padding: 8px 1em;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5em;
+}#editor .wp-block-seokey-faq-block .seokey-faq-qr-editor .seokey-faq-qr-inputs {
+    width: 100%;
+}#editor .wp-block-seokey-faq-block .seokey-faq-qr-editor .seokey-faq-question-editor input {
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 0;
+}#editor .wp-block-seokey-faq-block .seokey-faq-button-editor {
+    margin-left: 1em;
+    color: #0A4B78;
+}#editor .wp-block-seokey-faq-block > button {
+    align-self: center;
+    font-size: 14px;
+    min-height: 46px;
+    line-height: 3.14285714;
+    padding: 0 36px;
+    background: #0C5D97;
+    border-radius: 3px;
+    color: white;
+}#editor .wp-block-seokey-faq-block .seokey-faq-qr-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.seokey-movingup {
+    animation-name: movingup;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in;
+}.seokey-movingdown {
+    animation-name: movingdown;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in;
+}
+@keyframes movingup {
+    from {transform: translateY(0)}
+    to {transform: translateY(-107%)}
+}
+@keyframes movingdown {
+    from {transform: translateY(0)}
+    to {transform: translateY(107%)}
+}

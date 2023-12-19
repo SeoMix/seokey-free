@@ -79,6 +79,8 @@ if ( is_admin() ) {
 	seokey_helper_require_file( 'watcher-401',                  $modules, 'editor' );
 	// Load Import functions
 	seokey_helper_require_file( 'import',                       $modules. 'import/', 'admin' );
+	// Load blocks
+	seokey_helper_require_file( 'blocks',                       $modules. 'blocks/', 'everyone' );
 
 // Loaded after wizard
 	// Load redirection module
@@ -94,4 +96,4 @@ if ( is_admin() ) {
 	// Load ajax functions
 	seokey_helper_require_file( 'admin-ajax',                   SEOKEY_PATH_ADMIN . 'helpers/', 'contributor', $condition );
 	// Load Keyword module
-	seokey_helper_require_file( 'keywords',                     $modules. 'keywords/', 'author', $condition );
+	seokey_helper_require_file( 'keywords',                     $modules. 'keywords/', 'contributor', $condition );

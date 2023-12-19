@@ -533,6 +533,12 @@
 #audit-main .widefat .sorting-indicator {
     position: absolute;
     display: inline-block;  
+}#audit-main .widefat .manage-column .sorting-indicator {
+    display: none;
+}#audit-main .widefat .manage-column.sorted.desc .sorting-indicator.desc {
+    display: inline-block;
+}#audit-main .widefat .manage-column.sorted.asc .sorting-indicator.asc {
+    display: inline-block;
 }
 /* Last column : keep it wide */
 #audit-main .widefat #actions {

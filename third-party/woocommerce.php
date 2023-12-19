@@ -214,18 +214,19 @@ if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
 	    }
     }
 	
-	add_filter ( 'seokey_filter_helper_audit_content_data', 'seokey_thirdparty_woocommerce_audit_excerpt', 10, 2 );
+	add_filter ( 'seokey_filter_helper_audit_content_data', 'seokey_thirdparty_woocommerce_audit_content', 10, 2 );
 	/**
-	 * Add Woocommerce short escription to content audit
+	 * Add Woocommerce values to content audit
 	 *
-	 * @param string $option option to sync
-	 * @param mixed $value option value added/updated
+	 * @param string $content content of the post
+	 * @param mixed $post post values
 	 * @since   1.6.0
 	 * @author  Daniel Roch
 	 *
 	 */
-	function seokey_thirdparty_woocommerce_audit_excerpt( $content, $post ){
+	function seokey_thirdparty_woocommerce_audit_content( $content, $post ){
 		if ( 'product' === $post->post_type ) {
+			// Add short description to content
 			$short_description = apply_filters( 'woocommerce_short_description', $post->post_excerpt );
 			$content           = ( ! empty( $short_description ) ) ? $content . ' ' . $short_description : $content;
 		}

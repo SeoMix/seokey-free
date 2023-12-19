@@ -31,7 +31,7 @@ class SeoKey_Audit_Launch_task_save_result {
 	        switch ( $data['item_type_global'] ) {
 		        case 'global':
 			        $name = $data['name'];
-			        $item_type  = esc_html__( 'All Website', 'seo-key' );
+			        $item_type  = esc_html__( 'Entire website', 'seo-key' );
 					break;
 		        case 'post':
 			        $name       = get_the_title( $id );
@@ -41,6 +41,10 @@ class SeoKey_Audit_Launch_task_save_result {
 			        $name       =  esc_html__( 'Medias without ALT','seo-key' );
 			        $item_type  = 'attachment';
 			        break;
+                case 'author':
+                    $name       =  esc_html( get_the_author_meta( 'display_name', $id ) );
+                    $item_type  = 'author';
+                    break;
 	        }
             $sub_priority = ( !empty ( $data['sub_priority'] ) ) ? sanitize_title( $data['sub_priority'] ) : '';
 			$this->audit_data[] = [

@@ -293,7 +293,7 @@ function seokey_admin_wizard_notice_start( $args ) {
     $name = get_bloginfo('name');
     $wizard_url = seokey_helper_admin_get_link( 'wizard' );
     $wizard_skip_url = add_query_arg( 'skipwizard', 'yes', $wizard_url );
-    $text = '<p>'. esc_html__( 'It will take only a few minutes to configure SEOKEY, improve "%s" SEO and audit your content!', 'seo-key' ) .'</p>';
+    $text = '<p>'. esc_html__( 'It takes just a few minutes to configure SEOKEY, improve "%s" SEO and audit your content!', 'seo-key' ) .'</p>';
     $text .= '<a href="' . esc_url( $wizard_url ) . '" class="button button-primary button-hero">'. esc_html__( 'Launch the SEO Wizard', 'seo-key' ) .'</a>';
     $text .= '<a href="' . esc_url( $wizard_skip_url ) . '" class="button button-secondary button-hero seokey-secondary-button-notice">'. esc_html__( 'Ignore and activate', 'seo-key' ) .'</a>';
     $text = sprintf( $text, $name );

@@ -760,14 +760,16 @@ function seokey_helper_import_parsing( $data, $type = '', $ID = 0, $cpt = ''  ) 
             $replacements[$all_plugins['currentmonth_num'][$plugin]]    = date_i18n( 'm' );
             // TODO later factoriser
             $user_data  = get_userdata( get_post_field( 'post_author', $ID ) );
-            $replacements[$all_plugins['name'][$plugin]]                    = $user_data->display_name;
-            $replacements[$all_plugins['namebis'][$plugin]]                 = $user_data->display_name;
-            $replacements[$all_plugins['user_description'][$plugin]]        = get_user_meta( $ID, 'description', true );
-            $replacements[$all_plugins['user_first_name'][$plugin]]         = get_user_meta( $ID, 'first_name', true );
-            $replacements[$all_plugins['user_last_name'][$plugin]]          = get_user_meta( $ID, 'last_name', true );
-            $replacements[$all_plugins['user_website'][$plugin]]            = $user_data->user_url;
-            $replacements[$all_plugins['user_nickname'][$plugin]]           = get_user_meta( $ID, 'nickname', true );
-            $replacements[$all_plugins['userid'][$plugin]]                  = $ID;
+            if ( !empty( $user_data ) ) {
+                $replacements[$all_plugins['name'][$plugin]]                    = $user_data->display_name;
+                $replacements[$all_plugins['namebis'][$plugin]]                 = $user_data->display_name;
+                $replacements[$all_plugins['user_description'][$plugin]]        = get_user_meta( $ID, 'description', true );
+                $replacements[$all_plugins['user_first_name'][$plugin]]         = get_user_meta( $ID, 'first_name', true );
+                $replacements[$all_plugins['user_last_name'][$plugin]]          = get_user_meta( $ID, 'last_name', true );
+                $replacements[$all_plugins['user_website'][$plugin]]            = $user_data->user_url;
+                $replacements[$all_plugins['user_nickname'][$plugin]]           = get_user_meta( $ID, 'nickname', true );
+                $replacements[$all_plugins['userid'][$plugin]]                  = $ID;
+            }
             unset($user_data);
             $post_type = get_object_vars( get_post_type_object( $cpt ) );
             $replacements[$all_plugins['archive_title'][$plugin]]       = $post_type['name'];

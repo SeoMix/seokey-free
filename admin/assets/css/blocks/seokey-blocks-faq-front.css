@@ -1,0 +1,23 @@
+.wp-block-seokey-faq-block details summary {
+    padding: .5em;
+    background-color: #EAEAEB;
+    font-weight: bold;
+    color: #063D62;
+    position: relative;
+    cursor: pointer;
+}.wp-block-seokey-faq-block details summary:focus {
+    outline: 0;
+}.wp-block-seokey-faq-block details summary::after {
+    content: '+';
+    font-size: 25px;
+    position: absolute;
+    top: 50%;
+    right: 1em;
+    transform: translateY(-50%);
+}.wp-block-seokey-faq-block details[open] summary::after {
+    transform: translateY(-50%) rotate(45deg);
+}.wp-block-seokey-faq-block details div {
+    padding: .5em;
+}.wp-block-seokey-faq-block details div p:last-child {
+    margin-bottom: 0;
+}

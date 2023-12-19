@@ -40,9 +40,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<td scope="row" class="tdaligncenter">
 				<label class="seokey-arrowbelow" for="source"><?php _e( '<b>Redirect this URL</b> (source)', 'seo-key' ); ?></label>
 			</td>
-			<td>
+			<td class="seokey-source-row">
 				<input autocomplete="off" placeholder="<?php esc_attr_e('Ex. /slug or https://mywebsite.com/slug', 'seo-key'); ?>" name="source" type="text" id="source" class="regular-text" required="required"  value="<?php echo ( ! empty( $form_values['source'] ) ) ? esc_url( $form_values['source'] ) : ''; ?>">
-			</td>
+            </td>
 		</tr>
 		<tr>
 			<td scope="row" class="tdaligncenter">

@@ -15,6 +15,8 @@
 #search-table-element{
     float: right;
     margin: 0;
+    z-index: 10;
+    position: relative;
 }
 
 /* Move up redirection tables */
@@ -109,6 +111,7 @@
 }
 #hits_last_at {
     width: 22em;
+    max-width:200px;
 }
 .wp-list-table{overflow: hidden}
 
@@ -139,10 +142,6 @@
     margin-left: 0 !important;
 }
 
-
-
-
-
 .seokey-wrapper h2 {
     margin: 0;
     padding: 9px 0 4px 0;
@@ -153,33 +152,19 @@
     color: #0A4B78;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.seokey-source-row {
+    display: flex;
+    align-items: center;
+}
 
 #redirection-loader {
     position: absolute;
     left: 50%;
+}
+
+#seokey_redirections th.check-column {
+    vertical-align: middle;
+    padding: 0 0 0 3px;
 }
 
 @keyframes ldio-196n3v9fpr3h {
@@ -286,11 +271,32 @@
         margin: 0 0 1em;
         align-self: start;
     }
-    .column-actions-wrapper {
+  /*   .column-actions-wrapper {
         display: flex;
         flex-direction: column;
-    }
+    } */
     .seokey-redirections-tools p {
         padding-right: 50px;
+    }
+
+    .seokey-source-row {
+        flex-direction: column;
+        align-items: initial;
+    }
+}
+@media (max-width: 1360px) {
+    .seokey-redirections-tools th#actions {
+        min-width:180px;
+    }
+    .seokey-redirections-tools .column-actions-wrapper a {
+        width: 100%;
+        margin: 0 !important;
+        margin-top: 1% !important;
+        text-align: center;
+    }
+}
+@media (max-width: 1240px) {
+    .seokey-redirections-tools .column-actions-wrapper a {
+        width: auto;
     }
 }

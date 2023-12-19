@@ -150,10 +150,12 @@ function seokey_meta_desc_value( $type, $ID = 0, $args = array(), $default = fal
                  * @since 1.6.0
                  */
                 $base_content   = apply_filters ( 'seokey_filter_meta_desc_value_singular_postcontent', get_post($ID)->post_content );
-				$post           = esc_html( trim( strip_tags( do_shortcode( $base_content ) ) ) );
-				$default_value  = substr( $post, 0, strrpos( substr( $post, 0, METADESC_COUNTER_MAX ), ' ') );
-				if ( ! $default_value ) {
-					$default_value = seokey_helper_post_content_extract();
+				if ( !has_shortcode( $base_content, "edd_profile_editor" ) ) { // Fix for EDD not displaying login error messages
+					$post           = esc_html( trim( strip_tags( do_shortcode( $base_content ) ) ) );
+					$default_value  = substr( $post, 0, strrpos( substr( $post, 0, METADESC_COUNTER_MAX ), ' ') );
+					if ( ! $default_value ) {
+						$default_value = seokey_helper_post_content_extract();
+					}
 				}
 			}
 			break;

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SEOKEY Pro\n"
-"POT-Creation-Date: 2023-10-05 12:08+0200\n"
-"PO-Revision-Date: 2023-10-05 12:08+0200\n"
+"POT-Creation-Date: 2023-12-18 10:30+0100\n"
+"PO-Revision-Date: 2023-12-18 10:34+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.1\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: seo-key.php\n"
@@ -1020,9 +1020,19 @@ msgstr "Réglages mis à jour"
 msgid "Your SEOKEY settings have been updated"
 msgstr "Vos réglages SEOKEY ont été mis à jour"
 
+#: admin/assets/js/build/bloc-faq/import/seokey-blocks-faq-import.js:1
+#: admin/assets/js/seokey-blocks-faq-import.js:22
+msgid "Replace this block with SEOKEY block"
+msgstr "Remplacer ce bloc par le bloc de SEOKEY"
+
+#: admin/assets/js/build/bloc-faq/import/seokey-blocks-faq-import.js:1
+#: admin/assets/js/seokey-blocks-faq-import.js:50
+msgid "This block is not regonised!"
+msgstr "Ce bloc n'est pas reconnu !"
+
 #: admin/assets/js/seokey-audit-content.js:37
-#: admin/assets/js/seokey-audit-content.js:202
-#: admin/assets/js/seokey-audit-content.js:294
+#: admin/assets/js/seokey-audit-content.js:244
+#: admin/assets/js/seokey-audit-content.js:341
 msgid "This is a private content: we do not audit them."
 msgstr "Ceci est un contenu privé: nous ne les auditons pas."
 
@@ -1036,7 +1046,7 @@ msgid "See less"
 msgstr "Voir moins"
 
 #: admin/assets/js/seokey-audit.js:66
-#: admin/modules/audit/audit-helpers-messages.php:157
+#: admin/modules/audit/audit-helpers-messages.php:171
 msgid "Please wait"
 msgstr "Veuillez patienter"
 
@@ -1098,6 +1108,36 @@ msgstr "Audit terminé, nous allons recharger la page maintenant"
 #: admin/assets/js/seokey-audit.js:262
 msgid "Please wait "
 msgstr "Veuillez patienter "
+
+#: admin/assets/js/seokey-blocks-faq.js:24
+msgid "Add an FAQ optimised for SEO."
+msgstr "Ajouter une FAQ optimisée pour le SEO."
+
+#: admin/assets/js/seokey-blocks-faq.js:29
+#: admin/assets/js/seokey-blocks-faq.js:125
+msgid "Enter the question"
+msgstr "Indiquez la question"
+
+#: admin/assets/js/seokey-blocks-faq.js:30
+#: admin/assets/js/seokey-blocks-faq.js:132
+msgid "Enter the answer"
+msgstr "Indiquez la réponse"
+
+#: admin/assets/js/seokey-blocks-faq.js:141
+msgid "Delete question"
+msgstr "Supprimer la question"
+
+#: admin/assets/js/seokey-blocks-faq.js:147
+msgid "Move up"
+msgstr "Déplacer vers le haut"
+
+#: admin/assets/js/seokey-blocks-faq.js:154
+msgid "Move down"
+msgstr "Déplacer vers le bas"
+
+#: admin/assets/js/seokey-blocks-faq.js:171
+msgid "Add question"
+msgstr "Ajouter une question"
 
 #: admin/assets/js/seokey-import.js:11
 msgid "Start Wizard"
@@ -1210,43 +1250,43 @@ msgstr ""
 "Cacher l'archive de contenu '%s', je ne veux pas qu’elle soit visible sur "
 "Google"
 
-#: admin/helpers/admin-helpers-metabox.php:168
-#: admin/helpers/admin-helpers-metabox.php:171
+#: admin/helpers/admin-helpers-metabox.php:174
+#: admin/helpers/admin-helpers-metabox.php:177
 #, php-format
 msgid "Hide this %s, I don't want to see it on Google"
 msgstr "Cacher cet élément (%s), je ne veux pas que ce soit visible sur Google"
 
-#: admin/helpers/admin-helpers-metabox.php:168
+#: admin/helpers/admin-helpers-metabox.php:174
 msgid "archive"
 msgstr "archive"
 
-#: admin/helpers/admin-helpers-metabox.php:174
+#: admin/helpers/admin-helpers-metabox.php:180
 msgid "Hide this author, I don't want to see it on Google"
 msgstr "Cacher cet auteur, je ne veux pas qu’il soit visible sur Google"
 
 #: admin/modules/audit/audit-class-task-save.php:34
-msgid "All Website"
-msgstr "Sur tout le site"
+msgid "Entire website"
+msgstr "Site en entier"
 
 #: admin/modules/audit/audit-class-task-save.php:41
 msgid "Medias without ALT"
 msgstr "Images sans texte alternatif (ALT)"
 
-#: admin/modules/audit/audit-configuration.php:83
+#: admin/modules/audit/audit-configuration.php:87
 msgid "All issues"
 msgstr "Tous les problèmes"
 
-#: admin/modules/audit/audit-configuration.php:87
-#: admin/modules/audit/audit-helpers-messages.php:128
+#: admin/modules/audit/audit-configuration.php:91
+#: admin/modules/audit/audit-helpers-messages.php:142
 msgid "Content issues"
 msgstr "Problèmes de contenus"
 
-#: admin/modules/audit/audit-configuration.php:91
-#: admin/modules/audit/audit-helpers-messages.php:129
+#: admin/modules/audit/audit-configuration.php:95
+#: admin/modules/audit/audit-helpers-messages.php:143
 msgid "Technical issues"
 msgstr "Problèmes techniques"
 
-#: admin/modules/audit/audit-configuration.php:95
+#: admin/modules/audit/audit-configuration.php:99
 msgid "View all URLs with issues"
 msgstr "Voir toutes les URL avec des problèmes"
 
@@ -1355,29 +1395,60 @@ msgstr ""
 "Ce contenu est caché à Google. Si vous voulez qu’il apparaisse, vous devez "
 "modifier cette option."
 
-#: admin/modules/audit/audit-helpers-messages.php:65
+#: admin/modules/audit/audit-helpers-messages.php:59
+msgid ""
+"This author have incomplete data about them (job, birthdate and more). You "
+"should fill in this information so that Google can get to know you better."
+msgstr ""
+"Cet auteur a des données incomplètes (emploi, date de naissance et plus). "
+"Vous devriez remplir ces informations pour permettre à Google de mieux vous "
+"connaître."
+
+#: admin/modules/audit/audit-helpers-messages.php:63
+#, php-format
+msgid ""
+"Your \"Who are you?\" settings are not filled in. <a href=\"%s\">Display "
+"these details about yourself</a> to increase your credibility with Google "
+"(Schema.org markup)"
+msgstr ""
+"Vos réglages \" \"Qui êtes-vous ?\" ne sont pas renseignés. <a "
+"href=\"%s\">Remplissez les informations vous concernant</a> pour améliorer "
+"votre crédibilité auprès de Google (balisage Schema.org)."
+
+#: admin/modules/audit/audit-helpers-messages.php:64
+#, php-format
+msgid ""
+"Your \"Who are you?\" settings are not fully configured. <a href=\"%s\">Fill "
+"in the information about yourself</a> to increase your credibility for "
+"Google (Schema.org markup)."
+msgstr ""
+"Vos réglages \" \"Qui êtes-vous ?\" ne sont pas entièrement configurés. <a "
+"href=\"%s\">Remplissez les informations vous concernant</a> pour améliorer "
+"votre crédibilité auprès de Google (balisage Schema.org)."
+
+#: admin/modules/audit/audit-helpers-messages.php:73
 msgid "Meta description empty: you should write one"
 msgstr "Meta description manquante : vous devriez en écrire une"
 
-#: admin/modules/audit/audit-helpers-messages.php:67
+#: admin/modules/audit/audit-helpers-messages.php:75
 #, php-format
 msgid "Meta description too short (%s characters): you should expand it"
 msgstr "Meta description trop courte (%s caractères): vous devriez l'étoffer"
 
-#: admin/modules/audit/audit-helpers-messages.php:69
+#: admin/modules/audit/audit-helpers-messages.php:77
 #, php-format
 msgid "Meta description too long (%s characters): you should reduce it"
 msgstr ""
 "La méta description est trop longue (%s caractères): vous devriez la réduire"
 
-#: admin/modules/audit/audit-helpers-messages.php:81
+#: admin/modules/audit/audit-helpers-messages.php:89
 #, php-format
 msgid "<span class=\"seokey-issue-count\">%s</span> URL with issue"
 msgid_plural "<span>%s</span> URL with issues"
 msgstr[0] "<span class=\"seokey-issue-count\">%s</span> URL avec problème"
 msgstr[1] "<span>%s</span> URL avec problèmes"
 
-#: admin/modules/audit/audit-helpers-messages.php:83
+#: admin/modules/audit/audit-helpers-messages.php:91
 #, php-format
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> issue with title tag length"
@@ -1390,7 +1461,7 @@ msgstr[1] ""
 "<span class=\"seokey-issue-count\">%s</span> problèmes avec la longueur des "
 "balises Title"
 
-#: admin/modules/audit/audit-helpers-messages.php:84
+#: admin/modules/audit/audit-helpers-messages.php:92
 #, php-format
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> issue with meta description "
@@ -1405,7 +1476,7 @@ msgstr[1] ""
 "<span class=\"seokey-issue-count\">%s</span> problèmes avec la longueur des "
 "métas-descriptions"
 
-#: admin/modules/audit/audit-helpers-messages.php:85
+#: admin/modules/audit/audit-helpers-messages.php:93
 #, php-format
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> content with images without "
@@ -1420,7 +1491,7 @@ msgstr[1] ""
 "<span class=\"seokey-issue-count\">%s</span> contenus avec des images sans "
 "description (texte ALT)"
 
-#: admin/modules/audit/audit-helpers-messages.php:86
+#: admin/modules/audit/audit-helpers-messages.php:94
 #, php-format
 msgid "<span class=\"seokey-issue-count\">%s</span> content without any images"
 msgid_plural ""
@@ -1430,7 +1501,7 @@ msgstr[0] ""
 msgstr[1] ""
 "<span class=\"seokey-issue-count\">%s</span> contenus sans aucune image"
 
-#: admin/modules/audit/audit-helpers-messages.php:87
+#: admin/modules/audit/audit-helpers-messages.php:95
 #, php-format
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> content without internal link "
@@ -1445,7 +1516,7 @@ msgstr[1] ""
 "<span class=\"seokey-issue-count\">%s</span> contenus sans lien interne dans "
 "le contenu principal"
 
-#: admin/modules/audit/audit-helpers-messages.php:88
+#: admin/modules/audit/audit-helpers-messages.php:96
 #, php-format
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> content without a main keyword "
@@ -1460,7 +1531,7 @@ msgstr[1] ""
 "<span class=\"seokey-issue-count\">%s</span> contenus sans mot-clé principal "
 "choisi"
 
-#: admin/modules/audit/audit-helpers-messages.php:89
+#: admin/modules/audit/audit-helpers-messages.php:97
 #, php-format
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> content without main keyword at "
@@ -1475,99 +1546,124 @@ msgstr[1] ""
 "<span class=\"seokey-issue-count\">%s</span> contenus sans leurs mots-clés "
 "principaux présents dans le début du contenu"
 
-#: admin/modules/audit/audit-helpers-messages.php:90
+#: admin/modules/audit/audit-helpers-messages.php:98
 #, php-format
 msgid "<span class=\"seokey-issue-count\">%s</span> content too short"
 msgid_plural "<span class=\"seokey-issue-count\">%s</span> contents too short"
 msgstr[0] "<span class=\"seokey-issue-count\">%s</span> contenu trop court"
 msgstr[1] "<span class=\"seokey-issue-count\">%s</span> contenus trop courts"
 
-#: admin/modules/audit/audit-helpers-messages.php:91
+#: admin/modules/audit/audit-helpers-messages.php:99
 #, php-format
 msgid "<span class=\"seokey-issue-count\">%s</span> hidden content"
 msgid_plural "<span class=\"seokey-issue-count\">%s</span> hidden contents"
 msgstr[0] "<span class=\"seokey-issue-count\">%s</span> contenu masqué"
 msgstr[1] "<span class=\"seokey-issue-count\">%s</span> contenus masqués"
 
+#: admin/modules/audit/audit-helpers-messages.php:100
+#, php-format
+msgid ""
+"<span class=\"seokey-issue-count\">%s</span> author without complete info"
+msgid_plural ""
+"<span class=\"seokey-issue-count\">%s</span> authors without complete info"
+msgstr[0] ""
+"<span class=\"seokey-issue-count\">%s</span> auteur sans informations "
+"complètes"
+msgstr[1] ""
+"<span class=\"seokey-issue-count\">%s</span> auteurs sans informations "
+"complètes"
+
 #: admin/modules/audit/audit-helpers-messages.php:102
+msgid "The \"Who are you\" section is incomplete or has not been filled in"
+msgstr "La section \"Qui êtes-vous ?\" n'est pas remplie ou est incomplète"
+
+#: admin/modules/audit/audit-helpers-messages.php:113
 msgid "Meta title length"
 msgstr "Longueur de la balise title"
 
-#: admin/modules/audit/audit-helpers-messages.php:103
+#: admin/modules/audit/audit-helpers-messages.php:114
 msgid "Meta descriptions length"
 msgstr "Longueur de la méta description"
 
-#: admin/modules/audit/audit-helpers-messages.php:104
+#: admin/modules/audit/audit-helpers-messages.php:115
 msgid "Image ALT missing in contents"
 msgstr "Texte alternatif des images manquant dans les contenus"
 
-#: admin/modules/audit/audit-helpers-messages.php:105
+#: admin/modules/audit/audit-helpers-messages.php:116
 msgid "No image in contents"
 msgstr "Aucune image dans les contenus"
 
-#: admin/modules/audit/audit-helpers-messages.php:106
+#: admin/modules/audit/audit-helpers-messages.php:117
 msgid "No internal link in main content"
 msgstr "Aucun liens interne dans les contenus"
 
-#: admin/modules/audit/audit-helpers-messages.php:107
+#: admin/modules/audit/audit-helpers-messages.php:118
 msgid "Main keyword selected"
 msgstr "Sélection des mots-clés principaux"
 
-#: admin/modules/audit/audit-helpers-messages.php:108
+#: admin/modules/audit/audit-helpers-messages.php:119
 msgid "Main keyword is missing at the beginning of content"
 msgstr "Contenu principal manquant au début du contenu"
 
-#: admin/modules/audit/audit-helpers-messages.php:109
+#: admin/modules/audit/audit-helpers-messages.php:120
 msgid "Word Count"
 msgstr "Nombre de mots"
 
-#: admin/modules/audit/audit-helpers-messages.php:110
+#: admin/modules/audit/audit-helpers-messages.php:121
 msgid "Noindex contents excluded from Search Engines"
 msgstr "Contenus exclus des recherches"
 
-#: admin/modules/audit/audit-helpers-messages.php:138
+#: admin/modules/audit/audit-helpers-messages.php:122
+msgid "Author with incomplete data"
+msgstr "Auteurs sans informations personnelles complètes"
+
+#: admin/modules/audit/audit-helpers-messages.php:124
+msgid "Checking \"Who are you ?\" settings"
+msgstr "Vérification des réglages du \"Qui êtes-vous ?\""
+
+#: admin/modules/audit/audit-helpers-messages.php:152
 msgid "No audit data yet "
 msgstr "Pas encore de données d’audit "
 
-#: admin/modules/audit/audit-helpers-messages.php:142
+#: admin/modules/audit/audit-helpers-messages.php:156
 msgid "Good job "
 msgstr "Bon travail "
 
-#: admin/modules/audit/audit-helpers-messages.php:144
+#: admin/modules/audit/audit-helpers-messages.php:158
 msgid "Keep working "
 msgstr "Continuez à travailler "
 
-#: admin/modules/audit/audit-helpers-messages.php:159
+#: admin/modules/audit/audit-helpers-messages.php:173
 msgid "You need to launch an audit"
 msgstr "Vous devez lancer un audit"
 
-#: admin/modules/audit/audit-helpers-messages.php:165
+#: admin/modules/audit/audit-helpers-messages.php:179
 msgid "Almost perfect"
 msgstr "Presque parfait"
 
-#: admin/modules/audit/audit-helpers-messages.php:167
+#: admin/modules/audit/audit-helpers-messages.php:181
 msgid "You are almost there"
 msgstr "Vous avez presque terminé"
 
-#: admin/modules/audit/audit-helpers-messages.php:169
+#: admin/modules/audit/audit-helpers-messages.php:183
 msgid "You still need to improve your SEO"
 msgstr "Vous devez encore améliorer votre référencement"
 
-#: admin/modules/audit/audit-helpers-messages.php:171
+#: admin/modules/audit/audit-helpers-messages.php:185
 msgid "You still need a lot of work to improve your SEO"
 msgstr "Vous avez encore du travail à faire pour améliorer votre référencement"
 
-#: admin/modules/audit/audit-helpers-messages.php:186
+#: admin/modules/audit/audit-helpers-messages.php:200
 #, php-format
 msgid "<span class=\"seokey-audit-show-numbers\">%1$s</span> content checked"
 msgstr ""
 "<span class=\"seokey-audit-show-numbers\">%1$s</span> contenus vérifiés"
 
-#: admin/modules/audit/audit-helpers-messages.php:189
+#: admin/modules/audit/audit-helpers-messages.php:203
 msgid "No content checked yet"
 msgstr "Aucun contenu n’a encore été vérifié"
 
-#: admin/modules/audit/audit-helpers-messages.php:195
+#: admin/modules/audit/audit-helpers-messages.php:209
 #, php-format
 msgid ""
 "<span class=\"seokey-audit-show-numbers\">%1$s</span> audit tasks performed"
@@ -1575,7 +1671,7 @@ msgstr ""
 "<span class=\"seokey-audit-show-numbers\">%1$s</span> tâches d’audit "
 "effectuées"
 
-#: admin/modules/audit/audit-helpers-messages.php:198
+#: admin/modules/audit/audit-helpers-messages.php:212
 msgid "No SEO issues analyzed yet"
 msgstr "Aucun contenu SEO n’a encore été analysé"
 
@@ -1612,7 +1708,7 @@ msgstr "Optimisez"
 
 #: admin/modules/audit/audit-single-content.php:54
 #: admin/modules/audit/audit-single-content.php:180
-#: admin/modules/audit/audit-wp-list-table-errors.php:451
+#: admin/modules/audit/audit-wp-list-table-errors.php:459
 #: admin/modules/audit/audit.php:74 admin/modules/audit/audit.php:124
 #: admin/modules/audit/audit.php:197
 #: admin/modules/keywords/keyword-table.php:275
@@ -1678,29 +1774,29 @@ msgstr "Titre du contenu"
 msgid "[NO TITLE]"
 msgstr "[PAS DE TITRE]"
 
-#: admin/modules/audit/audit-wp-list-table-errors.php:190
+#: admin/modules/audit/audit-wp-list-table-errors.php:194
 #: admin/modules/keywords/keyword-table.php:139
 msgctxt "List table row action"
 msgid "Edit"
 msgstr "Modifier"
 
-#: admin/modules/audit/audit-wp-list-table-errors.php:193
+#: admin/modules/audit/audit-wp-list-table-errors.php:197
 #: admin/modules/keywords/keyword-table.php:140
 msgctxt "List table row action"
 msgid "View"
 msgstr "Voir"
 
-#: admin/modules/audit/audit-wp-list-table-errors.php:228
+#: admin/modules/audit/audit-wp-list-table-errors.php:232
 msgctxt "Audit List table row actions"
 msgid "Ignore (PRO only)"
 msgstr "Ignorer (PRO seulement)"
 
-#: admin/modules/audit/audit-wp-list-table-errors.php:238
+#: admin/modules/audit/audit-wp-list-table-errors.php:242
 msgctxt "List table row action"
 msgid "Go to ALT Editor"
 msgstr "Aller à ALT Editor"
 
-#: admin/modules/audit/audit-wp-list-table-errors.php:270
+#: admin/modules/audit/audit-wp-list-table-errors.php:278
 msgid "Content modified since last audit: relaunch audit to renew data."
 msgstr ""
 "Contenu modifié depuis le dernier audit : relancez l’audit pour renouveler "
@@ -1767,6 +1863,18 @@ msgstr "%s, votre audit est toujours en cours d’exécution."
 #, php-format
 msgid "%s, you will find below the results of your SEO audit:"
 msgstr "%s, vous trouverez ci-dessous les résultats de votre audit SEO :"
+
+#: admin/modules/audit/tasks/content_author_incomplete_infos.php:91
+msgid "Author have incomplete data"
+msgstr "Auteur sans informations complète"
+
+#: admin/modules/audit/tasks/technical_incomplete_who_are_you.php:79
+msgid "Incomplete information about Website owner"
+msgstr "Informations incomplètes sur le propriétaire du site"
+
+#: admin/modules/audit/tasks/technical_incomplete_who_are_you.php:89
+msgid "No information about Website owner"
+msgstr "Pas d'informations sur le propriétaire du site"
 
 #: admin/modules/automatic_optimizations.php:32
 msgid ""
@@ -2935,10 +3043,10 @@ msgstr "Optimisations automatiques"
 #: admin/wizard.php:296
 #, php-format
 msgid ""
-"It will take only a few minutes to configure SEOKEY, improve \"%s\" SEO and "
+"It takes just a few minutes to configure SEOKEY, improve \"%s\" SEO and "
 "audit your content!"
 msgstr ""
-"Il ne vous faudra que quelques minutes pour configurer SEOKEY, améliorez le "
+"Il ne faut que quelques minutes pour configurer SEOKEY, améliorez le "
 "référencement « %s » et auditez votre contenu !"
 
 #: admin/wizard.php:297
@@ -3082,14 +3190,14 @@ msgstr ""
 "pour vous donner de vrais conseils."
 
 #: common/seo-key-helpers-help-messages.php:62
-#: common/seo-key-helpers-help-messages.php:68
-#: common/seo-key-helpers-help-messages.php:74
-#: common/seo-key-helpers-help-messages.php:80
+#: common/seo-key-helpers-help-messages.php:69
+#: common/seo-key-helpers-help-messages.php:75
+#: common/seo-key-helpers-help-messages.php:81
 msgid "Full advices are only available in PRO version"
 msgstr "Les conseils complets sont uniquement disponibles dans la version PRO"
 
 #: common/seo-key-helpers-help-messages.php:65
-#: common/seo-key-helpers-help-messages.php:71
+#: common/seo-key-helpers-help-messages.php:72
 msgid "You should wait"
 msgstr "Vous devriez attendre"
 
@@ -3097,15 +3205,15 @@ msgstr "Vous devriez attendre"
 msgid "You content has been updated less than 7 days ago."
 msgstr "Votre contenu a été mis à jour il y a moins de 7 jours."
 
-#: common/seo-key-helpers-help-messages.php:67
+#: common/seo-key-helpers-help-messages.php:68
 msgid "Wait before doing any major optimization."
 msgstr "Attendez avant de faire une optimisation majeure."
 
-#: common/seo-key-helpers-help-messages.php:72
+#: common/seo-key-helpers-help-messages.php:73
 msgid "This content was published less than 30 days ago."
 msgstr "Ce contenu a été publié il y a moins de 30 jours."
 
-#: common/seo-key-helpers-help-messages.php:73
+#: common/seo-key-helpers-help-messages.php:74
 msgid ""
 "SEOKEY needs more information from Search Console to guide you, and Google "
 "is still processing your content."
@@ -3113,11 +3221,11 @@ msgstr ""
 "SEOKEY a besoin de plus d'informations de la Search Console pour vous "
 "guider, et Google est encore en train d'analyser votre contenu."
 
-#: common/seo-key-helpers-help-messages.php:77
+#: common/seo-key-helpers-help-messages.php:78
 msgid "Keep Working"
 msgstr "Continuez à travailler"
 
-#: common/seo-key-helpers-help-messages.php:78
+#: common/seo-key-helpers-help-messages.php:79
 msgid ""
 "Your content is not yet visible in search engines: you are still far from "
 "page 1."
@@ -3125,7 +3233,7 @@ msgstr ""
 "Votre contenu n’est pas encore visible dans les moteurs de recherche. Vous "
 "êtes encore loin de la page 1."
 
-#: common/seo-key-helpers-help-messages.php:79
+#: common/seo-key-helpers-help-messages.php:80
 msgid ""
 "Continue to improve your text, respond to user needs and create links from "
 "other websites to this content."
@@ -3133,12 +3241,12 @@ msgstr ""
 "Continuez à améliorer votre texte, répondez aux besoins des utilisateurs et "
 "créez des liens depuis d’autres sites vers ce contenu."
 
-#: common/seo-key-helpers-help-messages.php:85
-#: common/seo-key-helpers-help-messages.php:107
+#: common/seo-key-helpers-help-messages.php:86
+#: common/seo-key-helpers-help-messages.php:108
 msgid "Why are you asking?"
 msgstr "Pourquoi cette information ?"
 
-#: common/seo-key-helpers-help-messages.php:86
+#: common/seo-key-helpers-help-messages.php:87
 msgid ""
 "Google needs to know who you are: a company, an individual, etc. This will "
 "enhance the credibility of your website (E.A.T criteria)."
@@ -3146,7 +3254,7 @@ msgstr ""
 "Google a besoin de savoir qui vous êtes : une entreprise, un individu, etc. "
 "Cela améliorera la crédibilité de votre site Web (critères E.A.T)."
 
-#: common/seo-key-helpers-help-messages.php:87
+#: common/seo-key-helpers-help-messages.php:88
 msgid ""
 "Nothing will be displayed to visitors, it is a schema.org markup only "
 "visible to search engines."
@@ -3154,11 +3262,11 @@ msgstr ""
 "Rien ne sera affiché aux visiteurs, cela ajoute un balisage schema.org "
 "uniquement visible par les moteurs de recherche."
 
-#: common/seo-key-helpers-help-messages.php:90
+#: common/seo-key-helpers-help-messages.php:91
 msgid "What is a post type and what should i do?"
 msgstr "Qu’est-ce qu’un Post Type et que dois-je faire ?"
 
-#: common/seo-key-helpers-help-messages.php:91
+#: common/seo-key-helpers-help-messages.php:92
 msgid ""
 "By default, WordPress allows you to manage multiple content types (posts and "
 "pages are the default ones). Depending on your theme and plugins, you may "
@@ -3169,7 +3277,7 @@ msgstr ""
 "extensions, vous pouvez en avoir d’autres tels que des produits, des "
 "sliders, des clients, etc."
 
-#: common/seo-key-helpers-help-messages.php:92
+#: common/seo-key-helpers-help-messages.php:93
 msgid ""
 "But not all of these content types are always relevant. You can hide some of "
 "them from Google."
@@ -3177,7 +3285,7 @@ msgstr ""
 "Mais tous ces types de contenu ne sont pas toujours pertinents. Vous pouvez "
 "cacher certains d’entre eux à Google."
 
-#: common/seo-key-helpers-help-messages.php:93
+#: common/seo-key-helpers-help-messages.php:94
 msgid ""
 "To better see what they are, use each question mark to get more information "
 "about a specific content type."
@@ -3185,11 +3293,11 @@ msgstr ""
 "Pour mieux voir ce qu’ils sont, survolez chaque point d’interrogation pour "
 "obtenir plus d’informations."
 
-#: common/seo-key-helpers-help-messages.php:96
+#: common/seo-key-helpers-help-messages.php:97
 msgid "What is a taxonomy and what should i do?"
 msgstr "Qu’est-ce qu’une taxonomie et que dois-je faire ?"
 
-#: common/seo-key-helpers-help-messages.php:97
+#: common/seo-key-helpers-help-messages.php:98
 msgid ""
 "By default, WordPress allows you to manage several types of classifications "
 "(categories and tags). These are called taxonomies. Depending on your theme "
@@ -3199,7 +3307,7 @@ msgstr ""
 "classifications (catégories et tags). C’est ce qu’on appelle des taxonomies. "
 "Selon votre thème et vos extensions, vous en aurez peut-être plus."
 
-#: common/seo-key-helpers-help-messages.php:98
+#: common/seo-key-helpers-help-messages.php:99
 msgid ""
 "But not all these taxonomies are always relevant. So you can hide some of "
 "them from Google."
@@ -3207,7 +3315,7 @@ msgstr ""
 "Mais toutes ces taxonomies ne sont pas toujours pertinentes. Vous pouvez "
 "donc cacher certaines d’entre elles à Google."
 
-#: common/seo-key-helpers-help-messages.php:99
+#: common/seo-key-helpers-help-messages.php:100
 msgid ""
 "To better see what they are, hover over the question mark of each taxonomy "
 "to get more information."
@@ -3215,12 +3323,12 @@ msgstr ""
 "Pour mieux voir ce qu’ils sont, survolez le point d’interrogation de chaque "
 "taxonomie pour obtenir plus d’informations."
 
-#: common/seo-key-helpers-help-messages.php:102
+#: common/seo-key-helpers-help-messages.php:103
 msgid "Why should i choose a taxonomy for each post type?"
 msgstr ""
 "Pourquoi dois-je choisir une taxonomie pour chaque type de publication ?"
 
-#: common/seo-key-helpers-help-messages.php:103
+#: common/seo-key-helpers-help-messages.php:104
 msgid ""
 "In SEOKEY, we will tell Google the best way to rank your content (using "
 "schema.org)"
@@ -3228,18 +3336,18 @@ msgstr ""
 "Dans SEOKEY, nous indiquerons à Google la meilleure façon de classer votre "
 "contenu (en utilisant un balisage schema.org)"
 
-#: common/seo-key-helpers-help-messages.php:104
+#: common/seo-key-helpers-help-messages.php:105
 msgid ""
 "For each of your content types, select the taxonomy that seems most relevant."
 msgstr ""
 "Pour chacun de vos types de contenu, sélectionnez la taxonomie qui semble la "
 "plus pertinente."
 
-#: common/seo-key-helpers-help-messages.php:108
+#: common/seo-key-helpers-help-messages.php:109
 msgid "In WordPress, you have pages for each of your authors."
 msgstr "Dans WordPress, vous avez des pages pour chacun de vos auteurs."
 
-#: common/seo-key-helpers-help-messages.php:109
+#: common/seo-key-helpers-help-messages.php:110
 msgid ""
 "But depending on your industry and strategy, you may not want to display "
 "them in Google."
@@ -3247,32 +3355,32 @@ msgstr ""
 "Mais en fonction de votre secteur d’activité et de votre stratégie, vous ne "
 "voudrez peut-être pas les afficher dans Google."
 
-#: common/seo-key-helpers-help-messages.php:112
-#: common/seo-key-helpers-help-messages.php:155
-#: common/seo-key-helpers-help-messages.php:163
-#: common/seo-key-helpers-help-messages.php:171
-#: common/seo-key-helpers-help-messages.php:178
-#: common/seo-key-helpers-help-messages.php:185
-#: common/seo-key-helpers-help-messages.php:223
-#: common/seo-key-helpers-help-messages.php:259
-#: common/seo-key-helpers-help-messages.php:264
-#: common/seo-key-helpers-help-messages.php:270
-#: common/seo-key-helpers-help-messages.php:275
-#: common/seo-key-helpers-help-messages.php:281
-#: common/seo-key-helpers-help-messages.php:286
-#: common/seo-key-helpers-help-messages.php:292
-#: common/seo-key-helpers-help-messages.php:297
-#: common/seo-key-helpers-help-messages.php:303
-#: common/seo-key-helpers-help-messages.php:309
-#: common/seo-key-helpers-help-messages.php:315
-#: common/seo-key-helpers-help-messages.php:320
-#: common/seo-key-helpers-help-messages.php:327
-#: common/seo-key-helpers-help-messages.php:332
+#: common/seo-key-helpers-help-messages.php:113
+#: common/seo-key-helpers-help-messages.php:156
+#: common/seo-key-helpers-help-messages.php:164
+#: common/seo-key-helpers-help-messages.php:172
+#: common/seo-key-helpers-help-messages.php:179
+#: common/seo-key-helpers-help-messages.php:186
+#: common/seo-key-helpers-help-messages.php:224
+#: common/seo-key-helpers-help-messages.php:260
+#: common/seo-key-helpers-help-messages.php:265
+#: common/seo-key-helpers-help-messages.php:271
+#: common/seo-key-helpers-help-messages.php:276
+#: common/seo-key-helpers-help-messages.php:282
+#: common/seo-key-helpers-help-messages.php:287
+#: common/seo-key-helpers-help-messages.php:293
+#: common/seo-key-helpers-help-messages.php:298
+#: common/seo-key-helpers-help-messages.php:304
+#: common/seo-key-helpers-help-messages.php:310
+#: common/seo-key-helpers-help-messages.php:316
+#: common/seo-key-helpers-help-messages.php:321
+#: common/seo-key-helpers-help-messages.php:328
+#: common/seo-key-helpers-help-messages.php:333
 msgid "What is it?"
 msgstr "Qu’est-ce que c’est?"
 
-#: common/seo-key-helpers-help-messages.php:113
-#: common/seo-key-helpers-help-messages.php:201
+#: common/seo-key-helpers-help-messages.php:114
+#: common/seo-key-helpers-help-messages.php:202
 msgid ""
 "The Title tag is the main subject of your content. It has a crucial "
 "importance for the Internet user and the search engine."
@@ -3280,8 +3388,8 @@ msgstr ""
 "La balise Title est le sujet principal de chaque contenu. Elle a une "
 "importance cruciale pour l’internaute et le moteur de recherche."
 
-#: common/seo-key-helpers-help-messages.php:114
-#: common/seo-key-helpers-help-messages.php:202
+#: common/seo-key-helpers-help-messages.php:115
+#: common/seo-key-helpers-help-messages.php:203
 msgid ""
 "You must add the keyword you are targeting, while making the user want to "
 "click."
@@ -3289,8 +3397,8 @@ msgstr ""
 "Vous devez ajouter à l'intérieur le mot-clé que vous ciblez tout en donnant "
 "envie à l’utilisateur de cliquer."
 
-#: common/seo-key-helpers-help-messages.php:115
-#: common/seo-key-helpers-help-messages.php:206
+#: common/seo-key-helpers-help-messages.php:116
+#: common/seo-key-helpers-help-messages.php:207
 msgid ""
 "Explain what your content will be about. This text must be appealing to "
 "users, because this is what they will read in the Google page results."
@@ -3298,16 +3406,16 @@ msgstr ""
 "Expliquez de quoi parle votre contenu. Ce texte doit être attrayant pour les "
 "utilisateurs car c’est ce qu’ils liront dans les résultats de Google."
 
-#: common/seo-key-helpers-help-messages.php:116
-#: common/seo-key-helpers-help-messages.php:207
+#: common/seo-key-helpers-help-messages.php:117
+#: common/seo-key-helpers-help-messages.php:208
 msgid "We advise you to add the keyword you are targeting."
 msgstr "Nous vous conseillons d’ajouter le mot-clé que vous ciblez."
 
-#: common/seo-key-helpers-help-messages.php:120
+#: common/seo-key-helpers-help-messages.php:121
 msgid "What is the Search Console?"
 msgstr "Qu’est-ce que la Search Console ?"
 
-#: common/seo-key-helpers-help-messages.php:121
+#: common/seo-key-helpers-help-messages.php:122
 msgid ""
 "Google Search Console is a free tool that lets you know the health and "
 "performance of your site in the search engine."
@@ -3315,13 +3423,13 @@ msgstr ""
 "La Search Console est un outil gratuit qui vous permet de connaître la santé "
 "et les performances de votre site dans Google."
 
-#: common/seo-key-helpers-help-messages.php:122
+#: common/seo-key-helpers-help-messages.php:123
 msgid "This allows SEOKEY to get valuable information to give you advice."
 msgstr ""
 "Cela permet à SEOKEY d’obtenir des informations précieuses pour vous "
 "conseiller."
 
-#: common/seo-key-helpers-help-messages.php:123
+#: common/seo-key-helpers-help-messages.php:124
 msgid ""
 "In no circumstances will we use your data elsewhere: it will only be "
 "displayed in the administration of your site."
@@ -3329,41 +3437,41 @@ msgstr ""
 "En aucun cas nous n’utiliserons vos données ailleurs: elles ne seront "
 "affichées que dans l’administration de votre site."
 
-#: common/seo-key-helpers-help-messages.php:126
-#: common/seo-key-helpers-help-messages.php:131
-#: common/seo-key-helpers-help-messages.php:345
-#: common/seo-key-helpers-help-messages.php:350
-#: common/seo-key-helpers-help-messages.php:361
-#: common/seo-key-helpers-help-messages.php:367
-#: common/seo-key-helpers-help-messages.php:373
-#: common/seo-key-helpers-help-messages.php:379
-#: common/seo-key-helpers-help-messages.php:384
-#: common/seo-key-helpers-help-messages.php:390
-#: common/seo-key-helpers-help-messages.php:398
-#: common/seo-key-helpers-help-messages.php:403
-#: common/seo-key-helpers-help-messages.php:409
-#: common/seo-key-helpers-help-messages.php:414
-#: common/seo-key-helpers-help-messages.php:420
-#: common/seo-key-helpers-help-messages.php:425
-#: common/seo-key-helpers-help-messages.php:431
-#: common/seo-key-helpers-help-messages.php:437
-#: common/seo-key-helpers-help-messages.php:443
-#: common/seo-key-helpers-help-messages.php:448
-#: common/seo-key-helpers-help-messages.php:454
-#: common/seo-key-helpers-help-messages.php:460
-#: common/seo-key-helpers-help-messages.php:465
-#: common/seo-key-helpers-help-messages.php:476
-#: common/seo-key-helpers-help-messages.php:481
+#: common/seo-key-helpers-help-messages.php:127
+#: common/seo-key-helpers-help-messages.php:132
+#: common/seo-key-helpers-help-messages.php:346
+#: common/seo-key-helpers-help-messages.php:351
+#: common/seo-key-helpers-help-messages.php:362
+#: common/seo-key-helpers-help-messages.php:368
+#: common/seo-key-helpers-help-messages.php:374
+#: common/seo-key-helpers-help-messages.php:380
+#: common/seo-key-helpers-help-messages.php:385
+#: common/seo-key-helpers-help-messages.php:391
+#: common/seo-key-helpers-help-messages.php:399
+#: common/seo-key-helpers-help-messages.php:404
+#: common/seo-key-helpers-help-messages.php:410
+#: common/seo-key-helpers-help-messages.php:415
+#: common/seo-key-helpers-help-messages.php:421
+#: common/seo-key-helpers-help-messages.php:426
+#: common/seo-key-helpers-help-messages.php:432
+#: common/seo-key-helpers-help-messages.php:438
+#: common/seo-key-helpers-help-messages.php:444
+#: common/seo-key-helpers-help-messages.php:449
+#: common/seo-key-helpers-help-messages.php:455
+#: common/seo-key-helpers-help-messages.php:461
+#: common/seo-key-helpers-help-messages.php:466
+#: common/seo-key-helpers-help-messages.php:477
+#: common/seo-key-helpers-help-messages.php:482
 msgid "What should i do?"
 msgstr "Que dois-je faire ?"
 
-#: common/seo-key-helpers-help-messages.php:127
+#: common/seo-key-helpers-help-messages.php:128
 msgid "Go to your Search Console to give SEOKEY the right to access your data."
 msgstr ""
 "Accédez à votre Search Console pour donner à SEOKEY le droit d’accéder à vos "
 "données."
 
-#: common/seo-key-helpers-help-messages.php:128
+#: common/seo-key-helpers-help-messages.php:129
 msgid ""
 "To do this, please agree to the various requests after clicking on the "
 "button below."
@@ -3371,7 +3479,7 @@ msgstr ""
 "Pour ce faire, veuillez accepter les différentes demandes après avoir cliqué "
 "sur le bouton ci-dessous."
 
-#: common/seo-key-helpers-help-messages.php:132
+#: common/seo-key-helpers-help-messages.php:133
 msgid ""
 "Then, copy/paste below the code you will have obtained to validate the "
 "access to your Search Console."
@@ -3379,11 +3487,11 @@ msgstr ""
 "Ensuite, copiez/collez sous le code que vous aurez obtenu pour valider "
 "l’accès à votre Search Console."
 
-#: common/seo-key-helpers-help-messages.php:136
+#: common/seo-key-helpers-help-messages.php:137
 msgid "What is a htaccess/htpasswd protection?"
 msgstr "Qu’est-ce qu’une protection htaccess/htpasswd ?"
 
-#: common/seo-key-helpers-help-messages.php:137
+#: common/seo-key-helpers-help-messages.php:138
 msgid ""
 "When you are working on a development site, Google may sometimes discover it "
 "and index it."
@@ -3391,7 +3499,7 @@ msgstr ""
 "Lorsque vous travaillez sur un site de développement, Google peut parfois le "
 "trouver et l’indexer."
 
-#: common/seo-key-helpers-help-messages.php:138
+#: common/seo-key-helpers-help-messages.php:139
 msgid ""
 "Ideally, you should use .htaccess/.htpasswd protection. But when activated, "
 "it can prevent some features of SEOKEY to work."
@@ -3400,46 +3508,46 @@ msgstr ""
 "Cependant, lorsqu’elle est activée, elle peut empêcher le fonctionnement de "
 "certaines fonctionnalités de SEOKEY."
 
-#: common/seo-key-helpers-help-messages.php:139
+#: common/seo-key-helpers-help-messages.php:140
 msgid "You can use fields below to fill in your .htpasswd credentials."
 msgstr ""
 "Vous pouvez utiliser les champs ci-dessous pour remplir vos informations "
 "d’identification .htpasswd."
 
-#: common/seo-key-helpers-help-messages.php:142
+#: common/seo-key-helpers-help-messages.php:143
 msgid "What is a sitemap?"
 msgstr "Qu’est-ce qu’un sitemap ?"
 
-#: common/seo-key-helpers-help-messages.php:143
+#: common/seo-key-helpers-help-messages.php:144
 msgid "A sitemap is a file that lists all the useful contents of your site."
 msgstr ""
 "Un sitemap est un fichier qui répertorie tous les contenus utiles de votre "
 "site."
 
-#: common/seo-key-helpers-help-messages.php:144
+#: common/seo-key-helpers-help-messages.php:145
 msgid "It helps search engines to discover all of your publications."
 msgstr "Il aide les moteurs de recherche à trouver toutes vos publications."
 
-#: common/seo-key-helpers-help-messages.php:145
+#: common/seo-key-helpers-help-messages.php:146
 msgid "SEOKEY manages all this for you, you don't have to do anything."
 msgstr ""
 "SEOKEY gère cela automatiquement pour vous pour que vous n’ayez rien à faire."
 
-#: common/seo-key-helpers-help-messages.php:148
+#: common/seo-key-helpers-help-messages.php:149
 msgid "What is a breadcrumb?"
 msgstr "Qu’est-ce qu’un fil d’Ariane ?"
 
-#: common/seo-key-helpers-help-messages.php:149
+#: common/seo-key-helpers-help-messages.php:150
 msgid "It's is a line in which the user is told where he is."
 msgstr "C’est une ligne qui indique à l'utilisateur où il se trouve."
 
-#: common/seo-key-helpers-help-messages.php:150
+#: common/seo-key-helpers-help-messages.php:151
 msgid "For example, it can look like this: \"Home > Category > Post name\""
 msgstr ""
 "Par exemple, il peut ressembler à ceci: « Accueil > Catégorie > Nom de "
 "l’article »"
 
-#: common/seo-key-helpers-help-messages.php:151
+#: common/seo-key-helpers-help-messages.php:152
 msgid ""
 "SEOKEY adds the breadcrumbs in your pages (schema.org markup for Google). If "
 "you also want to display it to your visitors, use code below."
@@ -3448,7 +3556,7 @@ msgstr ""
 "Google). Si vous souhaitez également l’afficher à vos visiteurs, utilisez le "
 "code ci-dessous."
 
-#: common/seo-key-helpers-help-messages.php:156
+#: common/seo-key-helpers-help-messages.php:157
 msgid ""
 "By default, when WordPress displays an author's page, it lists all their "
 "posts."
@@ -3456,7 +3564,7 @@ msgstr ""
 "Par défaut, lorsque WordPress affiche la page d’un auteur, il liste toutes "
 "ses publications."
 
-#: common/seo-key-helpers-help-messages.php:157
+#: common/seo-key-helpers-help-messages.php:158
 msgid ""
 "When there are too many, your site will create additional pages, for example "
 "author-name/page/2"
@@ -3464,8 +3572,8 @@ msgstr ""
 "Lorsqu’il y en a trop, votre site créera des pages supplémentaires, par "
 "exemple nom-auteur/page/2"
 
-#: common/seo-key-helpers-help-messages.php:158
-#: common/seo-key-helpers-help-messages.php:165
+#: common/seo-key-helpers-help-messages.php:159
+#: common/seo-key-helpers-help-messages.php:166
 msgid ""
 "These pages are usually of little interest to search engines. This wastes "
 "Google's time."
@@ -3473,8 +3581,8 @@ msgstr ""
 "Ces pages ont généralement peu d’intérêt pour les moteurs de recherche. Cela "
 "fait perdre du temps à Google."
 
-#: common/seo-key-helpers-help-messages.php:159
-#: common/seo-key-helpers-help-messages.php:167
+#: common/seo-key-helpers-help-messages.php:160
+#: common/seo-key-helpers-help-messages.php:168
 msgid ""
 "By activating this option, SEOKEY automatically disables and redirects these "
 "pages."
@@ -3482,7 +3590,7 @@ msgstr ""
 "En activant cette option, SEOKEY désactive et redirige automatiquement ces "
 "pages."
 
-#: common/seo-key-helpers-help-messages.php:164
+#: common/seo-key-helpers-help-messages.php:165
 msgid ""
 "In WordPress, when you have too many comments, you can enable pagination of "
 "them. It will create additional pages, for example post-name/comment-page-2/"
@@ -3491,7 +3599,7 @@ msgstr ""
 "leur pagination. Cela créera des pages supplémentaires, par exemple post-"
 "name/comment-page-2/"
 
-#: common/seo-key-helpers-help-messages.php:166
+#: common/seo-key-helpers-help-messages.php:167
 msgid ""
 "Even worse, it reduces your actual content quality (some comments are no "
 "longer there)."
@@ -3500,13 +3608,13 @@ msgstr ""
 "commentaires ne sont plus dans votre contenu principal mais sur une autre "
 "page)."
 
-#: common/seo-key-helpers-help-messages.php:172
+#: common/seo-key-helpers-help-messages.php:173
 msgid "In WordPress, you can enable individual responses for each comment."
 msgstr ""
 "Dans WordPress, vous pouvez activer des réponses individuelles pour chaque "
 "commentaire."
 
-#: common/seo-key-helpers-help-messages.php:173
+#: common/seo-key-helpers-help-messages.php:174
 msgid ""
 "Unfortunately, this will create additional links in the page. Google will "
 "follow them and it will waste time. It will also give less importance to "
@@ -3516,11 +3624,11 @@ msgstr ""
 "les suivra et cela lui fera perdre du temps. Cela donnera également moins "
 "d’importance à vos liens réels."
 
-#: common/seo-key-helpers-help-messages.php:174
+#: common/seo-key-helpers-help-messages.php:175
 msgid "By enabling this option, SEOKEY will hide these buttons."
 msgstr "En activant cette option, SEOKEY masquera ces boutons."
 
-#: common/seo-key-helpers-help-messages.php:179
+#: common/seo-key-helpers-help-messages.php:180
 msgid ""
 "As in all SEO extensions, you can indicate whether a content should be "
 "hidden from Google."
@@ -3528,14 +3636,14 @@ msgstr ""
 "Comme dans toutes les extensions SEO, vous pouvez indiquer si un contenu "
 "doit être caché à Google."
 
-#: common/seo-key-helpers-help-messages.php:180
+#: common/seo-key-helpers-help-messages.php:181
 msgid ""
 "But they will still be displayed in listings, for example in your categories."
 msgstr ""
 "Mais ils seront toujours affichés dans les archives, par exemple dans vos "
 "catégories."
 
-#: common/seo-key-helpers-help-messages.php:181
+#: common/seo-key-helpers-help-messages.php:182
 msgid ""
 "If you enable this option, \"noindexed\" content will no longer be displayed "
 "in your listings (in what is called The Loop in WordPress)."
@@ -3544,7 +3652,7 @@ msgstr ""
 "plus affichés dans vos archives (dans ce qu’on appelle la Boucle dans "
 "WordPress)."
 
-#: common/seo-key-helpers-help-messages.php:186
+#: common/seo-key-helpers-help-messages.php:187
 msgid ""
 "An RSS feed is a tool that allows different applications and sites to stay "
 "up to date with your new contents (for example with the excellent Feedly)."
@@ -3553,7 +3661,7 @@ msgstr ""
 "et sites de rester à jour avec vos nouveaux contenus (par exemple avec "
 "l’excellent Feedly)."
 
-#: common/seo-key-helpers-help-messages.php:187
+#: common/seo-key-helpers-help-messages.php:188
 msgid ""
 "But WordPress will create a lot of RSS feeds. They will make search engines "
 "waste time."
@@ -3561,7 +3669,7 @@ msgstr ""
 "Mais WordPress créera beaucoup de flux RSS. Ils feront perdre du temps aux "
 "moteurs de recherche."
 
-#: common/seo-key-helpers-help-messages.php:188
+#: common/seo-key-helpers-help-messages.php:189
 msgid ""
 "SEOKEY will automatically disable some harmful RSS feeds, such as comments "
 "RSS. But to disable other secondary feeds like those of your categories, use "
@@ -3571,17 +3679,17 @@ msgstr ""
 "RSS. Mais pour désactiver les autres flux secondaires comme ceux de vos "
 "catégories et autres taxonomies, utilisez cette option"
 
-#: common/seo-key-helpers-help-messages.php:194
+#: common/seo-key-helpers-help-messages.php:195
 msgid "Where does this data comes from?"
 msgstr "D’où proviennent ces données ?"
 
-#: common/seo-key-helpers-help-messages.php:195
+#: common/seo-key-helpers-help-messages.php:196
 msgid "The Google Search Console provides valuable information about your SEO."
 msgstr ""
 "La Google Search Console fournit des informations précieuses sur votre "
 "référencement."
 
-#: common/seo-key-helpers-help-messages.php:196
+#: common/seo-key-helpers-help-messages.php:197
 msgid ""
 "The figures below will help you better understand how your content is "
 "currently performing on Google (figures based on the last 90 days)."
@@ -3590,7 +3698,7 @@ msgstr ""
 "actuelles de votre contenu sur Google (chiffres basés sur les 90 derniers "
 "jours)."
 
-#: common/seo-key-helpers-help-messages.php:197
+#: common/seo-key-helpers-help-messages.php:198
 msgid ""
 "By telling SEOKEY the keyword you want to be visible on, it will allow us to "
 "tell you what you should do with this content (\"suggestion\")."
@@ -3599,19 +3707,19 @@ msgstr ""
 "cela nous permettra de vous dire ce que vous devez faire avec ce contenu "
 "(«suggestion»)."
 
-#: common/seo-key-helpers-help-messages.php:200
+#: common/seo-key-helpers-help-messages.php:201
 msgid "What is a title tag?"
 msgstr "Qu’est-ce qu’une balise de titre ?"
 
-#: common/seo-key-helpers-help-messages.php:205
+#: common/seo-key-helpers-help-messages.php:206
 msgid "What is a meta description?"
 msgstr "Qu’est-ce qu’une méta description ?"
 
-#: common/seo-key-helpers-help-messages.php:210
+#: common/seo-key-helpers-help-messages.php:211
 msgid "What is a private page (noindex directive)?"
 msgstr "Qu’est-ce qu’une page privée (directive noindex) ?"
 
-#: common/seo-key-helpers-help-messages.php:211
+#: common/seo-key-helpers-help-messages.php:212
 msgid ""
 "Sometimes contents need to be private. For example, this is the case for a "
 "\"thank you\" page, a \"my account\" page or the shopping cart page on "
@@ -3621,7 +3729,7 @@ msgstr ""
 "de remerciement, une page de « mon compte » ou la page du panier d’achat sur "
 "les sites de commerce électronique."
 
-#: common/seo-key-helpers-help-messages.php:212
+#: common/seo-key-helpers-help-messages.php:213
 msgid ""
 "If this is the case, check the box. If Google discovers this content, SEOKEY "
 "will tell it to remove it from its index."
@@ -3629,11 +3737,11 @@ msgstr ""
 "Si c’est le cas, cochez la case. Quand Google retournera sur ce contenu, "
 "SEOKEY lui dira de le supprimer de son index."
 
-#: common/seo-key-helpers-help-messages.php:217
+#: common/seo-key-helpers-help-messages.php:218
 msgid "Why is it important?"
 msgstr "Pourquoi est-ce important?"
 
-#: common/seo-key-helpers-help-messages.php:218
+#: common/seo-key-helpers-help-messages.php:219
 msgid ""
 "When Google discovers an error page, it causes several problems: it reduces "
 "the credibility of the site and its popularity, while wasting its time."
@@ -3642,7 +3750,7 @@ msgstr ""
 "cela réduit la crédibilité du site et sa popularité, tout en lui faisant "
 "perdre du temps."
 
-#: common/seo-key-helpers-help-messages.php:219
+#: common/seo-key-helpers-help-messages.php:220
 msgid ""
 "By redirecting these error pages, you will improve your SEO. Preferably, "
 "redirect these error pages to the most similar page."
@@ -3650,7 +3758,7 @@ msgstr ""
 "En redirigeant ces pages d’erreur, vous améliorerez votre référencement. De "
 "préférence, redirigez ces pages d’erreur vers la page la plus similaire."
 
-#: common/seo-key-helpers-help-messages.php:224
+#: common/seo-key-helpers-help-messages.php:225
 msgid ""
 "WordPress redirects automatically some urls when they have errors. But these "
 "redirects are slow and may not be relevant."
@@ -3659,7 +3767,7 @@ msgstr ""
 "erreurs. Mais ces redirections sont lentes et peuvent ne pas être "
 "pertinentes."
 
-#: common/seo-key-helpers-help-messages.php:225
+#: common/seo-key-helpers-help-messages.php:226
 msgid ""
 "You can therefore modify them (better relevance and loading time) or simply "
 "validate them (better loading time)"
@@ -3667,11 +3775,11 @@ msgstr ""
 "Vous pouvez donc les modifier (meilleure pertinence et temps de chargement) "
 "ou simplement les valider (meilleur temps de chargement)"
 
-#: common/seo-key-helpers-help-messages.php:230
+#: common/seo-key-helpers-help-messages.php:231
 msgid "How to fill in an alternative text?"
 msgstr "Comment remplir un texte alternatif?"
 
-#: common/seo-key-helpers-help-messages.php:231
+#: common/seo-key-helpers-help-messages.php:232
 msgid ""
 "Describe what your image represents in a few words or a short sentence. You "
 "should describe what the image is about."
@@ -3679,7 +3787,7 @@ msgstr ""
 "Décrivez ce que votre image représente en quelques mots ou en une courte "
 "phrase. Vous devez réellement décrire l'image."
 
-#: common/seo-key-helpers-help-messages.php:232
+#: common/seo-key-helpers-help-messages.php:233
 msgid ""
 "If the image is purely decorative, you do not have to fill in the "
 "alternative text (because it may harm accessibility)."
@@ -3687,11 +3795,11 @@ msgstr ""
 "Si l’image est purement décorative, vous n’avez pas besoin de remplir le "
 "texte alternatif (car cela nuirait à l'accessibilité)."
 
-#: common/seo-key-helpers-help-messages.php:236
+#: common/seo-key-helpers-help-messages.php:237
 msgid "Why does Google need an alternative text?"
 msgstr "Pourquoi Google a-t-il besoin d’un texte alternatif ?"
 
-#: common/seo-key-helpers-help-messages.php:237
+#: common/seo-key-helpers-help-messages.php:238
 msgid ""
 "Google is unable to understand an image alone, so you must help it by "
 "associating an alternative text with it."
@@ -3699,13 +3807,13 @@ msgstr ""
 "Google est incapable de comprendre une image, vous devez donc l’aider en y "
 "associant un texte alternatif."
 
-#: common/seo-key-helpers-help-messages.php:238
+#: common/seo-key-helpers-help-messages.php:239
 msgid ""
 "You will have to describe your image in a few words or a short sentence."
 msgstr ""
 "Vous devrez décrire votre image en quelques mots ou en une courte phrase."
 
-#: common/seo-key-helpers-help-messages.php:239
+#: common/seo-key-helpers-help-messages.php:240
 msgid ""
 "This will allow you to be visible in Google Images, and improve the "
 "understanding of your content."
@@ -3713,8 +3821,8 @@ msgstr ""
 "Cela vous permettra d’être visible dans Google Images et d’améliorer la "
 "compréhension de votre contenu."
 
-#: common/seo-key-helpers-help-messages.php:243
-#: common/seo-key-helpers-help-messages.php:251
+#: common/seo-key-helpers-help-messages.php:244
+#: common/seo-key-helpers-help-messages.php:252
 msgid ""
 "Why does WordPress Media library not update alternative texts within my "
 "content?"
@@ -3722,8 +3830,8 @@ msgstr ""
 "Pourquoi la médiathèque WordPress ne met-elle pas à jour les textes "
 "alternatifs présent à l'intérieur de mes contenus ?"
 
-#: common/seo-key-helpers-help-messages.php:244
-#: common/seo-key-helpers-help-messages.php:252
+#: common/seo-key-helpers-help-messages.php:245
+#: common/seo-key-helpers-help-messages.php:253
 msgid ""
 "Medias management in WordPress is not great. When you add an image into a "
 "content, it is also added to the media library. Once it is done, the two are "
@@ -3733,16 +3841,16 @@ msgstr ""
 "une image à un contenu, elle est également ajoutée à la médiathèque. Une "
 "fois que c’est fait, les deux ne sont plus liées l’une à l’autre."
 
-#: common/seo-key-helpers-help-messages.php:245
-#: common/seo-key-helpers-help-messages.php:253
+#: common/seo-key-helpers-help-messages.php:246
+#: common/seo-key-helpers-help-messages.php:254
 msgid ""
 "If you change or add alternative text for one, it doesn't update the other."
 msgstr ""
 "Si vous modifiez ou ajoutez un texte alternatif pour l’une, il ne met pas à "
 "jour l’autre."
 
-#: common/seo-key-helpers-help-messages.php:246
-#: common/seo-key-helpers-help-messages.php:254
+#: common/seo-key-helpers-help-messages.php:247
+#: common/seo-key-helpers-help-messages.php:255
 msgid ""
 "Keep in mind that alternative texts within media library are still "
 "important. It will allow WordPress to add alternative texts for your "
@@ -3755,7 +3863,7 @@ msgstr ""
 "un média. Cela évitera également les erreurs futures si vous souhaitez "
 "ajouter une image déjà mise en ligne."
 
-#: common/seo-key-helpers-help-messages.php:247
+#: common/seo-key-helpers-help-messages.php:248
 msgid ""
 "If you update to WordPress 6.0 or above, SEOKEY pro can fix this "
 "automatically."
@@ -3763,7 +3871,7 @@ msgstr ""
 "Si vous faites la mise à jour vers WordPress 6.0 ou supérieur, SEOKEY pro "
 "pourra corriger cela automatiquement."
 
-#: common/seo-key-helpers-help-messages.php:255
+#: common/seo-key-helpers-help-messages.php:256
 msgid ""
 "With WordPress 6.0 or above, SEOKEY PRO will add missing ALT within contents "
 "using alternative texts found in your media library."
@@ -3772,7 +3880,7 @@ msgstr ""
 "manquant dans les contenus lorsque ces textes alternatifs sont trouvés dans "
 "votre bibliothèque de médias."
 
-#: common/seo-key-helpers-help-messages.php:260
+#: common/seo-key-helpers-help-messages.php:261
 #, php-format
 msgid ""
 "Where other extensions offered a restrictive and not very explicit setting "
@@ -3781,12 +3889,12 @@ msgstr ""
 "Là où d’autres extensions offraient un paramètre restrictif et peu explicite "
 "avec des %%titre%% à insérer, SEOKEY le gère pour vous."
 
-#: common/seo-key-helpers-help-messages.php:261
+#: common/seo-key-helpers-help-messages.php:262
 msgid "You only have to focus on the essential: writing good content."
 msgstr ""
 "Vous n’avez qu’à vous concentrer sur l’essentiel : écrire du bon contenu."
 
-#: common/seo-key-helpers-help-messages.php:265
+#: common/seo-key-helpers-help-messages.php:266
 msgid ""
 "WordPress natively creates URLs for each year, month and day you published "
 "content."
@@ -3794,7 +3902,7 @@ msgstr ""
 "WordPress crée nativement des URL pour chaque année, mois et jour où vous "
 "avez publié du contenu."
 
-#: common/seo-key-helpers-help-messages.php:266
+#: common/seo-key-helpers-help-messages.php:267
 msgid ""
 "These URLs are unfortunately harmful because they do not target any keyword, "
 "are duplicated and waste Google's time."
@@ -3802,11 +3910,11 @@ msgstr ""
 "Ces URL sont malheureusement nuisibles car elles ne ciblent aucun mot-clé, "
 "sont dupliquées et font perdre du temps à Google."
 
-#: common/seo-key-helpers-help-messages.php:267
+#: common/seo-key-helpers-help-messages.php:268
 msgid "SEOKEY takes care of getting rid of them."
 msgstr "SEOKEY s’occupe de s’en débarrasser."
 
-#: common/seo-key-helpers-help-messages.php:271
+#: common/seo-key-helpers-help-messages.php:272
 msgid ""
 "WordPress has the annoying tendency to add a lot of information to your HTML "
 "code, especially in what is called the HEAD."
@@ -3814,7 +3922,7 @@ msgstr ""
 "WordPress a la fâcheuse tendance à ajouter beaucoup d’informations à votre "
 "code HTML, en particulier dans ce qu’on appelle le HEAD."
 
-#: common/seo-key-helpers-help-messages.php:272
+#: common/seo-key-helpers-help-messages.php:273
 msgid ""
 "SEOKEY removes this information to lighten the weight of the pages and "
 "prevent Google from following some useless links."
@@ -3822,7 +3930,7 @@ msgstr ""
 "SEOKEY supprime ces informations pour alléger le poids des pages et empêcher "
 "Google de suivre certains liens inutiles."
 
-#: common/seo-key-helpers-help-messages.php:276
+#: common/seo-key-helpers-help-messages.php:277
 msgid ""
 "In WordPress, you can create new types of content (“products”, "
 "“customers”, ...). Some may have activated an archive page, (i.e. a page "
@@ -3832,7 +3940,7 @@ msgstr ""
 "«clients», ...). Certains peuvent avoir une page d’archive (c’est-à-dire une "
 "page qui répertorie tout le contenu de ce type)."
 
-#: common/seo-key-helpers-help-messages.php:277
+#: common/seo-key-helpers-help-messages.php:278
 msgid ""
 "It is, for example, the case of a possible WooCommerce Shop page that lists "
 "all content of type “Product”"
@@ -3840,7 +3948,7 @@ msgstr ""
 "C’est, par exemple, le cas d’une éventuelle page WooCommerce Shop qui "
 "répertorie tout le contenu de type «Produit»"
 
-#: common/seo-key-helpers-help-messages.php:278
+#: common/seo-key-helpers-help-messages.php:279
 msgid ""
 "SEOKEY finally adds a menu that will allow you to see this page more easily, "
 "and optimize the meta tags."
@@ -3848,7 +3956,7 @@ msgstr ""
 "SEOKEY ajoute un menu qui vous permettra de voir cette page plus facilement, "
 "et d’en optimiser les balises méta."
 
-#: common/seo-key-helpers-help-messages.php:282
+#: common/seo-key-helpers-help-messages.php:283
 msgid ""
 "By default, on your login page, the instructions given to Google (the meta "
 "robot tag) are not optimal, and this page is also linked to an external site "
@@ -3858,28 +3966,28 @@ msgstr ""
 "(la balise meta robot) ne sont pas optimales, et cette page fait également "
 "un lien vers un site externe (WordPress.org)."
 
-#: common/seo-key-helpers-help-messages.php:283
+#: common/seo-key-helpers-help-messages.php:284
 msgid "SEOKEY corrects these two defects."
 msgstr "SEOKEY corrige ces deux défauts."
 
-#: common/seo-key-helpers-help-messages.php:287
+#: common/seo-key-helpers-help-messages.php:288
 msgid "WordPress creates by default dedicated URLs for each image you upload."
 msgstr ""
 "WordPress créer par défaut des URL dédiées à chaque image que vous avez mis "
 "en ligne."
 
-#: common/seo-key-helpers-help-messages.php:288
+#: common/seo-key-helpers-help-messages.php:289
 msgid "But they are empty of text content and waste Google’s time."
 msgstr ""
 "Mais elles sont vides de contenus de texte, et font perdre un temps fou à "
 "Google."
 
-#: common/seo-key-helpers-help-messages.php:289
+#: common/seo-key-helpers-help-messages.php:290
 msgid "SEOKEY removes them and redirects them to the image itself."
 msgstr ""
 "SEOKEY les supprime et les redirige proprement vers l’image en elle-même."
 
-#: common/seo-key-helpers-help-messages.php:293
+#: common/seo-key-helpers-help-messages.php:294
 msgid ""
 "You may have already experienced it, WordPress will sometimes create a "
 "comment on your content when it links to another one."
@@ -3888,11 +3996,11 @@ msgstr ""
 "sur votre contenu quand ce dernier fait un lien vers un autre de vos "
 "contenus."
 
-#: common/seo-key-helpers-help-messages.php:294
+#: common/seo-key-helpers-help-messages.php:295
 msgid "SEOKEY disables this feature."
 msgstr "SEOKEY désactive cette fonctionnalité."
 
-#: common/seo-key-helpers-help-messages.php:298
+#: common/seo-key-helpers-help-messages.php:299
 msgid ""
 "In Gutenberg, as in the old WordPress content editor (TinyMCE), some options "
 "can be harmful."
@@ -3900,17 +4008,17 @@ msgstr ""
 "Dans Gutenberg comme dans l’ancien éditeur de contenus de WordPress "
 "(TinyMCE), certaines options pouvaient vous nuire."
 
-#: common/seo-key-helpers-help-messages.php:299
+#: common/seo-key-helpers-help-messages.php:300
 msgid "One of them is the possibility to add H1s or links to attachment pages."
 msgstr ""
 "On peut notamment citer la possibilité d’ajouter des H1 ou encore des liens "
 "vers les fameuses pages attachment."
 
-#: common/seo-key-helpers-help-messages.php:300
+#: common/seo-key-helpers-help-messages.php:301
 msgid "SEOKEY cleans this up."
 msgstr "SEOKEY nettoie cela."
 
-#: common/seo-key-helpers-help-messages.php:304
+#: common/seo-key-helpers-help-messages.php:305
 msgid ""
 "The robots.txt file allows you to tell Google which folders, files and URLs "
 "it should never visit again. But this does more harm than good because, on a "
@@ -3921,11 +4029,11 @@ msgstr ""
 "puisque, sur un site vraiment optimisé, les moteurs de recherche ne "
 "devraient jamais trouver ces liens."
 
-#: common/seo-key-helpers-help-messages.php:305
+#: common/seo-key-helpers-help-messages.php:306
 msgid "SEOKEY will create a simple and effective file."
 msgstr "SEOKEY va donc créer un fichier simple et efficace qui autorise tout."
 
-#: common/seo-key-helpers-help-messages.php:306
+#: common/seo-key-helpers-help-messages.php:307
 msgid ""
 "In addition, we physically create it, making it much faster to load than "
 "other extensions."
@@ -3933,14 +4041,14 @@ msgstr ""
 "De plus, nous créons physiquement ce dernier, le rendant bien plus rapide à "
 "charger pour Google que ceux des autres extensions."
 
-#: common/seo-key-helpers-help-messages.php:310
+#: common/seo-key-helpers-help-messages.php:311
 msgid ""
 "RSS feeds can be useful for Internet users to subscribe to your content."
 msgstr ""
 "Les flux RSS peuvent être utiles aux internautes pour s’abonner à vos "
 "contenus."
 
-#: common/seo-key-helpers-help-messages.php:311
+#: common/seo-key-helpers-help-messages.php:312
 msgid ""
 "But for SEO, they often waste time for search engines or cause duplicate "
 "content."
@@ -3948,7 +4056,7 @@ msgstr ""
 "Mais en référencement naturel, ils font souvent perdre du temps aux moteurs "
 "de recherche, ou alors ils provoquent de la duplication de contenus."
 
-#: common/seo-key-helpers-help-messages.php:312
+#: common/seo-key-helpers-help-messages.php:313
 msgid ""
 "SEOKEY optimizes them in-depth (no more duplicated content, adding a link to "
 "the original content, adding an image when possible, deactivating comment "
@@ -3958,7 +4066,7 @@ msgstr ""
 "lien, ajout si possible d’une image, désactivation des flux RSS de "
 "commentaire, etc.)"
 
-#: common/seo-key-helpers-help-messages.php:316
+#: common/seo-key-helpers-help-messages.php:317
 msgid ""
 "Google can sometimes have trouble understanding who you are and where they "
 "are on your website."
@@ -3966,7 +4074,7 @@ msgstr ""
 "Google peut parfois avoir du mal à comprendre qui vous êtes et où il se "
 "trouve sur votre site."
 
-#: common/seo-key-helpers-help-messages.php:317
+#: common/seo-key-helpers-help-messages.php:318
 msgid ""
 "Depending on your settings, SEOKEY will automatically add several schema.org "
 "markup that will give it these valuable information (breadcrumbs, person, "
@@ -3976,7 +4084,7 @@ msgstr ""
 "plusieurs balisages schema.org qui lui donneront ces précieuses informations "
 "(balisages breadcrumbs, personn, organization ou encore local business)"
 
-#: common/seo-key-helpers-help-messages.php:321
+#: common/seo-key-helpers-help-messages.php:322
 msgid ""
 "In order to know all the pages of your site, a search engine may need "
 "sitemaps.xml files that list all your content."
@@ -3984,14 +4092,14 @@ msgstr ""
 "Pour connaître toutes les pages de votre site, un moteur de recherche peut "
 "avoir besoin de fichiers sitemaps.xml qui listent tous vos contenus."
 
-#: common/seo-key-helpers-help-messages.php:322
+#: common/seo-key-helpers-help-messages.php:323
 msgid ""
 "WordPress will create them natively, but they are slow and not very "
 "optimized."
 msgstr ""
 "WordPress va en créer nativement, mais ils sont lents et peu optimisés."
 
-#: common/seo-key-helpers-help-messages.php:323
+#: common/seo-key-helpers-help-messages.php:324
 msgid ""
 "SEOKEY disables them to create its own. As for the robots.txt file, we "
 "physically generate these files for a better loading time."
@@ -4000,7 +4108,7 @@ msgstr ""
 "fichier robots.txt, nous créons physiquement ces fichiers pour un meilleur "
 "temps de chargement."
 
-#: common/seo-key-helpers-help-messages.php:324
+#: common/seo-key-helpers-help-messages.php:325
 msgid ""
 "And finally, as soon as your Search Console is connected, we take care of "
 "submitting it to Google."
@@ -4008,7 +4116,7 @@ msgstr ""
 "Et enfin, dès que votre Search Console sera connectée, nous nous chargeons "
 "de le soumettre à Google."
 
-#: common/seo-key-helpers-help-messages.php:328
+#: common/seo-key-helpers-help-messages.php:329
 msgid ""
 "When you edit a user’s profile, SEOKEY adds several fields to tell Google "
 "who you are."
@@ -4016,13 +4124,13 @@ msgstr ""
 "Lorsque vous modifierez le profil d’un utilisateur, SEOKEY rajoute plusieurs "
 "champs pour indiquer à Google qui vous êtes."
 
-#: common/seo-key-helpers-help-messages.php:329
+#: common/seo-key-helpers-help-messages.php:330
 msgid ""
 "The objective is simple: to make your site more credible (E.A.T. criteria)."
 msgstr ""
 "L’objectif est simple : rendre votre site plus crédible (critères E.A.T.)."
 
-#: common/seo-key-helpers-help-messages.php:333
+#: common/seo-key-helpers-help-messages.php:334
 msgid ""
 "For a better loading time, we strongly advise you to install a cache "
 "extension (e.g. WP Rocket)."
@@ -4030,7 +4138,7 @@ msgstr ""
 "Pour un meilleur temps de chargement, nous vous conseillons fortement "
 "l’installation d’une extension de cache (par exemple WP Rocket)."
 
-#: common/seo-key-helpers-help-messages.php:334
+#: common/seo-key-helpers-help-messages.php:335
 msgid ""
 "But these extensions will sometimes create temporary files that will "
 "eventually become error pages harmful to search engines."
@@ -4039,7 +4147,7 @@ msgstr ""
 "deviendront à terme des pages d’erreur néfastes pour les moteurs de "
 "recherche."
 
-#: common/seo-key-helpers-help-messages.php:335
+#: common/seo-key-helpers-help-messages.php:336
 msgid ""
 "SEOKEY corrects these by using a 410 code that will tell Google that it "
 "should not visit them anymore."
@@ -4047,17 +4155,17 @@ msgstr ""
 "SEOKEY corrige ces pages en utilisant ce qu’on appelle un code 410 qui "
 "indiquera à Google qu’il ne doit plus les visiter."
 
-#: common/seo-key-helpers-help-messages.php:340
+#: common/seo-key-helpers-help-messages.php:341
 msgid "Why longer content are better?"
 msgstr "Pourquoi un contenu plus long est-il meilleur?"
 
-#: common/seo-key-helpers-help-messages.php:341
+#: common/seo-key-helpers-help-messages.php:342
 msgid "A long content is more likely to be visible in search engines."
 msgstr ""
 "Un contenu long est plus susceptible d’être visible dans les moteurs de "
 "recherche."
 
-#: common/seo-key-helpers-help-messages.php:342
+#: common/seo-key-helpers-help-messages.php:343
 msgid ""
 "The reason for this is simple: the more text you have, the more likely you "
 "are to fully meet the needs of the user."
@@ -4065,7 +4173,7 @@ msgstr ""
 "La raison est simple: plus vous avez de texte, plus vous avez de chances de "
 "répondre pleinement aux besoins de l’utilisateur."
 
-#: common/seo-key-helpers-help-messages.php:346
+#: common/seo-key-helpers-help-messages.php:347
 msgid ""
 "An SSL certificate is important because it improves the security of your "
 "site. For Google, it is also a ranking criterion (although weak)."
@@ -4073,19 +4181,19 @@ msgstr ""
 "Un certificat SSL est important car il améliore la sécurité de votre site. "
 "Pour Google, c’est aussi un critère de classement (bien que faible)."
 
-#: common/seo-key-helpers-help-messages.php:347
+#: common/seo-key-helpers-help-messages.php:348
 msgid ""
 "But the SSL certificate depends primarily on your hosting, not your site."
 msgstr ""
 "Mais le certificat SSL dépend principalement de votre hébergement, pas de "
 "votre site."
 
-#: common/seo-key-helpers-help-messages.php:351
+#: common/seo-key-helpers-help-messages.php:352
 msgid "The title tag is very important in SEO. "
 msgstr "La balise title est très importante en SEO. "
 
-#: common/seo-key-helpers-help-messages.php:352
-#: common/seo-key-helpers-help-messages.php:363
+#: common/seo-key-helpers-help-messages.php:353
+#: common/seo-key-helpers-help-messages.php:364
 msgid ""
 "When it is too short or too long, the risk is that it is not optimized "
 "enough."
@@ -4093,20 +4201,20 @@ msgstr ""
 "Quand il est trop court ou trop long, le risque est qu’il ne soit pas assez "
 "optimisé."
 
-#: common/seo-key-helpers-help-messages.php:353
+#: common/seo-key-helpers-help-messages.php:354
 msgid "Write an optimized tag: neither too long nor too short."
 msgstr "Écrivez une balise optimisée : ni trop longue ni trop courte."
 
-#: common/seo-key-helpers-help-messages.php:354
+#: common/seo-key-helpers-help-messages.php:355
 msgid ""
 "It must include the keyword you are targeting and describe your content."
 msgstr "Il doit inclure le mot-clé que vous ciblez et décrire votre contenu."
 
-#: common/seo-key-helpers-help-messages.php:362
+#: common/seo-key-helpers-help-messages.php:363
 msgid "The meta description is important in SEO. "
 msgstr "La méta description est importante en SEO. "
 
-#: common/seo-key-helpers-help-messages.php:364
+#: common/seo-key-helpers-help-messages.php:365
 msgid ""
 "Write an optimized tag: neither too long nor too short. It must include the "
 "keyword you are targeting and describe your content."
@@ -4114,11 +4222,11 @@ msgstr ""
 "Écrivez une balise optimisée : ni trop longue ni trop courte. Il doit "
 "inclure le mot-clé que vous ciblez et décrire votre contenu."
 
-#: common/seo-key-helpers-help-messages.php:368
+#: common/seo-key-helpers-help-messages.php:369
 msgid "By default, WordPress displays only 10 contents per page."
 msgstr "Par défaut, WordPress n’affiche que 10 contenus par page."
 
-#: common/seo-key-helpers-help-messages.php:369
+#: common/seo-key-helpers-help-messages.php:370
 msgid ""
 "By increasing this number, it reduces the number of pagination pages (/"
 "page/2) so as not to waste Google's time."
@@ -4126,7 +4234,7 @@ msgstr ""
 "En augmentant ce nombre, il réduit le nombre de pages de pagination (/"
 "page/2) afin de ne pas faire perdre de temps à Google."
 
-#: common/seo-key-helpers-help-messages.php:370
+#: common/seo-key-helpers-help-messages.php:371
 msgid ""
 "With more content displayed, it will also improve the relevance of your "
 "categories."
@@ -4134,8 +4242,8 @@ msgstr ""
 "Avec plus de contenu affiché, cela améliorera également la pertinence de vos "
 "catégories."
 
-#: common/seo-key-helpers-help-messages.php:374
-#: common/seo-key-helpers-help-messages.php:392
+#: common/seo-key-helpers-help-messages.php:375
+#: common/seo-key-helpers-help-messages.php:393
 msgid ""
 "An alternative text allows to describe an image. This is useful for "
 "accessibility, but also for search engines that cannot understand your "
@@ -4145,13 +4253,13 @@ msgstr ""
 "l’accessibilité, mais aussi pour les moteurs de recherche qui ne peuvent pas "
 "comprendre vos visuels."
 
-#: common/seo-key-helpers-help-messages.php:375
-#: common/seo-key-helpers-help-messages.php:393
+#: common/seo-key-helpers-help-messages.php:376
+#: common/seo-key-helpers-help-messages.php:394
 msgid "An alternative text must describe in a few words each image."
 msgstr ""
 "Un texte alternatif doit décrire en quelques mots chacune de vos images."
 
-#: common/seo-key-helpers-help-messages.php:376
+#: common/seo-key-helpers-help-messages.php:377
 msgid ""
 "You must therefore fill in the alternative texts of all the media you have "
 "inserted in your content."
@@ -4159,7 +4267,7 @@ msgstr ""
 "Vous devez donc remplir les textes alternatifs de toutes les images que vous "
 "avez insérés dans votre contenu."
 
-#: common/seo-key-helpers-help-messages.php:380
+#: common/seo-key-helpers-help-messages.php:381
 msgid ""
 "When you want to be visible on Google with a specific expression, you must "
 "use it in your content."
@@ -4167,7 +4275,7 @@ msgstr ""
 "Lorsque vous souhaitez être visible sur Google avec une expression "
 "spécifique, vous devez l’utiliser dans votre contenu."
 
-#: common/seo-key-helpers-help-messages.php:381
+#: common/seo-key-helpers-help-messages.php:382
 msgid ""
 "This audit task therefore tests the number of times you use your targeted "
 "keyword in your content."
@@ -4175,14 +4283,14 @@ msgstr ""
 "Cette tâche d’audit teste donc le nombre de fois que vous utilisez votre mot-"
 "clé ciblé dans votre contenu."
 
-#: common/seo-key-helpers-help-messages.php:385
+#: common/seo-key-helpers-help-messages.php:386
 msgid ""
 "Good content is content that perfectly meets the needs of Internet users."
 msgstr ""
 "Un bon contenu est un contenu qui répond parfaitement aux besoins des "
 "internautes."
 
-#: common/seo-key-helpers-help-messages.php:386
+#: common/seo-key-helpers-help-messages.php:387
 msgid ""
 "When this is the case, your content is often relatively long, with several "
 "parts."
@@ -4190,7 +4298,7 @@ msgstr ""
 "Lorsque c’est le cas, votre contenu est souvent relativement long, avec "
 "plusieurs parties."
 
-#: common/seo-key-helpers-help-messages.php:387
+#: common/seo-key-helpers-help-messages.php:388
 msgid ""
 "These are normally separated by level 2 titles (H2s). If you don't have "
 "enough of these, chances are your content is not rich enough."
@@ -4199,11 +4307,11 @@ msgstr ""
 "n’en avez pas assez, il y a de fortes chances que votre contenu ne soit pas "
 "assez riche."
 
-#: common/seo-key-helpers-help-messages.php:391
+#: common/seo-key-helpers-help-messages.php:392
 msgid "When you upload an image, it is added to the media library."
 msgstr "Lorsque vous téléchargez une image, elle est ajoutée à la médiathèque."
 
-#: common/seo-key-helpers-help-messages.php:394
+#: common/seo-key-helpers-help-messages.php:395
 msgid ""
 "This audit task lists all the images in your media library that do not have "
 "alternative texts."
@@ -4211,7 +4319,7 @@ msgstr ""
 "Cette tâche d’audit répertorie toutes les images de votre médiathèque qui "
 "n’ont pas de textes alternatifs."
 
-#: common/seo-key-helpers-help-messages.php:395
+#: common/seo-key-helpers-help-messages.php:396
 msgid ""
 "This would fix two issues: you may insert them in your content without ALT, "
 "and your theme or extensions may do it too."
@@ -4219,11 +4327,11 @@ msgstr ""
 "Cela résoudrait deux problèmes: vous pouvez les insérer dans votre contenu "
 "sans ALT, et votre thème ou vos extensions peuvent le faire aussi."
 
-#: common/seo-key-helpers-help-messages.php:399
+#: common/seo-key-helpers-help-messages.php:400
 msgid "This audit task is not there to analyze your content."
 msgstr "Cette tâche d’audit n’est pas là pour analyser votre contenu."
 
-#: common/seo-key-helpers-help-messages.php:400
+#: common/seo-key-helpers-help-messages.php:401
 msgid ""
 "It allows you to know which of your contents are not attracting visitors, "
 "and which therefore theoretically need work: improving the content and "
@@ -4233,7 +4341,7 @@ msgstr ""
 "visiteurs, et donc théoriquement besoin de travail: améliorer le contenu et "
 "créer des liens internes et externes vers eux."
 
-#: common/seo-key-helpers-help-messages.php:404
+#: common/seo-key-helpers-help-messages.php:405
 msgid ""
 "In SEO, an H1 is the main title of your content. As for the title tag, it "
 "must describe your text and include the targeted keyword if possible."
@@ -4241,7 +4349,7 @@ msgstr ""
 "En SEO, un H1 est le titre principal de votre contenu. Quant à la balise "
 "title, elle doit décrire votre texte et inclure le mot-clé ciblé si possible."
 
-#: common/seo-key-helpers-help-messages.php:405
+#: common/seo-key-helpers-help-messages.php:406
 msgid ""
 "On classic WordPress themes, the H1 is automatically the name of your "
 "content."
@@ -4249,7 +4357,7 @@ msgstr ""
 "Sur les thèmes WordPress classiques, le H1 est automatiquement le nom de "
 "votre contenu."
 
-#: common/seo-key-helpers-help-messages.php:406
+#: common/seo-key-helpers-help-messages.php:407
 msgid ""
 "This audit task will show you all contents where you may have wrongly added "
 "an H1 inside your text."
@@ -4257,7 +4365,7 @@ msgstr ""
 "Cette tâche d’audit vous montrera tous les contenus où vous avez peut-être "
 "ajouté à tort un H1 dans votre texte."
 
-#: common/seo-key-helpers-help-messages.php:410
+#: common/seo-key-helpers-help-messages.php:411
 msgid ""
 "To work properly, SEOKEY needs to know which keywords you want to be visible "
 "on."
@@ -4265,7 +4373,7 @@ msgstr ""
 "Pour fonctionner correctement, SEOKEY doit savoir sur quels mots-clés vous "
 "souhaitez être visible."
 
-#: common/seo-key-helpers-help-messages.php:411
+#: common/seo-key-helpers-help-messages.php:412
 msgid ""
 "This audit task lists all the content where you have not filled in this "
 "information."
@@ -4273,18 +4381,18 @@ msgstr ""
 "Cette tâche d’audit répertorie tous les contenus dans lesquels vous n’avez "
 "pas rempli ces informations."
 
-#: common/seo-key-helpers-help-messages.php:415
+#: common/seo-key-helpers-help-messages.php:416
 msgid "By choosing a target keyword, SEOKEY can give you more precise advice."
 msgstr ""
 "En choisissant un mot-clé cible, SEOKEY peut vous donner des conseils plus "
 "précis."
 
-#: common/seo-key-helpers-help-messages.php:416
+#: common/seo-key-helpers-help-messages.php:417
 msgid "This audit task tells you whether you have reached your goals or not."
 msgstr ""
 "Cette tâche d’audit vous indique si vous avez atteint vos objectifs ou non."
 
-#: common/seo-key-helpers-help-messages.php:421
+#: common/seo-key-helpers-help-messages.php:422
 msgid ""
 "Sometimes we have to hide some content. It is the case for example of a \"my "
 "account\" or \"thank you\" page."
@@ -4292,7 +4400,7 @@ msgstr ""
 "Parfois, nous devons cacher du contenu. C’est le cas par exemple d’une page "
 "« mon compte » ou « merci »."
 
-#: common/seo-key-helpers-help-messages.php:422
+#: common/seo-key-helpers-help-messages.php:423
 msgid ""
 "This audit task allows you to visualize all the contents that you would have "
 "hidden (box \"noindex)."
@@ -4300,7 +4408,7 @@ msgstr ""
 "Cette tâche d’audit vous permet de visualiser tous les contenus que vous "
 "auriez masqués (case «noindex»)."
 
-#: common/seo-key-helpers-help-messages.php:426
+#: common/seo-key-helpers-help-messages.php:427
 msgid ""
 "To have more optimized and readable URLs, you have disabled the category "
 "prefix (/category/). "
@@ -4308,7 +4416,7 @@ msgstr ""
 "Pour avoir des URL plus optimisées et lisibles, vous avez désactivé le "
 "préfixe de catégorie (/category/). "
 
-#: common/seo-key-helpers-help-messages.php:427
+#: common/seo-key-helpers-help-messages.php:428
 msgid ""
 "But in this case, there is a risk to have a content (post type) with the "
 "same URL as one of your category, preventing Google to access it."
@@ -4316,12 +4424,12 @@ msgstr ""
 "Mais dans ce cas, il y a un risque d’avoir un contenu (type de publication) "
 "avec la même URL que celle de votre catégorie, empêchant Google d’y accéder."
 
-#: common/seo-key-helpers-help-messages.php:428
+#: common/seo-key-helpers-help-messages.php:429
 msgid "SEOKEY is the only SEO plugin to notify you with this audit task."
 msgstr ""
 "SEOKEY est la seule extension SEO à vous avertir de cette tâche d’audit."
 
-#: common/seo-key-helpers-help-messages.php:432
+#: common/seo-key-helpers-help-messages.php:433
 msgid ""
 "If your site is not optimized, it may be accessible via several different "
 "URLs: monsite.com and www.monsite.com."
@@ -4329,7 +4437,7 @@ msgstr ""
 "Si votre site n’est pas optimisé, il peut être accessible via plusieurs URL "
 "différentes : monsite.com et www.monsite.com."
 
-#: common/seo-key-helpers-help-messages.php:433
+#: common/seo-key-helpers-help-messages.php:434
 msgid ""
 "For Google, this duplicates your content: it is therefore very harmful to "
 "your natural referencing. "
@@ -4337,12 +4445,12 @@ msgstr ""
 "Pour Google, cela duplique votre contenu : c’est donc très néfaste pour "
 "votre référencement naturel. "
 
-#: common/seo-key-helpers-help-messages.php:434
+#: common/seo-key-helpers-help-messages.php:435
 msgid "Contact your host to redirect one of these versions to the other."
 msgstr ""
 "Contactez votre hôte pour rediriger l’une de ces versions vers l’autre."
 
-#: common/seo-key-helpers-help-messages.php:438
+#: common/seo-key-helpers-help-messages.php:439
 msgid ""
 "To work properly, your WordPress theme must have the title tag functionality "
 "enabled with the add_theme_support function."
@@ -4350,20 +4458,20 @@ msgstr ""
 "Pour fonctionner correctement, votre thème WordPress doit avoir la "
 "fonctionnalité de balise de titre activée avec la fonction add_theme_support."
 
-#: common/seo-key-helpers-help-messages.php:439
+#: common/seo-key-helpers-help-messages.php:440
 msgid ""
 "If not, it can cause bugs and bad display of your page titles for Google."
 msgstr ""
 "Sinon, cela peut provoquer des bug et un mauvais affichage des titres de vos "
 "pages pour Google."
 
-#: common/seo-key-helpers-help-messages.php:440
+#: common/seo-key-helpers-help-messages.php:441
 msgid "This audit task verifies that your WordPress theme is properly set up."
 msgstr ""
 "Cette tâche d’audit vérifie que votre thème WordPress est correctement "
 "configuré."
 
-#: common/seo-key-helpers-help-messages.php:444
+#: common/seo-key-helpers-help-messages.php:445
 msgid ""
 "If you have mistakenly checked the box to hide your entire site from Google, "
 "this auditing task will notify you immediately."
@@ -4371,7 +4479,7 @@ msgstr ""
 "Si vous avez coché par erreur la case pour masquer l’ensemble de votre site "
 "à Google, cette tâche d’audit vous en informera immédiatement."
 
-#: common/seo-key-helpers-help-messages.php:445
+#: common/seo-key-helpers-help-messages.php:446
 msgid ""
 "The \"Discourage search engines from indexing this site\" box can be found "
 "in \"Settings > Reading\""
@@ -4379,7 +4487,7 @@ msgstr ""
 "La case «Décourager les moteurs de recherche d’indexer ce site» se trouve "
 "dans «Paramètres > lecture»"
 
-#: common/seo-key-helpers-help-messages.php:449
+#: common/seo-key-helpers-help-messages.php:450
 msgid ""
 "For Google and other search engines, the robots.txt file allows to forbid "
 "access to certain files and folders."
@@ -4387,12 +4495,12 @@ msgstr ""
 "Pour Google et d’autres moteurs de recherche, le fichier robots.txt permet "
 "d’interdire l’accès à certains fichiers et dossiers."
 
-#: common/seo-key-helpers-help-messages.php:450
+#: common/seo-key-helpers-help-messages.php:451
 msgid "But the optimal solution in SEO is that they never find these links."
 msgstr ""
 "Mais la solution optimale en SEO est qu’ils ne trouvent jamais ces liens."
 
-#: common/seo-key-helpers-help-messages.php:451
+#: common/seo-key-helpers-help-messages.php:452
 msgid ""
 "That's why this audit task checks that you have the simplest, most optimized "
 "robots.txt file possible."
@@ -4400,7 +4508,7 @@ msgstr ""
 "C’est pourquoi cette tâche d’audit vérifie que vous disposez les fichier "
 "robots.txt les plus simples et les plus optimisés possible."
 
-#: common/seo-key-helpers-help-messages.php:455
+#: common/seo-key-helpers-help-messages.php:456
 msgid ""
 "To give you real advice, SEOKEY needs access to your Search Console data to "
 "use it in this audit."
@@ -4408,12 +4516,12 @@ msgstr ""
 "Pour vous donner de vrais conseils, SEOKEY a besoin d’accéder à vos données "
 "de la Search Console pour les utiliser dans cet audit."
 
-#: common/seo-key-helpers-help-messages.php:456
+#: common/seo-key-helpers-help-messages.php:457
 msgid "This audit task verifies that you have connected your Search Console."
 msgstr ""
 "Cette tâche d’audit vérifie que vous avez connecté votre Search Console."
 
-#: common/seo-key-helpers-help-messages.php:461
+#: common/seo-key-helpers-help-messages.php:462
 msgid ""
 "The addition of images (with alternative texts) helps to optimize and make "
 "your content more relevant."
@@ -4421,11 +4529,11 @@ msgstr ""
 "L'ajout d'images (avec leurs textes alternatifs) aide à améliorer et à "
 "rendre plus pertinent votre contenu."
 
-#: common/seo-key-helpers-help-messages.php:462
+#: common/seo-key-helpers-help-messages.php:463
 msgid "Do not hesitate to add them."
 msgstr "N'hésitez pas à en ajouter."
 
-#: common/seo-key-helpers-help-messages.php:466
+#: common/seo-key-helpers-help-messages.php:467
 msgid ""
 "To optimize your visibility, you must have internal links towards relevant "
 "pages."
@@ -4433,16 +4541,16 @@ msgstr ""
 "Pour améliorer votre visibilité, vous devez ajouter des liens internes vers "
 "vos pages importantes."
 
-#: common/seo-key-helpers-help-messages.php:467
+#: common/seo-key-helpers-help-messages.php:468
 msgid "Therefore, you should add links to your most important pages."
 msgstr ""
 "C'est pourquoi vous devriez ajouter des liens vers vos pages importantes."
 
-#: common/seo-key-helpers-help-messages.php:470
+#: common/seo-key-helpers-help-messages.php:471
 msgid "What is this HTML verification code?"
 msgstr "Qu’est-ce que le code de vérification HTML de Google ?"
 
-#: common/seo-key-helpers-help-messages.php:471
+#: common/seo-key-helpers-help-messages.php:472
 msgid ""
 "To add a site in your Google Search Console account, the tool gives you "
 "several methods."
@@ -4450,20 +4558,20 @@ msgstr ""
 "Pour ajouter un site dans votre compte Google Search Console, l'outil vous "
 "donne plusieurs méthodologies."
 
-#: common/seo-key-helpers-help-messages.php:472
+#: common/seo-key-helpers-help-messages.php:473
 msgid "One of them is to add a meta in the HTML code of your pages."
 msgstr ""
 "L'un d'entre elles est d'ajouter une meta dans le code HTML de vos pages."
 
-#: common/seo-key-helpers-help-messages.php:473
+#: common/seo-key-helpers-help-messages.php:474
 msgid ""
 "If you want to use this method, you can copy below the code given by Google."
 msgstr ""
 "Si vous souhaitez utiliser cette méthode, copier ci-dessous le code donné "
 "par Google."
 
-#: common/seo-key-helpers-help-messages.php:477
-#: common/seo-key-helpers-help-messages.php:482
+#: common/seo-key-helpers-help-messages.php:478
+#: common/seo-key-helpers-help-messages.php:483
 msgid ""
 "Having an HTTPS website improves its security. For SEO, this is a "
 "requirement to implement."
@@ -4471,7 +4579,7 @@ msgstr ""
 "Avoir un site en HTTPS améliore sa sécurité. En SEO, c'est un point à mettre "
 "en place."
 
-#: common/seo-key-helpers-help-messages.php:478
+#: common/seo-key-helpers-help-messages.php:479
 msgid ""
 "HTTPS does not seem to be supported on your site. For this, we invite you to "
 "contact your host to enable it at the hosting level."
@@ -4479,7 +4587,7 @@ msgstr ""
 "L'HTTPS ne semble pas être supporté sur votre site. Pour cela, nous vous "
 "invitons à contacter votre hébergeur pour l'activer."
 
-#: common/seo-key-helpers-help-messages.php:483
+#: common/seo-key-helpers-help-messages.php:484
 msgid ""
 "The URLs of your site are not in HTTPS. Contact a professional to migrate "
 "your URLs or use an extension like Really Simple SSL."
@@ -4487,11 +4595,11 @@ msgstr ""
 "Les URL de votre site ne sont pas en HTTPS. Contactez un professionnel pour "
 "migrer vos URL ou utilisez une extension comme Really Simple SLL."
 
-#: common/seo-key-helpers-help-messages.php:493
+#: common/seo-key-helpers-help-messages.php:494
 msgid "No help message yet"
 msgstr "Pas encore de message d’aide"
 
-#: common/seo-key-helpers-help-messages.php:494
+#: common/seo-key-helpers-help-messages.php:495
 msgid "Help text will be added soon"
 msgstr "Le texte d’aide sera bientôt ajouté"
 
@@ -4500,13 +4608,13 @@ msgstr "Le texte d’aide sera bientôt ajouté"
 msgid "%s, author"
 msgstr "%s, auteur"
 
-#: common/seo-key-helpers-metas.php:193
+#: common/seo-key-helpers-metas.php:195
 #, php-format
 msgid "Archive for: %s"
 msgstr "Archive pour: %s"
 
 #. translators: 1:User Display Name 2:Name of the website
-#: common/seo-key-helpers-metas.php:205
+#: common/seo-key-helpers-metas.php:207
 #, php-format
 msgid "%s is an author on %s website."
 msgstr "%s est auteur sur %s site."
@@ -4523,11 +4631,11 @@ msgstr ""
 "<h1>Essayez-vous de vous introduire dans %s ?</h1><p>Nous ne vous donnerons "
 "pas la CLÉ.</p>"
 
-#: public/modules/breadcrumbs.php:37
+#: public/modules/breadcrumbs.php:49
 msgid "Homepage"
 msgstr "Page d'accueil"
 
-#: public/modules/breadcrumbs.php:225
+#: public/modules/breadcrumbs.php:240
 #, php-format
 msgid " - page %d"
 msgstr " - %d de la page"
@@ -4569,11 +4677,24 @@ msgstr "Page %s"
 msgid "Read more:"
 msgstr "Lire la suite :"
 
-#: third-party/third-party.php:82
+#: third-party/acf.php:58
+msgid "Audit this field with SEOKEY"
+msgstr "Auditer ce champ avec SEOKEY"
+
+#: third-party/acf.php:59
+msgid ""
+"Default ACF fields are not included in SEOKEY audits. If this field is "
+"important and displayed within your content, activate this setting."
+msgstr ""
+"Pendant l'audit, les champs ACF ne sont pas inclus par défaut dans l'analyse "
+"du contenu. Si ce champ est important et qu'il est affiché dans vos "
+"contenus, activez cette option."
+
+#: third-party/third-party.php:85
 msgid "Warning: Internationalization compatibility"
 msgstr "Attention : compatibilité avec la traduction"
 
-#: third-party/third-party.php:83
+#: third-party/third-party.php:86
 msgctxt "notification text for a new content discovered"
 msgid ""
 "SEOKEY is not yet compatible with all translation plugins (only Polylang & "
@@ -4582,7 +4703,7 @@ msgstr ""
 "SEOKEY n'est pas encore compatible avec toutes les extensions de traduction "
 "(seules Polylang et WPML le sont actuellement)."
 
-#: third-party/third-party.php:84
+#: third-party/third-party.php:87
 msgctxt "notification text for a new content discovered"
 msgid "Please wait our next update before using SEOKEY."
 msgstr ""
@@ -4612,6 +4733,14 @@ msgstr "SeoMix - Daniel Roch"
 #. Author URI of the plugin/theme
 msgid "https://www.seomix.fr"
 msgstr "https://www.seomix.fr"
+
+#~ msgid "All Website"
+#~ msgstr "Sur tout le site"
+
+#, fuzzy
+#~| msgid "Add a redirection"
+#~ msgid "Add a question/response"
+#~ msgstr "Ajouter une redirection"
 
 #~ msgid "Issues with meta title"
 #~ msgstr "Problème avec les méta titres"
@@ -5015,15 +5144,6 @@ msgstr "https://www.seomix.fr"
 #~ "SEO"
 
 #, php-format
-#~ msgid "<span class=\"seokey-issue-count\">%s</span> issue with your domain"
-#~ msgid_plural ""
-#~ "<span class=\"seokey-issue-count\">%s</span> issues with your domain"
-#~ msgstr[0] ""
-#~ "<span class=\"seokey-issue-count\">%s</span> problème avec votre domaine"
-#~ msgstr[1] ""
-#~ "<span class=\"seokey-issue-count\">%s</span> problèmes avec votre domaine"
-
-#, php-format
 #~ msgid ""
 #~ "<span class=\"seokey-issue-count\">%s</span> issue with your theme "
 #~ "configuration"
@@ -5294,9 +5414,6 @@ msgstr "https://www.seomix.fr"
 #~ msgid "Take into account"
 #~ msgstr "Prendre en compte"
 
-#~ msgid "Suggestion"
-#~ msgstr "Suggestion"
-
 #~ msgid "Content"
 #~ msgstr "Contenu"
 
@@ -5413,9 +5530,6 @@ msgstr "https://www.seomix.fr"
 
 #~ msgid "The connection could not be established. Please try again."
 #~ msgstr "La connexion n’a pas pu être établie. Veuillez réessayer."
-
-#~ msgid "Enter a auth code"
-#~ msgstr "Entrez un code d’authentification"
 
 #~ msgid "Technical error"
 #~ msgstr "Erreur technique"

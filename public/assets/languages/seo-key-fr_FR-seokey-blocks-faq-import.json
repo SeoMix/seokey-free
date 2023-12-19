@@ -1,0 +1,17 @@
+{
+    "translation-revision-date":"2023-12-08 22:33-0400",
+    "generator":"WP-CLI\/2.2.0",
+    "source":"seokey-blocks-faq-import.js",
+    "domain":"seo-key",
+    "lang":"fr_FR",
+    "locale_data":{
+      "messages":{
+        "":{
+          "domain":"seo-key",
+          "lang":"fr_FR"
+        },
+        "Replace this block with SEOKEY block":["Remplacer ce bloc avec le bloc SEOKEY"],
+        "This block is not regonised!":["Ce bloc n'est pas reconnu !"]
+      }
+    }
+}

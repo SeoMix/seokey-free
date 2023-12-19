@@ -37,8 +37,10 @@ class SeoKey_Audit_Launch_task_load_content {
 	        case 'medias':
 		        return $this->load_medias( $args['type'], $values, $args['task'], $noindex, $subtype );
                 break;
+            case 'authors':
+                return $this->load_authors( $values, $args['task'], $noindex, $metaquery );
+                break;
             // TODO Terms
-            // TODO Authors
             // TODO FILTER
         }
     }
@@ -152,6 +154,66 @@ class SeoKey_Audit_Launch_task_load_content {
 		return $posts;
 	}
 
+    public function load_authors( $values, $task, $noindex, $metaquery ) {
+        // Get users that only published
+        $args = array(
+            'orderby'             => 'name',
+            'has_published_posts' => true,
+            // Only get fields that we need to prevent password leaking
+            'fields' => [ 'ID', 'display_name' ]
+        );
+        // Include meta query if there is any
+        if ( $metaquery !== 'no' && is_array( $metaquery ) ) {
+            $args['meta_query'] = array(
+                'relation' => 'AND',
+                $metaquery
+            );
+        }
+        if ( 'include' !== $noindex ) {
+	        $visibility_metaquery = array(
+                'relation' => 'OR',
+                // Include posts where user has not yet defined the private/public value
+                array(
+                    'key'       => 'seokey-content_visibility',
+                    'value'     => '0',
+                    'compare'   => 'NOT EXISTS',
+                ),
+                // but exclude private posts
+                array(
+                    'key'       => 'seokey-content_visibility',
+                    'value'     => 1,
+                    'compare'   => '!=',
+                ),
+            );
+            // if there is not already a meta_query in $args, create it, else push it in
+            if ( !array_key_exists( 'meta_query', $args ) ) {
+                $args['meta_query'] = $visibility_metaquery;
+            } else {
+                array_push( $args['meta_query'], $visibility_metaquery );
+            }
+        }
+        $authors = [];
+        // Launch the query
+        $users = get_users( $args );
+        foreach ( $users as $user ) {
+            // Return only some data
+            if ( !empty( $values) ) {
+                $current_item = $this->seokey_helper_audit_content_get_user_data( $user, $values, $task );
+            }
+            // Needed values were not defined, return all values for this task
+            else {
+                // Get all values here
+                $current_item = $this->seokey_helper_audit_content_get_user_data( $user, [ "all" ], $task );
+            }
+            // Always add ID value
+            $current_item = array_merge( $current_item, ['id' => $user->ID ] );
+            // Send data for this task
+            $authors[$user->ID] = $current_item;
+		}
+		unset( $users );
+		return $authors;
+    }
+
 
     public function seokey_helper_audit_content_get_data( $post, $values, $task ) {
         $item = [];
@@ -248,6 +310,67 @@ class SeoKey_Audit_Launch_task_load_content {
 //                        'date'                  => $post->post_date_gmt,
 //                        'last_date'             => $post->post_modified_gmt,
 //                        'author'                => $post->post_author,
+                    ];
+                    break;
+            }
+        }
+        unset($values);
+        return $item;
+    }
+
+    public function seokey_helper_audit_content_get_user_data( $user, $values, $task ) {
+        $item = [];
+		// May be useful to remove/add filters
+		do_action ( 'seokey_action_helper_audit_content_get_data', $task );
+        foreach ( $values as $value ) {
+            switch ($value) {
+                case "display_name":
+                    $item = array_merge( $item, [
+                        'display_name' => $user->display_name,
+                    ] );
+                    break;
+                case "title_manual":
+                    $item = array_merge( $item, [
+                        'title_manual' => get_user_meta( (int) $user->ID, 'seokey-metatitle', true ),
+                    ] );
+                    break;
+	            case "description":
+		            $item = array_merge( $item, [
+			        'metadesc' => seokey_meta_desc_value( 'user', (int) $user->ID, $args = array(), false ),
+		            ] );
+		            break;
+                case "metadesc_manual":
+                    $item = array_merge( $item, [
+                        'metadesc_manual' => get_user_meta( (int) $user->ID, 'seokey-metadesc', true ),
+                    ] );
+                    break;
+                case "permalink":
+                    $item = array_merge( $item, [
+                        'metadesc_manual' => get_permalink( (int) $user->ID ),
+                    ] );
+                    break;
+                case "permalink_no_domain":
+                   // Slugs functions
+                   $permalink  = get_permalink( (int) $user->ID );
+                   $url        = preg_replace('#^.+://[^/]+#', '', $permalink);
+                   $url        = seokey_helper_url_remove_slashes($url, "both");
+                   $item = array_merge( $item, [
+                       'permalink_no_domain' => $url,
+                   ] );
+                   break;
+                case "all":
+                    // Slugs functions
+                    $permalink = get_permalink( (int) $user->ID);
+                    $url = preg_replace('#^.+://[^/]+#', '', $permalink);
+                    $url = seokey_helper_url_remove_slashes($url, "both");
+                    // all data
+                    $item = [
+                        'display_name'          => $user->display_name,
+                        'title_manual'          => get_user_meta( (int)$user->ID, 'seokey-metatitle', true ),
+                        'description'           => seokey_meta_desc_value( 'user', (int)$user->ID, $args = array(), false ),
+                        'metadesc_manual'       => get_user_meta( (int)$user->ID, 'seokey-metadesc', true ),
+                        'permalink'             => $permalink,
+                        'permalink_no_domain'   => $url,
                     ];
                     break;
             }

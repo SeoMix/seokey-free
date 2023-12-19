@@ -62,7 +62,6 @@
             this.content = {};
             // main keyword
             var main_keyword = $('input[name="seokey_audit_content_main_keyword"]').val();
-            console.log(this.editorType);
             switch (this.editorType) {
                 case 'gutenberg':
                     // Title
@@ -151,6 +150,49 @@
                     };
                     break;
             }
+            // Search for ACF fields to add to the content
+            // Check if there is an auditable acf field on the page
+            if ( $( ".seokey-is-auditable" ).length ) {
+                var ACFToAdd = ''; // Prepare the var to add the ACF fields to the content
+                $( ".seokey-is-auditable" ).each(function () {
+                    var typeOfField = $(this).attr("data-type"); // Get type of field
+                    // Change the content we add depending on the field
+                    switch(typeOfField) {
+                        case 'url' :
+                            if ($(this).find('input').val() !== '') {
+                                // Add "-" in the link content to avoid some audit tasks like keywords in content
+                                ACFToAdd += ' <a href="' + $(this).find('input').val() + '">ACF-link-added-with-SeoKey</a>';
+                            }
+                            break;
+                        case 'image' :
+                            if ($(this).find('img').attr("src") !== '') {
+                                ACFToAdd += ' <img src="' + $(this).find('img').attr("src") + '" alt="' + $(this).find('img').attr("alt") + '">';
+                            }
+                            break;
+                        case 'gallery' :
+                            $(this).find('.acf-gallery-attachments .acf-gallery-attachment').each(function () {
+                                if ($(this).find('img').attr("src") !== '') {
+                                    ACFToAdd += ' <img src="' + $(this).find('img').attr("src") + '" alt="' + $(this).find('img').attr("alt") + '">';
+                                }   
+                            });
+                            break;
+                        case 'email' :
+                        case 'text' :
+                            if ($(this).find('input').val() !== '') {
+                                ACFToAdd += ' ' + $(this).find('input').val();
+                            }
+                            break;
+                        case 'textarea' :
+                        case 'wysiwyg' :
+                            if ($(this).find('textarea').val() !== '') {
+                                ACFToAdd += ' ' + $(this).find('textarea').val();
+                            }
+                            break;
+                    }
+                });
+                // Add the ACF content to the post content
+                this.content.content += ACFToAdd;
+            }
         },
 
         /**
@@ -219,6 +261,11 @@
             });
             // Check any change on the noindex checkbox
             $('input[name="content_visibility"]').on("click", function () {
+                audit_throttle_launch();
+            });
+
+             // Check any change on ACF auditable fields
+             $('.seokey-is-auditable input, .seokey-is-auditable textarea').on("change", function () {
                 audit_throttle_launch();
             });
 

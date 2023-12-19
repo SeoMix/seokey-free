@@ -55,6 +55,14 @@ function seokey_audit_get_task_messages_content() {
         'noindex_contents'     => [
             '4' => __( 'This content is hidden from Google. If you want it to appear, you need to change this option.' , 'seo-key' ),
         ],
+        'author_incomplete_infos'     => [
+            '3' => __( 'This author have incomplete data about them (job, birthdate and more). You should fill in this information so that Google can get to know you better.', 'seo-key' ),
+        ],
+        // Technical
+        'incomplete_who_are_you'     => [
+		    '2' => __( 'Your "Who are you?" settings are not filled in. <a href="%s">Display these details about yourself</a> to increase your credibility with Google (Schema.org markup)', 'seo-key' ),
+		    '3' => __( 'Your "Who are you?" settings are not fully configured. <a href="%s">Fill in the information about yourself</a> to increase your credibility for Google (Schema.org markup).', 'seo-key' ),
+        ],
     ]);
 }
 
@@ -89,6 +97,9 @@ function seokey_audit_get_task_text_with_count( $text, $count ) {
         'main_keyword_content'          => _n( '<span class="seokey-issue-count">%s</span> content without main keyword at the beginning of the content', '<span class="seokey-issue-count">%s</span> contents without main keyword at the beginning of the content', (int) $count, 'seo-key' ),
         'words_count'                   => _n( '<span class="seokey-issue-count">%s</span> content too short', '<span class="seokey-issue-count">%s</span> contents too short', (int) $count, 'seo-key' ),
         'noindex_contents'              => _n( '<span class="seokey-issue-count">%s</span> hidden content', '<span class="seokey-issue-count">%s</span> hidden contents', (int) $count, 'seo-key' ),
+        'author_incomplete_infos'       => _n( '<span class="seokey-issue-count">%s</span> author without complete info', '<span class="seokey-issue-count">%s</span> authors without complete info', (int) $count, 'seo-key' ),
+        // Technical
+        'incomplete_who_are_you'        => __( 'The "Who are you" section is incomplete or has not been filled in', 'seo-key' ),
     ]);
     return sprintf( $array[ $text ], (int) $count  ) ;
 }
@@ -108,6 +119,9 @@ function seokey_audit_get_task_name() {
         'main_keyword_content'          => esc_html__( 'Main keyword is missing at the beginning of content', 'seo-key' ),
 		'words_count'                   => esc_html__( 'Word Count', 'seo-key' ),
         'noindex_contents'              => esc_html__( 'Noindex contents excluded from Search Engines', 'seo-key' ),
+        'author_incomplete_infos'       => esc_html__( 'Author with incomplete data', 'seo-key' ),
+        // Technical
+        'incomplete_who_are_you'        => esc_html__( 'Checking "Who are you ?" settings', 'seo-key' ),
 	] );
 }
 

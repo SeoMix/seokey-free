@@ -277,7 +277,7 @@ jQuery(document).ready(function($) {
                 var source = $( idsource ).val();
                 var target = $( idtarget ).val();
                 var id = $(idid).val();
-                seokey_redirections_submit(e, source, target, id);
+                seokey_redirections_submit(e, source, target, false, id);
             });
             $(document).one("click", '.edit-redirection-cancel', function (e) {
                 e.preventDefault();

@@ -1,0 +1,22 @@
+{
+  "translation-revision-date":"2023-12-08 22:33-0400",
+  "generator":"WP-CLI\/2.2.0",
+  "source":"seokey-blocks-faq.js",
+  "domain":"seo-key",
+  "lang":"fr_FR",
+  "locale_data":{
+    "messages":{
+      "":{
+        "domain":"seo-key",
+        "lang":"fr_FR"
+      },
+      "Add an FAQ optimised for SEO.":["Ajouter un bloc FAQ optimisé pour le SEO."],
+      "Enter the question":["Indiquez la question"],
+      "Enter the answer":["Indiquez la réponse"],
+      "Add question":["Ajouter une question"],
+      "Delete question":["Supprimer la question"],
+      "Move up":["Déplacer vers le haut"],
+      "Move down":["Déplacer vers le bas"]
+    }
+  }
+}
