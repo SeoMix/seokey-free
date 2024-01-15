@@ -13,6 +13,7 @@
                 this.getContent()
             } 
         },
+
         /**
          * Get content form current editor
          */
@@ -47,12 +48,13 @@
                         wp.data.dispatch( 'core/block-editor' ).replaceBlock( blockClientId, wp.blocks.createBlock( 'seokey/faq-block', { faq: questions } ) )
                         break;
                     default:
-                        alert( __( 'This block is not regonised!', 'seo-key' ) )
+                        alert( __( 'This block is not recognised!', 'seo-key' ) )
                         break;
                 }
             })
         },
     }
+
     /**
      * Wait page loaded status
      */

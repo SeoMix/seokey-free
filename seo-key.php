@@ -8,7 +8,7 @@
  * Contributors: Daniel Roch, Arthur Leveque, Léo Fontin, Julio Potier, Gauvain Van Ghele
  * Text Domain: seo-key
  * Domain Path: /public/assets/languages/
- * Version: 1.8.0
+ * Version: 1.8.1
  * Requires at least: 5.5
  * Tested up to: 6.4.2
  * Requires PHP: 7.2
@@ -42,7 +42,7 @@ if ( defined( 'SEOKEY_NAME' ) ) {
 // Constants that may need to be changed on each update
 define( 'SEOKEY_PHP_MIN',               '7.2' );                                                // PHP Minimum Version
 define( 'SEOKEY_WP_MIN',                '5.5' );                                                // WP Minimum Version
-define( 'SEOKEY_VERSION', 			    '1.8.0' );                                              // SEOKEY actual version
+define( 'SEOKEY_VERSION', 			    '1.8.1' );                                              // SEOKEY actual version
 // Static Constants
 define( 'SEOKEY_SETTINGS_SLUG', 	    'seokey-settings' );                            	    // SEOKEY Settings Slug in options table
 define( 'SEOKEY_HOME', 				    'https://www.seo-key.com/' );                           // SEOKEY Website

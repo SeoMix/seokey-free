@@ -737,10 +737,16 @@ function seokey_medias_library_filter_alt_images_request_filter( $query ) {
         } // All images without ALT
         elseif ('without_alt' === $param) {
             $query->query_vars['meta_query'] = array(
-                array(
-                    'key' => '_wp_attachment_image_alt',
-                    'compare' => 'NOT EXISTS'
+                'relation' => 'OR',
+                array (
+                    'key'     => '_wp_attachment_image_alt',
+                    'value'     => '',
+                    'compare'   => '=',
                 ),
+                array (
+                    'key'     => '_wp_attachment_image_alt',
+                    'compare' => 'NOT EXISTS',
+                )
             );
             $query->query_vars['post_mime_type'] = "image";
         } // ALl images

@@ -6,7 +6,7 @@ Tags: seo audit, seo, search engine, google, content analysis, schema, référen
 Requires at least: 5.5
 Tested up to: 6.4.2
 Requires PHP: 7.2
-Stable tag: 1.8.0
+Stable tag: 1.8.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ SEOKEY: the simplest and most effective SEO plugin for WordPress
 
 == Description ==
 
-**New in SEOKEY 1.7:** Major SEO audit improvement for both Free and PRO versions.
+**New in SEOKEY 1.8:** Major SEO audit improvement for both Free and PRO versions and FAQ block
 
 ### SEOKEY: the simplest and most effective SEO plugin
 
@@ -191,6 +191,12 @@ Please report security bugs found in the source code of the SEO KEY plugin throu
 
 == Changelog ==
 Public roadmap is here: https://trello.com/b/jauwlc3J/seokey-pro-public-roadmap
+
+= 1.8.1
+* Improvement: keywords are now correctly saved when you create or save a post
+* Improvement: a disabled content (a Post Type or a Taxonomy) does no longer return a 404 error, they are now automatically redirected
+* Fixed: sometimes, empty ALT images were not shown in the SEOKEY ALT editor
+* Fixed: translations fixes
 
 = 1.8.0
 * New: ACF fields can now be used during your SEO audit

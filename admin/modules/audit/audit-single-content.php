@@ -67,6 +67,60 @@ function Seokey_audit_save_keyword_ajax(){
     }
 }
 
+add_action( 'save_post', 'seokey_save_keyword_on_post_save', 10, 3 );
+/**
+ * Save SEOKEY keyword on currently saved post
+ *
+ * @author  Arthur Leveque
+ * @since   1.8.1
+ */
+function seokey_save_keyword_on_post_save( $post_id, $post, $update ) {
+    if ( !is_admin() ) {
+        return;
+    }
+    if ( !current_user_can( seokey_helper_user_get_capability( 'contributor' ) ) ) {
+        return;
+    }
+    // Do nothing if it's not an editor and this is not your post
+    $current_user = wp_get_current_user();
+    if( ! current_user_can( seokey_helper_user_get_capability( 'editor' ) ) && $post->post_author !== $current_user->ID ) {
+        return;
+    }
+    // Exclude adding keyword to secupress logs
+    if ( $post_id > 0 && $post->post_type !== 'secupress_log_action' ) {
+        $keyword = ( isset( $_POST['seokey_audit_content_main_keyword'] ) ) ? sanitize_text_field( $_POST['seokey_audit_content_main_keyword'] ) : '';
+        // Do we have a keyword ?
+        if ( !empty ( $keyword ) ) {
+            // Update post meta
+	        if ( ! add_post_meta( $post_id, 'seokey-main-keyword', $keyword, true ) ) {
+		        update_post_meta ( $post_id, 'seokey-main-keyword', $keyword );
+	        }
+            // We need to add our keyword in our specific table
+            // Get Database Object
+            global $wpdb;
+            $table = $wpdb->prefix . 'seokey_keywords';
+            // only delete old values if we are updating and not creating the current post
+            if ( $update ) {
+                $wpdb->delete( $table, array(
+                    'content_id' => $post_id
+                ), array( '%d' ) );
+            }
+            // Prepare data in order to add this keyword to our list
+            $post_url      = get_permalink( $post_id );
+            $request_datas = [
+                'keyword'      => $keyword,
+                'content_url'  => $post_url,
+                'content_type' => $post->post_type,
+                'content_id'   => $post_id,
+            ];
+            // Date format
+            $format = ['%s', '%s', '%s', '%d'];
+            // Save data
+            $wpdb->insert( $table, $request_datas, $format );
+        }
+    } 
+}
+
 class Seokey_Audit_Content {
 	/**
 	 * Seokey_Audit_Content constructor.

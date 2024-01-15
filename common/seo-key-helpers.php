@@ -1347,6 +1347,20 @@ function seokey_helpers_get_short_upload_dir( $relative = false ){
 	return $uploads_path;
 }
 
+/**
+ * Check if we are curently on a sitemaps page
+ *
+ * @return  boolean
+ * @author  Arthur Leveque
+ *
+ * @since   1.8.1
+ */
+function seokey_helpers_is_sitemaps_page(){
+	$sitemaps_url = seokey_helpers_get_sitemap_base_url(); // get SeoKey's sitemaps URL to compare
+	// Check if in current requested URL, we have the SeoKey's sitemaps URL
+	return str_contains( esc_url( seokey_helper_url_get_current() ), $sitemaps_url );
+}
+
 // TODO Comment
 function seokey_helpers_get_parent_key( $array, $search_value, $key ) {
 	foreach ( $array as $parent_key => $child_array ) {

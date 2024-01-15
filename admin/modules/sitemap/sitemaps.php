@@ -106,3 +106,31 @@ function seokey_sitemap_generate_sitemap_switch_language_settings($old_value, $n
     // Inform user that the sitemap creation is running
 	update_option( 'seokey_sitemap_creation', 'running', true );
 }
+
+add_action( 'template_redirect', 'seokey_redirect_404_sitemaps' );
+/**
+ * Redirect on sitemaps index if the sitemap we are currently heading to is disabled or deleted
+ *
+ * @since  1.8.1
+ * @author Arthur Leveque
+ *
+ * @hook   template_redirect
+ **/
+function seokey_redirect_404_sitemaps() {
+	// If we are on a 404 page
+	if( is_404() ) {
+		// If we are on a sitemap page continue, else ignore
+		if ( seokey_helpers_is_sitemaps_page() ) {
+			// If we have a multilingual site, check for language of sitemap, else just redirect to sitemaps index
+			if ( isset( seokey_helper_cache_data('languages')['lang'] ) ) {
+				// Get language from URL by getting the last 7 letters (ex : FRA.xml) and getting only the language code
+				$language = substr( esc_url( seokey_helper_url_get_current() ), -7, 3);
+				// Redirect to the sitemaps index of the language we have in the URL
+				wp_redirect( rtrim( get_home_url(), '/' ) . seokey_helpers_get_sitemap_base_url() . 'sitemap-index-' . $language . '.xml', 301 );
+			} else {
+				wp_redirect( rtrim( get_home_url(), '/' ) . seokey_helpers_get_sitemap_base_url(), 301 );
+			}
+			exit; // Always exit after wp_redirect()
+		}
+	}
+}
