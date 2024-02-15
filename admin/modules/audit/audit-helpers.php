@@ -178,12 +178,43 @@ function seokey_audit_get_domdocument( $content = '', $striplashes = false ) {
  * Return a string in lowercase without special chars and accents, ideal for string comparison
  *
  * @param  string  $content
+ * @param  string  $language language code needed for cleaning stopwords on multinlingual sites (fr, en...)
  *
  * @return string
  */
-function seokey_audit_clean_string( $content = '' ) {
+function seokey_audit_clean_string( $content = '', $language = '' ) {
 	$cleaned_string = str_replace( '\’', '', $content );// Better for english text
 	$cleaned_string = remove_accents( $cleaned_string );
 	$cleaned_string = strtolower( $cleaned_string );
+	$cleaned_string = seokey_audit_clean_stopwords( $cleaned_string, $language );
 	return $cleaned_string;
+}
+
+/**
+ * substract all stop words from a string in a selected language
+ *
+ * @param  string  $content
+ * @param  string  $language must be de 2 first letters of the locale (for exemple en for english, fr for french...)
+ *
+ * @return string
+ */
+function seokey_audit_clean_stopwords( $content = '', $language = '' ) {
+	// If we didn't specified any language, take the site language
+	if ( $language === '' ) {
+		$language = substr( get_locale(), 0, 2 );
+	}
+	// Now that we have a language, check the stop words for this language
+	if ( $language ) {
+		$stopwords = []; // Prepare an array for our stop words
+		// Get the correct stop words for our language
+		$stopwords = seokey_get_stopwords( $language );
+		// If we have stop words (so if we passed in any of the languages in the previous switch) start the cleaning
+		if ( !empty( $stopwords ) ) {
+			// Clean all the stop words from $content
+			$content = preg_replace( '/\b(' . remove_accents( implode( '|', $stopwords ) ) . ')\b/', '', $content );
+			// Clean multiple whitespaces that may be created
+			$content = preg_replace( '!\s+!', ' ', $content );
+		}
+	}
+	return $content;
 }

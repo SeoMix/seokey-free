@@ -56,8 +56,8 @@ class Seokey_Audit_Tasks_content_no_links extends Seokey_Audit_Tasks {
 				$count = 0;
 				//Loop through anchors tags
 				foreach( $anchorTags as $anchorTag ) {
-					// Get only internal links
-					if ( str_starts_with( $anchorTag->getAttribute( 'href' ), $home ) ) {
+					// Get only internal links (or that starts with an /, that will be automaticly filled on the front)
+					if ( str_starts_with( $anchorTag->getAttribute( 'href' ), $home ) || str_starts_with( $anchorTag->getAttribute( 'href' ), '/' ) ) {
 						// Exclude internal nofollow
 						if ( ! str_contains( $anchorTag->getAttribute( 'rel' ), 'nofollow' ) ) {
 							$count ++;

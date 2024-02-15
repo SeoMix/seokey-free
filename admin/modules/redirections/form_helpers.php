@@ -150,7 +150,7 @@ class Seokey_Redirections_Form {
 		// How do we need to clean data ?
 		$sanitize = [
 			'id'                => "sanitize_key",
-			'source'            => 'sanitize_text_field',
+			'source'            => 'esc_url_raw',
 			'target'            => 'esc_url_raw',
 			'type'              => "sanitize_text_field",
 			'status'            => "sanitize_text_field",

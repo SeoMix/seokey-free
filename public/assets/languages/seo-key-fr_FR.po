@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SEOKEY Pro\n"
-"POT-Creation-Date: 2023-12-18 10:30+0100\n"
-"PO-Revision-Date: 2024-01-09 14:18+0100\n"
+"POT-Creation-Date: 2024-02-14 17:43+0100\n"
+"PO-Revision-Date: 2024-02-14 17:43+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: seo-key.php\n"
@@ -181,7 +181,7 @@ msgstr[1] "%s points"
 
 #: admin/admin-pages/admin-pages-seo-key.php:77
 #: admin/admin-pages/admin-pages-settings.php:378
-#: admin/modules/audit/audit.php:146 admin/modules/audit/audit.php:174
+#: admin/modules/audit/audit.php:147 admin/modules/audit/audit.php:175
 #: admin/modules/watcher-401.php:83
 msgid "Tools"
 msgstr "Outils"
@@ -350,7 +350,7 @@ msgstr ""
 "Vous pouvez avoir besoin de certains outils pour utiliser correctement SEOKEY"
 
 #: admin/admin-pages/admin-pages-settings.php:388
-#: admin/plugin-check-plugins.php:191
+#: admin/plugin-check-plugins.php:189
 msgid "Licence & import"
 msgstr "Licence & import"
 
@@ -410,7 +410,7 @@ msgid "Go Premium!"
 msgstr "Passez à la version PRO !"
 
 #: admin/admin-pages/admin-pages-support.php:54
-#: admin/modules/audit/audit-single-content.php:290
+#: admin/modules/audit/audit-single-content.php:344
 #: admin/modules/audit/audit-wp-list-table-errors.php:77
 #: admin/modules/audit/parts/view-all-url.php:17
 #: admin/modules/audit/parts/view-issues-all.php:18
@@ -1021,13 +1021,13 @@ msgid "Your SEOKEY settings have been updated"
 msgstr "Vos réglages SEOKEY ont été mis à jour"
 
 #: admin/assets/js/build/bloc-faq/import/seokey-blocks-faq-import.js:1
-#: admin/assets/js/seokey-blocks-faq-import.js:22
+#: admin/assets/js/seokey-blocks-faq-import.js:23
 msgid "Replace this block with SEOKEY block"
 msgstr "Remplacer ce bloc par le bloc de SEOKEY"
 
 #: admin/assets/js/build/bloc-faq/import/seokey-blocks-faq-import.js:1
-#: admin/assets/js/seokey-blocks-faq-import.js:50
-msgid "This block is not regonised!"
+#: admin/assets/js/seokey-blocks-faq-import.js:51
+msgid "This block is not recognised!"
 msgstr "Ce bloc n'est pas reconnu !"
 
 #: admin/assets/js/seokey-audit-content.js:37
@@ -1707,10 +1707,10 @@ msgid "Optimize"
 msgstr "Optimisez"
 
 #: admin/modules/audit/audit-single-content.php:54
-#: admin/modules/audit/audit-single-content.php:180
+#: admin/modules/audit/audit-single-content.php:234
 #: admin/modules/audit/audit-wp-list-table-errors.php:459
-#: admin/modules/audit/audit.php:74 admin/modules/audit/audit.php:124
-#: admin/modules/audit/audit.php:197
+#: admin/modules/audit/audit.php:75 admin/modules/audit/audit.php:125
+#: admin/modules/audit/audit.php:198
 #: admin/modules/keywords/keyword-table.php:275
 #: admin/modules/redirections/redirections.php:63
 #: admin/modules/redirections/redirections_default.php:375
@@ -1718,12 +1718,12 @@ msgstr "Optimisez"
 msgid "Failed security check"
 msgstr "Echec de la vérification de sécurité"
 
-#: admin/modules/audit/audit-single-content.php:276
+#: admin/modules/audit/audit-single-content.php:330
 msgctxt "Audit List table row actions"
 msgid "Ignore"
 msgstr "Ignorer"
 
-#: admin/modules/audit/audit-single-content.php:289
+#: admin/modules/audit/audit-single-content.php:343
 #: admin/modules/audit/audit-wp-list-table-errors.php:76
 #: admin/modules/audit/parts/view-issues-all.php:17
 msgid "Want more data? Go PRO!"
@@ -2928,40 +2928,40 @@ msgstr ""
 "<strong>%1$s</strong> nécessite WordPress %2$s minimum, votre site Web "
 "exécute actuellement la version %3$s."
 
-#: admin/plugin-check-plugins.php:170
+#: admin/plugin-check-plugins.php:168
 msgid "Here is the list of these plugins:"
 msgstr "Voici la liste de ces extensions :"
 
-#: admin/plugin-check-plugins.php:176
+#: admin/plugin-check-plugins.php:174
 msgid " (import functions not yet available)"
 msgstr " (les fonctions d'import ne sont pas encore disponibles)"
 
-#: admin/plugin-check-plugins.php:183
+#: admin/plugin-check-plugins.php:181
 msgid ""
 "Warning: On deactivation, no data will be automatically imported into SEOKEY"
 msgstr ""
 "Avertissement : en cas de désactivation, aucune donnée ne sera "
 "automatiquement importée dans SEOKEY"
 
-#: admin/plugin-check-plugins.php:184
+#: admin/plugin-check-plugins.php:182
 msgid " (but no data will be deleted)."
 msgstr " (mais aucune donnée ne sera supprimée)."
 
-#: admin/plugin-check-plugins.php:193
+#: admin/plugin-check-plugins.php:191
 msgid "Go to import menu"
 msgstr "Aller au menu d'import"
 
-#: admin/plugin-check-plugins.php:196
+#: admin/plugin-check-plugins.php:194
 msgid "Deactivate all of these plugins"
 msgstr "Désactiver toutes ces extensions"
 
-#: admin/plugin-check-plugins.php:200
+#: admin/plugin-check-plugins.php:198
 msgid "Other SEO plugins are installed and may cause conflicts with SEOKEY. "
 msgstr ""
 "D’autres extensions SEO sont installées et peuvent provoquer des conflits "
 "avec SEOKEY. "
 
-#: admin/plugin-check-plugins.php:228
+#: admin/plugin-check-plugins.php:226
 msgid ""
 "The main reason is that it does not improve SEO, so it does not belong in a "
 "SEO plugin."
@@ -2970,13 +2970,13 @@ msgstr ""
 "donc cela n'a pas lieu d'être présent dans une extension de référencement "
 "naturel."
 
-#: admin/plugin-check-plugins.php:229
+#: admin/plugin-check-plugins.php:227
 msgid "We noticed you imported data from another SEO plugin."
 msgstr ""
 "Nous avons remarqué que vous avez importé des données depuis une autre "
 "extension SEO."
 
-#: admin/plugin-check-plugins.php:230
+#: admin/plugin-check-plugins.php:228
 #, php-format
 msgid ""
 "If you want to add back these Data, we recommend you to install the <a "
@@ -2987,7 +2987,7 @@ msgstr ""
 "d'installer <a href=\"%s\">Open Graph and Twitter Card Tags</a>, puis <a "
 "href=\"%s\">de l'activer</a> ."
 
-#: admin/plugin-check-plugins.php:234
+#: admin/plugin-check-plugins.php:232
 msgid "SEOKEY does not add OpenGraph and Twitter card Data"
 msgstr "SEOKEY n'ajoute pas les données OpenGraph et Twitter card"
 

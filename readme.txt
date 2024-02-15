@@ -4,9 +4,9 @@ Contributors: seokey, seomix, confridin
 Donate link: https://www.seo-key.com/
 Tags: seo audit, seo, search engine, google, content analysis, schema, référencement, breadcrumbs, référencement naturel, indexation, crawl, rich snippets, serp, search engine, search engine optimization, alternative text, redirection
 Requires at least: 5.5
-Tested up to: 6.4.2
+Tested up to: 6.4.3
 Requires PHP: 7.2
-Stable tag: 1.8.1
+Stable tag: 1.8.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,14 @@ Please report security bugs found in the source code of the SEO KEY plugin throu
 
 == Changelog ==
 Public roadmap is here: https://trello.com/b/jauwlc3J/seokey-pro-public-roadmap
+
+= 1.8.2
+* Improvement: keyword audit tasks related to your main keyword are now more accurate
+* Third-party: fix some audit tasks with Elementor (sometimes, content was not correctly taken into account)
+* Third-party: All-in-on-schema plugin is now fully compatible with SEOKEY
+* Fixed: fix "redirection already here" message
+* Fixed: fix some audit tasks related to internal and external links (some of them were not detected)
+* Fixed: translations fixes
 
 = 1.8.1
 * Improvement: keywords are now correctly saved when you create or save a post

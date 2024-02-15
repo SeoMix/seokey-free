@@ -41,4 +41,26 @@ if ( is_plugin_active( 'elementor/elementor.php' ) ) {
 		$default[] = 'elementor_library_type';
 		return $default;
 	}
+	
+	add_filter( 'seokey_filter_helper_audit_content_data', 'seokey_thirdparty_elementor_get_all_content', 1, 2 );
+	/**
+	 * Get better content from elementor pages (sometimes the_content does not returns everything)
+	 *
+	 * @param string $content content of the post
+	 * @param mixed $post post values
+	 * @since   1.8.2
+	 * @author  Arthur Leveque
+	 *
+	 */
+	function seokey_thirdparty_elementor_get_all_content( $content, $post ){
+		$is_elementor_page =  get_post_meta( $post->ID, '_elementor_edit_mode', true );
+		// Check if we are on an Elementor page
+		if ( $is_elementor_page ) {
+			if ( class_exists("\\Elementor\\Plugin") ) {
+				$pluginElementor = \Elementor\Plugin::instance();
+				$content         = $pluginElementor->frontend->get_builder_content_for_display( $post->ID );
+			}
+		}
+		return $content;
+	}
 }

@@ -60,7 +60,8 @@ function seokey_audit_init_audit_content() {
 // Get audit Configuration
 seokey_helper_require_file( 'audit-configuration',    $modules, 'contributor' );
 
-
+// Stopwords for some audit tasks
+seokey_helper_require_file( 'audit-stopwords',        $modules, 'contributor' );
 
 add_action('wp_ajax__seokey_audit_ajax_launch', '_seokey_audit_ajax_launch_callback');
 /**

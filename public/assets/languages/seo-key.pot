@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SEOKEY Free\n"
-"POT-Creation-Date: 2023-12-15 17:30+0100\n"
+"POT-Creation-Date: 2024-02-14 17:42+0100\n"
 "PO-Revision-Date: 2022-04-27 09:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: seo-key.php\n"
@@ -173,7 +173,7 @@ msgstr[1] ""
 
 #: admin/admin-pages/admin-pages-seo-key.php:77
 #: admin/admin-pages/admin-pages-settings.php:378
-#: admin/modules/audit/audit.php:146 admin/modules/audit/audit.php:174
+#: admin/modules/audit/audit.php:147 admin/modules/audit/audit.php:175
 #: admin/modules/watcher-401.php:83
 msgid "Tools"
 msgstr ""
@@ -328,7 +328,7 @@ msgid "You may need some tools to correctly use SEOKEY"
 msgstr ""
 
 #: admin/admin-pages/admin-pages-settings.php:388
-#: admin/plugin-check-plugins.php:191
+#: admin/plugin-check-plugins.php:189
 msgid "Licence & import"
 msgstr ""
 
@@ -380,7 +380,7 @@ msgid "Go Premium!"
 msgstr ""
 
 #: admin/admin-pages/admin-pages-support.php:54
-#: admin/modules/audit/audit-single-content.php:290
+#: admin/modules/audit/audit-single-content.php:344
 #: admin/modules/audit/audit-wp-list-table-errors.php:77
 #: admin/modules/audit/parts/view-all-url.php:17
 #: admin/modules/audit/parts/view-issues-all.php:18
@@ -936,13 +936,13 @@ msgid "Your SEOKEY settings have been updated"
 msgstr ""
 
 #: admin/assets/js/build/bloc-faq/import/seokey-blocks-faq-import.js:1
-#: admin/assets/js/seokey-blocks-faq-import.js:22
+#: admin/assets/js/seokey-blocks-faq-import.js:23
 msgid "Replace this block with SEOKEY block"
 msgstr ""
 
 #: admin/assets/js/build/bloc-faq/import/seokey-blocks-faq-import.js:1
-#: admin/assets/js/seokey-blocks-faq-import.js:50
-msgid "This block is not regonised!"
+#: admin/assets/js/seokey-blocks-faq-import.js:51
+msgid "This block is not recognised!"
 msgstr ""
 
 #: admin/assets/js/seokey-audit-content.js:37
@@ -961,7 +961,7 @@ msgid "See less"
 msgstr ""
 
 #: admin/assets/js/seokey-audit.js:66
-#: admin/modules/audit/audit-helpers-messages.php:157
+#: admin/modules/audit/audit-helpers-messages.php:171
 msgid "Please wait"
 msgstr ""
 
@@ -1176,21 +1176,21 @@ msgstr ""
 msgid "Medias without ALT"
 msgstr ""
 
-#: admin/modules/audit/audit-configuration.php:83
+#: admin/modules/audit/audit-configuration.php:87
 msgid "All issues"
 msgstr ""
 
-#: admin/modules/audit/audit-configuration.php:87
-#: admin/modules/audit/audit-helpers-messages.php:128
+#: admin/modules/audit/audit-configuration.php:91
+#: admin/modules/audit/audit-helpers-messages.php:142
 msgid "Content issues"
 msgstr ""
 
-#: admin/modules/audit/audit-configuration.php:91
-#: admin/modules/audit/audit-helpers-messages.php:129
+#: admin/modules/audit/audit-configuration.php:95
+#: admin/modules/audit/audit-helpers-messages.php:143
 msgid "Technical issues"
 msgstr ""
 
-#: admin/modules/audit/audit-configuration.php:95
+#: admin/modules/audit/audit-configuration.php:99
 msgid "View all URLs with issues"
 msgstr ""
 
@@ -1278,28 +1278,50 @@ msgid ""
 "change this option."
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:65
+#: admin/modules/audit/audit-helpers-messages.php:59
+msgid ""
+"This author have incomplete data about them (job, birthdate and more). You "
+"should fill in this information so that Google can get to know you better."
+msgstr ""
+
+#: admin/modules/audit/audit-helpers-messages.php:63
+#, php-format
+msgid ""
+"Your \"Who are you?\" settings are not filled in. <a href=\"%s\">Display "
+"these details about yourself</a> to increase your credibility with Google "
+"(Schema.org markup)"
+msgstr ""
+
+#: admin/modules/audit/audit-helpers-messages.php:64
+#, php-format
+msgid ""
+"Your \"Who are you?\" settings are not fully configured. <a href=\"%s\">Fill "
+"in the information about yourself</a> to increase your credibility for "
+"Google (Schema.org markup)."
+msgstr ""
+
+#: admin/modules/audit/audit-helpers-messages.php:73
 msgid "Meta description empty: you should write one"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:67
+#: admin/modules/audit/audit-helpers-messages.php:75
 #, php-format
 msgid "Meta description too short (%s characters): you should expand it"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:69
+#: admin/modules/audit/audit-helpers-messages.php:77
 #, php-format
 msgid "Meta description too long (%s characters): you should reduce it"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:81
+#: admin/modules/audit/audit-helpers-messages.php:89
 #, php-format
 msgid "<span class=\"seokey-issue-count\">%s</span> URL with issue"
 msgid_plural "<span>%s</span> URL with issues"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/modules/audit/audit-helpers-messages.php:83
+#: admin/modules/audit/audit-helpers-messages.php:91
 #, php-format
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> issue with title tag length"
@@ -1308,7 +1330,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/modules/audit/audit-helpers-messages.php:84
+#: admin/modules/audit/audit-helpers-messages.php:92
 #, php-format
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> issue with meta description "
@@ -1319,7 +1341,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/modules/audit/audit-helpers-messages.php:85
+#: admin/modules/audit/audit-helpers-messages.php:93
 #, php-format
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> content with images without "
@@ -1330,7 +1352,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/modules/audit/audit-helpers-messages.php:86
+#: admin/modules/audit/audit-helpers-messages.php:94
 #, php-format
 msgid "<span class=\"seokey-issue-count\">%s</span> content without any images"
 msgid_plural ""
@@ -1338,7 +1360,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/modules/audit/audit-helpers-messages.php:87
+#: admin/modules/audit/audit-helpers-messages.php:95
 #, php-format
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> content without internal link "
@@ -1349,7 +1371,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/modules/audit/audit-helpers-messages.php:88
+#: admin/modules/audit/audit-helpers-messages.php:96
 #, php-format
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> content without a main keyword "
@@ -1360,7 +1382,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/modules/audit/audit-helpers-messages.php:89
+#: admin/modules/audit/audit-helpers-messages.php:97
 #, php-format
 msgid ""
 "<span class=\"seokey-issue-count\">%s</span> content without main keyword at "
@@ -1371,104 +1393,125 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/modules/audit/audit-helpers-messages.php:90
+#: admin/modules/audit/audit-helpers-messages.php:98
 #, php-format
 msgid "<span class=\"seokey-issue-count\">%s</span> content too short"
 msgid_plural "<span class=\"seokey-issue-count\">%s</span> contents too short"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/modules/audit/audit-helpers-messages.php:91
+#: admin/modules/audit/audit-helpers-messages.php:99
 #, php-format
 msgid "<span class=\"seokey-issue-count\">%s</span> hidden content"
 msgid_plural "<span class=\"seokey-issue-count\">%s</span> hidden contents"
 msgstr[0] ""
 msgstr[1] ""
 
+#: admin/modules/audit/audit-helpers-messages.php:100
+#, php-format
+msgid ""
+"<span class=\"seokey-issue-count\">%s</span> author without complete info"
+msgid_plural ""
+"<span class=\"seokey-issue-count\">%s</span> authors without complete info"
+msgstr[0] ""
+msgstr[1] ""
+
 #: admin/modules/audit/audit-helpers-messages.php:102
+msgid "The \"Who are you\" section is incomplete or has not been filled in"
+msgstr ""
+
+#: admin/modules/audit/audit-helpers-messages.php:113
 msgid "Meta title length"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:103
+#: admin/modules/audit/audit-helpers-messages.php:114
 msgid "Meta descriptions length"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:104
+#: admin/modules/audit/audit-helpers-messages.php:115
 msgid "Image ALT missing in contents"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:105
+#: admin/modules/audit/audit-helpers-messages.php:116
 msgid "No image in contents"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:106
+#: admin/modules/audit/audit-helpers-messages.php:117
 msgid "No internal link in main content"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:107
+#: admin/modules/audit/audit-helpers-messages.php:118
 msgid "Main keyword selected"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:108
+#: admin/modules/audit/audit-helpers-messages.php:119
 msgid "Main keyword is missing at the beginning of content"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:109
+#: admin/modules/audit/audit-helpers-messages.php:120
 msgid "Word Count"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:110
+#: admin/modules/audit/audit-helpers-messages.php:121
 msgid "Noindex contents excluded from Search Engines"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:138
+#: admin/modules/audit/audit-helpers-messages.php:122
+msgid "Author with incomplete data"
+msgstr ""
+
+#: admin/modules/audit/audit-helpers-messages.php:124
+msgid "Checking \"Who are you ?\" settings"
+msgstr ""
+
+#: admin/modules/audit/audit-helpers-messages.php:152
 msgid "No audit data yet "
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:142
+#: admin/modules/audit/audit-helpers-messages.php:156
 msgid "Good job "
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:144
+#: admin/modules/audit/audit-helpers-messages.php:158
 msgid "Keep working "
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:159
+#: admin/modules/audit/audit-helpers-messages.php:173
 msgid "You need to launch an audit"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:165
+#: admin/modules/audit/audit-helpers-messages.php:179
 msgid "Almost perfect"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:167
+#: admin/modules/audit/audit-helpers-messages.php:181
 msgid "You are almost there"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:169
+#: admin/modules/audit/audit-helpers-messages.php:183
 msgid "You still need to improve your SEO"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:171
+#: admin/modules/audit/audit-helpers-messages.php:185
 msgid "You still need a lot of work to improve your SEO"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:186
+#: admin/modules/audit/audit-helpers-messages.php:200
 #, php-format
 msgid "<span class=\"seokey-audit-show-numbers\">%1$s</span> content checked"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:189
+#: admin/modules/audit/audit-helpers-messages.php:203
 msgid "No content checked yet"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:195
+#: admin/modules/audit/audit-helpers-messages.php:209
 #, php-format
 msgid ""
 "<span class=\"seokey-audit-show-numbers\">%1$s</span> audit tasks performed"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-messages.php:198
+#: admin/modules/audit/audit-helpers-messages.php:212
 msgid "No SEO issues analyzed yet"
 msgstr ""
 
@@ -1504,10 +1547,10 @@ msgid "Optimize"
 msgstr ""
 
 #: admin/modules/audit/audit-single-content.php:54
-#: admin/modules/audit/audit-single-content.php:180
-#: admin/modules/audit/audit-wp-list-table-errors.php:451
-#: admin/modules/audit/audit.php:74 admin/modules/audit/audit.php:124
-#: admin/modules/audit/audit.php:197
+#: admin/modules/audit/audit-single-content.php:234
+#: admin/modules/audit/audit-wp-list-table-errors.php:459
+#: admin/modules/audit/audit.php:75 admin/modules/audit/audit.php:125
+#: admin/modules/audit/audit.php:198
 #: admin/modules/keywords/keyword-table.php:275
 #: admin/modules/redirections/redirections.php:63
 #: admin/modules/redirections/redirections_default.php:375
@@ -1515,12 +1558,12 @@ msgstr ""
 msgid "Failed security check"
 msgstr ""
 
-#: admin/modules/audit/audit-single-content.php:276
+#: admin/modules/audit/audit-single-content.php:330
 msgctxt "Audit List table row actions"
 msgid "Ignore"
 msgstr ""
 
-#: admin/modules/audit/audit-single-content.php:289
+#: admin/modules/audit/audit-single-content.php:343
 #: admin/modules/audit/audit-wp-list-table-errors.php:76
 #: admin/modules/audit/parts/view-issues-all.php:17
 msgid "Want more data? Go PRO!"
@@ -1571,29 +1614,29 @@ msgstr ""
 msgid "[NO TITLE]"
 msgstr ""
 
-#: admin/modules/audit/audit-wp-list-table-errors.php:190
+#: admin/modules/audit/audit-wp-list-table-errors.php:194
 #: admin/modules/keywords/keyword-table.php:139
 msgctxt "List table row action"
 msgid "Edit"
 msgstr ""
 
-#: admin/modules/audit/audit-wp-list-table-errors.php:193
+#: admin/modules/audit/audit-wp-list-table-errors.php:197
 #: admin/modules/keywords/keyword-table.php:140
 msgctxt "List table row action"
 msgid "View"
 msgstr ""
 
-#: admin/modules/audit/audit-wp-list-table-errors.php:228
+#: admin/modules/audit/audit-wp-list-table-errors.php:232
 msgctxt "Audit List table row actions"
 msgid "Ignore (PRO only)"
 msgstr ""
 
-#: admin/modules/audit/audit-wp-list-table-errors.php:238
+#: admin/modules/audit/audit-wp-list-table-errors.php:242
 msgctxt "List table row action"
 msgid "Go to ALT Editor"
 msgstr ""
 
-#: admin/modules/audit/audit-wp-list-table-errors.php:270
+#: admin/modules/audit/audit-wp-list-table-errors.php:278
 msgid "Content modified since last audit: relaunch audit to renew data."
 msgstr ""
 
@@ -1656,6 +1699,18 @@ msgstr ""
 #: admin/modules/audit/parts/view.php:136
 #, php-format
 msgid "%s, you will find below the results of your SEO audit:"
+msgstr ""
+
+#: admin/modules/audit/tasks/content_author_incomplete_infos.php:91
+msgid "Author have incomplete data"
+msgstr ""
+
+#: admin/modules/audit/tasks/technical_incomplete_who_are_you.php:79
+msgid "Incomplete information about Website owner"
+msgstr ""
+
+#: admin/modules/audit/tasks/technical_incomplete_who_are_you.php:89
+msgid "No information about Website owner"
 msgstr ""
 
 #: admin/modules/automatic_optimizations.php:32
@@ -2596,46 +2651,46 @@ msgid ""
 "currently running the %3$s version."
 msgstr ""
 
-#: admin/plugin-check-plugins.php:170
+#: admin/plugin-check-plugins.php:168
 msgid "Here is the list of these plugins:"
 msgstr ""
 
-#: admin/plugin-check-plugins.php:176
+#: admin/plugin-check-plugins.php:174
 msgid " (import functions not yet available)"
 msgstr ""
 
-#: admin/plugin-check-plugins.php:183
+#: admin/plugin-check-plugins.php:181
 msgid ""
 "Warning: On deactivation, no data will be automatically imported into SEOKEY"
 msgstr ""
 
-#: admin/plugin-check-plugins.php:184
+#: admin/plugin-check-plugins.php:182
 msgid " (but no data will be deleted)."
 msgstr ""
 
-#: admin/plugin-check-plugins.php:193
+#: admin/plugin-check-plugins.php:191
 msgid "Go to import menu"
 msgstr ""
 
-#: admin/plugin-check-plugins.php:196
+#: admin/plugin-check-plugins.php:194
 msgid "Deactivate all of these plugins"
 msgstr ""
 
-#: admin/plugin-check-plugins.php:200
+#: admin/plugin-check-plugins.php:198
 msgid "Other SEO plugins are installed and may cause conflicts with SEOKEY. "
 msgstr ""
 
-#: admin/plugin-check-plugins.php:228
+#: admin/plugin-check-plugins.php:226
 msgid ""
 "The main reason is that it does not improve SEO, so it does not belong in a "
 "SEO plugin."
 msgstr ""
 
-#: admin/plugin-check-plugins.php:229
+#: admin/plugin-check-plugins.php:227
 msgid "We noticed you imported data from another SEO plugin."
 msgstr ""
 
-#: admin/plugin-check-plugins.php:230
+#: admin/plugin-check-plugins.php:228
 #, php-format
 msgid ""
 "If you want to add back these Data, we recommend you to install the <a "
@@ -2643,7 +2698,7 @@ msgid ""
 "href=\"%s\">activate it</a> ."
 msgstr ""
 
-#: admin/plugin-check-plugins.php:234
+#: admin/plugin-check-plugins.php:232
 msgid "SEOKEY does not add OpenGraph and Twitter card Data"
 msgstr ""
 
