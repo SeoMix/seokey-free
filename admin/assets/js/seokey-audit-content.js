@@ -12,8 +12,8 @@
         Throttling: false,
         PrivateContent: false,
         // Time before audit launch
-        refreshDelay: 500,
-        refreshDelayTrottle: 2400,
+        refreshDelay: 900,
+        refreshDelayTrottle: 2900,
 
         /**
          * Initialisation
@@ -27,11 +27,13 @@
             this.$optimisations = $('#seokey-audit-content-optimisations');
             // Detect editor type
             this.setEditorType();
-            // Initialisation of user actions //
+            // Initialisation of user actions
             this.initActions();
             // Launch first audit if noindex is not checked
             if ( $('input[name="content_visibility"]').prop( "checked" ) !== true ) {
-                this.refresh();
+                setTimeout(() => {
+                    this.refresh();
+                }, 2000);
             } else {
                 const { __ } = wp.i18n;
                 this.$optimisations.html( __( 'This is a private content: we do not audit them.', 'seo-key') );

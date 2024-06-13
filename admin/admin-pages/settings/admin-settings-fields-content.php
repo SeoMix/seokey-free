@@ -153,6 +153,10 @@ function seokey_settings_add_contents( $unique_ID ) {
 add_filter ('seokey_filter_helper_help_messages', 'seokey_settings_add_contents_explanations',10, 2 );
 // TODO Comments
 function seokey_settings_add_contents_explanations( $value, $messageid ) {
+	// Avoid PHP 8.2 errors
+	if ( $value === false ) {
+		$value = array();
+	}
 	// Post types
 	if ( str_starts_with( $messageid, 'seokey-field-cct-cpt-label-') ) {
 		$post_type = str_replace ('seokey-field-cct-cpt-label-', '', $messageid );

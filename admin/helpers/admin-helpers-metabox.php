@@ -165,7 +165,7 @@ function seokey_helper_admin_print_meta_fields_html_visibility( $args ) {
                 printf( esc_html__( 'Hide this %s post type archive, I don\'t want to see it on Google', 'seo-key' ), strtolower( get_post_type_object( $typenow )->labels->singular_name ) ); ?> <em>(noindex)</em>
                 <?php
             } elseif ( isset( $args['term'] ) ) {
-	            if ( is_null($args['term']->taxonomy)) {
+	            if ( empty( $args['term']->taxonomy ) ) {
 		            $name = $args['term']->label;
 	            } else {
 		            $tax_labels = get_taxonomy_labels( get_taxonomy( $args['term']->taxonomy ) );

@@ -53,6 +53,7 @@ class Seokey_Audit_Tasks_technical_incomplete_who_are_you extends Seokey_Audit_T
             if ( $schema ) {
                 // Go through all the schema
                 foreach ( $schema as $value ) {
+	                // TODO FIX HERE
                     // If the value is empty, pass $incomplete_schema to true and break the foreach, no need to go further
                     if ( empty( trim( $value ) ) ) {
                         $incomplete_schema = true;

@@ -145,6 +145,12 @@ add_action( 'template_redirect', 'seokey_redirections_attachment', 1 );
  **/
 function seokey_redirections_attachment() {
 	if ( is_attachment() ) {
+		// Avoid error if feed URl looks like an attachment page
+		$current = seokey_helper_url_get_current();
+		if ( str_ends_with( $current, '/feed/') ) {
+			wp_safe_redirect( substr( $current, 0, -5 ), 301 );
+			die();
+		}
 		global $post;
 		// Redirect directly to file
 		wp_safe_redirect( wp_get_attachment_url( $post->ID ), 301 );
@@ -192,7 +198,7 @@ function seokey_redirections_410() {
 		// Where is my content directory ?
 		$content_dir = parse_url( content_url() );
 		$content_dir = $content_dir['path'];
-		// Directory used to send automatic 410 code on 404 URL
+		// Directory used to send automatic 410 code on 404 error pages
 		$check = [
 			$content_dir.'/cache', // WP Rocket and many other cache plugins
 			$content_dir.'/glc_cache', // "gravatar local cache"
@@ -201,6 +207,8 @@ function seokey_redirections_410() {
             $content_dir.'/uploads/hummingbird-assets', // "Hummingbird assets"
             $content_dir.'/uploads/wphb-cache', // "Hummingbird cache"
             $content_dir.'/uploads/siteground-optimizer-assets', // "Siteground optimizer cache"
+			$content_dir.'/plugins/elementor-pro/assets', // "Elementor cache"
+			$content_dir.'/litespeed', // "LiteSpeed cache"
 		];
 		/**
 		 * Filter cache directory list for automatic 410 codes

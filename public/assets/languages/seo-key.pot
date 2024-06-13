@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SEOKEY Free\n"
-"POT-Creation-Date: 2024-02-14 17:42+0100\n"
+"POT-Creation-Date: 2024-06-12 10:14+0200\n"
 "PO-Revision-Date: 2022-04-27 09:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -380,7 +380,7 @@ msgid "Go Premium!"
 msgstr ""
 
 #: admin/admin-pages/admin-pages-support.php:54
-#: admin/modules/audit/audit-single-content.php:344
+#: admin/modules/audit/audit-single-content.php:347
 #: admin/modules/audit/audit-wp-list-table-errors.php:77
 #: admin/modules/audit/parts/view-all-url.php:17
 #: admin/modules/audit/parts/view-issues-all.php:18
@@ -507,16 +507,16 @@ msgstr ""
 
 #: admin/admin-pages/settings/admin-settings-fields-content.php:78
 #: admin/admin-pages/settings/admin-settings-fields-content.php:126
-#: admin/admin-pages/settings/admin-settings-fields-content.php:284
-#: admin/admin-pages/settings/admin-settings-fields-content.php:313
+#: admin/admin-pages/settings/admin-settings-fields-content.php:288
+#: admin/admin-pages/settings/admin-settings-fields-content.php:317
 msgctxt "Status of the `public` setting for a custom post type set on true"
 msgid "Show"
 msgstr ""
 
 #: admin/admin-pages/settings/admin-settings-fields-content.php:79
 #: admin/admin-pages/settings/admin-settings-fields-content.php:127
-#: admin/admin-pages/settings/admin-settings-fields-content.php:285
-#: admin/admin-pages/settings/admin-settings-fields-content.php:314
+#: admin/admin-pages/settings/admin-settings-fields-content.php:289
+#: admin/admin-pages/settings/admin-settings-fields-content.php:318
 msgctxt "Status of the `public` setting for a custom post type set on false"
 msgid "Hide"
 msgstr ""
@@ -544,143 +544,143 @@ msgid ""
 "remove them."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:165
+#: admin/admin-pages/settings/admin-settings-fields-content.php:169
 #, php-format
 msgid "Does \"%s\" content type is useful ?"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:166
+#: admin/admin-pages/settings/admin-settings-fields-content.php:170
 #, php-format
 msgid ""
 "You can create and manage contents called <strong>\"%s\"</strong> (it's one "
 "of your \"post types\")."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:168
+#: admin/admin-pages/settings/admin-settings-fields-content.php:172
 msgid "<strong>What is a post type ?</strong> "
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:169
+#: admin/admin-pages/settings/admin-settings-fields-content.php:173
 msgid ""
 "It is a kind of content. For example, WordPress have two default post "
 "types : posts and pages."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:172
+#: admin/admin-pages/settings/admin-settings-fields-content.php:176
 #, php-format
 msgid ""
 "Here is an example of content found for this post type: <strong><a "
 "href=\"%s\" target=\"_blank\">%s</a></strong>"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:174
+#: admin/admin-pages/settings/admin-settings-fields-content.php:178
 msgid ""
 "<strong>Is it useful for users or for Google ?</strong><br>If your answer is "
 "no, select \"Hide\". If you don't know, keep the \"Show\" option."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:176
-#: admin/admin-pages/settings/admin-settings-fields-content.php:203
+#: admin/admin-pages/settings/admin-settings-fields-content.php:180
+#: admin/admin-pages/settings/admin-settings-fields-content.php:207
 #, php-format
 msgid "Actually, you do not have created any \"%s\"."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:178
+#: admin/admin-pages/settings/admin-settings-fields-content.php:182
 msgid ""
 "If you are not planning on using this content type, <strong>you should hide "
 "it from Google</strong>. To do so, select \"Hide\". If you don't know, keep "
 "the \"Show\" option."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:193
+#: admin/admin-pages/settings/admin-settings-fields-content.php:197
 #, php-format
 msgid "Does \"%s\" taxonomy is useful ?"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:194
+#: admin/admin-pages/settings/admin-settings-fields-content.php:198
 #, php-format
 msgid "You can sort contents with the <strong>\"%s\"</strong> taxonomy."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:196
+#: admin/admin-pages/settings/admin-settings-fields-content.php:200
 msgid "<strong>What is a taxonomy?</strong> "
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:197
+#: admin/admin-pages/settings/admin-settings-fields-content.php:201
 msgid ""
 "It is used to display a list of contents. For example, 'categories' are a "
 "taxonomy used to display 'posts'."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:201
+#: admin/admin-pages/settings/admin-settings-fields-content.php:205
 #, php-format
 msgid ""
 "Here is an example of content found for this taxonomy: <strong><a "
 "href=\"%s\" target=\"_blank\">%s</a></strong>"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:206
-#: admin/admin-pages/settings/admin-settings-fields-content.php:229
+#: admin/admin-pages/settings/admin-settings-fields-content.php:210
+#: admin/admin-pages/settings/admin-settings-fields-content.php:233
 msgid ""
 "<strong>Is it useful for users or for Google ?</strong><br>If your answer is "
 "no, select \"Hide\".  If you don't know, keep the \"Show\" option."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:211
+#: admin/admin-pages/settings/admin-settings-fields-content.php:215
 msgid "Are authors pages useful ?"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:219
+#: admin/admin-pages/settings/admin-settings-fields-content.php:223
 msgid "You can show author pages to Google."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:223
+#: admin/admin-pages/settings/admin-settings-fields-content.php:227
 #, php-format
 msgid ""
 "Here is an example author URL : <strong><a href=\"%s\" target=\"_blank\">%s</"
 "a></strong>"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:226
+#: admin/admin-pages/settings/admin-settings-fields-content.php:230
 msgid "Actually, you do no have created any author URL."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:257
+#: admin/admin-pages/settings/admin-settings-fields-content.php:261
 msgid "Author"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:267
-#: admin/admin-pages/settings/admin-settings-fields-content.php:296
+#: admin/admin-pages/settings/admin-settings-fields-content.php:271
+#: admin/admin-pages/settings/admin-settings-fields-content.php:300
 msgid "Are author pages useful for Google or users?"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:269
-#: admin/admin-pages/settings/admin-settings-fields-content.php:298
+#: admin/admin-pages/settings/admin-settings-fields-content.php:273
+#: admin/admin-pages/settings/admin-settings-fields-content.php:302
 msgid "Author pages can also be on Google. Tell us what to do with them."
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:344
+#: admin/admin-pages/settings/admin-settings-fields-content.php:348
 msgid "Help us understand your different content types"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:385
+#: admin/admin-pages/settings/admin-settings-fields-content.php:389
 #, php-format
 msgid ""
 "What makes it easier to describe or categorize this type of content \"%s\"?"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:405
+#: admin/admin-pages/settings/admin-settings-fields-content.php:409
 #, php-format
 msgid "What best describes \"%s\"?"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:438
+#: admin/admin-pages/settings/admin-settings-fields-content.php:442
 #, php-format
 msgid ""
 "<strong>%s</strong> is the only taxonomy for %s. We've selected it for you"
 msgstr ""
 
-#: admin/admin-pages/settings/admin-settings-fields-content.php:447
+#: admin/admin-pages/settings/admin-settings-fields-content.php:451
 msgid ""
 "For some of the options below, if you don't know what contents you need to "
 "hide, <strong>do not change them</strong>.<br>You can also use each question "
@@ -945,9 +945,9 @@ msgstr ""
 msgid "This block is not recognised!"
 msgstr ""
 
-#: admin/assets/js/seokey-audit-content.js:37
-#: admin/assets/js/seokey-audit-content.js:244
-#: admin/assets/js/seokey-audit-content.js:341
+#: admin/assets/js/seokey-audit-content.js:39
+#: admin/assets/js/seokey-audit-content.js:246
+#: admin/assets/js/seokey-audit-content.js:343
 msgid "This is a private content: we do not audit them."
 msgstr ""
 
@@ -1524,13 +1524,15 @@ msgstr ""
 msgid "Number of items per page:"
 msgstr ""
 
-#: admin/modules/audit/audit-helpers-view.php:102
-msgid "SEO Issues"
-msgstr ""
-
-#: admin/modules/audit/audit-helpers-view.php:104
+#: admin/modules/audit/audit-helpers-view.php:106
 #, php-format
-msgid "<span>%s</span> issues"
+msgid "<span>%s</span> issue"
+msgid_plural "<span>%s</span> issues"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/modules/audit/audit-helpers-view.php:108
+msgid "SEO Issues"
 msgstr ""
 
 #: admin/modules/audit/audit-helpers.php:124
@@ -1558,12 +1560,12 @@ msgstr ""
 msgid "Failed security check"
 msgstr ""
 
-#: admin/modules/audit/audit-single-content.php:330
+#: admin/modules/audit/audit-single-content.php:333
 msgctxt "Audit List table row actions"
 msgid "Ignore"
 msgstr ""
 
-#: admin/modules/audit/audit-single-content.php:343
+#: admin/modules/audit/audit-single-content.php:346
 #: admin/modules/audit/audit-wp-list-table-errors.php:76
 #: admin/modules/audit/parts/view-issues-all.php:17
 msgid "Want more data? Go PRO!"
@@ -1705,11 +1707,11 @@ msgstr ""
 msgid "Author have incomplete data"
 msgstr ""
 
-#: admin/modules/audit/tasks/technical_incomplete_who_are_you.php:79
+#: admin/modules/audit/tasks/technical_incomplete_who_are_you.php:80
 msgid "Incomplete information about Website owner"
 msgstr ""
 
-#: admin/modules/audit/tasks/technical_incomplete_who_are_you.php:89
+#: admin/modules/audit/tasks/technical_incomplete_who_are_you.php:90
 msgid "No information about Website owner"
 msgstr ""
 
@@ -3981,18 +3983,18 @@ msgstr ""
 msgid "Help text will be added soon"
 msgstr ""
 
-#: common/seo-key-helpers-metas.php:92
+#: common/seo-key-helpers-metas.php:98
 #, php-format
 msgid "%s, author"
 msgstr ""
 
-#: common/seo-key-helpers-metas.php:195
+#: common/seo-key-helpers-metas.php:201
 #, php-format
 msgid "Archive for: %s"
 msgstr ""
 
 #. translators: 1:User Display Name 2:Name of the website
-#: common/seo-key-helpers-metas.php:207
+#: common/seo-key-helpers-metas.php:213
 #, php-format
 msgid "%s is an author on %s website."
 msgstr ""
@@ -4063,18 +4065,18 @@ msgid ""
 "important and displayed within your content, activate this setting."
 msgstr ""
 
-#: third-party/third-party.php:85
+#: third-party/third-party.php:91
 msgid "Warning: Internationalization compatibility"
 msgstr ""
 
-#: third-party/third-party.php:86
+#: third-party/third-party.php:92
 msgctxt "notification text for a new content discovered"
 msgid ""
 "SEOKEY is not yet compatible with all translation plugins (only Polylang & "
 "WPML for now)."
 msgstr ""
 
-#: third-party/third-party.php:87
+#: third-party/third-party.php:93
 msgctxt "notification text for a new content discovered"
 msgid "Please wait our next update before using SEOKEY."
 msgstr ""

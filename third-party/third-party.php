@@ -34,8 +34,14 @@ seokey_helper_require_file( 'elementor',        SEOKEY_PATH_ROOT . 'third-party/
 /* Beaver Builder */
 seokey_helper_require_file( 'beaver-builder',   SEOKEY_PATH_ROOT . 'third-party/', 'everyone' );
 
+/* WP Bakery */
+seokey_helper_require_file( 'wpbakery',         SEOKEY_PATH_ROOT . 'third-party/', 'everyone' );
+
 /* ACF */
 seokey_helper_require_file( 'acf',              SEOKEY_PATH_ROOT . 'third-party/', 'everyone' );
+
+/* Event Calendar */
+seokey_helper_require_file( 'event-calendar',	SEOKEY_PATH_ROOT . 'third-party/', 'everyone' );
 
 /****************** Frameworks ****************/
 /* Genesis */

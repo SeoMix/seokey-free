@@ -299,7 +299,7 @@ class Seokey_Sitemap_Render {
 		if ( ! empty( $posts ) ) {
 			foreach ( $posts as $post ) {
 				// Get post last modification date
-				$date = get_the_modified_date( 'Y-m-d H:i:s', $post->ID );
+				$date = get_the_modified_time( 'Y-m-d H:i:s', $post->ID );
 				// Get post images
 				$images = $this->seokey_sitemap_get_images( $post, 'post' );
                 // Final data
@@ -858,7 +858,7 @@ class Seokey_Sitemap_Render {
 	public function seokey_sitemap_get_sitemap_base( $type, $lang ) {
 		// Define encoding and style
 		$doctype = '<?xml version="1.0" encoding="UTF-8"?>';
-		$doctype .= '<?xml-stylesheet type="text/xsl" href="' . seokey_helpers_get_sitemap_base_url( $lang, true ).'sitemap-seokey-render-'.$lang.'.xsl' .'"?>';
+		$doctype .= '<?xml-stylesheet type="text/xsl" href="' . seokey_helpers_get_sitemap_base_url( $lang, false ).'sitemap-seokey-render-'.$lang.'.xsl' .'"?>';
 		// Data for images
 		$images  = 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd"';
 		switch ( $type ) {
@@ -903,6 +903,7 @@ class Seokey_Sitemap_Render {
 					$sitemap .= "\t\t" . '<loc>' . esc_url( $data['loc'] ) . '</loc>' . "\n";
 				}
 				if ( ! empty( $data['lastmod'] ) ) {
+					$data['lastmod'] = str_replace( '+00:00', '', $data['lastmod'] );
 					$sitemap .= "\t\t" . '<lastmod>' . str_replace(' ', 'T', $data['lastmod'] ) . '+00:00</lastmod>' . "\n";
 				}
 				// Images

@@ -247,6 +247,9 @@ function _seokey_audit_content_check_callback() {
 	$date =  ( !empty( $datas["date"] ) ) ? $datas["date"] : get_the_date( 'c', $datas["id"] );
     // We do not want the <p> tag for excerpts
     remove_filter( 'the_excerpt', 'wpautop' );
+	// add filter for some page builders
+	$datas["content"] = apply_filters( 'seokey_filter_audit_single_data_content', $datas["content"] ) ;
+	// let's define our final data
     $item[ $id ]    = [
         'content'       => apply_filters( 'the_content',    stripslashes( $datas["content"] ) ),
         'title'         => apply_filters( 'the_title',      $datas["title"], $id ),

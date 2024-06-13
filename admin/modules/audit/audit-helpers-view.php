@@ -94,14 +94,20 @@ function seokey_audit_tab_content( $task ){
     echo '</div>';
 }
 
-// TODO Comments
-function seokey_audit_message_issues_details(){
-    $issues_count = get_option('seokey_audit_global_issues_count_now');
+/**
+ * Display issues counts in audit admin page
+ *
+ * @since   1.0.0
+ * @author  Daniel Roch
+ */
+function seokey_audit_message_issues_details() {
+    $issues_count = (int) get_option( 'seokey_audit_global_issues_count_now' );
     if ( false !== $issues_count ) {
+	    $text = wp_kses_post( sprintf( _n( '<span>%s</span> issue', '<span>%s</span> issues', $issues_count, 'seo-key' ), number_format_i18n( $issues_count )  ) );
 	    echo '<div id="seokey-audit-issues-wrapper" class="flexboxcolumn">';
-	        echo '<h2 id="seokey-audit-issues-h2">' . esc_html__( 'SEO Issues', 'seo-key') . '</h2>';
+	        echo '<h2 id="seokey-audit-issues-h2">' . esc_html__( 'SEO Issues', 'seo-key' ) . '</h2>';
 	        echo '<div id="seokey-audit-issues">';
-	            echo '<div id="seokey-audit-issues-count"><p>' . sprintf( wp_kses_post( __( '<span>%s</span> issues', 'seo-key') ), (int) $issues_count ) . '</p></div>';
+	            echo '<div id="seokey-audit-issues-count"><p>' . $text . '</p></div>';
 	            seokey_audit_global_data_issues_type_count();
 	        echo '</div>';
 	    echo '</div>';

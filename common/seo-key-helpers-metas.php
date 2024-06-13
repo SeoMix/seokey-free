@@ -81,7 +81,13 @@ function seokey_meta_title_value( $type, $ID = 0, $args = array(), $default = fa
 			$user_value  	= get_term_meta( $ID, 'seokey-metatitle', true );
 			// No user value or we want the default value
 			if ( empty( $user_value ) || true === $default ) {
-				$default_value 	= $args['name'];
+				if ( !empty( $args[0] ) ) {
+					$default_value 	= $args[0];
+				} elseif ( !empty( $args['name'] ) ) {
+					$default_value 	= $args['name'];
+				} else {
+					$default_value = '';
+				}
 			}
 			break;
 		// For author pages

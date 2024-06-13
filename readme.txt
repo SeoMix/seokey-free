@@ -2,11 +2,11 @@
 Author: SEOKEY
 Contributors: seokey, seomix, confridin
 Donate link: https://www.seo-key.com/
-Tags: seo audit, seo, search engine, google, content analysis, schema, référencement, breadcrumbs, référencement naturel, indexation, crawl, rich snippets, serp, search engine, search engine optimization, alternative text, redirection
+Tags: seo audit, seo, google, content analysis, schema
 Requires at least: 5.5
-Tested up to: 6.4.3
+Tested up to: 6.5.4
 Requires PHP: 7.2
-Stable tag: 1.8.2
+Stable tag: 1.8.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,29 @@ Please report security bugs found in the source code of the SEO KEY plugin throu
 == Changelog ==
 Public roadmap is here: https://trello.com/b/jauwlc3J/seokey-pro-public-roadmap
 
+= 1.8.5
+* Improvement: Admin fonts are now loaded from SEOKEY directory (better loading time and GDPR compatibility)
+* Third-party: Compatibility with WP Bakery Page Builder
+* Fix: Avoid redirect errors if old feed URl looks like an attachment URL
+* Fix: in some cases, sitemaps URl when WordPress is installed within a folder were incorrect
+* Fix: Various typos fixes throughout the plugin
+
+= 1.8.4
+* Improvement: (PRO) admin bar link for Post Type archives is now shorter and easier to use
+* Fix: (PRO) featured image detection was sometimes incorrect
+* Fix: analysis errors with elementor. Our audit should be more accurate now
+* Fix: Fix XSL URl when WordPress is installed within a folder (it fixes how XML sitemaps looks like for users)
+* Fix: Fix PHP warnings in several functions (PHP 8.2 compatibility)
+* Third-party: (PRO) improved 410 management for old cache file: compatibility added for litespeed and elementor PRO cache
+* Third-party: Event calendar title tags are now correctly set
+
+= 1.8.3
+* Improvement: better loading time for our audit when you are editing a post
+* Fix: incorrect date format in XML sitemaps files (when using specific host configuration and translation plugin)
+* Fix: (PRO) audit analysis for images with automatic ALT (when using ALT from media library)
+* Fix: (PRO) licence validation is no longer an issue if you use OVH as your host provider
+* Fix: (PRO) incorrect score for missing featured image advice
+
 = 1.8.2
 * Improvement: keyword audit tasks related to your main keyword are now more accurate
 * Third-party: fix some audit tasks with Elementor (sometimes, content was not correctly taken into account)
@@ -205,14 +228,17 @@ Public roadmap is here: https://trello.com/b/jauwlc3J/seokey-pro-public-roadmap
 * Improvement: a disabled content (a Post Type or a Taxonomy) does no longer return a 404 error, they are now automatically redirected
 * Fixed: sometimes, empty ALT images were not shown in the SEOKEY ALT editor
 * Fixed: translations fixes
+* Fixed: (PRO) the "/.well-known/assetlinks.json" URl is now excluded from 404 automatic detection
 
 = 1.8.0
 * New: ACF fields can now be used during your SEO audit
 * New: adding SEOKEY FAQ blocks with schema markup (and convert Yoast blocks)
 * New: new audit task about incomplete "Who are you?" settings
 * New: new audit task about incomplete authors data (job, birthdate)
+* New: (PRO) WordPress automatic 301 redirections can now be validated in bulk
 * Improvement: source URL can now be different from current domain if needed
 * Third-party: fix a bug where SEOKEY was blocking login errors messages from Easy Digital Downloads login screen
+* Third-party: (PRO) content audit tasks can now detect upsell products links (WooCommerce)
 * Fixed: texts and translations fixes
 * Fixed: settings screen is now compatible with on smaller devices
 * Fixed: fix a bug where the sitemap URL path was wrong if WP_CONTENT_URL was defined as a subdomain

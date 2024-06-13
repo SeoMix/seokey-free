@@ -1328,9 +1328,9 @@ function seokey_helpers_get_sitemap_base_url( $langIso3 = null, $relative = fals
  */
 function seokey_helpers_get_short_upload_dir( $relative = false ){
 	// Get data from home option
-	$parts = parse_url( get_option('home') );
+	$parts = parse_url( site_url() );
 	// Get short URL for "uploads" folder
-	$exploded_url = explode( untrailingslashit( site_url() ), wp_upload_dir()['baseurl'] );
+	$exploded_url = explode( untrailingslashit( site_url() ), wp_get_upload_dir()['baseurl'] );
 	if ( count( $exploded_url ) > 1 ) {
 		$uploads_path = $exploded_url[1];
 	} else {
