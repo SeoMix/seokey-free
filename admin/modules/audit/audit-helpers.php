@@ -121,15 +121,22 @@ function seokey_audit_whattodo( $id = 0, $keyword = false ) {
 	// Keyword target
 	$keyword = ( false === $keyword ) ? get_post_meta( $id, "seokey-main-keyword", true ) : $keyword;
 	if ( empty( $keyword ) ) {
-		$message['worktodo'] = __( "Select Keyword", "seo-key" );
-		$message['id']       = "worktodo_nokeyword";
+		// Noindex ?
+		$noindex = (bool) get_post_meta( $id, 'seokey-content_visibility', true );
+		if ( true === $noindex ) {
+			$message['worktodo'] = __( "Content ignored (noindex)", "seo-key" );
+			$message['id']       = "worktodo_noindex";
+		} else {
+			$message['worktodo'] = __( "Select Keyword", "seo-key" );
+			$message['id']       = "worktodo_nokeyword";
+		}
 	} else {
 		// Wait ?
 		$current_time   = current_time ('timestamp' );
 		$date           = get_post_timestamp( $id ) + MONTH_IN_SECONDS ;
 		// Recent post
 		if ( $date >= $current_time ) {
-			$message['worktodo'] = __( "Wait", "seo-key" );
+			$message['worktodo'] = __( "Wait a few days", "seo-key" );
 			$message['id']       = "worktodo_wait_30";
 		} else {
 			// Get keyword data
@@ -137,7 +144,7 @@ function seokey_audit_whattodo( $id = 0, $keyword = false ) {
 			$diff = (int) ( ( $current_time - $updated_date ) / DAY_IN_SECONDS );
 			// Post recently updated
 			if ( $diff < 14 ) {
-				$message['worktodo'] = __( "Wait", "seo-key" );
+				$message['worktodo'] = __( "Wait a few days", "seo-key" );
 				$message['id']       = "worktodo_wait_7";
 			}
 			// No keyword data (SEO is bad) => update
@@ -187,6 +194,8 @@ function seokey_audit_clean_string( $content = '', $language = '' ) {
 	$cleaned_string = remove_accents( $cleaned_string );
 	$cleaned_string = strtolower( $cleaned_string );
 	$cleaned_string = seokey_audit_clean_stopwords( $cleaned_string, $language );
+	$cleaned_string = str_replace( "’", "'", $cleaned_string );
+	$cleaned_string = str_replace( "...", "…", $cleaned_string );
 	return $cleaned_string;
 }
 

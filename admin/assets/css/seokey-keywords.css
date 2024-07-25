@@ -26,3 +26,40 @@
         width: 100%;
     }
 }
+
+
+
+#seokey-keywords-content{
+    padding: 1em 2em;
+}
+
+
+
+table.fixed {
+    table-layout: inherit;
+}
+
+th.sortable a, th.sorted a {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+th.sortable a span:first-of-type {
+    width: auto;
+}
+.nofollow {
+    background: repeating-linear-gradient( 45deg, #eee, #eee 10px, #C7ECF9 10px, #C7ECF9 20px );
+}
+.column-keywords ul {
+    margin-top: 0;
+    margin-left: 0;
+}
+.keywords.column-keywords {
+    min-width: 12em;
+    display: inline-block;
+    width: 20em;
+}
+
+.widefat p, .widefat ol, .widefat ul {
+    color: #50575e;
+}

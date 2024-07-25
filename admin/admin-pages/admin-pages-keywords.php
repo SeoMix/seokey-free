@@ -41,6 +41,12 @@ function seokey_admin_page_keywords() {
 	$current_page = $screen->base;
 	// Are we in the right page ?
 	if ( $current_page === 'seokey_page_seo-key-keywords' ) {
-		seokey_admin_keyword_menu_content();
+		// Include helpful functions
+		include SEOKEY_PATH_ADMIN . 'modules/keywords/view-helpers.php';
+		// Show time!
+		echo '<div class="seokey-wrapper-loading">' . seokey_helper_loader_get() . '</div>';
+		echo '<div class="seokey-wrapper-limit">';
+			include SEOKEY_PATH_ADMIN . 'modules/keywords/view.php';
+		echo '</div>';
 	}
 }

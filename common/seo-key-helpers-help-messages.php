@@ -74,6 +74,10 @@ function seokey_helper_help_messages( $id = false, $right = false, $data = "" ) 
             $text .= __('SEOKEY needs more information from Search Console to guide you, and Google is still processing your content.','seo-key');
             $text   .= "<strong>" . __( "Full advices are only available in PRO version",'seo-key')  . "</strong>";
 			break;
+	    case 'worktodo_noindex':
+		    $h2 = __( 'Private content','seo-key');
+		    $text = __("You choose to make this content private: you should not worry about SEO optimization.",'seo-key');
+		    break;
         case 'worktodo':
             $h2 = __( 'Keep Working','seo-key' );
             $text = __( 'Your content is not yet visible in search engines: you are still far from page 1.','seo-key') . '<br><br>';
@@ -225,6 +229,12 @@ function seokey_helper_help_messages( $id = false, $right = false, $data = "" ) 
             $text   = __( 'WordPress redirects automatically some urls when they have errors. But these redirects are slow and may not be relevant.', 'seo-key' ) . '<br><br>';
             $text   .= __( 'You can therefore modify them (better relevance and loading time) or simply validate them (better loading time)', 'seo-key' );
             break;
+	    // Redirection table
+	    case 'redirection-table-active-redirects':
+		    $h2     = __( 'What is it?', 'seo-key' );
+		    $text   = __( 'The table below shows the redirects you have added manually.', 'seo-key' ) . '<br><br>';
+		    $text   .= __( 'SEOKEY also handles many automatic redirects, including: paginated URL that no longer exist, archives by date, Attachment pages, URLs using /category/ if you have enabled the option, etc.', 'seo-key' );
+		    break;
         // ALT Editor
         // Label above input
         case 'alt-editor-input-label':
@@ -482,6 +492,14 @@ function seokey_helper_help_messages( $id = false, $right = false, $data = "" ) 
             $h2     = __( 'What should i do?', 'seo-key' );
             $text   = __( 'Having an HTTPS website improves its security. For SEO, this is a requirement to implement.', 'seo-key' ) . '<br><br>';
             $text   .= __( 'The URLs of your site are not in HTTPS. Contact a professional to migrate your URLs or use an extension like Really Simple SSL.', 'seo-key' );
+            break;
+        case 'audit-task-author_incomplete_infos':
+            $h2     = __( 'What should i do?', 'seo-key' );
+            $text   = __( "SEOKEY sends author information to Google (if not noindexed). This information will be displayed as Schema.org markup and will help Google understand who authored your content. You can add this information to each user's profile.", 'seo-key' ) . '<br><br>';
+            break;
+        case 'audit-task-incomplete_who_are_you':
+            $h2     = __( 'What should i do?', 'seo-key' );
+            $text   = __( "SEOKEY displays this information to Google through Schema.org markup, helping the search engine to understand who's behind your website. You can configure this data in the SEOKEY settings in the 'Who are you?' section.", 'seo-key' ) . '<br><br>';
             break;
         default :
             $custom = apply_filters( 'seokey_filter_helper_help_messages', false, $id ) ;

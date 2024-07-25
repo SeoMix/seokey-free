@@ -215,3 +215,36 @@ function seokey_rss_remove_private_content( $query ) {
 		}
 	}
 }
+
+add_action( 'rss2_item', 'seokey_rss_image_enclosure' );
+/**
+ * Add main image as enclosure
+ *
+ * @since  1.9.0
+ * @author  Daniel Roch
+ *
+ * @hook rss2_item
+ * @return RSS feed enclosure markup
+ */
+function seokey_rss_image_enclosure() {
+	// Check if post has thumbnail
+	if ( ! has_post_thumbnail() ) {
+		return;
+	}
+	// Retrieve image
+	$thumbnail_size = apply_filters( 'rss_enclosure_image_size', 'large' );
+	$thumbnail_id   = get_post_thumbnail_id( get_the_ID() );
+	$thumbnail      = image_get_intermediate_size( $thumbnail_id, $thumbnail_size );
+	if ( empty( $thumbnail ) || false === $thumbnail ) {
+		return;
+	}
+	// get upload DIR
+	$upload_dir = wp_upload_dir();
+	// Show data
+	printf(
+		'<enclosure url="%s" length="%s" type="%s" />',
+		esc_url( $thumbnail['url'] ),
+		filesize( path_join( $upload_dir['basedir'], $thumbnail['path'] ) ),
+		esc_attr( get_post_mime_type( $thumbnail_id ) )
+	);
+}

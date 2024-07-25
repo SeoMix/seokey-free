@@ -90,8 +90,6 @@ class Seokey_Audit_Tasks_content_main_keyword_content extends Seokey_Audit_Tasks
 				$text    = stripslashes( seokey_audit_clean_string( $text, $language ) );
 				$keyword = stripslashes( seokey_audit_clean_string( $item['keyword'], $language ) );
 			}
-			$text       = str_replace( "’", "'", $text );
-			$keyword    = str_replace( "’", "'", $keyword );
 			// If the keyword is in the first 100 words unset, else add to the errors list
 			if ( str_contains( $text, $keyword ) ) {
 				unset($this->items[ $key ]);

@@ -15,8 +15,6 @@
 #search-table-element{
     float: right;
     margin: 0;
-    z-index: 10;
-    position: relative;
 }
 
 /* Move up redirection tables */
@@ -271,7 +269,7 @@
         margin: 0 0 1em;
         align-self: start;
     }
-  /*   .column-actions-wrapper {
+    /*   .column-actions-wrapper {
         display: flex;
         flex-direction: column;
     } */

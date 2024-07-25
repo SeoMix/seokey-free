@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function seokey_automatic_optimizations_top() {
 	$current_wizard = get_option('seokey_option_first_wizard_seokey_notice_wizard');
 	if ( 'goodtogo' !== $current_wizard ) {
-		echo '<p>' . esc_html__( 'SEOKEY is way simpler than any other SEO plugin. Just click on the button below to fix your SEO!', 'seo-key' ) . '</p>';
+		echo '<p>' . esc_html__( 'SEOKEY is way simpler than any other SEO plugin. Let SEOKEY automatically optimize your website, or select specific optimizations!', 'seo-key' ) . '</p>';
 		echo '<div id="wizard-choices">';
 		echo '<button class="button button-primary button-large button-hero" id="automatic_optimizations_list_button">' . esc_html__( 'Fix all my WordPress', 'seo-key' ) . '</button>';
 		echo '<button class="button button-secondary button-large button-hero" id="automatic_optimizations_list_button_choices">' . esc_html__( 'Let me choose', 'seo-key' ) . '</button>';

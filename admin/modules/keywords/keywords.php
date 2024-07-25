@@ -16,22 +16,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'You lost the key...' );
 }
 
-add_filter( 'seokey_filter_get_admin_menus', 'seokey_keywords_add_menu_page', 1 );
-/**
- * Add Keyword menu
- *
- * @since   0.0.1
- * @author  Leo Fontin
- */
-function seokey_keywords_add_menu_page( $menus ) {
-	$menus[20] = [
-		'title'      => esc_html__( 'My Keywords', 'seo-key' ),
-		'slug'       => 'seo-key-keywords',
-		'capability' => seokey_helper_user_get_capability( 'editor' ),
-	];
-	return $menus;
-}
-
 
 add_action('seokey_action_admin_pages_wrapper_print_notices_after_title', 'seokey_keywords_add_explanation', 1);
 /**
@@ -43,38 +27,59 @@ add_action('seokey_action_admin_pages_wrapper_print_notices_after_title', 'seoke
 function seokey_keywords_add_explanation( $args ) {
 	$current_screen = seokey_helper_get_current_screen();
 	if ( $current_screen->base === 'seokey_page_seo-key-keywords' ) {
-		// TODO SI pas de data
-		$last_update = get_option('seokey-gsc-last-api-call');
-		$text = '<div class="flexbox">';
-			$text .= '<div class="notice-flexboxcolumn">';
-				$text .= '<h3>' . __( 'What should I do here?', 'seo-key' ) . '</h3>';
-				$text .= '<p>' . __( 'This menu show you every keyword or phrase you have targeted.', 'seo-key' ) . '</p>';
-				$text .= '<p>' . __( 'This will help you see your results (average position, clicks, impressions), but most importantly, <strong>it allows us to tell you what your next action is for each content</strong>.', 'seo-key' ) . '</p>';
+
+		$type = ( ! empty( $_GET['tab']  ) ) ? sanitize_title( $_GET['tab'] ) : 'contents';
+		if ( 'keywords' === $type ) {
+			$text = '<div class="flexbox">';
+				$text   .= '<div class="notice-flexboxcolumn">';
+					$text   .= '<h3>' . __( 'What should I do here?', 'seo-key' ) . '</h3>';
+					$text   .= '<p>' . __( 'This menu show you every keyword or phrase you have targeted.', 'seo-key' ) . '</p>';
+					$text   .= '<p>' . __( 'This will help you see your results (average position, clicks, impressions), but most importantly, <strong>it allows us to tell you what your next action is for each content</strong>.', 'seo-key' ) . '</p>';
+				$text   .= '</div>';
+				$text   .= '<div class="notice-flexboxcolumn">';
+					$text   .= '<h3>' . __( 'How should I choose a keyword?', 'seo-key' ) . '</h3>';
+					$text   .= '<p>' . __( 'The choice of keywords is crucial. Here are some tips:', 'seo-key' ) . '</p>';
+					$text   .= '<ul>';
+					$text   .= '<li>' . __( '<strong>Choose a keyword that makes sense</strong> (e.g. "Beginner cooking course" rather than "beginner" or just "course")', 'seo-key' ) . '</li>';
+					$text   .= '<li>' . __( "<strong>Related content must meet the user's needs</strong>. Ask yourself the following question: what is the user looking for when he search this phrase into Google?", 'seo-key' ) . '</li>';
+					$text   .= '</ul>';
+					$text   .= '<p>' . __( 'To add a targeted keyword or phrase, just use our metabox while editing your contents', 'seo-key' ) . '</p>';
+				$text   .= '</div>';
+				$text   .= '<div class="notice-flexboxcolumn">';
+					$text   .= '<h3>' . __( 'Where does the data comes from?', 'seo-key' ) . '</h3>';
+					$text   .= '<p>' . __( 'Positions, clicks and impressions comes from your Search Console.', 'seo-key' ) . '</p>';
+					$text   .= '<p>' . __( "Keep in mind that all data can't be shown into your WordPress if a have a lot of contents, and it may not be 100% accurate (Google doesn't give access to all your data)", 'seo-key' ) . '</p>';
+				$text   .= '</div>';
 			$text .= '</div>';
-			$text .= '<div class="notice-flexboxcolumn">';
-				$text .= '<h3>' . __( 'How should I choose a keyword?', 'seo-key' ) . '</h3>';
-				$text .= '<p>' . __( 'The choice of keywords is crucial. Here are some tips:', 'seo-key' ) . '</p>';
-				$text .= '<ul>';
-					$text .= '<li>' . __( '<strong>Choose a keyword that makes sense</strong> (e.g. "Beginner cooking course" rather than "beginner" or just "course")', 'seo-key' ) . '</li>';
-					$text .= '<li>' . __( "<strong>Related content must meet the user's needs</strong>. Ask yourself the following question: what is the user looking for when he search this phrase into Google?", 'seo-key' ) . '</li>';
-				$text .= '</ul>';
-		$text .= '<p>' . __( 'To add a targeted keyword or phrase, just use our metabox while editing your contents', 'seo-key' ) . '</p>';
+		} elseif ( 'contents' === $type ) {
+			$text = '<div class="flexbox">';
+			$text   .= '<div class="notice-flexboxcolumn">';
+			$text   .= '<h3>' . __( 'What should I do here?', 'seo-key' ) . '</h3>';
+			$text   .= '<p>' . __( 'This menu displays all the contents of your website.', 'seo-key' ) . '</p>';
+			$text   .= '<p>' . __( 'This lets you see your results (clicks and impressions), but especially <strong>the content you need to work on</strong>.', 'seo-key' ) . '</p>';
+			$text   .= '</div>';
+			$text   .= '<div class="notice-flexboxcolumn">';
+			$text   .= '<h3>' . __( 'What content should I improve?', 'seo-key' ) . '</h3>';
+			$text   .= '<p>' . __( 'Keeping in mind the advice given for each content, you can:', 'seo-key' ) . '</p>';
+			$text   .= '<ul>';
+			$text   .= '<li>' . __( "<strong>work on content that doesn't get any clicks</strong> (Google and web users don't find it relevant)", 'seo-key' ) . '</li>';
+			$text   .= '<li>' . __( "<strong>add a keyword or target phrase for content that doesn't already have one</strong>. This will help us give you the right advice", 'seo-key' ) . '</li>';
+			$text   .= '<li>' . __( "<strong>optimize your content for the targeted keyword</strong> (if your average position is not yet perfect)", 'seo-key' ) . '.</li>';
+			$text   .= '</ul>';
+			$text   .= '</div>';
+			$text   .= '<div class="notice-flexboxcolumn">';
+			$text   .= '<h3>' . __( 'Where does the data comes from?', 'seo-key' ) . '</h3>';
+			$text   .= '<p>' . __( 'Positions, clicks and impressions comes from your Search Console.', 'seo-key' ) . '</p>';
+			$text   .= '<p>' . __( "Keep in mind that all data can't be shown into your WordPress if a have a lot of contents, and it may not be 100% accurate (Google doesn't give access to all your data)", 'seo-key' ) . '.</p>';
+			$text   .= '</div>';
 			$text .= '</div>';
-		$text .= '<div class="notice-flexboxcolumn">';
-		$text .= '<h3>' . __( 'Where does the data comes from?', 'seo-key' ) . '</h3>';
-			$text .= '<p>' . __( 'Positions, clicks and impressions comes from your Search Console.', 'seo-key' ) . '</p>';
-			$text .= '<p>' . __( 'Keep in mind that all data can\'t be shown into your WordPress if a have a lot of contents, and it may not be 100% accurate', 'seo-key' ) . '</p>';
-			if ( false !== $last_update ) {
-				$text .= '<p>' . sprintf( __( 'Actual data range: from %1$s to %2$s (<strong>last 3 months</strong>).', 'seo-key' ), date_i18n( $last_update['startDate'] ), date_i18n( $last_update['endDate'] ) );
-			}
-		$text .= '</div>';
-		$text .= '</div>';
-		echo '<div id="seokey_keyword_notification" class="seokey-notice notice-info">
-			<span class="notice-icon"></span>
-			<span class="notice-content">
-				' . $text . '
-			</span>
-		</div>';
+		}
+		if ( 'contents' === $type || 'keywords' === $type ) {
+			echo '<div id="seokey_keyword_notification" class="seokey-notice notice-info">
+				<span class="notice-icon"></span>
+				<span class="notice-content">' . $text . '</span>
+			</div>';
+		}
 	}
 }
 
@@ -97,20 +102,43 @@ function seokey_enqueue_admin_keywords_page() {
 		// Enqueue CSS
 		seokey_enqueue_admin_common_scripts();
 		wp_enqueue_style('seokey-keywords', esc_url(SEOKEY_URL_ASSETS . 'css/seokey-keywords.css'), false, SEOKEY_VERSION );
-		// Enqueue JS
-		wp_enqueue_script('seokey-keywords-tables', SEOKEY_URL_ASSETS . 'js/seokey-keywords.js', array( 'jquery', 'wp-i18n' ), SEOKEY_VERSION);
-		// Tell WP to load translations for our JS.
-		wp_set_script_translations( 'seokey-keywords-tables', 'seo-key', SEOKEY_PATH_ROOT . '/public/assets/languages' );
-		// Localize script arguments
-		$args = array(
-			// Ajax URL
-			'ajaxurl' => admin_url('admin-ajax.php'),
-			// PHP function to display keyword List
-			'display_action_url' => '_seokey_keywords_display_table',
-			// Security nonce
-			'security' => wp_create_nonce('seokey_keywords_table_list'),
-		);
-		wp_localize_script('seokey-keywords-tables', 'adminAjax', $args);
+		if ( isset( $_GET['tab'] ) && "keywords" === $_GET['tab'] ) {
+			// Enqueue JS
+			wp_enqueue_script( 'seokey-keywords-tables', SEOKEY_URL_ASSETS . 'js/seokey-keywords.js', array(
+				'jquery',
+				'wp-i18n'
+			), SEOKEY_VERSION );
+			// Tell WP to load translations for our JS.
+			wp_set_script_translations( 'seokey-keywords-tables', 'seo-key', SEOKEY_PATH_ROOT . '/public/assets/languages' );
+			// Localize script arguments
+			$args = array(
+				// Ajax URL
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				// PHP function to display keyword List
+				'display_action_url' => '_seokey_keywords_display_table',
+				// Security nonce
+				'security' => wp_create_nonce( 'seokey_keywords_table_list' ),
+			);
+			wp_localize_script( 'seokey-keywords-tables', 'adminAjax', $args );
+		} elseif ( empty( $_GET['tab'] ) || "contents" === $_GET['tab'] ) {
+			// Enqueue JS
+			wp_enqueue_script( 'seokey-keywords-tables-content', SEOKEY_URL_ASSETS . 'js/seokey-keywords-content.js', array(
+				'jquery',
+				'wp-i18n'
+			), SEOKEY_VERSION );
+			// Tell WP to load translations for our JS.
+			wp_set_script_translations( 'seokey-keywords-tables-content', 'seo-key', SEOKEY_PATH_ROOT . '/public/assets/languages' );
+			// Localize script arguments
+			$args = array(
+				// Ajax URL
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				// PHP function to display keyword List
+				'display_action_url' => '_seokey_keywords_display_table_content',
+				// Security nonce
+				'security' => wp_create_nonce( 'seokey_keywords_table_list' ),
+			);
+			wp_localize_script( 'seokey-keywords-tables-content', 'adminAjax', $args );
+		}
 	}
 }
 
@@ -212,8 +240,74 @@ function seokey_gsc_get_pages() {
 	return $pages;
 }
 
-// Include Keywords WP_LIST_TABLE class
-include dirname( __FILE__ ) . '/keyword-table.php';
 
-// Include menu content
-include dirname( __FILE__ ) . '/view.php';
+// Include Keywords WP_LIST_TABLE class
+include_once SEOKEY_PATH_ADMIN . 'modules/keywords/table-keyword.php';
+
+// Include Content WP_LIST_TABLE class
+include_once SEOKEY_PATH_ADMIN . 'modules/keywords/table-content.php';
+
+
+// Display table Ajax calls
+add_action('wp_ajax__seokey_keywords_display_table', '_seokey_keywords_display_table_callback');
+/**
+ * Action wp_ajax for fetching the first time all table structure
+ */
+function _seokey_keywords_display_table_callback() {
+	// Nonce
+	check_ajax_referer('seokey_keywords_table_list', 'security');
+	// User role
+	if ( ! current_user_can( seokey_helper_user_get_capability( 'editor' ) ) ) {
+		wp_die( __( 'Failed security check', 'seo-key' ), SEOKEY_NAME, 403 );
+	}
+	// New table
+	$wp_list_table = new seokey_WP_List_Table_keywords();
+	// Define data
+	$wp_list_table->set_columns( $wp_list_table->get_columns() );
+	// Get data
+	$wp_list_table->prepare_items();
+	// capture data
+	ob_start();
+	$wp_list_table->display();
+	$display = ob_get_clean();
+	// return json encoded table
+	die(
+	json_encode(
+		array(
+			"display" => $display
+		)
+	)
+	);
+}
+
+// Display table Ajax calls
+add_action('wp_ajax__seokey_keywords_display_table_content', '_seokey_keywords_display_table_content_callback');
+/**
+ * Action wp_ajax for fetching the first time all table structure
+ */
+function _seokey_keywords_display_table_content_callback() {
+	// Nonce
+	check_ajax_referer('seokey_keywords_table_list', 'security');
+	// User role
+	if ( ! current_user_can( seokey_helper_user_get_capability( 'editor' ) ) ) {
+		wp_die( __( 'Failed security check', 'seo-key' ), SEOKEY_NAME, 403 );
+	}
+	// New table
+	$wp_list_table = new seokey_WP_List_Table_contents();
+	// Define data
+	$wp_list_table->set_columns( $wp_list_table->get_columns() );
+	// Get data
+	$wp_list_table->prepare_items();
+	// capture data
+	ob_start();
+	$wp_list_table->display();
+	$display = ob_get_clean();
+	// return json encoded table
+	die(
+		json_encode(
+			array(
+				"display" => $display
+			)
+		)
+	);
+}

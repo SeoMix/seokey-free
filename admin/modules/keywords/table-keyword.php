@@ -50,8 +50,8 @@ class seokey_WP_List_Table_keywords extends seokey_WP_List_Table_base {
 			//'cb'           => '<input type="checkbox" />',
 			'keyword'     => esc_html__( 'Targeted keyword or phrase', 'seo-key' ),
 			'position'    => esc_html__( 'Average position', 'seo-key' ),
-			'clicks'      => esc_html__( 'Clicks', 'seo-key' ),
-			'impressions' => esc_html__( 'Impressions', 'seo-key' ),
+			'clicks'      => esc_html__( 'Clicks for this keyword', 'seo-key' ),
+			'impressions' => esc_html__( 'Impressions for this keyword', 'seo-key' ),
 			'content'     => esc_html__( 'Related content', 'seo-key' ),
 			'advice'      => esc_html__( 'Next action', 'seo-key' ),
 		);
@@ -77,12 +77,27 @@ class seokey_WP_List_Table_keywords extends seokey_WP_List_Table_base {
 	function get_sortable_columns() {
 		return $sortable_columns = array(
 			'keyword'     => [ 'keyword', false ],
-			'position'    => [ 'position', false ],
-			'clicks'      => [ 'clicks', false ],
-			'impressions' => [ 'impressions', false ],
 			'advice'      => [ 'whattodo', false ],
 			'content'     => [ 'content', false ],
 		);
+	}
+
+	/**
+	 * Add keyword data range for users
+	 *
+	 * @since 1.9.0
+	 *
+	 * @param string $which defines tablenav to enhance
+	 */
+	protected function extra_tablenav( $which ) {
+		if ( $which === 'top' ) {
+			$last_update = get_option( 'seokey-gsc-last-api-call' );
+			if ( false !== $last_update ) {
+				$text = esc_html__( 'Want more SEO data? Go PRO!', 'seo-key' );
+				$text .= __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>", 'seo-key' );
+				echo '<span class="seokey-gopro">' . $text . '</span>';
+			}
+		}
 	}
 
 	// Show selected keyword
@@ -92,12 +107,7 @@ class seokey_WP_List_Table_keywords extends seokey_WP_List_Table_base {
 
 	// Show position for each combination of keyword + content
 	public function column_position( $item ) {
-		$pos = $item['position'];
-		if ( 1000 === $pos ) {
-			$pos = esc_html__( '(PRO only)', 'seo-key' );
-		}
-
-		return $pos;
+		return esc_html__( '(PRO)', 'seo-key' );
 	}
 
 	// Show clicks for each combination of keyword + content
@@ -151,7 +161,7 @@ class seokey_WP_List_Table_keywords extends seokey_WP_List_Table_base {
 	 */
 	function prepare_items() {
 		// Items per page
-		$per_page = seokey_helper_get_screen_option( 'per_page', 'seokey_keywords_per_page', 20 );
+		$per_page = seokey_helper_get_screen_option( 'per_page', 'seokey_keywords_per_page', 25 );
 		// Define of column_headers. It contains
 		$columns               = $this->get_columns();
 		$hidden                = $this->hidden_columns;
@@ -164,24 +174,18 @@ class seokey_WP_List_Table_keywords extends seokey_WP_List_Table_base {
 		// We have data ? Create a correct table
 		if ( ! empty( $items ) ) {
 			foreach ( $items as $r ) {
-                $clicks      = '-';
-                $impressions = '-';
-                $position = 1000;
 				$todo                 = seokey_audit_whattodo( $r->post_id );
 				$table[ $r->post_id ] = [
 					'id'          => $r->post_id,
 					'content'     => esc_html( get_the_title( (int) $r->post_id ) ),
 					'keyword'     => $r->meta_value,
-					'position'    => $position,
-					'clicks'      => $clicks,
-					'impressions' => $impressions,
 					'whattodo'    => $todo['worktodo'],
 					'whattodoid'  => $todo['id'],
 				];
 			}
 		}
 		// Sort all this stuff
-		seokey_helper_cache_data( 'seokey_helper_usort_reorder', 'impressions' );
+		seokey_helper_cache_data( 'seokey_helper_usort_reorder', 'content' );
 		seokey_helper_cache_data( 'seokey_helper_usort_reorder_order', 'DESC' );
 		usort( $table, 'seokey_helper_usort_reorder' );
 		// Current page
@@ -213,31 +217,40 @@ class seokey_WP_List_Table_keywords extends seokey_WP_List_Table_base {
 	 * @return array|false|object|void
 	 */
 	public function seokey_keywords_get_items() {
+		// Filter Post types
+		$post_types         = seokey_helper_get_option( 'cct-cpt', get_post_types( ['public' => true ] ) );
+		$post_types_list    = implode( "','", array_map( 'esc_sql', $post_types ) );
 		global $wpdb;
 		$table_metas = $wpdb->prefix . 'postmeta';
-		// TODO fix Search parameter if user is sending one
-		// Searching data ?
-//$search = ( ! empty ( $_REQUEST['s'] ) ) ? esc_sql( $_REQUEST['s'] ) : false;
-//		$results = $wpdb->get_results('
-//			SELECT  *
-//			FROM ' . $table_metas . '
-//			WHERE meta_key = "seokey-main-keyword"
-//		');
-
-
+		$table_posts = $wpdb->prefix . 'posts';
+		$sql = "
+	    	SELECT pm.* 
+	    	FROM $table_metas pm
+	    	INNER JOIN $table_posts p ON pm.post_id = p.ID
+	    	WHERE pm.meta_key = 'seokey-main-keyword'
+	    	AND p.post_status = 'publish'
+	    	AND p.post_password = ''
+	    	AND p.post_type IN ('$post_types_list')
+		";
 		// Searching data ?
 		$search  = ( ! empty ( $_REQUEST['s'] ) ) ? esc_sql( $_REQUEST['s'] ) : false;
-		$results = ( false !== $search ) ?
-			$wpdb->get_results( "SELECT * FROM $table_metas WHERE meta_key = 'seokey-main-keyword' AND meta_value LIKE '%%%$search%%'"
-			) :
-			$wpdb->get_results( "SELECT * FROM $table_metas WHERE meta_key = 'seokey-main-keyword'"
-			);
-
-
+		if ( false !== $search ) {
+			$sql .= " AND meta_value LIKE '%$search%'";
+		}
+		$results = $wpdb->get_results($sql);
 		// No data, do nothing
 		if ( empty( $results ) ) {
 			return false;
 		}
+
+
+//		SELECT pm.*
+//FROM $table_metas AS pm
+//JOIN $table_posts AS p ON pm.post_id = p.ID
+//WHERE pm.meta_key = 'seokey-main-keyword'
+//  AND p.post_status = 'publish';
+
+
 
 		// Get data
 		return $results;
@@ -248,7 +261,6 @@ class seokey_WP_List_Table_keywords extends seokey_WP_List_Table_base {
 	 * @Override of display method
 	 */
 	public function display() {
-//		$this->display_tablenav('top');
 		// Parent Display method
 		if ( isset ( $_REQUEST['per_page'] ) ) {
 			$per_page = (int) $_REQUEST['per_page'];
@@ -256,40 +268,8 @@ class seokey_WP_List_Table_keywords extends seokey_WP_List_Table_base {
 			$per_page = seokey_helper_get_screen_option( 'per_page', 'seokey_keywords_per_page', 20 );
 		}
 		echo '<input id="per_page" name="per_page" type="hidden" value="' . (int) $per_page . '">';
-		echo '<input id="orderby" name="orderby" type="hidden" value="impressions">';
+		echo '<input id="orderby" name="orderby" type="hidden" value="content">';
 		echo '<input id="order" name="order" type="hidden" value="DESC">';
 		parent::display();
 	}
-}
-
-// Display table Ajax calls
-add_action('wp_ajax__seokey_keywords_display_table', '_seokey_keywords_display_table_callback');
-/**
- * Action wp_ajax for fetching the first time all table structure
- */
-function _seokey_keywords_display_table_callback() {
-	// Nonce
-	check_ajax_referer('seokey_keywords_table_list', 'security');
-	// User role
-	if ( ! current_user_can( seokey_helper_user_get_capability( 'editor' ) ) ) {
-		wp_die( __( 'Failed security check', 'seo-key' ), SEOKEY_NAME, 403 );
-	}
-	// New table
-	$wp_list_table = new seokey_WP_List_Table_keywords();
-	// Define data
-	$wp_list_table->set_columns( $wp_list_table->get_columns() );
-	// Get data
-	$wp_list_table->prepare_items();
-	// capture data
-	ob_start();
-	$wp_list_table->display();
-	$display = ob_get_clean();
-	// return json encoded table
-	die(
-		json_encode(
-			array(
-				"display" => $display
-			)
-		)
-	);
 }

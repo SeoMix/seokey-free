@@ -343,7 +343,7 @@ function _seokey_audit_content_check_callback() {
 		}
 	}
 	$errors .= '<div id="audit-metabox-go-pro">';
-		$errors .= '<span>' . esc_html__( 'Want more data? Go PRO!', 'seo-key' ) . '</span>';
+		$errors .= '<span>' . esc_html__( 'Want more SEO advice? Go PRO!', 'seo-key' ) . '</span>';
 		$errors .= __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>", 'seo-key' );
 	$errors .= '</div>';
 	// return HTML data to display on content audit

@@ -109,14 +109,14 @@ add_action( 'template_redirect', 'seokey_redirections_authors', 10 );
  * @return void
  */
 function seokey_redirections_authors() {
-    if ( is_author() ) {
-        // All author pages are privates ?
-        $page = seokey_helper_get_option( 'cct-pages', [] );
-        if ( ! empty( $page ) && ! in_array( 'author', $page ) ) {
-            wp_safe_redirect( esc_url( get_home_url() ), 301 );
-            die;
-        }
-        // Is this an author pagination ?
+	if ( is_author() ) {
+		// All author pages are privates ?
+		$page = seokey_helper_get_option( 'cct-pages', [] );
+		if ( ! empty( $page ) && ! in_array( 'author', $page ) ) {
+			wp_safe_redirect( esc_url( get_home_url() ), 301 );
+			die;
+		}
+		// Is this an author pagination ?
         $disabled = seokey_helper_get_option('seooptimizations-pagination-authors', 'yes' );
         // Remove secondary feeds (manual option to disable all or automatic without user choice)
         if ( 'yes' === $disabled || (string) 1 === $disabled ) {
@@ -128,8 +128,7 @@ function seokey_redirections_authors() {
                 die;
             }
         }
-
-    }
+	}
 }
 
 add_action( 'template_redirect', 'seokey_redirections_attachment', 1 );
@@ -200,15 +199,16 @@ function seokey_redirections_410() {
 		$content_dir = $content_dir['path'];
 		// Directory used to send automatic 410 code on 404 error pages
 		$check = [
-			$content_dir.'/cache', // WP Rocket and many other cache plugins
-			$content_dir.'/glc_cache', // "gravatar local cache"
-			$content_dir.'/et-cache', // Divi cache
-            $content_dir.'/uploads/gravatar-cache', // "Harry gravatar cache"
-            $content_dir.'/uploads/hummingbird-assets', // "Hummingbird assets"
-            $content_dir.'/uploads/wphb-cache', // "Hummingbird cache"
-            $content_dir.'/uploads/siteground-optimizer-assets', // "Siteground optimizer cache"
-			$content_dir.'/plugins/elementor-pro/assets', // "Elementor cache"
-			$content_dir.'/litespeed', // "LiteSpeed cache"
+			$content_dir.'/cache', 									// WP Rocket and many other cache plugins
+			$content_dir.'/glc_cache', 								// "gravatar local cache"
+			$content_dir.'/et-cache', 								// Divi cache
+            $content_dir.'/uploads/gravatar-cache', 				// "Harry gravatar cache"
+            $content_dir.'/uploads/hummingbird-assets', 			// "Hummingbird assets"
+            $content_dir.'/uploads/wphb-cache', 					// "Hummingbird cache"
+            $content_dir.'/uploads/siteground-optimizer-assets', 	// "Siteground optimizer cache"
+			$content_dir.'/plugins/elementor-pro/assets', 			// "Elementor PRO plugin cache"
+			$content_dir.'/litespeed', 								// "LiteSpeed cache"
+
 		];
 		/**
 		 * Filter cache directory list for automatic 410 codes
@@ -217,11 +217,33 @@ function seokey_redirections_410() {
 		 * @param (array) $check List of wp-content directories
 		 */
 		$check          = apply_filters( 'seokey_filter_redirections_410_ressources', $check );
+		// 404 errors to exclude
+		$check_within = [
+			'data:image/svg+xml', 	// SVG images
+			'/elementor/css' 		// Elementor cache
+		];
+		/**
+		 * Filter 404 list for automatic 410 codes
+		 *
+		 * @since 1.9.0
+		 * @param (array) $check List of wp-content directories
+		 */
+		$check_within   = apply_filters( 'seokey_filter_redirections_410_ressources_within', $check_within );
+		// Current URL
 		$current_url    = seokey_helper_url_get_current();
-		// Remove parameters if necessary
 		$current_url    = strtok( $current_url, "?" );
-		// Do we need a 410 code ?
+		$ignore 		= false;
 		if ( true === seokey_helper_strpos_array( $current_url, $check ) ) {
+			$ignore = true;
+		} else {
+			foreach( $check_within as $a ) {
+        		if ( str_contains( $current_url, $a ) ) {
+        			$ignore = 'force';
+        		}
+    		}
+		}
+		// Do we need a 410 code ?
+		if ( true === $ignore || 'force' === $ignore ) {
 			// Get files extensions available in WordPress core
 			$extensions = wp_get_ext_types();
 			$merged     = call_user_func_array('array_merge', array_values( $extensions ) );
@@ -229,7 +251,7 @@ function seokey_redirections_410() {
 			$explode    = explode( '.' , $current_url );
 			$last_part  = end( $explode );
 			// Am i supposed to be a file ?
-			if ( true === in_array( $last_part, $merged ) ) {
+			if ( 'force' === $ignore || true === in_array( $last_part, $merged ) ) {
 				// Change 404 hedaer to 410 header
 				header( "HTTP/1.0 410 Gone" );
 				// Delete unused variable
@@ -294,7 +316,6 @@ function seokey_redirections_sitemap_native_redirect() {
 			else {
 				$redirecturl = user_trailingslashit( apply_filters( 'seokey_filter_home_url', home_url() ) );
 			}
-			seokey_dev_write_log($redirecturl);
 			wp_safe_redirect( esc_url( $redirecturl ), 301 );
 			die;
 		}

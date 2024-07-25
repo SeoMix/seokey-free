@@ -14,7 +14,7 @@ foreach ( $data as $task ) {
     seokey_audit_tab_content( $task );
 }
 
-$text = esc_html__( 'Want more data? Go PRO!', 'seo-key' );
+$text = esc_html__( 'Want more SEO advice? Go PRO!', 'seo-key' );
 $text .= __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>", 'seo-key' );
 
 echo '<div class="task task-gopro">';

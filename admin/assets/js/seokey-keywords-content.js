@@ -17,19 +17,48 @@ jQuery(document).ready(function($) {
                 $('.seokey-wrapper-loading').css('display', 'flex');
                 var data = {
                     per_page: $('#global_per_page' ).val() || '20',
+                    filter2: $('#filter2').prop('checked') ? '1' : '0',
+                    filter3: $('#filter3').prop('checked') ? '1' : '0',
                     s: $( '#search_id-search-input' ).val(),
                 };
                 list.update(data);
             });
+
+            $('.tablenav .seokey-filter').on('click', function (e) {
+                $('.seokey-wrapper-loading').css('display', 'flex');
+                var filter2 = $('#filter2').prop('checked') ? '1' : '0';
+                var filter3 = $('#filter3').prop('checked') ? '1' : '0';
+                // Correct filters
+                if (this.id === 'filter2') {
+                    filter3 = 0;
+                }
+                else if (this.id === 'filter3') {
+                    filter2 = 0;
+                }
+                var data = {
+                    per_page: $('#per_page' ).val() || '20',
+                    order: $( '#order' ).val() || 'ASC',
+                    orderby: $( '#orderby' ).val() || 'content',
+                    filter2: filter2,
+                    filter3: filter3,
+                    s: $( '#search_id-search-input' ).val() || '',
+                };
+                console.log(data);
+                list.update(data);
+            });
+
             // Sortable columns
             $('.tablenav-pages a, .manage-column.sortable a, .manage-column.sorted a').on('click', function (e) {
-                $('.seokey-wrapper-loading').css('display', 'flex');
                 e.preventDefault();
+                $('.seokey-wrapper-loading').css('display', 'flex');
                 var query = this.search.substring(1);
                 var data = {
                     paged: list.__query(query, 'paged') || '1',
+                    per_page: $('#per_page' ).val() || '20',
                     order: list.__query(query, 'order') || 'ASC',
                     orderby: list.__query(query, 'orderby') || 'content',
+                    filter2: $('#filter2').prop('checked') ? '1' : '0',
+                    filter3: $('#filter3').prop('checked') ? '1' : '0',
                     s: $( '#search_id-search-input' ).val(),
                 };
                 list.update(data);
@@ -41,12 +70,13 @@ jQuery(document).ready(function($) {
          * Update WP_LIST_TABLE
          *********************************************************************/
         update: function (data) {
-            console.log("update");
+            // pagination
             var pagination = $('input[name=paged]').first().val() || '1';
             // Check if user has sent a numeric value
             if ( $.isNumeric( pagination ) ) {} else {
                 pagination = '1';
             }
+            // Ajax launch
             $.ajax({
                 url: ajaxurl,
                 dataType: 'json',
@@ -85,8 +115,8 @@ jQuery(document).ready(function($) {
          *
          * @see http://css-tricks.com/snippets/javascript/get-url-variables/
          *
-         * @param    string    query The URL query part containing the variables
-         * @param    string    variable Name of the variable we want to get
+         * @param query    string    query The URL query part containing the variables
+         * @param variable   string    variable Name of the variable we want to get
          *
          * @return   string|boolean The variable value if available, false else.
          */

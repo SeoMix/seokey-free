@@ -25,6 +25,8 @@
       "Audit is finished, we will reload your data in: ":["Audit terminé, nous allons recharger la page dans: "],
       " seconds":[" secondes"],
       "Audit is finished, we will reload now":["Audit terminé, nous allons recharger la page maintenant"],
+      "You have a htpasswd protection. Please enter your login and password on the Tools Tabs here:":["Vous avez une protection htpasswd. Veuillez entrer votre login et mot de passe ici :"],
+      "Settings Page":["Page des réglages"],
     }
   }
 }

@@ -73,7 +73,7 @@ class seokey_WP_List_Table_audit_errors extends seokey_WP_List_Table_base {
 	
 	    add_action( 'seokey_audit_free_tfoot', 'seokey_audit_free_tr_message' );
 	    function seokey_audit_free_tr_message(){
-		    $text = esc_html__( 'Want more data? Go PRO!', 'seo-key' );
+		    $text = esc_html__( 'Want more SEO advice? Go PRO!', 'seo-key' );
 		    $text .= __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>", 'seo-key' );
 		    echo '<tr id="audit-tables-tfoot">
 				<td>' . $text . '</td>

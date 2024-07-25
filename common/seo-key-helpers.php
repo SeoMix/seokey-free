@@ -433,7 +433,7 @@ function seokey_helper_get_paginated_url( $url, $type = 'term' ) {
 		// Ensure URl has a trailingslash
 		$base = trailingslashit( $url );
 		// For terms, get pagination_base rewrite structure (no need for paginated posts)
-		if ( 'term' === $type ) {
+		if ( 'term' === $type || is_singular() && is_paged()  ) {
 			global $wp_rewrite;
 			$pagination_base = $wp_rewrite->pagination_base;
 			$base .= $pagination_base . '/';
@@ -855,18 +855,13 @@ function seokey_helper_usort_reorder( $a, $b ) {
  * @return bool|int true if currently on a post type archive menu
  */
 function seokey_helpers_admin_is_post_type_archive() {
-    // Are we on a custom post type archive page
-    global $typenow;
-    // Get the post type object
-    $typenow_object = get_post_type_object( $typenow );
-	// Check if current post type have an archive
-	if ( isset( $typenow_object->has_archive ) ) {
-    	$post_type_archive = $typenow_object->has_archive;
-		// Filter for specific post types
-		$post_type_archive = apply_filters( 'seokey_filter_helpers_admin_is_post_type_archive', $typenow_object );
-		// return value
-		return $post_type_archive;
-    }
+	// Are we on a custom post type archive page
+	$current_screen = seokey_helper_get_current_screen();
+	if ( ! is_null( $current_screen ) ) {
+		if ( str_contains( $current_screen->base, '_seo-key-archive_' ) ) {
+			return true;
+		}
+	}
 	return false;
 }
 
@@ -907,6 +902,14 @@ function seokey_helpers_medias_library_is_alt_editor(){
 // TODO Comments
 function seokey_helper_loader( $id = '', $class=' ') {
 echo '<div id="' . sanitize_html_class( $id ) . '-loader" class="' . sanitize_html_class( $class ) . 'seokey-loader">
+      <div class="seokey-spinner"></div>
+    </div>
+    ';
+}
+
+// TODO Comments
+function seokey_helper_loader_get( $id = '', $class = ' ' ) {
+	return '<div id="' . sanitize_html_class( $id ) . '-loader" class="' . sanitize_html_class( $class ) . 'seokey-loader">
       <div class="seokey-spinner"></div>
     </div>
     ';

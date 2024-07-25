@@ -51,6 +51,11 @@ function seokey_helper_admin_get_menus() {
 		'slug'       => SEOKEY_SLUG . '-audit',
 		'capability' => seokey_helper_user_get_capability( 'editor' )
 	];
+	$menus[20] = [
+		'title'      => esc_html__( 'My Keywords', 'seo-key' ),
+		'slug'       => 'seo-key-keywords',
+		'capability' => seokey_helper_user_get_capability( 'editor' ),
+	];
 	// Audit Menu
 	$menus[30] = [
 		'title'      => esc_html_x( 'SEO optimizations', 'Automatic optimizations admin menu name', 'seo-key' ),
