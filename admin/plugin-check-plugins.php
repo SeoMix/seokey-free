@@ -159,7 +159,6 @@ class SeokeyCheckOtherExtensions {
 	 * @param array $args List of current SEOKEY Notifications
 	 * @return array $args Updated list of current SEOKEY Notifications
 	 */
-
 	public function seokey_admin_wizard_notice_check_other_plugins( $args ) {
 		if ( current_user_can(seokey_helper_user_get_capability( 'admin' ) ) ) {
 			// Notice for all SEO plugins
@@ -216,41 +215,6 @@ class SeokeyCheckOtherExtensions {
 					]
 				);
 				array_push( $args, $new_args );
-			} else {
-				// Do we need another notice after import ?
-				$plugin_was_imported = get_option( 'seokey_import_from' );
-				if ( ! empty( $plugin_was_imported ) ) {
-					if ( ! is_plugin_active( 'wonderm00ns-simple-facebook-open-graph-tags/wonderm00n-open-graph.php' ) ) {
-						$install_url = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=wonderm00ns-simple-facebook-open-graph-tags' ), 'install-plugin_wonderm00ns-simple-facebook-open-graph-tags' );
-						$active_url  = wp_nonce_url( self_admin_url( 'plugins.php?action=activate&plugin=wonderm00ns-simple-facebook-open-graph-tags%2Fwonderm00n-open-graph.php' ), 'activate-plugin_wonderm00ns-simple-facebook-open-graph-tags/wonderm00n-open-graph.php' );
-						$content     = '<p>' . esc_html__( 'The main reason is that it does not improve SEO, so it does not belong in a SEO plugin.', 'seo-key' ) . '</p>';
-						$content     .= '<p>' . esc_html__( 'We noticed you imported data from another SEO plugin.', 'seo-key' ) . '</p>';
-						$content     .= "<p>" . sprintf( __( 'If you want to add back these Data, we recommend you to install the <a href="%s">Open Graph and Twitter Card Tags</a> plugin, then <a href="%s">activate it</a> .', 'seo-key' ), $install_url, $active_url ) . "</p>";
-						$new_args    = array(
-							sanitize_title( 'seokey_notice_import_opengraph' ),
-							// Unique ID.
-							esc_html__( 'SEOKEY does not add OpenGraph and Twitter card Data', 'seo-key' ),
-							// The title for this notice.
-							sprintf( '<div><p>%1$s</p></div>', $content ),
-							// The content for this notice.
-							[
-								'scope'           => 'user',
-								// Dismiss is per-user instead of global.
-								'type'            => 'info',
-								// Can be one of info, success, warning, error.
-								'screens_exclude' => [ 'seokey_page_seo-key-wizard' ],
-								// Exclude notice in specific screens.
-								'option_include'  => [ 'seokey_option_first_wizard_seokey_notice_wizard' => 'goodtogo' ],
-								'capability'      => seokey_helper_user_get_capability( 'admin' ),
-								// only for theses users and above
-								'alt_style'       => false,
-								// alternative style for notice
-
-							]
-						);
-						array_push( $args, $new_args );
-					}
-				}
 			}
 		}
 		return $args;

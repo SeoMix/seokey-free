@@ -70,15 +70,6 @@ class seokey_WP_List_Table_audit_errors extends seokey_WP_List_Table_base {
                 'perpage'   => 30,
             )
         );
-	
-	    add_action( 'seokey_audit_free_tfoot', 'seokey_audit_free_tr_message' );
-	    function seokey_audit_free_tr_message(){
-		    $text = esc_html__( 'Want more SEO advice? Go PRO!', 'seo-key' );
-		    $text .= __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>", 'seo-key' );
-		    echo '<tr id="audit-tables-tfoot">
-				<td>' . $text . '</td>
-			</tr>';
-	    }
     }
 
     /**
@@ -194,7 +185,7 @@ class seokey_WP_List_Table_audit_errors extends seokey_WP_List_Table_base {
 			$actions['edit'] = '<a href="' . $edit_link . ' ">' . _x('Edit', 'List table row action', 'seo-key') . '</a>';
 		}
 		if ( false !== $url ) {
-			$actions['view'] = '<a href="' . $url . ' ">' . _x('View', 'List table row action', 'seo-key') . '</a>';
+			$actions['view'] = '<a href="' . $url . ' ">' . _x('View this content', 'List table row action', 'seo-key') . '</a>';
 		}
 		if ( !empty ($actions) ) {
 			// Return the title contents.

@@ -82,24 +82,6 @@ class seokey_WP_List_Table_keywords extends seokey_WP_List_Table_base {
 		);
 	}
 
-	/**
-	 * Add keyword data range for users
-	 *
-	 * @since 1.9.0
-	 *
-	 * @param string $which defines tablenav to enhance
-	 */
-	protected function extra_tablenav( $which ) {
-		if ( $which === 'top' ) {
-			$last_update = get_option( 'seokey-gsc-last-api-call' );
-			if ( false !== $last_update ) {
-				$text = esc_html__( 'Want more SEO data? Go PRO!', 'seo-key' );
-				$text .= __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>", 'seo-key' );
-				echo '<span class="seokey-gopro">' . $text . '</span>';
-			}
-		}
-	}
-
 	// Show selected keyword
 	public function column_keyword( $item ) {
 		return $item['keyword'];

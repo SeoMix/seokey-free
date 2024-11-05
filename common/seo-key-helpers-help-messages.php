@@ -163,6 +163,13 @@ function seokey_helper_help_messages( $id = false, $right = false, $data = "" ) 
             $text   .= __( "These pages are usually of little interest to search engines. This wastes Google's time.", 'seo-key' ) . '<br><br>';
             $text   .= __( 'By activating this option, SEOKEY automatically disables and redirects these pages.', 'seo-key' );
             break;
+	    // Add OpenGraph Data
+	    case 'seokey-field-seooptimizations-opengraph':
+		    $h2     = __( 'What is it?', 'seo-key' );
+		    $text   = __( "Google now uses specific OpenGraph data for SEO purposes.", 'seo-key' ) . '<br><br>';
+		    $text   .= __( 'SEOKEY takes care of adding them in a clean and optimized way, using your featured image, your Title tag and your meta description tag.', 'seo-key' ) . '<br><br>';
+		    $text   .= __( "If you prefer to use a dedicated plugin, simply disable this function.", 'seo-key' ) . '<br><br>';
+		    break;
         // No pagination with comments
         case 'seokey-field-seooptimizations-pagination-comments':
             $h2     = __( 'What is it?', 'seo-key' );
@@ -511,11 +518,10 @@ function seokey_helper_help_messages( $id = false, $right = false, $data = "" ) 
             } else {
                 $h2   = __( 'No help message yet', 'seo-key' );
                 $text = __( 'Help text will be added soon', 'seo-key' );
-                //$text .= __( ' | ID is ', 'seo-key' ) . $id; // Only for debug
-                //seokey_dev_write_log($id); // Only for debug
             }
             break;
     }
+	//seokey_dev_write_log($id); // Only for debug
     return seokey_helper_create_tooltip( $h2, $text );
 }
 

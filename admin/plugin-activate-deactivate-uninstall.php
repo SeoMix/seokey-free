@@ -230,6 +230,10 @@ class SeoKeyActivateDeactivate {
 	 * @hook register_uninstall_hook()
 	 */
 	public function seokey_activate_deactivate_delete_data_custom_tables() {
+		// Avoid deleting data if FREE and PRO are still installed
+		if ( true === seokey_helper_plugin_is_installed( 'seo-key' ) && true === seokey_helper_plugin_is_installed( 'seo-key-pro' )  ) {
+			return;
+		}
 		// Redirection table
 		require_once SEOKEY_PATH_ADMIN . 'modules/redirections/redirections_sql.php';
 		seokey_redirections_delete_table();
@@ -240,7 +244,6 @@ class SeoKeyActivateDeactivate {
 		// Search Console tables
 		require_once SEOKEY_PATH_ADMIN . 'modules/search-console/search-console-sql.php';
 		seokey_gsc_delete_table();
-
 	}
 
 	/**
@@ -329,6 +332,10 @@ class SeoKeyActivateDeactivate {
 	 * @hook register_uninstall_hook()
 	 */
 	protected function seokey_activate_deactivate_delete_data_options() {
+		// Avoid deleting data if FREE and PRO are still installed
+		if ( true === seokey_helper_plugin_is_installed( 'seo-key' ) && true === seokey_helper_plugin_is_installed( 'seo-key-pro' )  ) {
+			return;
+		}
         // Find our options
         global $wpdb;
         $suppress      = $wpdb->suppress_errors();
@@ -359,6 +366,10 @@ class SeoKeyActivateDeactivate {
 	 * @hook register_uninstall_hook()
 	 */
 	protected function seokey_activate_deactivate_delete_data_metas() {
+		// Avoid deleting data if FREE and PRO are still installed
+		if ( true === seokey_helper_plugin_is_installed( 'seo-key' ) && true === seokey_helper_plugin_is_installed( 'seo-key-pro' )  ) {
+			return;
+		}
 		global $wpdb;
 		$wpdb->query( "DELETE FROM `{$wpdb->prefix}postmeta` WHERE `meta_key` LIKE 'seokey_%'");
 		$wpdb->query( "DELETE FROM `{$wpdb->prefix}termmeta` WHERE `meta_key` LIKE 'seokey_%'");

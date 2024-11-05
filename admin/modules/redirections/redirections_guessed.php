@@ -39,6 +39,6 @@ if ( !function_exists( 'seokey_filter_redirections_display_tools_links_guessed' 
     function seokey_redirections_display_guessed(){
 	    echo '<p><strong>' . __( 'WordPress automatic redirections detection is only available in the PRO version.', 'seo-key') . '</strong></p>';
 	    echo '<p>' . __( 'Upgrade now to improve your SEO!', 'seo-key') . '</p>';
-	    echo '<p>' . __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.fr/tarifs/'>Buy SEOKEY Premium</a>", 'seo-key' ) . '</p>';
+	    echo '<p>' . __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.fr/tarifs/'>Buy SEOKEY PRO</a>", 'seo-key' ) . '</p>';
     }
 }

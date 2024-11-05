@@ -42,7 +42,8 @@ seokey_helper_require_file( 'alt-images',               $modules, 'everyone', $c
 if ( is_admin() ) {
 	return;
 }
-
+// Load OpenGraph module
+seokey_helper_require_file( 'opengraph',                $modules, 'everyone', $condition );
 // Load robots module
 seokey_helper_require_file( 'robots-txt',               $modules, 'everyone', $condition );
 // Load canonical module
@@ -57,6 +58,10 @@ seokey_helper_require_file( 'archives-date',            $modules, 'everyone', $c
 seokey_helper_require_file( 'archives-author',          $modules, 'everyone', $condition );
 // Load Automatic redirection module
 seokey_helper_require_file( 'redirections-automatic',       $modules. 'redirections/', 'everyone', $condition );
+if ( !seokey_helpers_is_free() ) {
+// Load Automatic redirection module
+	seokey_helper_require_file( 'redirections-automatic-pro', $modules . 'redirections/', 'everyone', $condition );
+}
 // Load Manual redirection module
 seokey_helper_require_file( 'redirections-manual',      $modules. 'redirections/', 'everyone', $condition );
 // Load schema.org json-ld markup

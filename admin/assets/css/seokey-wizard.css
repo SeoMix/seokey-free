@@ -320,7 +320,18 @@ body{
     min-width:40%;
     font-size:18px;
 }
-
+#tab-seo-optimizations .tdspan .has-explanation {
+    font-size: 16px;
+    color: #464646;
+    font-weight: 400;
+    padding: 0;
+}
+#tab-seo-optimizations tr {
+    margin-bottom: 0.5em;
+}
+#tab-seo-optimizations .seokey-tooltip-icon {
+    top: 1px;
+}
 
 
 

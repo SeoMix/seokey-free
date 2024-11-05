@@ -23,22 +23,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // TODO Comments
-if ( seokey_helpers_is_free() ) {
+if ( !seokey_helpers_is_free() ) {
+	seokey_helper_require_file( 'admin-pages-settings-pro',	SEOKEY_PATH_ADMIN . 'admin-pages/', 'everyone' );
+} else {
 	add_action('seokey_action_setting_table_after', 'seokey_settings_free_text', 25, 1);
 	// TODO Comments
 	function seokey_settings_free_text( $data ) {
 		if ( "seokey-section-licence" === $data ) {
 			echo '<h2>' . __( 'Upgrade now to improve your SEO!', 'seo-key') . '</h2>';
 			echo '<p>' . __( "We give you all the keys to succeed:", "seo-key" ) . '</p>';
-			echo '<ul>';
-				echo '<li>' . __( "A full audit module", "seo-key" ) . '</li>';
-				echo '<li>' . __( "Individual advice for each content: what should I do next?", "seo-key" ) . '</li>';
-				echo '<li>' . __( "Easily connect your Search Console and get more SEO data", "seo-key" ) . '</li>';
-				echo '<li>' . __( "See and fix Google 404 and WordPress automatic redirections", "seo-key" ) . '</li>';
-			echo '</ul>';
+				echo '<ul>';
+					echo '<li>' . __( "A full audit module", "seo-key" ) . '</li>';
+					echo '<li>' . __( "Individual advice for each content: what should I do next?", "seo-key" ) . '</li>';
+					echo '<li>' . __( "Easily connect your Search Console and get more SEO data", "seo-key" ) . '</li>';
+					echo '<li>' . __( "See and fix Google 404 and WordPress automatic redirections", "seo-key" ) . '</li>';
+				echo '</ul>';
 			echo '<p>' . __( "<a class='button button-secondary button-hero' target='_blank' href='https://www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>", 'seo-key' ) . '</p>';
-            echo '<p>' . __( "If you bought SEOKEY PRO and you don't know how to install it, just follow <a href='https://www.seo-key.com/faqs/'>our FAQ</a>.", "seo-key" ) . '</p>';
-        }
+		}
 	}
 }
 
@@ -282,6 +283,22 @@ function seokey_settings_add_seooptimizations_fields( $unique_ID ) {
 		'default'               => true,
 		'class'                 => 'hidedefault',
 	];
+	// No Open Graph
+	$fields[] = [
+		// You must use data from seokey_settings_api_get_config_sections()
+		'ID'                => $unique_ID,
+		// Field Section : current section where this setting will be displayed.
+		'section'           => seokey_settings_api_get_page_section( $unique_ID, 'seooptimizations' ),
+		// Field Name (ID)
+		'name'              => seokey_settings_api_get_page_field( $unique_ID, 'seooptimizations', 'opengraph' ),
+		// Field Title and description
+		'label'             => __( 'Enable automatic OpenGraph and Twitter Card Data', 'seo-key' ),
+		// Type field used for generating field with correct callback function
+		'type'              => 'checkbox',
+		'has-sub-explanation'   => true,
+		'default'               => true,
+		'class'                 => 'hidedefault',
+	];
 	// No paginated comments
 	$fields[] = [
 		// You must use data from seokey_settings_api_get_config_sections()
@@ -475,15 +492,15 @@ function seokey_settings_breadcrumbs_text( $data ){
 add_action('seokey_action_setting_field_before_field', 'seokey_settings_add_htpass_desc_nouse', 20, 1);
 // TODO comments
 function seokey_settings_add_htpass_desc_nouse( $field ){
-    if ( "seokey-field-tools-htpasslogin" === $field['id'] ) {
-        echo '<p>' . __( 'Only use the option below if you are currently protecting your site from Google, for example if the site is being created on a development server.<br>', 'seo-key' ) . '</p>';
-        echo '<p>' . __( 'Check the box below to display htaccess/htpasswd credentials option: it will allow SEOKEY to use them to audit your website.', 'seo-key' ) . '</p>';
-        echo '<input autocomplete="off" id="showhtpass" name="showhtpass" type="checkbox">';
-        echo '<label for="showhtpass">' . esc_html__( 'Show credentials', 'seo-key' ) . '</label><br>';
-    }
+	if ( "seokey-field-tools-htpasslogin" === $field['id'] ) {
+		echo '<p>' . __( 'Only use the option below if you are currently protecting your site from Google, for example if the site is being created on a development server.<br>', 'seo-key' ) . '</p>';
+		echo '<p>' . __( 'Check the box below to display htaccess/htpasswd credentials option: it will allow SEOKEY to use them to audit your website.', 'seo-key' ) . '</p>';
+		echo '<input autocomplete="off" id="showhtpass" name="showhtpass" type="checkbox">';
+		echo '<label for="showhtpass">' . esc_html__( 'Show credentials', 'seo-key' ) . '</label><br>';
+	}
 }
 
-add_action('seokey_action_setting_table_after', 'seokey_settings_import_text', 5, 1);
+add_action('seokey_action_setting_table_before', 'seokey_settings_import_text', 5, 1);
 // TODO Comments
 function seokey_settings_import_text( $data ) {
 	if ( "seokey-section-licence" === $data ) {

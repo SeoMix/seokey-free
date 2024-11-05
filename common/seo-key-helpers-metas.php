@@ -228,6 +228,8 @@ function seokey_meta_desc_value( $type, $ID = 0, $args = array(), $default = fal
 	if ( true === $default || empty( $user_value ) ) {
 		// truncate the default one
 		$description = seokey_helper_meta_length( $default_value, METADESC_COUNTER_MAX );
+		// Tell other function we are using defaults values
+		seokey_helper_cache_data( 'seokey_filter_meta_description_type', true );
 	} else {
 		$description = $user_value;
 	}

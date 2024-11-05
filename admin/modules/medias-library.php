@@ -45,12 +45,28 @@ add_action( 'admin_menu', 'seokey_medias_library_menu_move', 200 );
 function seokey_medias_library_menu_move() {
     global $submenu;
     // Get alt editor menu
-    // TODO later find a better way to target correct $submenu['seo-key']
     $alt_editor_menu = $submenu['seo-key'][0];
     // delete it
     unset($submenu['seo-key'][0]);
     // Add it to the right place
     $submenu['seo-key'] = seokey_helper_array_insert_at_position( $submenu['seo-key'], 4, $alt_editor_menu);
+}
+
+add_filter( 'seokey_filter_admin_bar', 'seokey_medias_library_menu_adminbar_move', 200 );
+/**
+ * Move ALT editor menu in admin bare
+ *
+ * @since  2.0.0
+ * @author Daniel Roch
+ *
+ * @hook seokey_filter_admin_bar
+ */
+function seokey_medias_library_menu_adminbar_move( $menus ) {
+    $altmenu = $menus[500];
+    unset( $menus['500'] );
+    $menus[40] = $altmenu;
+	ksort($menus);
+    return $menus;
 }
 
 add_action( 'admin_menu', 'seokey_medias_library_menu', 5 );
@@ -248,7 +264,7 @@ function seokey_medias_library_page_title( $title ){
 function seokey_medias_library_notice_content_grid( $args ) {
     $url = get_home_url( null, '/wp-admin/upload.php?mode=list&seokeyalteditor=yes' ) ;
     $new_args = array(
-        'seokey_notice_media_library_grid', // Unique ID.
+        'seokey_notice_media_library_grid3', // Unique ID.
         esc_html__('SEOKEY ALT editor is hidden', 'seo-key'), // The title for this notice.
         sprintf(
         /* translators: 1:Plugin name 2:Admin URL to Media List View */
@@ -342,6 +358,12 @@ if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
                 )
             );
         }
+        // Only images
+	    $vars = array_merge( $vars,
+            array(
+			    'post_mime_type' => array('image')
+	        )
+	    );
         return $vars;
     }
 
@@ -407,7 +429,7 @@ if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
         list( $mime ) = explode( '/', $post->post_mime_type );
 
         $title      = _draft_or_post_title();
-        $thumb      = wp_get_attachment_image( $post->ID, array( 60, 60 ), true, array( 'alt' => '' ) );
+        $thumb      = wp_get_attachment_image( $post->ID, 'medium', true, array( 'alt' => '' ) );
 
         $class = $thumb ? ' class="has-media-icon"' : '';
         ?>
@@ -418,7 +440,6 @@ if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
                 <span class="media-icon <?php echo sanitize_html_class( $mime . '-icon' ); ?>"><?php echo $thumb; ?></span>
             <?php
             endif;
-            _media_states( $post );
             ?>
         </strong>
         <?php
@@ -634,10 +655,22 @@ add_action( 'restrict_manage_posts', 'seokey_medias_library_filter_alt_images', 
 function seokey_medias_library_filter_alt_images(){
     if ( true === seokey_helpers_medias_library_is_alt_editor() ) {
         seokey_medias_library_filter_alt_images_select( array(
-            'show_option_all'   => __( 'All medias (with or without ALT)', 'seo-key' ),
+            'show_option_all'   => __( 'Images with or without ALT', 'seo-key' ),
             'selected'          => sanitize_title( get_query_var( 'seokey-alt-filter', 0 ) ),
             'name'              => 'seokey-alt-filter'
-        ));
+        ), [
+	        'without_alt'       => __( 'Images without ALT', 'seo-key'),
+	        'with_alt'          => __( 'Images with ALT', 'seo-key')
+        ]);
+	    seokey_medias_library_filter_alt_images_select( array(
+		    'show_option_all'   => __( 'Featured and non featured images', 'seo-key' ),
+		    'selected'          => sanitize_title( get_query_var( 'seokey-alt-filter2', 0 ) ),
+		    'name'              => 'seokey-alt-filter2'
+	    ), [
+			    'featured'      => __( 'Featured image only', 'seo-key'),
+			    'nofeatured'    => __( 'Non featured images', 'seo-key')
+        ],
+        'seokey-alt-filter2');
     }
 }
 
@@ -668,27 +701,23 @@ function seokey_medias_library_clean_otheractions() {
  *
  * @param array|string $args Current select arguments
  */
-function seokey_medias_library_filter_alt_images_select( $args = '' ) {
+function seokey_medias_library_filter_alt_images_select( $args = '', $values = [], $name = 'seokey-alt-filter' ) {
     $defaults = array(
         'show_option_all'         => '',
         'selected'                => 0,
-        'name'                    => 'seokey-alt-filter',
+        'name'                    => sanitize_text_field( $name ),
     );
     $parsed_args        = wp_parse_args( $args, $defaults );
     $show_option_all    = esc_html( $parsed_args['show_option_all'] );
     $name               = esc_attr( $parsed_args['name'] );
     $output = '';
     $output .= '<select autocomplete="off" name="' . $name . '">';
-    $values = [
-        'without_alt'   => __( 'Images without ALT', 'seo-key'),
-        'with_alt'      => __( 'Images with ALT', 'seo-key')
-    ];
     if ( $show_option_all ) {
         $output .= "\t<option value='0'>$show_option_all</option>\n";
     }
     $currentfilter = '';
-    if ( isset( $_GET['seokey-alt-filter'] ) ) {
-        $currentfilter         = sanitize_text_field( $_GET['seokey-alt-filter'] );
+    if ( isset( $_GET[$name] ) ) {
+        $currentfilter         = sanitize_text_field( $_GET[$name] );
     }
     foreach ( (array) $values as $key => $value ) {
         $key        = esc_attr( $key );
@@ -720,6 +749,43 @@ function seokey_medias_library_filter_alt_images_request_filter( $query ) {
     if (empty($screen) || ($screen->id !== 'upload')) {
         return;
     }
+	
+	if ( isset( $_GET['seokey-alt-filter2'] ) ) {
+		$param = sanitize_text_field($_GET['seokey-alt-filter2']);
+		if ('featured' === $param) {
+			global $wpdb;
+			// Récupérer les IDs des médias utilisés comme image à la une
+			$thumbnail_ids = $wpdb->get_col( "
+            SELECT meta_value FROM $wpdb->postmeta
+            WHERE meta_key = '_thumbnail_id'
+        " );
+			
+			// Appliquer le filtre à la requête pour ne récupérer que ces médias
+			if ( ! empty( $thumbnail_ids ) ) {
+				$query->set( 'post__in', $thumbnail_ids );
+			} else {
+				// Si aucun média n'est utilisé comme image à la une, renvoyer une requête vide
+				$query->set( 'post__in', array( 0 ) );
+			}
+		} elseif ('nofeatured' === $param) {
+			global $wpdb;
+			// Récupérer les IDs des médias utilisés comme image à la une
+			$thumbnail_ids = $wpdb->get_col( "
+            SELECT meta_value FROM $wpdb->postmeta
+            WHERE meta_key = '_thumbnail_id'
+        " );
+			
+			// Appliquer le filtre à la requête pour ne récupérer que ces médias
+			if ( ! empty( $thumbnail_ids ) ) {
+				$query->set( 'post__not_in', $thumbnail_ids );
+			} else {
+				// Si aucun média n'est utilisé comme image à la une, renvoyer une requête vide
+				$query->set( 'post__in', array( 0 ) );
+			}
+		}
+	}
+    
+    
     // Are we trying to filter media according to ALT data ?
     if (isset($_GET['seokey-alt-filter'])) {
         $param = sanitize_text_field($_GET['seokey-alt-filter']);

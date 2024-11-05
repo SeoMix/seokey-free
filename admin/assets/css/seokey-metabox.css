@@ -364,7 +364,8 @@
     padding-left: 28px;
     top: 2px;
 }
-#seokey_audit_content_main_keyword_message::before {
+#seokey_audit_content_main_keyword_message::before,
+.seokey_audit_content_success::before{
     background-image: url('../img/task-good.png');
     background-repeat: no-repeat;
     content: " ";
@@ -375,6 +376,13 @@
     height: 24px;
     width: 24px;
 }
+.seokey_audit_content_success {
+    display: block;
+    position: relative;
+    padding-left: 32px;
+    font-weight: 700;
+}
+
 #seokey_audit_content_main_keyword_message.error::before {
     background-image: url('../img/task-error.png');
 }
@@ -871,4 +879,9 @@ li.task.issue:last-child::after {
 .seokey-whattodo-text {
     padding: 0.75em 2.5em 0.75em 0.75em;
     width: auto;
+}
+
+/* fix "PRO" placement */
+#seokey-metabox #seokey-stats p:first-child::after {
+    margin: 0 0 0 1.5em;
 }

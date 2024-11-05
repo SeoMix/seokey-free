@@ -1425,3 +1425,38 @@ function seokey_helpers_get_subarrays_with_key( $array, $key_to_find, $value_for
 		}
 	}
 }
+
+/**
+ * Check if a plugin is installed (active or not)
+ *
+ * @param string $plugin plugin slug
+ * @author  Daniel Roch
+ * @since   x.x.x
+ */
+function seokey_helper_plugin_is_installed( $plugin ) {
+	$plugin_list = get_plugins();
+	$plugin_path = seokey_helper_plugin_get_path_from_slug( $plugin, $plugin_list );
+	return $plugin_path ? array_key_exists( $plugin_path, $plugin_list ) : false;
+}
+
+/**
+ * Get plugin path using plugin slug
+ *
+ * @param string $plugin plugin slug
+ * @param array $plugin_list get_plugins() data
+ * @author  Daniel Roch
+ * @since   x.x.x
+ */
+function seokey_helper_plugin_get_path_from_slug( $slug, $plugin_list ) {
+	if ( strstr( $slug, '/' ) ) {
+		// The slug is already a plugin path.
+		return $slug;
+	}
+	foreach ( $plugin_list as $plugin_path => $data ) {
+		$path_parts = explode( '/', $plugin_path );
+		if ( $path_parts[0] === $slug ) {
+			return $plugin_path;
+		}
+	}
+	return false;
+}

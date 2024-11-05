@@ -299,7 +299,7 @@ function seokey_admin_wizard_notice_start( $args ) {
     $text = sprintf( $text, $name );
     $new_args = array(
         sanitize_title( 'seokey_notice_wizard' ), // Unique ID.
-        esc_html_x( 'You are almost done !', 'notification title for the wizard installation','seo-key' ), // The title for this notice.
+        esc_html_x( 'Set up and activate SEOKEY in an instant!', 'notification title for the wizard installation','seo-key' ), // The title for this notice.
         $text, // The content for this notice.
         [
             'scope'             => 'global', // Dismiss is per-user instead of global.

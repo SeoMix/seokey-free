@@ -1,21 +1,22 @@
-=== SEOKEY - SEO Audit, Optimizations and Tools ===
+=== SEOKEY – Powerful SEO plugin with Expert Insights and SEO Audit ===
 Author: SEOKEY
 Contributors: seokey, seomix, confridin
 Donate link: https://www.seo-key.com/
 Tags: seo audit, seo, google, content analysis, schema
 Requires at least: 5.5
-Tested up to: 6.6.1
+Tested up to: 6.6.2
 Requires PHP: 7.2
-Stable tag: 1.9.0
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-SEOKEY: the simplest and most effective SEO plugin for WordPress
+Improve SEO rankings with a powerful SEO Audit, automatic optimizations and Expert Insights. SEOKEY is the easiest and most powerful SEO plugin!
 
 == Description ==
 
 SEOKEY's goal is simple: **to make SEO easier for everyone**.
-**New in SEOKEY 1.9:** enhanced keyword menu and better advice for each content
+
+**New in SEOKEY 2.0:** enhanced keyword menu and ALT Editor, OpenGraph and Twitter Card Data
 
 ## SEOKEY: the simplest and most effective SEO plugin
 
@@ -35,7 +36,7 @@ We give you all the keys to succeed in Search Engines :
 - **Automatic SEO technical optimizations** without frustrating options
 - A complete **SEO toolbox** (redirections, image ALT editor, etc.)
 - A really **easy-to-use interface**
-
+- All **essential SEO features**: Title, Meta Description, Canonicals, Open Graph and Twitter Card data, Head cleaning and much more
 
 ### WordPress SEO audit
 
@@ -74,9 +75,7 @@ With our global audit and our individual content analysis, you'll be able to cor
 
 ### SEO toolbox (redirections, images ALT editor, etc.)
 
-SEOKEY provides you with all basic features needed in SEO, without installing third-party plugins or the need to upgrade to the PRO version.
-
-Our SEO plugin offers a complete WordPress SEO toolbox:
+SEOKEY provides you with all basic features needed in SEO, without installing third-party plugins or the need to upgrade to the PRO version. Our SEO plugin offers a complete WordPress SEO toolbox:
 
 - easily manage your **301 redirects**
 - an **alternative text editor** to modify them all in one place (and we use these new ALT texts to fix images without one within your contents)
@@ -103,7 +102,8 @@ With this enhanced version, we will also warn you in case of **404 error** detec
 
 ### Need more info about our WordPress SEO plugin?
 
-Check our websites: 
+Check our websites:
+
 - in english <a href="https://www.seo-key.com">SEOKEY</a>
 - in french <a href="https://www.seo-key.fr">SEOKEY en français</a>.
 
@@ -192,6 +192,32 @@ Please report security bugs found in the source code of the SEO KEY plugin throu
 
 == Changelog ==
 Public roadmap is here: https://trello.com/b/jauwlc3J/seokey-pro-public-roadmap
+
+= 2.0.0 // Alt Editor improvements + OpenGraph & Twitter card Data
+* New: SEOKEY now automatically adds OpenGraph and Twitter Card data (Google now uses this data). If you're already using another plugin for this, SEOKEY won’t add it.
+* New: Improved ALT editor. It’s now easier to use with a larger image display and a new image filter to show only featured images.
+* Improvement: Refined the keyword menu interface (first iteration) to enhance usability.
+* Improvement: Optimized admin performance by removing redundant SEOKEY action hooks and options.
+* Improvement: Enhanced message provided by SEOKEY when editing content and no SEO issues are detected.
+* Improvement: Removed unnecessary action links in the ALT editor (previously added by WordPress, themes, or other plugins), reducing distractions.
+* Improvement: Improved several wordings in the Wizard and SEO audit.
+* Improvement: (FREE) Updated interface to better explain what's included in SEOKEY PRO.
+* Fix: (PRO) Removed deprecated Ping Sitemap function (https://developers.google.com/search/blog/2023/06/sitemaps-lastmod-ping)
+* Fix: (PRO) Fixed a very rare fatal error when Search Console fails to provide a suggested keyword in the MetaBox.
+* Fix: Excluded PDF, ZIP, and other non-image files from the ALT editor (as these files don't have alternative text).
+* Fix: Resolved rare issue with missing trailing slash in terms XML sitemaps.
+* Fix: (FREE) Adjusted the position of the "PRO" label in the SEOKEY MetaBox.
+* Third-party: Fixed a rare Polylang canonical issue where the home URL was incorrect.
+* DevNote: Added a new hook to disable SEOKEY meta descriptions (useful if using SEO functions within your theme).
+* DevNote: Enhanced the Upgrader function, improving SEOKEY performance across all pages.
+* DevNote: Separation of FREE vs. PRO code, which will significantly reduce the time needed to release new versions (first iteration).
+
+= 1.9.1
+* Improvement: (PRO) Improved main advice for each content, resolving rare issues with inaccurate data about another URL with a better average position for the targeted keyword.
+* Fix: (PRO) Resolved an issue with the disconnect link for your Google Search Console account.
+* Fix: Removed PHP warnings when editing taxonomy terms (e.g., a category).
+* Fix: Prevented data deletion when uninstalling the Free version while the PRO version is still active or installed.
+* Third-party: Added support for the latest version of Up2Pay.
 
 = 1.9.0
 * New: Enhanced Keywords menu (first iteration). You can now view and filter all content to see which needs to be optimized (for example, those without targeted keywords or without clics)

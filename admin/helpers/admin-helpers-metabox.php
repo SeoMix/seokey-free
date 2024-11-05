@@ -169,7 +169,7 @@ function seokey_helper_admin_print_meta_fields_html_visibility( $args ) {
 		            $name = $args['term']->label;
 	            } else {
 		            $tax_labels = get_taxonomy_labels( get_taxonomy( $args['term']->taxonomy ) );
-		            $name = $tax_labels->singular_nam;
+		            $name = $tax_labels->singular_name;
 	            }
 	            printf( esc_html__( 'Hide this %s, I don\'t want to see it on Google', 'seo-key' ), sprintf( '%s %s', strtolower( $name ), esc_html__( 'archive' ) ) ); ?> <em>(noindex)</em>
 	            <?php

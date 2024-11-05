@@ -11,6 +11,9 @@
 
 
 
+
+
+
 .seokey-admin-alt-editor #e-admin-top-bar-root:not(.e-admin-top-bar--active) ~ #wpbody .wrap .page-title-action,
 .page-title-action{
     display: none
@@ -198,6 +201,23 @@ h3 {
     background-image: url('../img/picto-interrogation-old.png');
 }
 
+
+/* Hide action link on ALT editor */
+.seokey-admin-alt-editor .page-title-action{
+    display: none;
+}
+/* Hide elementor AI link on ALT editor */
+.seokey-admin-alt-editor #e-image-ai-media-library{
+    display: none;
+}
+
+/* prevent thumbnail too big */
+.seokey-admin-alt-editor .attachment-medium {
+    max-width : 400px;
+    height:auto;
+}
+
+
 /* responsive */
 @media (max-width: 1400px) {
     .seokey-alt-editor-submit {
@@ -213,6 +233,26 @@ h3 {
     .seokey-media-alt .seokey_alt_input {
         width: 100%;
         min-width: inherit;
+    }
+}
+@media (max-width: 1500px) {
+    .seokey-admin-alt-editor .attachment-medium {
+        max-width : 300px;
+    }
+}
+@media (max-width: 1250px) {
+    .seokey-admin-alt-editor .attachment-medium {
+        max-width : 250px;
+    }
+}
+@media (max-width: 1100px) {
+    .seokey-admin-alt-editor .attachment-medium {
+        max-width : 200px;
+    }
+}
+@media (max-width: 950px) {
+    .seokey-admin-alt-editor .attachment-medium {
+        max-width : 150px;
     }
 }
 

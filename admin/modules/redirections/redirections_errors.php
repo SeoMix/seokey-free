@@ -37,6 +37,6 @@ if ( !function_exists( 'seokey_redirections_display_errors_count' ) ) {
     function seokey_redirections_display_error(){
         echo '<p><strong>' . __( '404 error detection is only available in the PRO version.', 'seo-key') . '</strong></p>';
 	    echo '<p>' . __( 'Upgrade now to improve your SEO!', 'seo-key') . '</p>';
-	    echo '<p>' . __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.fr/tarifs/'>Buy SEOKEY Premium</a>", 'seo-key' ) . '</p>';
+	    echo '<p>' . __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.fr/tarifs/'>Buy SEOKEY PRO</a>", 'seo-key' ) . '</p>';
     }
 }

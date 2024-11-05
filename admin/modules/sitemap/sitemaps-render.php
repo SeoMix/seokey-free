@@ -430,7 +430,7 @@ class Seokey_Sitemap_Render {
                 if ( false !== $gravatar ) {
 	                $title = sprintf( _x( "%s gravatar", 'User Name Gravatar', 'seo-key' ), $content->display_name );
                     $images[] = [
-                        'loc'       => $gravatar,
+                        'loc'     => $gravatar,
                         'title'   => iconv( 'utf-8', 'latin1', utf8_encode( $title ) ),
                     ];
                 }
@@ -557,7 +557,6 @@ class Seokey_Sitemap_Render {
 	 * @return bool|mixed|void
 	 */
 	public function seokey_sitemap_get_taxos( $lang ) {
-
 		// Get all public taxonomies
 		$taxos = seokey_helper_get_option( 'cct-taxo', get_taxonomies( ['public' => true, 'show_ui' => true , 'lang' => $lang] ) );
 		if ( ! empty( $taxos ) ) {
@@ -596,7 +595,7 @@ class Seokey_Sitemap_Render {
                     $lastmod = ( ! empty( $lastmod_post ) ) ? $lastmod_post : $default_last_mod;
                     // Final Data
 					$terms_datas[] = [
-						'loc'     => get_term_link( $term->term_id ),
+						'loc'     => user_trailingslashit( get_term_link( $term->term_id ) ),
 						'lastmod' => $lastmod,
 						'images'  => $images
 					];
@@ -821,7 +820,6 @@ class Seokey_Sitemap_Render {
                     $path = SEOKEY_SITEMAPS_PATH . $file;
                     if ( file_exists( $path ) ) {
                         // URL
-                        // TODO GOV Test sur Seokey
                         $url = seokey_helpers_get_sitemap_base_url( $lang ) . $file;
                         // Get file data
                         //preg_match_all( $pattern, $file, $match, PREG_PATTERN_ORDER );
@@ -994,7 +992,7 @@ class Seokey_Sitemap_Render {
 		// Create sitemap Folder if necessary
 		seokey_helper_create_folder( SEOKEY_SITEMAPS_PATH, true );
 		// TODO use WordPress file class
-		// Path
+        // Path
         $file = SEOKEY_SITEMAPS_PATH . 'sitemap-seokey-render-'.$lang.'.xsl';
         // Open file (create it if not here
         $file_open = @fopen( $file, 'w' );

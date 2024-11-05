@@ -15,7 +15,7 @@ foreach ( $data as $task ) {
 }
 
 $text = esc_html__( 'Want more SEO advice? Go PRO!', 'seo-key' );
-$text .= __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>", 'seo-key' );
+$text .= __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.com/pricing/'>Buy SEOKEY PRO</a>", 'seo-key' );
 
 echo '<div class="task task-gopro">';
 	echo '<header class="seokey-tooltip-parent">';

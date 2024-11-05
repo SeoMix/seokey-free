@@ -43,7 +43,7 @@ function seokey_admin_page_support() {
 	if ( $current_page === 'seokey_page_seo-key-support' ) {
 		if ( true === seokey_helpers_is_free() ) {
 			echo '<div class="seokey-wrapper-limit">';
-				echo '<h2>' . __( "Go Premium!", "seo-key" ) . '</h2>';
+				echo '<h2>' . __( "Go PRO!", "seo-key" ) . '</h2>';
 				echo '<p>' . __( "We give you all the keys to succeed:", "seo-key" ) . '</p>';
 				echo '<ul>';
 					echo '<li>' . __( "A full audit module", "seo-key" ) . '</li>';
@@ -51,7 +51,7 @@ function seokey_admin_page_support() {
 					echo '<li>' . __( "Easily connect your Search Console and get more SEO data", "seo-key" ) . '</li>';
 					echo '<li>' . __( "See and fix Google 404 and WordPress automatic redirections", "seo-key" ) . '</li>';
 				echo '</ul>';
-				echo '<p>' . __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>", 'seo-key' ) . '</p>';
+				echo '<p>' . __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.com/pricing/'>Buy SEOKEY PRO</a>", 'seo-key' ) . '</p>';
 				echo '<h2>' . __( "More info or help?", "seo-key" ) . '</h2>';
 				echo '<p>' . __( "Need help with SEOKEY free? Contact us here: <a href='https://wordpress.org/support/plugin/seo-key/'>SEOKEY Free support page</a>.", 'seo-key' ) . '</p>';
 				echo '<p>' . __( "Please also check <a href='https://www.seo-key.com/faqs/'>our FAQ</a>.", 'seo-key' ) . '</p>';

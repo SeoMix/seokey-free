@@ -30,13 +30,14 @@ function seokey_upgrade_check() {
 		// Before 1.5.0
 		if ( ! $actual_version ) {
 			do_action( 'seokey_first_upgrader', $actual_version );
+			update_option( 'seokey_version', SEOKEY_VERSION, true );
 		}
 		// Already installed but and upgrade may be necessary
 		elseif ( SEOKEY_VERSION !== $actual_version ) {
 			$new_version = SEOKEY_VERSION;
 			do_action( 'seokey_upgrader', $new_version, $actual_version );
+			update_option( 'seokey_version', SEOKEY_VERSION, true );
 		}
-		update_option( 'seokey_version', SEOKEY_VERSION, true );
 	}
 }
 
@@ -122,6 +123,8 @@ function seokey_first_upgrader_function( $actual_version ) {
 	}
 	// Launch new sitemap creation
 	update_option( 'seokey_sitemap_creation', 'running', true );
+	// Activate OpenGraph
+	update_option( 'seokey-field-seooptimizations-opengraph', '1', true );
 }
 
 add_action( 'seokey_upgrader', 'seokey_upgrader_function', 10, 2 );
@@ -136,6 +139,11 @@ add_action( 'seokey_upgrader', 'seokey_upgrader_function', 10, 2 );
  * @param string $actual_version Old SEOKEY version known
  */
 function seokey_upgrader_function( $new_version, $actual_version ) {
+	// Upgrade to 2.0.0 and above
+	// Activate OpenGraph
+	if ( version_compare( $actual_version, '2.0.0' ) <= 0 ) {
+		update_option( 'seokey-field-seooptimizations-opengraph', '1', true );
+	}
 	// Upgrade to 1.6.0 and above
 	if ( version_compare( $actual_version, '1.6.0' ) < 0 ) {
 		// Update all URL schema in redirection tables

@@ -41,7 +41,7 @@ if ( seokey_helpers_is_free() ) {
 			if ( $current_page === 'seokey_page_seo-key-settings' ) {
 				echo '<h2>' . __( 'Connecting to Search Console is only available in the PRO version.', 'seo-key') . '</h2>';
 				echo '<p>' . __( 'Upgrade now to improve your SEO!', 'seo-key') . '</p>';
-				echo '<p>' . __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.fr/tarifs/'>Buy SEOKEY Premium</a>", 'seo-key' ) . '</p>';
+				echo '<p>' . __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.fr/tarifs/'>Buy SEOKEY PRO</a>", 'seo-key' ) . '</p>';
 				
 			}
 		}

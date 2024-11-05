@@ -134,6 +134,19 @@
     display: inline;
     font-size: 16px;
 }
+#tab-optimisations-seo .tdspan .has-explanation {
+    font-size: 16px;
+    color: #464646;
+    font-weight: 400;
+    padding: 0;
+}
+#tab-optimisations-seo tr {
+    margin-bottom: 0.5em;
+}
+#tab-optimisations-seo .seokey-tooltip-icon {
+    top: 1px;
+}
+
 .seokey-fieldset input + label.onoffswitch-label{
     display: block;
 }

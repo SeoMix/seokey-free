@@ -1,5 +1,8 @@
 .seokey_page_seo-key-redirections .nav-tab:nth-child(2n)::after,
 .seokey_page_seo-key-redirections .nav-tab:nth-child(3n)::after,
+.seokey_page_seo-key-audit .nav-tab:nth-child(2n)::after,
+.seokey_page_seo-key-audit .nav-tab:nth-child(3n)::after,
+.seokey_page_seo-key-keywords .nav-tab:nth-child(2n)::after,
 #search-console.nav-tab::after,
 #wizard-start-bloc li:nth-child(3n)::after,
 #seokey-stats p:first-child::after {

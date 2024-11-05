@@ -48,12 +48,12 @@ class seokey_WP_List_Table_contents extends seokey_WP_List_Table_base {
 	function get_columns() {
 		return array(
 			'content'     => esc_html__( 'Content', 'seo-key' ),
-			'clicks'      => esc_html__( 'All Clicks', 'seo-key' ),
-			'impressions' => esc_html__( 'All Impressions', 'seo-key' ),
+			'clicks'      => esc_html__( 'Clicks', 'seo-key' ),
+			'impressions' => esc_html__( 'Impressions', 'seo-key' ),
 			'keyword'     => esc_html__( 'Targeted keyword', 'seo-key' ),
 			'keywordpos'  => esc_html__( 'Average position', 'seo-key' ),
-			'keywords'    => esc_html__( 'Known keywords', 'seo-key' ),
 			'advice'      => esc_html__( 'Advice for this keyword', 'seo-key' ),
+			'keywords'    => esc_html__( 'Important known keywords', 'seo-key' ),
 		);
 	}
 
@@ -181,12 +181,6 @@ class seokey_WP_List_Table_contents extends seokey_WP_List_Table_base {
 	 */
 	protected function extra_tablenav( $which ) {
         if ( $which === 'top' ) {
-	        $last_update = get_option( 'seokey-gsc-last-api-call' );
-	        if ( false !== $last_update ) {
-		        $text = esc_html__( 'Want more SEO data? Go PRO!', 'seo-key' );
-		        $text .= __( "<a class='button button-primary button-hero' target='_blank' href='https://www.seo-key.com/pricing/'>Buy SEOKEY Premium</a>", 'seo-key' );
-		        echo '<span class="seokey-gopro">' . $text . '</span>';
-			}
             echo '<div class="alignleft actions">';
 				// Contents without targeted keyword
 		        $checked = false;

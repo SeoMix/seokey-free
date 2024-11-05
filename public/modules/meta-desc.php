@@ -118,8 +118,17 @@ add_action( 'seokey_action_head', 'seokey_head_meta_description_add', 5 );
  * @return void the html tag
  */
 function seokey_head_meta_description_add() {
-	$description = seokey_head_meta_description();
-	if ( ! empty( $description ) ) {
-		printf( '<meta name="description" content="%s">' . "\n", esc_attr( $description ) );
+	$local_checked = false;
+	if ( is_singular() ) {
+		// This specific $post is private ?
+		$local_checked = (bool) get_post_meta( get_the_ID(), 'seokey-content_visibility', true );
+	}
+	if ( !$local_checked ) {
+		$description 	= seokey_head_meta_description();
+		// Allow other plugins to stop meta description display
+		$stop 			= apply_filters('seokey_head_meta_description_add_switch', false );
+		if ( ! empty( $description ) && !$stop ) {
+			printf( '<meta name="description" content="%s">' . "\n", esc_attr( $description ) );
+		}
 	}
 }
