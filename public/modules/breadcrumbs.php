@@ -378,11 +378,13 @@ function seokey_breacrumbs_print( $before = '<div id="seokey-breadcrumbs">', $af
 		$html   = '';
 		foreach ( $data as $item ) {
 			$i++;
-			if ( !empty( $item['name'] ) && !empty( $item['url'] ) ) {
-				if ( $i === $count) {
+			if ( !empty( $item['name'] ) ) {
+				if ( $i === $count ) {
 					$html .= esc_html( $item['name'] );
-				} else {
+				} elseif ( !empty( $item['url'] ) ) {
 					$html .= '<a href="' . esc_url( $item['url'] ) . '">' . esc_html( $item['name'] ) . '</a>' . $sep;
+				} else {
+					$html .= esc_html( $item['name'] ) . $sep;
 				}
 			}
 		}

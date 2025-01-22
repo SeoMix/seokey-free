@@ -77,3 +77,8 @@
 .seokey-gopro .button.button-primary.button-hero {
     margin: 0 1em;
 }
+.task-gopro .seokey-tooltip-parent {
+    line-height: 2.5em;
+    padding: 1em;
+    font-weight: 700;
+}

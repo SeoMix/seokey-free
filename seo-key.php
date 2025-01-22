@@ -8,9 +8,9 @@
  * Contributors: Daniel Roch, Arthur Leveque, Léo Fontin, Julio Potier, Gauvain Van Ghele
  * Text Domain: seo-key
  * Domain Path: /public/assets/languages/
- * Version: 2.0.0
+ * Version: 2.0.1
  * Requires at least: 5.5
- * Tested up to: 6.6.2
+ * Tested up to: 6.7
  * Requires PHP: 7.2
  * Network: true
  * License: GPLv2
@@ -43,7 +43,7 @@ if ( defined( 'SEOKEY_NAME' ) ) {
 // Constants that may need to be changed on each update
 define( 'SEOKEY_PHP_MIN',               '7.2' );                                                // PHP Minimum Version
 define( 'SEOKEY_WP_MIN',                '5.5' );                                                // WP Minimum Version
-define( 'SEOKEY_VERSION', 			    '2.0.0' );                                              // SEOKEY actual version
+define( 'SEOKEY_VERSION', 			    '2.0.1' );                                              // SEOKEY actual version
 // Static Constants
 define( 'SEOKEY_SETTINGS_SLUG', 	    'seokey-settings' );                            	    // SEOKEY Settings Slug in options table
 define( 'SEOKEY_HOME', 				    'https://www.seo-key.com/' );                           // SEOKEY Website
@@ -125,7 +125,7 @@ class SEOKEY_Free {
 		// Get common helpers and functions
 		require_once SEOKEY_PATH_COMMON . 'seo-key-helpers.php';
         // Check if Website is multilingual
-        if( function_exists('seokey_helpers_get_languages') ){
+        if ( function_exists('seokey_helpers_get_languages') ) {
             seokey_helpers_get_languages();
         }
 		// For activation and deactivation purposes

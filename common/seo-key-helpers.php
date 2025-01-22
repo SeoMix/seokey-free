@@ -136,7 +136,7 @@ function seokey_helper_delete_folder( $path ){
  * @param string $directory
  * @author Gauvain
  * @since  1.6.0
- *
+ * @return bool|object|void
  */
 function seokey_helper_create_index_file( $directory ){
     $filesystem = seokey_helper_filesystem();
@@ -360,7 +360,7 @@ function seokey_helper_is_sitemap() {
 	$homesitemap    = $home . 'wp-sitemap';
 	$customsitemaps = $home . 'sitemap';
 	// Get current URL
-	$current_url = seokey_helper_url_get_current();
+	$current_url = seokey_helper_url_get_current( false );
 	// Does current URL begins with wp-sitemap ?
 	if ( true === str_starts_with( $current_url, $homesitemap ) || true === str_starts_with( $current_url, $customsitemaps ) ) {
 		// Does it ends with .xml

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SEOKEY Pro\n"
-"POT-Creation-Date: 2024-10-31 16:53+0100\n"
-"PO-Revision-Date: 2024-10-31 16:55+0100\n"
+"POT-Creation-Date: 2025-01-16 12:23+0100\n"
+"PO-Revision-Date: 2025-01-16 12:23+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -408,7 +408,7 @@ msgstr "Passez à la PRO !"
 #: admin/admin-pages/admin-pages-support.php:54
 #: admin/modules/audit/audit-single-content.php:347
 #: admin/modules/audit/parts/view-all-url.php:17
-#: admin/modules/audit/parts/view-issues-all.php:18
+#: admin/modules/audit/parts/view-issues-all.php:23
 #: admin/modules/audit/parts/view-issues-content.php:17
 #: admin/modules/audit/parts/view-issues-technical.php:17
 #: admin/modules/keywords/view-contents.php:17
@@ -1727,7 +1727,7 @@ msgid "Ignore"
 msgstr "Ignorer"
 
 #: admin/modules/audit/audit-single-content.php:346
-#: admin/modules/audit/parts/view-issues-all.php:17
+#: admin/modules/audit/parts/view-issues-all.php:22
 msgid "Want more SEO advice? Go PRO!"
 msgstr "Vous voulez plus de conseils ? Passez à la version PRO !"
 
@@ -1827,9 +1827,9 @@ msgid "Full audit data and tabs are only available in PRO version"
 msgstr ""
 "Les données complètes de l'audit sont seulement valables dans la version PRO"
 
-#: admin/modules/audit/parts/view-issues-all.php:29
-msgid "No issue: congratulations!"
-msgstr "Pas de problème: félicitations!"
+#: admin/modules/audit/parts/view-issues-all.php:18
+msgid "No issue detected in our limited free audit: congratulations!"
+msgstr "Pas de problématique détectée dans notre audit gratuit limité, bravo !"
 
 #: admin/modules/audit/parts/view.php:28
 msgctxt "timezone date format"
@@ -4877,6 +4877,7 @@ msgid "SEOKEY"
 msgstr "SEOKEY"
 
 #. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
 msgid "https://www.seo-key.com"
 msgstr "https://www.seo-key.fr"
 
@@ -4889,12 +4890,14 @@ msgstr ""
 "et efficace d’audit et d’optimisation des moteurs de recherche."
 
 #. Author of the plugin/theme
-msgid "SeoMix - Daniel Roch"
-msgstr "SeoMix - Daniel Roch"
+msgid "SEOKEY - SeoMix - Daniel Roch"
+msgstr "SEOKEY - SeoMix - Daniel Roch"
 
-#. Author URI of the plugin/theme
-msgid "https://www.seomix.fr"
-msgstr "https://www.seomix.fr"
+#~ msgid "No issue: congratulations!"
+#~ msgstr "Pas de problème: félicitations!"
+
+#~ msgid "https://www.seomix.fr"
+#~ msgstr "https://www.seomix.fr"
 
 #~ msgid ""
 #~ "If you bought SEOKEY PRO and you don't know how to install it, just "

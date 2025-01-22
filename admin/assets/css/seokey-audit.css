@@ -145,6 +145,9 @@
 #seokey-audit-issues ul{
     font-size:1.1em;
 }
+.noissues {
+     padding: 0.5em 0 1.25em 9px;
+ }
 /* Score Shape */
 #seokey-audit-score {
     background: #3C3C3C;

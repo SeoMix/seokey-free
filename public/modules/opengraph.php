@@ -34,50 +34,51 @@ sort( $active_plugins );
 $active_plugins = array_unique( $active_plugins );
 // plugin list based on JetPack similar function (in their function check_open_graph())
 $open_graph_conflicting_plugins = array(
-	'2-click-socialmedia-buttons/2-click-socialmedia-buttons.php', // 2 Click Social Media Buttons.
-	'add-link-to-facebook/add-link-to-facebook.php',         // Add Link to Facebook.
-	'add-meta-tags/add-meta-tags.php',                       // Add Meta Tags.
-	'complete-open-graph/complete-open-graph.php',           // Complete Open Graph.
-	'easy-facebook-share-thumbnails/esft.php',               // Easy Facebook Share Thumbnail.
-	'heateor-open-graph-meta-tags/heateor-open-graph-meta-tags.php', // Open Graph Meta Tags by Heateor.
-	'facebook/facebook.php',                                 // Facebook (official plugin).
-	'facebook-awd/AWD_facebook.php',                         // Facebook AWD All in one.
-	'facebook-featured-image-and-open-graph-meta-tags/fb-featured-image.php', // Facebook Featured Image & OG Meta Tags.
-	'facebook-meta-tags/facebook-metatags.php',              // Facebook Meta Tags.
-	'wonderm00ns-simple-facebook-open-graph-tags/wonderm00n-open-graph.php', // Facebook Open Graph Meta Tags for WordPress.
-	'facebook-revised-open-graph-meta-tag/index.php',        // Facebook Revised Open Graph Meta Tag.
-	'facebook-thumb-fixer/_facebook-thumb-fixer.php',        // Facebook Thumb Fixer.
-	'facebook-and-digg-thumbnail-generator/facebook-and-digg-thumbnail-generator.php', // Fedmich's Facebook Open Graph Meta.
-	'network-publisher/networkpub.php',                      // Network Publisher.
-	'nextgen-facebook/nextgen-facebook.php',                 // NextGEN Facebook OG.
-	'social-networks-auto-poster-facebook-twitter-g/NextScripts_SNAP.php', // NextScripts SNAP.
-	'og-tags/og-tags.php',                                   // OG Tags.
-	'opengraph/opengraph.php',                               // Open Graph.
-	'open-graph-protocol-framework/open-graph-protocol-framework.php', // Open Graph Protocol Framework.
-	'seo-facebook-comments/seofacebook.php',                 // SEO Facebook Comments.
-	'seo-ultimate/seo-ultimate.php',                         // SEO Ultimate.
-	'sexybookmarks/sexy-bookmarks.php',                      // Shareaholic.
-	'shareaholic/sexy-bookmarks.php',                        // Shareaholic.
-	'sharepress/sharepress.php',                             // SharePress.
-	'simple-facebook-connect/sfc.php',                       // Simple Facebook Connect.
-	'social-discussions/social-discussions.php',             // Social Discussions.
-	'social-sharing-toolkit/social_sharing_toolkit.php',     // Social Sharing Toolkit.
-	'socialize/socialize.php',                               // Socialize.
-	'squirrly-seo/squirrly.php',                             // SEO by SQUIRRLY™.
-	'only-tweet-like-share-and-google-1/tweet-like-plusone.php', // Tweet, Like, Google +1 and Share.
-	'wordbooker/wordbooker.php',                             // Wordbooker.
-	'wpsso/wpsso.php',                                       // WordPress Social Sharing Optimization.
-	'wp-caregiver/wp-caregiver.php',                         // WP Caregiver.
-	'wp-facebook-like-send-open-graph-meta/wp-facebook-like-send-open-graph-meta.php', // WP Facebook Like Send & Open Graph Meta.
-	'wp-facebook-open-graph-protocol/wp-facebook-ogp.php',   // WP Facebook Open Graph protocol.
-	'wp-ogp/wp-ogp.php',                                     // WP-OGP.
-	'zoltonorg-social-plugin/zosp.php',                      // Zolton.org Social Plugin.
-	'wp-fb-share-like-button/wp_fb_share-like_widget.php',   // WP Facebook Like Button.
-	'open-graph-metabox/open-graph-metabox.php',              // Open Graph Metabox.
-	'seo-by-rank-math/rank-math.php',                        // Rank Math.
-	'slim-seo/slim-seo.php',                                 // Slim SEO.
-	// added by SEOKEY
-	'og/og.php',                                             // OG — Better Share on Social Media
+    '2-click-socialmedia-buttons/2-click-socialmedia-buttons.php',  // 2 Click Social Media Buttons
+    'add-link-to-facebook/add-link-to-facebook.php',                // Add Link to Facebook
+    'add-meta-tags/add-meta-tags.php',                              // Add Meta Tags
+    'complete-open-graph/complete-open-graph.php',                  // Complete Open Graph
+    'easy-facebook-share-thumbnails/esft.php',                      // Easy Facebook Share Thumbnail
+    'heateor-open-graph-meta-tags/heateor-open-graph-meta-tags.php', // Open Graph Meta Tags by Heateor
+    'facebook/facebook.php',                                        // Facebook (official plugin)
+    'facebook-awd/AWD_facebook.php',                                // Facebook AWD All in one
+    'facebook-featured-image-and-open-graph-meta-tags/fb-featured-image.php', // Facebook Featured Image & OG Meta Tags
+    'facebook-meta-tags/facebook-metatags.php',                     // Facebook Meta Tags
+    'wonderm00ns-simple-facebook-open-graph-tags/wonderm00n-open-graph.php', // Facebook Open Graph Meta Tags for WordPress
+    'facebook-revised-open-graph-meta-tag/index.php',               // Facebook Revised Open Graph Meta Tag
+    'facebook-thumb-fixer/_facebook-thumb-fixer.php',               // Facebook Thumb Fixer
+    'facebook-and-digg-thumbnail-generator/facebook-and-digg-thumbnail-generator.php', // Fedmich's Facebook Open Graph Meta
+    'network-publisher/networkpub.php',                             // Network Publisher
+    'nextgen-facebook/nextgen-facebook.php',                        // NextGEN Facebook OG
+    'social-networks-auto-poster-facebook-twitter-g/NextScripts_SNAP.php', // NextScripts SNAP
+    'og-tags/og-tags.php',                                          // OG Tags
+    'opengraph/opengraph.php',                                      // Open Graph
+    'open-graph-protocol-framework/open-graph-protocol-framework.php', // Open Graph Protocol Framework
+    'seo-facebook-comments/seofacebook.php',                        // SEO Facebook Comments
+    'seo-ultimate/seo-ultimate.php',                                // SEO Ultimate
+    'sexybookmarks/sexy-bookmarks.php',                             // Sexy Bookmarks
+    'shareaholic/sexy-bookmarks.php',                               // Shareaholic
+    'sharepress/sharepress.php',                                    // SharePress
+    'simple-facebook-connect/sfc.php',                              // Simple Facebook Connect
+    'social-discussions/social-discussions.php',                    // Social Discussions
+    'social-sharing-toolkit/social_sharing_toolkit.php',            // Social Sharing Toolkit
+    'socialize/socialize.php',                                      // Socialize
+    'squirrly-seo/squirrly.php',                                    // SEO by SQUIRRLY
+    'only-tweet-like-share-and-google-1/tweet-like-plusone.php',    // Tweet, Like, Google +1 and Share
+    'wordbooker/wordbooker.php',                                    // Wordbooker
+    'wpsso/wpsso.php',                                              // WordPress Social Sharing Optimization
+    'wp-caregiver/wp-caregiver.php',                                // WP Caregiver
+    'wp-facebook-like-send-open-graph-meta/wp-facebook-like-send-open-graph-meta.php', // WP Facebook Like Send & Open Graph Meta
+    'wp-facebook-open-graph-protocol/wp-facebook-ogp.php',          // WP Facebook Open Graph protocol
+    'wp-ogp/wp-ogp.php',                                            // WP-OGP
+    'zoltonorg-social-plugin/zosp.php',                             // Zolton.org Social Plugin
+    'wp-fb-share-like-button/wp_fb_share-like_widget.php',          // WP Facebook Like Button
+    'open-graph-metabox/open-graph-metabox.php',                    // Open Graph Metabox
+    'seo-by-rank-math/rank-math.php',                               // Rank Math
+    'slim-seo/slim-seo.php',                                        // Slim SEO
+    // added by SEOKEY
+    'og/og.php',                                                    // OG — Better Share on Social Media
+    'jetpack-social/jetpack-social.php',                            // JetPack Social
 );
 if ( ! empty( $active_plugins ) ) {
 	foreach ( $open_graph_conflicting_plugins as $plugin ) {
@@ -122,7 +123,7 @@ function seokey_head_data_opengraph() {
 	$settings_option    = seokey_helper_get_option( 'schemaorg-context' );
 
 	// OpenGraph and Twitter URL
-	$data['og:url']             = seokey_helper_url_get_current();
+	$data['og:url']             = seokey_helper_url_get_current( false );
 	$datatwitter['twitter:url'] = $data['og:url'];
 
 	// OpenGraph Content type
@@ -282,7 +283,6 @@ function seokey_head_data_opengraph() {
 
 	// TwitterCard Site Account for website
 	if ( ! empty( $settings_option ) ) {
-		seokey_dev_write_log($settings_option);
 		// TODO later do it for companies
 		if ( 'person' === $settings_option ) {
 			$sameas_option = seokey_helper_get_option( 'schemaorg-schema-person-sameas' );

@@ -4,9 +4,9 @@ Contributors: seokey, seomix, confridin
 Donate link: https://www.seo-key.com/
 Tags: seo audit, seo, google, content analysis, schema
 Requires at least: 5.5
-Tested up to: 6.6.2
+Tested up to: 6.7
 Requires PHP: 7.2
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,16 @@ Please report security bugs found in the source code of the SEO KEY plugin throu
 
 == Changelog ==
 Public roadmap is here: https://trello.com/b/jauwlc3J/seokey-pro-public-roadmap
+
+= 2.0.1
+* Fix: (PRO) Fix incorrect French text used to show or hide audit task details
+* Fix: (FREE) Fix SEOKEY PRO button on audit pages (it was not working)
+* Fix: Removed several console and debug function
+* Fix: Fixed OpenGraph URL that sometimes incorrectly had PORT data
+* Fix: Added Jetpack Social to plugin list exclusion for our OpenGraph and twitter card automatic optimization
+* Fix: Fix Open Graph setting display (for English users)
+* Fix: Fix Polylang incorrect redirect for WordPress native XML sitemaps
+* DevNote: Using seokey_filter_breacrumbs_data hook, you can now add custom items without links into your breadcrumb
 
 = 2.0.0 // Alt Editor improvements + OpenGraph & Twitter card Data
 * New: SEOKEY now automatically adds OpenGraph and Twitter Card data (Google now uses this data). If you're already using another plugin for this, SEOKEY won’t add it.

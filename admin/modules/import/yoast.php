@@ -3,7 +3,6 @@
  * Load import functions for yoast
  *
  * @Loaded on data import + plugins_loaded + is_admin() + capability admin
- * @see xxx()
  * @package SEOKEY
  */
 

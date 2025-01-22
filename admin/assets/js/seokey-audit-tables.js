@@ -19,8 +19,6 @@ jQuery(document).ready(function($) {
 
     $('.task header').one('click', function (e) {
         var loader = '.task-' + $(this).find('.audit-show-table').attr('data') + ' .seokey-loader';
-        console.log(loader);
-        console.log( 'loader '  + loader );
         $(loader).show();
         var task = $(this).find('.audit-show-table').attr('data');
         var tab = $(this).find('.audit-show-table').attr('tab');
@@ -40,7 +38,6 @@ jQuery(document).ready(function($) {
                 'item_type_global': item_type_global,
             },
             success: function (response) {
-                console.log('succes');
                 $(tabtask).html(response.display);
                 // Lets get ajax calls available
                 list.init(tabtask, tab, task, myaction);

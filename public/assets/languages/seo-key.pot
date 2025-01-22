@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: SEOKEY Free\n"
-"POT-Creation-Date: 2024-11-05 10:38+0100\n"
+"POT-Creation-Date: 2025-01-16 12:22+0100\n"
 "PO-Revision-Date: 2022-04-27 09:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -380,7 +380,7 @@ msgstr ""
 #: admin/admin-pages/admin-pages-support.php:54
 #: admin/modules/audit/audit-single-content.php:347
 #: admin/modules/audit/parts/view-all-url.php:17
-#: admin/modules/audit/parts/view-issues-all.php:18
+#: admin/modules/audit/parts/view-issues-all.php:23
 #: admin/modules/audit/parts/view-issues-content.php:17
 #: admin/modules/audit/parts/view-issues-technical.php:17
 #: admin/modules/keywords/view-contents.php:17
@@ -1569,7 +1569,7 @@ msgid "Ignore"
 msgstr ""
 
 #: admin/modules/audit/audit-single-content.php:346
-#: admin/modules/audit/parts/view-issues-all.php:17
+#: admin/modules/audit/parts/view-issues-all.php:22
 msgid "Want more SEO advice? Go PRO!"
 msgstr ""
 
@@ -1666,8 +1666,8 @@ msgstr ""
 msgid "Full audit data and tabs are only available in PRO version"
 msgstr ""
 
-#: admin/modules/audit/parts/view-issues-all.php:29
-msgid "No issue: congratulations!"
+#: admin/modules/audit/parts/view-issues-all.php:18
+msgid "No issue detected in our limited free audit: congratulations!"
 msgstr ""
 
 #: admin/modules/audit/parts/view.php:28
@@ -4227,6 +4227,7 @@ msgid "SEOKEY"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
 msgid "https://www.seo-key.com"
 msgstr ""
 
@@ -4237,9 +4238,5 @@ msgid ""
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "SeoMix - Daniel Roch"
-msgstr ""
-
-#. Author URI of the plugin/theme
-msgid "https://www.seomix.fr"
+msgid "SEOKEY - SeoMix - Daniel Roch"
 msgstr ""
