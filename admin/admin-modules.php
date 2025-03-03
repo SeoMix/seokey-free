@@ -65,7 +65,7 @@ if ( is_admin() ) {
 	// Custom extended WP List table class for next modules
 	seokey_helper_require_file( 'class-wp_list_table',          SEOKEY_PATH_COMMON, 'contributor' );
 	// Load Installation and update Wizard
-	seokey_helper_require_file( 'automatic_optimizations',      $modules, 'admin' );
+	seokey_helper_require_file( 'automatic_optimizations',      $modules, 'editor' );
 	// Load hoempage meta title and meta desc sync
 	seokey_helper_require_file( 'homepage',                     $modules, 'admin' );
 	// Load Installation and update Wizard

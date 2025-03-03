@@ -63,12 +63,16 @@ function seokey_admin_page_automatic_seo() {
  */
 function seokey_admin_page_automatic_seo_content(){
 	$render = '<p>' . __( "SEOKEY automatically fixes many technical issues on your WordPress website. Here's what we do:", "seo-key" ) . '</p>';
-	foreach ( seokey_automatic_optimizations_list() as $version ) {
-		foreach ( $version as $name => $description ) {
-			$render .= '<li class="has-explanation" id="' . sanitize_title( $name ) . '"><strong>' . key( $description ) . '</strong> ' . $description[key( $description )] . seokey_helper_help_messages( 'automaticseo-' . sanitize_title( $name ), true ) .'</li>';
+	if ( function_exists( 'seokey_automatic_optimizations_list' ) ) {
+		$render .= '<ul id="optimizations-list">';
+		foreach ( seokey_automatic_optimizations_list() as $version ) {
+			foreach ( $version as $name => $description ) {
+				$render .= '<li class="has-explanation" id="' . sanitize_title( $name ) . '"><strong>' . key( $description ) . '</strong> ' . $description[ key( $description ) ] . seokey_helper_help_messages( 'automaticseo-' . sanitize_title( $name ), true ) . '</li>';
+			}
 		}
+		$render .= '</ul>';
 	}
-	return '<ul id="optimizations-list">' . $render . '</ul>';
+	return $render;
 }
 
 /**

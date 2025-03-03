@@ -137,31 +137,37 @@ function seokey_wizard_after_update_option() {
 
 // Redirect to next step
 function seokey_wizard_continue(){
-    // Get next step data
-    $step = seokey_wizard_get_next_step_from_referer();
-    $key = array_key_first($step );
-    $step = array_shift($step);
-    // Wizard admin URL
-    $current_url = seokey_helper_admin_get_link('wizard');
-    // Construct next step URL
-    $url = add_query_arg( 'wizard-status', $key, $current_url ) .'#'. sanitize_title( $step[0] );
-    wp_redirect(  $url, 301 );
+	// Get next step data
+	$step   = seokey_wizard_get_next_step_from_referer();
+	$key    = array_key_first($step );
+	$step   = array_shift($step);
+	// Wizard admin URL
+	$current_url = seokey_helper_admin_get_link('wizard');
+	// Construct next step URL
+	$url = add_query_arg( 'wizard-status', $key, $current_url ) .'#'. sanitize_title( $step[0] );
+	wp_redirect(  $url, 301 );
 	die();
 }
 
 // Get next step
 function seokey_wizard_get_next_step_from_referer(){
-    // Get all steps
-    $steps  = seokey_admin_wizard_steps();
-    // Get previous step
-    $from   = wp_get_referer();
-    $query  = parse_url($from, PHP_URL_QUERY);
-    parse_str($query, $params);
-    // Find next step
-	$status = ( !empty( $params['wizard-status'] ) ) ? $params['wizard-status'] : '1_0_0';
-    $nextkey = array_search( $status, array_keys( $steps ) ) + 1;
-	$nextkey = array_slice( $steps, $nextkey, 1 );
-    return $nextkey;
+	// Get all steps and previous step
+	$steps  = seokey_admin_wizard_steps();
+	$from   = wp_get_referer();
+	// No data for previous step? Create our own
+	if ( false === $from ) {
+		$request = $_SERVER['REQUEST_URI'];
+		if ( !empty ( $request ) ) {
+			$from = wp_unslash( home_url( $_SERVER['REQUEST_URI'] ) );
+		}
+	}
+	$query  = parse_url($from, PHP_URL_QUERY);
+	parse_str($query, $params);
+	// Find next step
+	$status     = ( !empty( $params['wizard-status'] ) ) ? $params['wizard-status'] : '1_0_0';
+	$nextkey    = array_search( $status, array_keys( $steps ) ) + 1;
+	$nextkey    = array_slice( $steps, $nextkey, 1 );
+	return $nextkey;
 }
 
 function seokey_wizard_get_next_step( $from = 'start', $search = 1 ){

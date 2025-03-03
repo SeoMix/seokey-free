@@ -6,7 +6,7 @@ Tags: seo audit, seo, google, content analysis, schema
 Requires at least: 5.5
 Tested up to: 6.7
 Requires PHP: 7.2
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,14 +193,24 @@ Please report security bugs found in the source code of the SEO KEY plugin throu
 == Changelog ==
 Public roadmap is here: https://trello.com/b/jauwlc3J/seokey-pro-public-roadmap
 
+= 2.0.2
+* Fixed: (PRO) Incorrect audit domain analysis on some hosts (could result in incorrect advice about domain variations).
+* Fixed: (PRO) PHP warning on the 404 admin page.
+* Fixed: (PRO) On local environments or specific server configurations, errors recorded by the 404 module now display the correct URL.
+* Fixed: Prevented a fatal error when users with the editor role attempted to access the automatic SEO optimization admin page.
+* Fixed: Incorrect HTML markup on the automatic SEO optimization list admin page.
+* Fixed: Incorrect wizard redirects preventing users from proceeding to the next page (only occurred with very specific hosting providers).
+* Fixed: Improved keyword detection for special characters (©, ®, ™, and more).
+* Third-party: Prevented a fatal error when migrating a website to local using All In One WP Migration.
+
 = 2.0.1
-* Fix: (PRO) Fix incorrect French text used to show or hide audit task details
-* Fix: (FREE) Fix SEOKEY PRO button on audit pages (it was not working)
-* Fix: Removed several console and debug function
-* Fix: Fixed OpenGraph URL that sometimes incorrectly had PORT data
-* Fix: Added Jetpack Social to plugin list exclusion for our OpenGraph and twitter card automatic optimization
-* Fix: Fix Open Graph setting display (for English users)
-* Fix: Fix Polylang incorrect redirect for WordPress native XML sitemaps
+* Fixed: (PRO) Fix incorrect French text used to show or hide audit task details
+* Fixed: (FREE) Fix SEOKEY PRO button on audit pages (it was not working)
+* Fixed: Removed several console and debug function
+* Fixed: Fixed OpenGraph URL that sometimes incorrectly had PORT data
+* Fixed: Added Jetpack Social to plugin list exclusion for our OpenGraph and twitter card automatic optimization
+* Fixed: Fix Open Graph setting display (for English users)
+* Fixed: Fix Polylang incorrect redirect for WordPress native XML sitemaps
 * DevNote: Using seokey_filter_breacrumbs_data hook, you can now add custom items without links into your breadcrumb
 
 = 2.0.0 // Alt Editor improvements + OpenGraph & Twitter card Data
@@ -212,11 +222,11 @@ Public roadmap is here: https://trello.com/b/jauwlc3J/seokey-pro-public-roadmap
 * Improvement: Removed unnecessary action links in the ALT editor (previously added by WordPress, themes, or other plugins), reducing distractions.
 * Improvement: Improved several wordings in the Wizard and SEO audit.
 * Improvement: (FREE) Updated interface to better explain what's included in SEOKEY PRO.
-* Fix: (PRO) Removed deprecated Ping Sitemap function (https://developers.google.com/search/blog/2023/06/sitemaps-lastmod-ping)
-* Fix: (PRO) Fixed a very rare fatal error when Search Console fails to provide a suggested keyword in the MetaBox.
-* Fix: Excluded PDF, ZIP, and other non-image files from the ALT editor (as these files don't have alternative text).
-* Fix: Resolved rare issue with missing trailing slash in terms XML sitemaps.
-* Fix: (FREE) Adjusted the position of the "PRO" label in the SEOKEY MetaBox.
+* Fixed: (PRO) Removed deprecated Ping Sitemap function (https://developers.google.com/search/blog/2023/06/sitemaps-lastmod-ping)
+* Fixed: (PRO) Fixed a very rare fatal error when Search Console fails to provide a suggested keyword in the MetaBox.
+* Fixed: Excluded PDF, ZIP, and other non-image files from the ALT editor (as these files don't have alternative text).
+* Fixed: Resolved rare issue with missing trailing slash in terms XML sitemaps.
+* Fixed: (FREE) Adjusted the position of the "PRO" label in the SEOKEY MetaBox.
 * Third-party: Fixed a rare Polylang canonical issue where the home URL was incorrect.
 * DevNote: Added a new hook to disable SEOKEY meta descriptions (useful if using SEO functions within your theme).
 * DevNote: Enhanced the Upgrader function, improving SEOKEY performance across all pages.

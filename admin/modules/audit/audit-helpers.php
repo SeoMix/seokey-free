@@ -196,6 +196,7 @@ function seokey_audit_clean_string( $content = '', $language = '' ) {
 	$cleaned_string = seokey_audit_clean_stopwords( $cleaned_string, $language );
 	$cleaned_string = str_replace( "’", "'", $cleaned_string );
 	$cleaned_string = str_replace( "...", "…", $cleaned_string );
+	$cleaned_string = str_replace( ['©', '®', '™', '€', '£', '¥'], '', $cleaned_string );
 	return $cleaned_string;
 }
 

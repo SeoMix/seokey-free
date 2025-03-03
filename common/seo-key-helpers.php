@@ -186,9 +186,11 @@ function seokey_helper_require_file( $module_slug, $path = ( SEOKEY_PATH_PUBLIC 
 	} else {
 		$path = esc_url( str_replace( '..', '', $path ) );
 	}
-	// File is not here, abort
+	// File is not here, write in debug log the issue
 	if ( ! file_exists( $path . $module_slug . '.php' ) ) {
-		seokey_dev_error( '', '', $path . $module_slug . '.php');
+		$file = $path . $module_slug . '.php';
+		seokey_dev_write_log( 'REQUIRE failure ' . $file );
+		// seokey_dev_error( '', '', $path . $module_slug . '.php'); // Deactivate function to prevent migration plugin errors
 		return;
 	}
 	// Do not allow require before our verifications (default value)
@@ -841,6 +843,7 @@ function seokey_helper_get_screen_option( $type, $key, $default ) {
 function seokey_helper_usort_reorder( $a, $b ) {
     $orderby    = ( ! empty( $_REQUEST['orderby'] ) )   ? esc_html( strtolower( $_REQUEST['orderby'] ) ):   seokey_helper_cache_data( 'seokey_helper_usort_reorder');
     $order      = ( ! empty( $_REQUEST['order'] ) )     ? esc_html( $_REQUEST['order'] ) :                  seokey_helper_cache_data( 'seokey_helper_usort_reorder_order');
+	$order	    = ( is_null( $order ) ) ? 'DESC' : $order;
 	$result     = strnatcmp( $a[ $orderby ], $b[ $orderby ] );
     return ( 'ASC' === strtoupper( $order ) ) ? $result : -$result;
 }
