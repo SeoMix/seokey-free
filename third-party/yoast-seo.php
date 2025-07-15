@@ -1,6 +1,6 @@
 <?php
 /**
- * Third party: Plugi Yoast SEO
+ * Third party: Yoast SEO plugin
  *
  * @Loaded on plugins_loaded + wizard done
  * @see seokey_plugin_init()

@@ -84,29 +84,30 @@ function seokey_helper_create_folder( $path , $indexFile = false ){
     require_once ABSPATH . 'wp-admin/includes/file.php';
     $filesystem = seokey_helper_filesystem();
     $parent_path = dirname( $path );
-	if( is_null( $filesystem ) ) {
-		return;
-	} else {
-		if ( ! $filesystem->exists( $parent_path ) ) {
-			if ( $filesystem->mkdir( $parent_path, 0755 ) ) {
-				// add index.php
-				if ( true === $indexFile ) {
-					seokey_helper_create_index_file( $parent_path );
-				}
-			} else {
-				seokey_helper_create_folder( $parent_path, $indexFile );
-			}
-		}
-		if ( ! $filesystem->exists( $path ) ) {
-			if ( $filesystem->mkdir( $path, 0755 ) ) {
-				if ( true === $indexFile ) {
-					seokey_helper_create_index_file( $path );
-				}
-			} else {
-				seokey_dev_write_log( 'Error creating folder : ' . $path );
-			}
-		}
-	}
+    // Avoid Fatal Error & tell if something is wrong
+    if( is_null( $filesystem ) ){
+        seokey_dev_write_log('Object filesystem is Null while creating folder : '. $path );
+    }else{
+        if ( !$filesystem->exists( $parent_path ) ) {
+            if ( $filesystem->mkdir( $parent_path, 0755 ) ) {
+                // add index.php
+                if ( true === $indexFile ){
+                    seokey_helper_create_index_file( $parent_path );
+                }
+            } else {
+                seokey_helper_create_folder( $parent_path, $indexFile );
+            }
+        }
+        if ( !$filesystem->exists( $path ) ) {
+            if( $filesystem->mkdir( $path, 0755 ) ){
+                if( true === $indexFile ){
+                    seokey_helper_create_index_file( $path );
+                }
+            }else{
+                seokey_dev_write_log('Error creating folder : '.$path );
+            }
+        }
+    }
 }
 
 
@@ -137,6 +138,7 @@ function seokey_helper_delete_folder( $path ){
  * @author Gauvain
  * @since  1.6.0
  * @return bool|object|void
+ *
  */
 function seokey_helper_create_index_file( $directory ){
     $filesystem = seokey_helper_filesystem();
@@ -147,11 +149,11 @@ function seokey_helper_create_index_file( $directory ){
         $file = $directory . "/index.php";
 
         // We check if directory is here
-        if ( ! $filesystem->is_dir( $directory ) ) {
-            $filesystem->mkdir( $directory );
+        if (!$filesystem->is_dir($directory)) {
+            $filesystem->mkdir($directory);
         }
         // Don't do anything if directory is still not here or file exists
-        if ( $filesystem->exists( $file ) || ! $filesystem->is_dir( $directory ) ) {
+        if ($filesystem->exists($file) || !$filesystem->is_dir($directory)) {
             return false;
         }
         // Create our new file
@@ -787,6 +789,7 @@ function seokey_helper_url_remove_domain( $url ) {
 function seokey_helper_url_extract_domain( $url, $sub = false ) {
 	$parse_url  = parse_url( $url );
 	$host       = $parse_url['host'];
+	/** @noinspection RegExpRedundantEscape */
 	preg_match( '/(?:http[s]*\:\/\/)*(.*?)\.(?=[^\/]*\..{2,5})/i', $host, $subdomain );
 	$host       = ( empty( $subdomain ) ) ? $host : str_replace( $subdomain[0], '', $host );
 	$subdomain  = ( empty( $subdomain ) ) ? '' : $subdomain[0];
@@ -841,12 +844,13 @@ function seokey_helper_get_screen_option( $type, $key, $default ) {
  * @return array|int sorted array
  */
 function seokey_helper_usort_reorder( $a, $b ) {
-    $orderby    = ( ! empty( $_REQUEST['orderby'] ) )   ? esc_html( strtolower( $_REQUEST['orderby'] ) ):   seokey_helper_cache_data( 'seokey_helper_usort_reorder');
-    $order      = ( ! empty( $_REQUEST['order'] ) )     ? esc_html( $_REQUEST['order'] ) :                  seokey_helper_cache_data( 'seokey_helper_usort_reorder_order');
+	$orderby    = ( ! empty( $_REQUEST['orderby'] ) )   ? esc_html( strtolower( $_REQUEST['orderby'] ) ):   seokey_helper_cache_data( 'seokey_helper_usort_reorder');
+	$order      = ( ! empty( $_REQUEST['order'] ) )     ? esc_html( $_REQUEST['order'] ) :                  seokey_helper_cache_data( 'seokey_helper_usort_reorder_order');
 	$order	    = ( is_null( $order ) ) ? 'DESC' : $order;
 	$result     = strnatcmp( $a[ $orderby ], $b[ $orderby ] );
-    return ( 'ASC' === strtoupper( $order ) ) ? $result : -$result;
+	return ( 'ASC' === strtoupper( $order ) ) ? $result : -$result;
 }
+
 
 
 /**
@@ -858,7 +862,7 @@ function seokey_helper_usort_reorder( $a, $b ) {
  * @return bool|int true if currently on a post type archive menu
  */
 function seokey_helpers_admin_is_post_type_archive() {
-	// Are we on a custom post type archive page
+    // Are we on a custom post type archive page
 	$current_screen = seokey_helper_get_current_screen();
 	if ( ! is_null( $current_screen ) ) {
 		if ( str_contains( $current_screen->base, '_seo-key-archive_' ) ) {
@@ -903,11 +907,8 @@ function seokey_helpers_medias_library_is_alt_editor(){
 }
 
 // TODO Comments
-function seokey_helper_loader( $id = '', $class=' ') {
-echo '<div id="' . sanitize_html_class( $id ) . '-loader" class="' . sanitize_html_class( $class ) . 'seokey-loader">
-      <div class="seokey-spinner"></div>
-    </div>
-    ';
+function seokey_helper_loader( $id = '', $class =' ') {
+	echo seokey_helper_loader_get( $id, $class );
 }
 
 // TODO Comments
@@ -990,9 +991,15 @@ function seokey_helper_parse_request_find_type( $url = 'none' ) {
 			// Iterate on each types
 			$types = ['post', 'page', 'author', 'root', 'comments', 'search', 'date'];
 			foreach ( $types as $type ) {
-				if ( in_array( $match, $cleaned_rules_by_source[$type] ) ) {
-					$result = $type;
-					break;
+				if ( is_array( $cleaned_rules_by_source[ $type ] ) ) {
+					if ( in_array( $match, $cleaned_rules_by_source[ $type ] ) ) {
+						$result = $type;
+						break;
+					}
+				} else {
+					// Adding debug info
+					seokey_dev_write_log( '$cleaned_rules_by_source is not an array' );
+					seokey_dev_write_log( $cleaned_rules_by_source[ $type ] );
 				}
 			}
 		}
@@ -1219,8 +1226,10 @@ function seokey_helpers_get_current_domain( $link = null ){
                             }
                             break;
                         case 'wpmlpro':
-                            if ( defined(ICL_LANGUAGE_CODE ) ) {
-                                if ( $lang['iso2'] == ICL_LANGUAGE_CODE ) {
+                            /** @noinspection PhpUndefinedConstantInspection */
+	                        if ( defined(ICL_LANGUAGE_CODE ) ) {
+		                        /** @noinspection PhpUndefinedConstantInspection */
+		                        if ( $lang['iso2'] == ICL_LANGUAGE_CODE ) {
                                     $domain = $lang['domain'];
                                     break;
                                 }
@@ -1288,69 +1297,37 @@ function seokey_helpers_get_available_domains(){
  */
 function seokey_helpers_get_sitemap_base_url( $langIso3 = null, $relative = false ){
 	// Get upload path
-	$uploads_path = seokey_helpers_get_short_upload_dir( $relative );
+    $uploads_path = seokey_helpers_get_short_upload_dir( $relative );
 	// Define path
-	if ( true === $relative ) {
-		$url = $uploads_path . '/seokey/sitemaps/';
-	} else {
-		if ( !is_null( $langIso3 ) ) {
-			switch ( seokey_helper_cache_data('languages' )['site']['domain_type'] ){
-				case 'subdomain':
-				case 'domain':
-					// Avoid double '//' with ltrim / rtrim in case of subfolder
-					$url = rtrim( seokey_helper_cache_data('languages' )['lang'][$langIso3]['domain'],"/")."/" . ltrim( $uploads_path,"/" ) . '/seokey/sitemaps/';
-					break;
-				case 'suffix':
-				case 'single':
-				default:
-					if ( str_starts_with( $uploads_path, home_url() ) ) {
-						$url = $uploads_path . '/seokey/sitemaps/';
-					} else {
+    if ( true === $relative ) {
+        $url = $uploads_path . '/seokey/sitemaps/';
+    } else {
+        if ( !is_null( $langIso3 ) ) {
+            switch ( seokey_helper_cache_data('languages' )['site']['domain_type'] ){
+                case 'subdomain':
+                case 'domain':
+                    // Avoid double '//' with ltrim / rtrim in case of subfolder
+                    $url = rtrim( seokey_helper_cache_data('languages' )['lang'][$langIso3]['domain'],"/")."/" . ltrim( $uploads_path,"/" ) . '/seokey/sitemaps/';
+                    break;
+                case 'suffix':
+                case 'single':
+                default:
+		            if ( str_starts_with( $uploads_path, home_url() ) ) {
+			            $url = $uploads_path . '/seokey/sitemaps/';
+		            } else {
 						if ( str_starts_with( $uploads_path, WP_CONTENT_URL ) ) {
 							$url = $uploads_path . '/seokey/sitemaps/';
 						} else {
 							$url = home_url( $uploads_path . '/seokey/sitemaps/');
 						}
-					}
-					break;
-			}
-		} else {
-			$url = $uploads_path . '/seokey/sitemaps/';
-		}
-	}
-	return $url;
-}
-
-
-/**
- * Get short upload dir
- *
- * @param string $relative ( optionnal )
- * $relative is only for WordPress if in subfolder : add this folder before wp-content
- *
- * @author  Gauvain Van Ghele
- *
- * @since   1.6.2
- */
-function seokey_helpers_get_short_upload_dir( $relative = false ){
-	// Get data from home option
-	$parts = parse_url( site_url() );
-	// Get short URL for "uploads" folder
-	$exploded_url = explode( untrailingslashit( site_url() ), wp_get_upload_dir()['baseurl'] );
-	if ( count( $exploded_url ) > 1 ) {
-		$uploads_path = $exploded_url[1];
-	} else {
-		// Get URL for "wp-content" folder
-		$content_url = content_url();
-		// Rebuild wp-content/uploads
-		$uploads_path = str_replace( untrailingslashit( site_url() ), '', $content_url ) . '/uploads';
-	}
-	// If Wordpress is in a subfolder and url is short : Get subfolder/upload_path
-	if ( isset( $parts['path'] ) && $parts['path'] != '/' && true === $relative ) {
-		$uploads_path = "/". rtrim( ltrim( $parts['path'],"/" ),"/" ) . $uploads_path;
-	}
-	// return data
-	return $uploads_path;
+		            }
+                    break;
+            }
+        } else {
+            $url = $uploads_path . '/seokey/sitemaps/';
+        }
+    }
+    return $url;
 }
 
 /**
@@ -1365,6 +1342,37 @@ function seokey_helpers_is_sitemaps_page(){
 	$sitemaps_url = seokey_helpers_get_sitemap_base_url(); // get SeoKey's sitemaps URL to compare
 	// Check if in current requested URL, we have the SeoKey's sitemaps URL
 	return str_contains( esc_url( seokey_helper_url_get_current() ), $sitemaps_url );
+}
+
+/**
+ * Get short upload dir
+ *
+ * @param string $relative ( optionnal )
+ * $relative is only for WordPress if in subfolder : add this folder before wp-content
+ *
+ * @author  Gauvain Van Ghele
+ *
+ * @since   1.6.2
+ */
+function seokey_helpers_get_short_upload_dir( $relative = false ){
+	// Get data from home option
+    $parts = parse_url( site_url() );
+    // Get short URL for "uploads" folder
+    $exploded_url = explode( untrailingslashit( site_url() ), wp_get_upload_dir()['baseurl'] );
+    if ( count( $exploded_url ) > 1 ) {
+        $uploads_path = $exploded_url[1];
+    } else {
+        // Get URL for "wp-content" folder
+        $content_url = content_url();
+        // Rebuild wp-content/uploads
+        $uploads_path = str_replace( untrailingslashit( site_url() ), '', $content_url ) . '/uploads';
+    }
+    // If Wordpress is in a subfolder and url is short : Get subfolder/upload_path
+    if ( isset( $parts['path'] ) && $parts['path'] != '/' && true === $relative ) {
+        $uploads_path = "/". rtrim( ltrim( $parts['path'],"/" ),"/" ) . $uploads_path;
+    }
+	// return data
+    return $uploads_path;
 }
 
 // TODO Comment
@@ -1386,6 +1394,7 @@ function seokey_helpers_get_parent_key( $array, $search_value, $key ) {
  */
 function seokey_helpers_data_clean_escaped_html( $html ) {
 	// New lines => spaces
+	/** @noinspection RegExpSingleCharAlternation */
 	$html = preg_replace( '/(\r|\n)/', ' ', $html );
 	// <br> => spaces.
 	$html = preg_replace( '/<br(\s*)?\/?>/i', ' ', $html );
@@ -1448,7 +1457,7 @@ function seokey_helper_plugin_is_installed( $plugin ) {
  * @param string $plugin plugin slug
  * @param array $plugin_list get_plugins() data
  * @author  Daniel Roch
- * @since   x.x.x
+ * @since   1.9.1
  */
 function seokey_helper_plugin_get_path_from_slug( $slug, $plugin_list ) {
 	if ( strstr( $slug, '/' ) ) {

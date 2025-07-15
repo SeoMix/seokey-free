@@ -2,15 +2,15 @@
 /**
  * Plugin Name: SEOKEY
  * Plugin URI: https://www.seo-key.com
- * Description:  The Key to WordPress SEO. SEOKEY is a simple and efficient Search Engine Audit and Optimization plugin for WordPress.
+ * Description: The Key to WordPress SEO. SEOKEY is a simple and efficient Search Engine Audit and Optimization plugin for WordPress.
  * Author: SEOKEY - SeoMix - Daniel Roch
  * Author URI: https://www.seo-key.com
  * Contributors: Daniel Roch, Arthur Leveque, Léo Fontin, Julio Potier, Gauvain Van Ghele
  * Text Domain: seo-key
  * Domain Path: /public/assets/languages/
- * Version: 2.0.2
+ * Version: 2.0.3
  * Requires at least: 5.5
- * Tested up to: 6.7
+ * Tested up to: 6.8.1
  * Requires PHP: 7.2
  * Network: true
  * License: GPLv2
@@ -43,7 +43,7 @@ if ( defined( 'SEOKEY_NAME' ) ) {
 // Constants that may need to be changed on each update
 define( 'SEOKEY_PHP_MIN',               '7.2' );                                                // PHP Minimum Version
 define( 'SEOKEY_WP_MIN',                '5.5' );                                                // WP Minimum Version
-define( 'SEOKEY_VERSION', 			    '2.0.2' );                                              // SEOKEY actual version
+define( 'SEOKEY_VERSION', 			    '2.0.3' );                                              // SEOKEY actual version
 // Static Constants
 define( 'SEOKEY_SETTINGS_SLUG', 	    'seokey-settings' );                            	    // SEOKEY Settings Slug in options table
 define( 'SEOKEY_HOME', 				    'https://www.seo-key.com/' );                           // SEOKEY Website

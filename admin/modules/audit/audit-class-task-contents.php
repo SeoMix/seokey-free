@@ -222,9 +222,9 @@ class SeoKey_Audit_Launch_task_load_content {
         foreach ( $values as $value ) {
             switch ($value) {
                 case "content":
-	                $content = apply_filters( 'seokey_filter_helper_audit_content_data', $post->post_content, $post );
-	                $content = apply_filters( 'the_content', $content );
-                    $item = array_merge( $item, [
+	                $content = apply_filters( 'the_content', $post->post_content );
+	                $content = apply_filters( 'seokey_filter_helper_audit_content_data', $content, $post );
+	                $item = array_merge( $item, [
                         'content' => $content,
                     ] );
                     break;
@@ -293,7 +293,7 @@ class SeoKey_Audit_Launch_task_load_content {
                     ] );
                     break;
                 case "all":
-	                // default content
+                    // default content
 	                $content = apply_filters( 'seokey_filter_helper_audit_content_data', $post->post_content, $post );
 	                $content = apply_filters( 'the_content', $content );
 	                // all data

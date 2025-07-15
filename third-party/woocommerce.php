@@ -216,7 +216,7 @@ if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
 	
 	add_filter ( 'seokey_filter_helper_audit_content_data', 'seokey_thirdparty_woocommerce_audit_content', 10, 2 );
 	/**
-	 * Add Woocommerce values to content audit
+	 * Add Woocommerce values to content audit (global audit)
 	 *
 	 * @param string $content content of the post
 	 * @param mixed $post post values
@@ -228,10 +228,53 @@ if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
 		if ( 'product' === $post->post_type ) {
 			// Add short description to content
 			$short_description = apply_filters( 'woocommerce_short_description', $post->post_excerpt );
-			$content           = ( ! empty( $short_description ) ) ? $content . ' ' . $short_description : $content;
+			$content           = ( ! empty( $short_description ) ) ? $short_description . ' ' . $content : $content;
+			// Add linked products to content
+			if ( class_exists( 'WC_Product' ) ) {
+				$product = new WC_Product( $post->ID ); // Get current product
+				$upsells = $product->get_upsell_ids(); // Get the linked proucts IDs
+				// If we have linked products, add it to the content
+				if ( $upsells ) {
+					foreach ( $upsells as $upsell ) {
+						$content .=  ' <a href="' . get_permalink( $upsell ) . '">ProductAddedBySEOKey</a>';
+					}
+				}
+			}
 		}
 		return $content;
 	}
+
+	add_filter ( 'seokey_filter_audit_single_data_content', 'seokey_thirdparty_woocommerce_audit_content_single', 10, 2 );
+	/**
+	 * Add Woocommerce values to content audit (single audit)
+	 *
+	 * @param string $content content of the post
+	 * @param mixed $post post values
+	 * @since   1.6.0
+	 * @author  Daniel Roch
+	 *
+	 */
+	function seokey_thirdparty_woocommerce_audit_content_single( $content, $id ){
+		$mypost = get_post( $id );
+		if ( 'product' === $mypost->post_type ) {
+			// Add short description to content
+			$short_description = apply_filters( 'woocommerce_short_description', $mypost->post_excerpt );
+			$content           = ( ! empty( $short_description ) ) ? $short_description . ' ' . $content : $content;
+			// Add linked products to content
+			if ( class_exists( 'WC_Product' ) ) {
+				$product = new WC_Product( $id ); // Get current product
+				$upsells = $product->get_upsell_ids(); // Get the linked proucts IDs
+				// If we have linked products, add it to the content
+				if ( $upsells ) {
+					foreach ( $upsells as $upsell ) {
+						$content .=  ' <a href="' . get_permalink( $upsell ) . '">ProductAddedBySEOKey</a>';
+					}
+				}
+			}
+		}
+		return $content;
+	}
+
 
 	if ( is_plugin_active( 'woocommerce-request-a-quote/class-addify-request-for-quote.php' ) ) {
 		add_filter( 'seokey_filter_helpers_admin_is_post_type_archive', 'seokey_thirdparty_request_a_quote_fix' );

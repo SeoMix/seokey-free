@@ -4,9 +4,9 @@ Contributors: seokey, seomix, confridin
 Donate link: https://www.seo-key.com/
 Tags: seo audit, seo, google, content analysis, schema
 Requires at least: 5.5
-Tested up to: 6.7
+Tested up to: 6.8.1
 Requires PHP: 7.2
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,14 @@ Please report security bugs found in the source code of the SEO KEY plugin throu
 
 == Changelog ==
 Public roadmap is here: https://trello.com/b/jauwlc3J/seokey-pro-public-roadmap
+
+= 2.0.3
+* Fixed: (PRO) Avoid an uncommon fatal error when importing Search Console Data
+* Improvement: better audit accuracy for WooCommerce products
+* Improvement: Chinese characters are now correctly handled during audit tasks
+* Improvement: Performance improvements
+* Third-party: WP Rocket will now preload all URL found in SEOKEY XML Sitemaps
+* Third-party: better audit accuracy for WooCommerce Shop Page when using Elementor
 
 = 2.0.2
 * Fixed: (PRO) Incorrect audit domain analysis on some hosts (could result in incorrect advice about domain variations).

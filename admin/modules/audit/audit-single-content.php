@@ -244,22 +244,24 @@ function _seokey_audit_content_check_callback() {
 	}
     $url        = seokey_helper_url_remove_slashes( seokey_helper_url_remove_domain($datas["permalink"]), 'both' );
     $excerpt    = ( empty ( $datas["excerpt"] ) ) ? '' : $datas["excerpt"];
-	$date =  ( !empty( $datas["date"] ) ) ? $datas["date"] : get_the_date( 'c', $datas["id"] );
+	$date =  ( !empty( $datas["date"] ) ) ? $datas["date"] : get_the_date( 'c', $id );
     // We do not want the <p> tag for excerpts
     remove_filter( 'the_excerpt', 'wpautop' );
     // add filter for some page builders
-    $datas["content"] = apply_filters( 'seokey_filter_audit_single_data_content', $datas["content"] ) ;
+    $datas["content"] = apply_filters( 'seokey_filter_audit_single_data_content', $datas["content"], $id );
+    $datas["content"] = apply_filters( 'the_content',    stripslashes( $datas["content"] ) );
     // let's define our final data
     $item[ $id ]    = [
-        'content'       => apply_filters( 'the_content',    stripslashes( $datas["content"] ) ),
-        'title'         => apply_filters( 'the_title',      $datas["title"], $id ),
-        'excerpt'       => apply_filters( 'the_excerpt',    $excerpt ),
-        'metadesc'      => sanitize_text_field($datas["metadesc"]),
-        'slug'          => $url,
-        'date'          => $date,
-        'keyword'       => $datas["keyword"],
-        'author'        => ( !empty( $datas["author"] ) )? $datas["author"] : get_post_field( 'post_author', $id ),
-        'id'            => $id,
+        'content'           => $datas["content"],
+        'title'             => apply_filters( 'the_title',      $datas["title"], $id ),
+        'excerpt'           => apply_filters( 'the_excerpt',    $excerpt ),
+        'metadesc'          => sanitize_text_field($datas["metadesc"]),
+        'metadesc_manual'   => sanitize_text_field($datas["metadesc_manual"]),
+        'slug'              => $url,
+        'date'              => $date,
+        'keyword'           => $datas["keyword"],
+        'author'            => ( !empty( $datas["author"] ) )? $datas["author"] : get_post_field( 'post_author', $id ),
+        'id'                => $id,
     ];
     // add again the <p> tag filter to excerpts
     add_filter( 'the_excerpt', 'wpautop' );
@@ -276,6 +278,7 @@ function _seokey_audit_content_check_callback() {
 		// Tell WP we are running an audit while editing on specific content
 		seokey_helper_cache_data('audit_single_running', true );
         foreach ( $task_list as $type => $task_list_details ) {
+			if ( $type === "posts" ) {
 				foreach ( $task_list_details as $task ) {
 					$task      = 'content||' . $type . '||' . $task;
 					$details   = explode( '||', $task );
@@ -294,8 +297,7 @@ function _seokey_audit_content_check_callback() {
 								if ( empty( $raw_data['sub_priority'] ) ) {
 									$current_priority = substr( $raw_data['priority'], 0, 1 );
 									$error            = $messages[ $current_task ][ $current_priority ];
-	                            }
-	                            // Get message for subpriority task
+								} // Get message for subpriority task
 								else {
 									$error        = $submessages[ $raw_data['sub_priority'] ];
 									$current_task = $raw_data['sub_priority'];
@@ -305,7 +307,7 @@ function _seokey_audit_content_check_callback() {
 									$error = wp_kses_post( vsprintf( $error, $raw_data['datas'] ) );
 								}
 								$error_list[ $current_task ] = $error;
-
+							}
 						}
 					}
 				}

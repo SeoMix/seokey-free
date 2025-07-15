@@ -89,7 +89,19 @@ class Seokey_Audit_Tasks_content_words_count {
             $content = wp_strip_all_tags( $item['content'] );
             $content = html_entity_decode( $content );
             $content = str_replace( '\’', '', $content);// Better count for english text
-            $this->items[$key]['count'] = str_word_count( $content );
+            if (function_exists( 'icl_object_id' ) ) {
+                 $lang = apply_filters( 'wpml_element_language', null, $key, 'post' );
+            }
+            // Polylang
+            if ( function_exists( 'pll_get_post_language' ) ) {
+                $lang = pll_get_post_language( $key );
+            }
+            if ( $lang === "zh" || str_starts_with( $lang, 'zh' ) ) {
+                $content = preg_replace('/[^\p{Han}]/u', '', $content);
+                $this->items[$key]['count'] = mb_strlen($content, 'UTF-8');
+            } else {
+                $this->items[$key]['count'] = str_word_count( $content );
+            }
 	        unset( $this->items['content'] );
         }
         unset($data);

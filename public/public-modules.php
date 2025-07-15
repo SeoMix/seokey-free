@@ -35,7 +35,7 @@ seokey_helper_require_file( 'url-category-base',        $modules, 'everyone', $c
 seokey_helper_require_file( 'comments',                 $modules, 'everyone', $condition  );
 // Load content visibility functions
 seokey_helper_require_file( 'meta-robots',              $modules, 'everyone', $condition );
-// Load robots module
+// Load Image module
 seokey_helper_require_file( 'alt-images',               $modules, 'everyone', $condition );
 
 // All modules below should not be loaded on admin pages
