@@ -142,7 +142,7 @@ function seokey_meta_boxes_add_filter_taxo_accordion_sections( $safe_text, $text
  **/
 function seokey_meta_boxes_public_taxos_callback( $dummy, $box ) {
     echo '<span id="tab-seokey-metas" class="seokey-metabox-tab seokey-metabox-tab-first">';
-        echo '<p class="description">'.esc_html_e( 'Tell Google what your content is about:', 'seo-key' ).'</p>';
+        echo '<p class="description">'.esc_html__( 'Tell Google what your content is about:', 'seo-key' ).'</p>';
         echo '<span class="seokey-flex">';
             // Define our variables
             global $taxnow;
